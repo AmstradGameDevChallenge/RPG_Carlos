@@ -1,0 +1,163 @@
+ASxxxx Linker V03.00 + NoICE + sdld,  page 1.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000000  .__.ABS.                           
+     00000000  l__CABS                         
+     00000000  l__DABS                         
+     00000000  l__GSFINAL                      
+     00000000  l__GSINIT                       
+     00000000  l__HOME                         
+     00000000  l__INITIALIZED                  
+     00000000  l__INITIALIZER                  
+     00000000  s__CABS                         
+     00000000  s__DABS                         
+     0000001D  l__DATA                         
+     0000127B  l__CODE                         
+     00004000  s__CODE                         
+     0000527B  s__DATA                         
+     00005298  s__GSFINAL                      
+     00005298  s__GSINIT                       
+     00005298  s__HOME                         
+     00005298  s__INITIALIZED                  
+     00005298  s__INITIALIZER                  
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_CODE                               00004000    0000127B =        4731. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00004000  _initPlayer                        main
+     00004021  _paletaM1                          main
+     0000402C  _initGoblin                        main
+     00004054  _printStats                        main
+     0000410A  _showConsole                       main
+     000041A4  _attack                            main
+     00004229  _defense                           main
+     000042C1  _game                              main
+     000043B0  _main                              main
+     00004463  _cpct_setPalette                   cpct_video
+     0000447A  _cpct_isKeyPressed                 cpct_keyboard
+     0000447A  cpct_isKeyPressed_asm              cpct_keyboard
+     00004486  _cpct_scanKeyboard_f               cpct_keyboard
+     00004486  cpct_scanKeyboard_f_asm            cpct_keyboard
+     000044F0  _cpct_setPALColour                 cpct_video
+     000044FC  _cpct_drawStringM1                 cpct_strings
+     0000452C  cpct_drawCharM1_inner_asm          cpct_strings
+     0000456C  cpct_char2pxM1                     cpct_strings
+     0000457C  _cpct_keyboardStatusBuffer         cpct_keyboard
+     00004586  _cpct_setSeed_mxor                 cpct_random
+     00004586  cpct_setSeed_mxor_asm              cpct_random
+     0000458E  _cpct_restoreState_mxor_u8         cpct_random
+     0000458E  cpct_restoreState_mxor_u8_asm      cpct_random
+     00004594  _cpct_getRandom_mxor_u8            cpct_random
+     00004594  cpct_getRandom_mxor_u8_asm         cpct_random
+     00004595  cpct_randomIdx_mxor_u8             cpct_random
+     000045D9  _vsprintf                          sprintf
+     0000460E  _sprintf                           sprintf
+     00004643  _cpct_nextRandom_mxor_u32          cpct_random
+     00004643  cpct_nextRandom_mxor_u32_asm       cpct_random
+     00004666  _cpct_setVideoMode                 cpct_video
+     00004674  _cpct_isAnyKeyPressed_f            cpct_keyboard
+     00004674  cpct_isAnyKeyPressed_f_asm         cpct_keyboard
+     0000468F  _cpct_memset                       cpct_memutils
+     0000469D  _cpct_disableFirmware              cpct_firmware
+     0000469D  _cpct_removeInterruptHandler       cpct_firmware
+     0000469D  cpct_disableFirmware_asm           cpct_firmware
+     0000469D  cpct_removeInterruptHandler_asm    cpct_firmware
+     000046AD  _cpct_mode_rom_status              cpct_firmware
+     000046AE  _cpct_getScreenPtr                 cpct_video
+     000046CE  _cpct_setDrawCharM1                cpct_strings
+     00004821  __print_format                     printf_large
+     00005263  _cpct_mxor32_seed                  cpct_random
+     00005267  ___sdcc_call_hl                    
+     00005268  dc_mode1_ct                        
+     0000526C  _strlen                            
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_DATA                               0000527B    0000001D =          29. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     0000527B  _player                            main
+     00005289  _goblin                            main
+     00005297  _cursorPrint                       main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
+
+Files Linked                              [ module(s) ]
+
+obj/main.rel                              [ main ]
+
+
+Libraries Linked                          [ object file ]
+
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setPalette_cbindings.rel ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_isKeyPressed.rel ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_scanKeyboard_f.rel ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setPALColour_cbindings.rel ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_drawStringM1_cbindings.rel ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_drawCharM1_inner.rel ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ keyboard.rel ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setSeed_mxor.rel ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_restoreState_mxor_u8.rel ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_getRandom_mxor_u8.rel ]
+/home/cpp76s/cpctelera/cpctelera/tools/sdcc-3.6.8-r9946/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ sprintf.rel ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_nextRandom_mxor_u32.rel ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setVideoMode_cbindings.rel ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_isAnyKeyPressed_f.rel ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_memset_cbinding.rel ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_removeInterruptHandler.rel ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpc_mode_rom_status.rel ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_getScreenPtr_cbindings.rel ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setDrawCharM1_cbindings.rel ]
+/home/cpp76s/cpctelera/cpctelera/tools/sdcc-3.6.8-r9946/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ printf_large.rel ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_mxor32_seed.rel ]
+/home/cpp76s/cpctelera/cpctelera/tools/sdcc-3.6.8-r9946/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ __sdcc_call_hl.rel ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_dc_mode1_ct.rel ]
+/home/cpp76s/cpctelera/cpctelera/tools/sdcc-3.6.8-r9946/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ strlen.rel ]
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
+
+User Base Address Definitions
+
+_CODE = 0x4000
+_DATA = 0x0000
+
+
