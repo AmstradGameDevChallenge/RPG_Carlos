@@ -29,12 +29,17 @@ TStats player;
 TStats goblin;
 u8 cursorPrint;
 
+u8 abs (i8 valor){
+   return (valor > 0 ? valor : -valor);
+}
+
 void initPlayer(){
    strcpy(player.name,"PLAYER");
    player.max_energy = 99;
    player.energy = player.max_energy;
    player.attack = 30;
    player.defense = 15;
+   player.pos_x = 5;
 }
 
 void initGoblin(){
@@ -43,6 +48,7 @@ void initGoblin(){
    goblin.energy = goblin.max_energy;
    goblin.attack = 20;
    goblin.defense = 10;
+   goblin.pos_x = 7;
 }
 
 void printStats(TStats *a) {
@@ -61,16 +67,12 @@ void printStats(TStats *a) {
 void showConsole  (void* string) {
    if (cursorPrint > 190){
       cpct_clearScreen(0x00);
-      cursorPrint = 30;
+      cursorPrint = 44;
    }
 
    cpct_drawStringM1(string, cpct_getScreenPtr(CPCT_VMEM_START, 0, cursorPrint));
    cursorPrint +=8;
 
-   cpct_setDrawCharM1(3, 0);
-   printStats(&player);
-   printStats(&goblin);
-   cpct_drawStringM1("========================================", cpct_getScreenPtr(CPCT_VMEM_START, 0, 20));
 }
 
 
@@ -86,6 +88,7 @@ void attack(TStats *a, TStats *b) {
 
    cpct_setDrawCharM1(2, 0);
    showConsole(temp);
+   cpct_setDrawCharM1(3, 0);
 }
 
 void defense(TStats *a) {
@@ -101,51 +104,88 @@ void defense(TStats *a) {
 
    cpct_setDrawCharM1(1, 0);
    showConsole(temp);
+   cpct_setDrawCharM1(3, 0);
 }
 
 
 void game(){
    while (player.energy) {
-      initGoblin();
-      showConsole("A GOBLIN APPEARS.");
+      cpct_clearScreen(0x00);
+      cursorPrint = 44;
+      if (!goblin.energy) {
+         initGoblin();
+         showConsole("A GOBLIN APPEARS.");
+      }
 
-      while (player.energy && goblin.energy) {
-         // Get Player Action
-         showConsole("ACTION (A/D)?");
-         do 
-            cpct_scanKeyboard_f();
-         while (!cpct_isKeyPressed(Key_A) && !cpct_isKeyPressed(Key_D));
-         
-         //Attack
-         if (cpct_isKeyPressed(Key_A)) {
+      
+      printStats(&player);
+      printStats(&goblin);
+      cpct_drawStringM1("========================================", cpct_getScreenPtr(CPCT_VMEM_START, 0, 36));
+  
+      // RENDER Player
+      cpct_drawStringM1("@", cpct_getScreenPtr(CPCT_VMEM_START, (player.pos_x)*2, 28));
+      // RENDER Enemy
+      cpct_drawStringM1("G", cpct_getScreenPtr(CPCT_VMEM_START, (goblin.pos_x)*2, 28));
+
+
+      
+      // Get Player Action
+      showConsole("ACTION (O/P/D)?");
+      do 
+         cpct_scanKeyboard_f();
+      while (!cpct_isKeyPressed(Key_O) && !cpct_isKeyPressed(Key_P) && !cpct_isKeyPressed(Key_D));
+      
+      //Erase prior position
+      cpct_drawStringM1(" ", cpct_getScreenPtr(CPCT_VMEM_START, (player.pos_x)*2, 28));
+
+      if (cpct_isKeyPressed(Key_O)) {
+         player.pos_x--;
+         if (!player.pos_x)
+            player.pos_x = 1;
+      }
+
+      if (cpct_isKeyPressed(Key_P)) {
+         player.pos_x++;
+         if (player.pos_x == 40)
+            player.pos_x = 39;
+         if (player.pos_x == goblin.pos_x) {
+            player.pos_x--;
             attack(&player, &goblin);
          }
-         //Defense
-         if (cpct_isKeyPressed(Key_D)) {
-            defense(&player);
-         }
-         
-
-
-         //Enemy turn
-         if (goblin.energy) {
-            if (cpct_rand()%4) {// 75% of attack
-               attack(&goblin,&player);
-            } else { //defense
-               defense(&goblin);
-            }
-         } else {
-            showConsole("YOU KILLED THE GOBLIN.");
-         }
-
-         if (!player.energy){
-            showConsole("YOU DIED.");
-         }
-         
-         while (cpct_isAnyKeyPressed_f ()) { //Asegurarnos que se ha dejado de pulsar la tecla anterior 
-            cpct_scanKeyboard_f();
-         }
       }
+
+      //Defense
+      if (cpct_isKeyPressed(Key_D)) {
+         defense(&player);
+      }
+
+      // RENDER Player 
+      cpct_drawStringM1("@", cpct_getScreenPtr(CPCT_VMEM_START, (player.pos_x)*2, 28));
+
+      
+      //Enemy turn
+      if (goblin.energy) {
+         if (abs(goblin.pos_x - player.pos_x) == 1) //attack
+            attack(&goblin,&player);
+         else  //defense
+            defense(&goblin);
+      } else {
+         showConsole("YOU KILLED THE GOBLIN.");
+      }
+
+      if (!player.energy){
+         showConsole("YOU DIED.");
+      }
+
+      while (cpct_isAnyKeyPressed_f ()) { //Asegurarnos que se ha dejado de pulsar la tecla anterior 
+         cpct_scanKeyboard_f();
+      }
+      
+      showConsole("PRESS ANY KEY TO CONTINUE");
+      //Wait for key
+      do 
+         cpct_scanKeyboard_f();
+      while (!cpct_isAnyKeyPressed_f());
    }
 }
 
@@ -168,6 +208,10 @@ void main(void) {
       cpct_drawStringM1("PRESS ANY KEY TO START", cpct_getScreenPtr(CPCT_VMEM_START, 0, 20));
 
       //Wait for key
+      while (cpct_isAnyKeyPressed_f ()) { //Asegurarnos que se ha dejado de pulsar la tecla anterior 
+         cpct_scanKeyboard_f();
+      }
+      
       semilla = 0;
       do {
          cpct_scanKeyboard_f();
@@ -176,7 +220,7 @@ void main(void) {
       while (!cpct_isAnyKeyPressed_f());
       cpct_clearScreen(0x00);
 
-      cursorPrint = 30;
+      
       if (!semilla)
          semilla = 1;
 

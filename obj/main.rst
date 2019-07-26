@@ -16,10 +16,10 @@
                              16 	.globl _printStats
                              17 	.globl _initGoblin
                              18 	.globl _initPlayer
-                             19 	.globl _sprintf
-                             20 	.globl _cpct_restoreState_mxor_u8
-                             21 	.globl _cpct_setSeed_mxor
-                             22 	.globl _cpct_getRandom_mxor_u8
+                             19 	.globl _abs
+                             20 	.globl _sprintf
+                             21 	.globl _cpct_restoreState_mxor_u8
+                             22 	.globl _cpct_setSeed_mxor
                              23 	.globl _cpct_getScreenPtr
                              24 	.globl _cpct_setPALColour
                              25 	.globl _cpct_setPalette
@@ -42,12 +42,12 @@
                              42 ; ram data
                              43 ;--------------------------------------------------------
                              44 	.area _DATA
-   527B                      45 _player::
-   527B                      46 	.ds 14
-   5289                      47 _goblin::
-   5289                      48 	.ds 14
-   5297                      49 _cursorPrint::
-   5297                      50 	.ds 1
+   53B2                      45 _player::
+   53B2                      46 	.ds 15
+   53C1                      47 _goblin::
+   53C1                      48 	.ds 15
+   53D0                      49 _cursorPrint::
+   53D0                      50 	.ds 1
                              51 ;--------------------------------------------------------
                              52 ; ram data
                              53 ;--------------------------------------------------------
@@ -72,656 +72,854 @@
                              72 ; code
                              73 ;--------------------------------------------------------
                              74 	.area _CODE
-                             75 ;src/main.c:32: void initPlayer(){
+                             75 ;src/main.c:32: u8 abs (i8 valor){
                              76 ;	---------------------------------
-                             77 ; Function initPlayer
+                             77 ; Function abs
                              78 ; ---------------------------------
-   4000                      79 _initPlayer::
-                             80 ;src/main.c:33: strcpy(player.name,"PLAYER");
-   4000 11 7B 52      [10]   81 	ld	de, #_player
-   4003 21 25 40      [10]   82 	ld	hl, #___str_0
-   4006 AF            [ 4]   83 	xor	a, a
-   4007                      84 00103$:
-   4007 BE            [ 7]   85 	cp	a, (hl)
-   4008 ED A0         [16]   86 	ldi
-   400A 20 FB         [12]   87 	jr	NZ, 00103$
-                             88 ;src/main.c:34: player.max_energy = 99;
-   400C 21 86 52      [10]   89 	ld	hl, #_player + 11
-   400F 36 63         [10]   90 	ld	(hl), #0x63
-                             91 ;src/main.c:35: player.energy = player.max_energy;
-   4011 01 85 52      [10]   92 	ld	bc, #_player + 10
-   4014 7E            [ 7]   93 	ld	a, (hl)
-   4015 02            [ 7]   94 	ld	(bc), a
-                             95 ;src/main.c:36: player.attack = 30;
-   4016 21 87 52      [10]   96 	ld	hl, #(_player + 0x000c)
-   4019 36 1E         [10]   97 	ld	(hl), #0x1e
-                             98 ;src/main.c:37: player.defense = 15;
-   401B 21 88 52      [10]   99 	ld	hl, #(_player + 0x000d)
-   401E 36 0F         [10]  100 	ld	(hl), #0x0f
-   4020 C9            [10]  101 	ret
-   4021                     102 _paletaM1:
-   4021 54                  103 	.db #0x54	; 84	'T'
-   4022 43                  104 	.db #0x43	; 67	'C'
-   4023 4C                  105 	.db #0x4c	; 76	'L'
-   4024 4B                  106 	.db #0x4b	; 75	'K'
-   4025                     107 ___str_0:
-   4025 50 4C 41 59 45 52   108 	.ascii "PLAYER"
-   402B 00                  109 	.db 0x00
-                            110 ;src/main.c:40: void initGoblin(){
-                            111 ;	---------------------------------
-                            112 ; Function initGoblin
-                            113 ; ---------------------------------
-   402C                     114 _initGoblin::
-                            115 ;src/main.c:41: strcpy(goblin.name,"GOBLIN");
-   402C 11 89 52      [10]  116 	ld	de, #_goblin
-   402F 21 4D 40      [10]  117 	ld	hl, #___str_1
-   4032 AF            [ 4]  118 	xor	a, a
-   4033                     119 00103$:
-   4033 BE            [ 7]  120 	cp	a, (hl)
-   4034 ED A0         [16]  121 	ldi
-   4036 20 FB         [12]  122 	jr	NZ, 00103$
-                            123 ;src/main.c:42: goblin.max_energy = 90;
-   4038 21 94 52      [10]  124 	ld	hl, #_goblin + 11
-   403B 36 5A         [10]  125 	ld	(hl), #0x5a
-                            126 ;src/main.c:43: goblin.energy = goblin.max_energy;
-   403D 01 93 52      [10]  127 	ld	bc, #_goblin + 10
-   4040 7E            [ 7]  128 	ld	a, (hl)
-   4041 02            [ 7]  129 	ld	(bc), a
-                            130 ;src/main.c:44: goblin.attack = 20;
-   4042 21 95 52      [10]  131 	ld	hl, #(_goblin + 0x000c)
-   4045 36 14         [10]  132 	ld	(hl), #0x14
-                            133 ;src/main.c:45: goblin.defense = 10;
-   4047 21 96 52      [10]  134 	ld	hl, #(_goblin + 0x000d)
-   404A 36 0A         [10]  135 	ld	(hl), #0x0a
-   404C C9            [10]  136 	ret
-   404D                     137 ___str_1:
-   404D 47 4F 42 4C 49 4E   138 	.ascii "GOBLIN"
-   4053 00                  139 	.db 0x00
-                            140 ;src/main.c:48: void printStats(TStats *a) {
-                            141 ;	---------------------------------
-                            142 ; Function printStats
-                            143 ; ---------------------------------
-   4054                     144 _printStats::
-   4054 DD E5         [15]  145 	push	ix
-   4056 DD 21 00 00   [14]  146 	ld	ix,#0
-   405A DD 39         [15]  147 	add	ix,sp
-   405C 21 D1 FF      [10]  148 	ld	hl, #-47
-   405F 39            [11]  149 	add	hl, sp
-   4060 F9            [ 6]  150 	ld	sp, hl
-                            151 ;src/main.c:51: u8 posy = 10;
-   4061 DD 36 D1 0A   [19]  152 	ld	-47 (ix), #0x0a
-                            153 ;src/main.c:52: sprintf(temp, "%s %02d. ATTACK: %02d. DEFENSE: %02d",a->name, a->energy,a->attack,a->defense);
-   4065 DD 4E 04      [19]  154 	ld	c,4 (ix)
-   4068 DD 46 05      [19]  155 	ld	b,5 (ix)
-   406B C5            [11]  156 	push	bc
-   406C FD E1         [14]  157 	pop	iy
-   406E FD 5E 0D      [19]  158 	ld	e, 13 (iy)
-   4071 16 00         [ 7]  159 	ld	d, #0x00
-   4073 C5            [11]  160 	push	bc
-   4074 FD E1         [14]  161 	pop	iy
-   4076 FD 6E 0C      [19]  162 	ld	l, 12 (iy)
-   4079 DD 75 FE      [19]  163 	ld	-2 (ix), l
-   407C DD 36 FF 00   [19]  164 	ld	-1 (ix), #0x00
-   4080 C5            [11]  165 	push	bc
-   4081 FD E1         [14]  166 	pop	iy
-   4083 FD 6E 0A      [19]  167 	ld	l, 10 (iy)
-   4086 DD 75 FC      [19]  168 	ld	-4 (ix), l
-   4089 DD 36 FD 00   [19]  169 	ld	-3 (ix), #0x00
-   408D 21 01 00      [10]  170 	ld	hl, #0x0001
-   4090 39            [11]  171 	add	hl, sp
-   4091 DD 75 FA      [19]  172 	ld	-6 (ix), l
-   4094 DD 74 FB      [19]  173 	ld	-5 (ix), h
-   4097 D5            [11]  174 	push	de
-   4098 DD 5E FE      [19]  175 	ld	e,-2 (ix)
-   409B DD 56 FF      [19]  176 	ld	d,-1 (ix)
-   409E D5            [11]  177 	push	de
-   409F DD 5E FC      [19]  178 	ld	e,-4 (ix)
-   40A2 DD 56 FD      [19]  179 	ld	d,-3 (ix)
-   40A5 D5            [11]  180 	push	de
-   40A6 C5            [11]  181 	push	bc
-   40A7 01 E5 40      [10]  182 	ld	bc, #___str_2
-   40AA C5            [11]  183 	push	bc
-   40AB E5            [11]  184 	push	hl
-   40AC CD 0E 46      [17]  185 	call	_sprintf
-   40AF 21 0C 00      [10]  186 	ld	hl, #12
-   40B2 39            [11]  187 	add	hl, sp
-   40B3 F9            [ 6]  188 	ld	sp, hl
-                            189 ;src/main.c:54: if (a == &player) 
-   40B4 DD 7E 04      [19]  190 	ld	a, 4 (ix)
-   40B7 D6 7B         [ 7]  191 	sub	a, #<(_player)
-   40B9 20 0B         [12]  192 	jr	NZ,00102$
-   40BB DD 7E 05      [19]  193 	ld	a, 5 (ix)
-   40BE D6 52         [ 7]  194 	sub	a, #>(_player)
-   40C0 20 04         [12]  195 	jr	NZ,00102$
-                            196 ;src/main.c:55: posy = 0;
-   40C2 DD 36 D1 00   [19]  197 	ld	-47 (ix), #0x00
-   40C6                     198 00102$:
-                            199 ;src/main.c:57: cpct_drawStringM1(temp, cpct_getScreenPtr(CPCT_VMEM_START, 0, posy));
-   40C6 DD 7E D1      [19]  200 	ld	a, -47 (ix)
-   40C9 F5            [11]  201 	push	af
-   40CA 33            [ 6]  202 	inc	sp
-   40CB AF            [ 4]  203 	xor	a, a
-   40CC F5            [11]  204 	push	af
-   40CD 33            [ 6]  205 	inc	sp
-   40CE 21 00 C0      [10]  206 	ld	hl, #0xc000
-   40D1 E5            [11]  207 	push	hl
-   40D2 CD AE 46      [17]  208 	call	_cpct_getScreenPtr
-   40D5 DD 4E FA      [19]  209 	ld	c,-6 (ix)
-   40D8 DD 46 FB      [19]  210 	ld	b,-5 (ix)
-   40DB E5            [11]  211 	push	hl
-   40DC C5            [11]  212 	push	bc
-   40DD CD FC 44      [17]  213 	call	_cpct_drawStringM1
-   40E0 DD F9         [10]  214 	ld	sp, ix
-   40E2 DD E1         [14]  215 	pop	ix
-   40E4 C9            [10]  216 	ret
-   40E5                     217 ___str_2:
-   40E5 25 73 20 25 30 32   218 	.ascii "%s %02d. ATTACK: %02d. DEFENSE: %02d"
+   4000                      79 _abs::
+                             80 ;src/main.c:33: return (valor > 0 ? valor : -valor);
+   4000 AF            [ 4]   81 	xor	a, a
+   4001 FD 21 02 00   [14]   82 	ld	iy, #2
+   4005 FD 39         [15]   83 	add	iy, sp
+   4007 FD 96 00      [19]   84 	sub	a, 0 (iy)
+   400A E2 0F 40      [10]   85 	jp	PO, 00109$
+   400D EE 80         [ 7]   86 	xor	a, #0x80
+   400F                      87 00109$:
+   400F F2 1C 40      [10]   88 	jp	P, 00103$
+   4012 FD 21 02 00   [14]   89 	ld	iy, #2
+   4016 FD 39         [15]   90 	add	iy, sp
+   4018 FD 6E 00      [19]   91 	ld	l, 0 (iy)
+   401B C9            [10]   92 	ret
+   401C                      93 00103$:
+   401C AF            [ 4]   94 	xor	a, a
+   401D FD 21 02 00   [14]   95 	ld	iy, #2
+   4021 FD 39         [15]   96 	add	iy, sp
+   4023 FD 96 00      [19]   97 	sub	a, 0 (iy)
+   4026 6F            [ 4]   98 	ld	l, a
+   4027 C9            [10]   99 	ret
+   4028                     100 _paletaM1:
+   4028 54                  101 	.db #0x54	; 84	'T'
+   4029 43                  102 	.db #0x43	; 67	'C'
+   402A 4C                  103 	.db #0x4c	; 76	'L'
+   402B 4B                  104 	.db #0x4b	; 75	'K'
+                            105 ;src/main.c:36: void initPlayer(){
+                            106 ;	---------------------------------
+                            107 ; Function initPlayer
+                            108 ; ---------------------------------
+   402C                     109 _initPlayer::
+                            110 ;src/main.c:37: strcpy(player.name,"PLAYER");
+   402C 11 B2 53      [10]  111 	ld	de, #_player
+   402F 21 52 40      [10]  112 	ld	hl, #___str_0
+   4032 AF            [ 4]  113 	xor	a, a
+   4033                     114 00103$:
+   4033 BE            [ 7]  115 	cp	a, (hl)
+   4034 ED A0         [16]  116 	ldi
+   4036 20 FB         [12]  117 	jr	NZ, 00103$
+                            118 ;src/main.c:38: player.max_energy = 99;
+   4038 21 BD 53      [10]  119 	ld	hl, #_player + 11
+   403B 36 63         [10]  120 	ld	(hl), #0x63
+                            121 ;src/main.c:39: player.energy = player.max_energy;
+   403D 01 BC 53      [10]  122 	ld	bc, #_player + 10
+   4040 7E            [ 7]  123 	ld	a, (hl)
+   4041 02            [ 7]  124 	ld	(bc), a
+                            125 ;src/main.c:40: player.attack = 30;
+   4042 21 BE 53      [10]  126 	ld	hl, #(_player + 0x000c)
+   4045 36 1E         [10]  127 	ld	(hl), #0x1e
+                            128 ;src/main.c:41: player.defense = 15;
+   4047 21 BF 53      [10]  129 	ld	hl, #(_player + 0x000d)
+   404A 36 0F         [10]  130 	ld	(hl), #0x0f
+                            131 ;src/main.c:42: player.pos_x = 5;
+   404C 21 C0 53      [10]  132 	ld	hl, #(_player + 0x000e)
+   404F 36 05         [10]  133 	ld	(hl), #0x05
+   4051 C9            [10]  134 	ret
+   4052                     135 ___str_0:
+   4052 50 4C 41 59 45 52   136 	.ascii "PLAYER"
+   4058 00                  137 	.db 0x00
+                            138 ;src/main.c:45: void initGoblin(){
+                            139 ;	---------------------------------
+                            140 ; Function initGoblin
+                            141 ; ---------------------------------
+   4059                     142 _initGoblin::
+                            143 ;src/main.c:46: strcpy(goblin.name,"GOBLIN");
+   4059 11 C1 53      [10]  144 	ld	de, #_goblin
+   405C 21 7F 40      [10]  145 	ld	hl, #___str_1
+   405F AF            [ 4]  146 	xor	a, a
+   4060                     147 00103$:
+   4060 BE            [ 7]  148 	cp	a, (hl)
+   4061 ED A0         [16]  149 	ldi
+   4063 20 FB         [12]  150 	jr	NZ, 00103$
+                            151 ;src/main.c:47: goblin.max_energy = 90;
+   4065 21 CC 53      [10]  152 	ld	hl, #_goblin + 11
+   4068 36 5A         [10]  153 	ld	(hl), #0x5a
+                            154 ;src/main.c:48: goblin.energy = goblin.max_energy;
+   406A 01 CB 53      [10]  155 	ld	bc, #_goblin + 10
+   406D 7E            [ 7]  156 	ld	a, (hl)
+   406E 02            [ 7]  157 	ld	(bc), a
+                            158 ;src/main.c:49: goblin.attack = 20;
+   406F 21 CD 53      [10]  159 	ld	hl, #(_goblin + 0x000c)
+   4072 36 14         [10]  160 	ld	(hl), #0x14
+                            161 ;src/main.c:50: goblin.defense = 10;
+   4074 21 CE 53      [10]  162 	ld	hl, #(_goblin + 0x000d)
+   4077 36 0A         [10]  163 	ld	(hl), #0x0a
+                            164 ;src/main.c:51: goblin.pos_x = 7;
+   4079 21 CF 53      [10]  165 	ld	hl, #(_goblin + 0x000e)
+   407C 36 07         [10]  166 	ld	(hl), #0x07
+   407E C9            [10]  167 	ret
+   407F                     168 ___str_1:
+   407F 47 4F 42 4C 49 4E   169 	.ascii "GOBLIN"
+   4085 00                  170 	.db 0x00
+                            171 ;src/main.c:54: void printStats(TStats *a) {
+                            172 ;	---------------------------------
+                            173 ; Function printStats
+                            174 ; ---------------------------------
+   4086                     175 _printStats::
+   4086 DD E5         [15]  176 	push	ix
+   4088 DD 21 00 00   [14]  177 	ld	ix,#0
+   408C DD 39         [15]  178 	add	ix,sp
+   408E 21 D1 FF      [10]  179 	ld	hl, #-47
+   4091 39            [11]  180 	add	hl, sp
+   4092 F9            [ 6]  181 	ld	sp, hl
+                            182 ;src/main.c:57: u8 posy = 10;
+   4093 DD 36 D1 0A   [19]  183 	ld	-47 (ix), #0x0a
+                            184 ;src/main.c:58: sprintf(temp, "%s %02d. ATTACK: %02d. DEFENSE: %02d",a->name, a->energy,a->attack,a->defense);
+   4097 DD 4E 04      [19]  185 	ld	c,4 (ix)
+   409A DD 46 05      [19]  186 	ld	b,5 (ix)
+   409D C5            [11]  187 	push	bc
+   409E FD E1         [14]  188 	pop	iy
+   40A0 FD 5E 0D      [19]  189 	ld	e, 13 (iy)
+   40A3 16 00         [ 7]  190 	ld	d, #0x00
+   40A5 C5            [11]  191 	push	bc
+   40A6 FD E1         [14]  192 	pop	iy
+   40A8 FD 6E 0C      [19]  193 	ld	l, 12 (iy)
+   40AB DD 75 FE      [19]  194 	ld	-2 (ix), l
+   40AE DD 36 FF 00   [19]  195 	ld	-1 (ix), #0x00
+   40B2 C5            [11]  196 	push	bc
+   40B3 FD E1         [14]  197 	pop	iy
+   40B5 FD 6E 0A      [19]  198 	ld	l, 10 (iy)
+   40B8 DD 75 FC      [19]  199 	ld	-4 (ix), l
+   40BB DD 36 FD 00   [19]  200 	ld	-3 (ix), #0x00
+   40BF 21 01 00      [10]  201 	ld	hl, #0x0001
+   40C2 39            [11]  202 	add	hl, sp
+   40C3 DD 75 FA      [19]  203 	ld	-6 (ix), l
+   40C6 DD 74 FB      [19]  204 	ld	-5 (ix), h
+   40C9 D5            [11]  205 	push	de
+   40CA DD 5E FE      [19]  206 	ld	e,-2 (ix)
+   40CD DD 56 FF      [19]  207 	ld	d,-1 (ix)
+   40D0 D5            [11]  208 	push	de
+   40D1 DD 5E FC      [19]  209 	ld	e,-4 (ix)
+   40D4 DD 56 FD      [19]  210 	ld	d,-3 (ix)
+   40D7 D5            [11]  211 	push	de
+   40D8 C5            [11]  212 	push	bc
+   40D9 01 17 41      [10]  213 	ld	bc, #___str_2
+   40DC C5            [11]  214 	push	bc
+   40DD E5            [11]  215 	push	hl
+   40DE CD 45 47      [17]  216 	call	_sprintf
+   40E1 21 0C 00      [10]  217 	ld	hl, #12
+   40E4 39            [11]  218 	add	hl, sp
+   40E5 F9            [ 6]  219 	ld	sp, hl
+                            220 ;src/main.c:60: if (a == &player) 
+   40E6 DD 7E 04      [19]  221 	ld	a, 4 (ix)
+   40E9 D6 B2         [ 7]  222 	sub	a, #<(_player)
+   40EB 20 0B         [12]  223 	jr	NZ,00102$
+   40ED DD 7E 05      [19]  224 	ld	a, 5 (ix)
+   40F0 D6 53         [ 7]  225 	sub	a, #>(_player)
+   40F2 20 04         [12]  226 	jr	NZ,00102$
+                            227 ;src/main.c:61: posy = 0;
+   40F4 DD 36 D1 00   [19]  228 	ld	-47 (ix), #0x00
+   40F8                     229 00102$:
+                            230 ;src/main.c:63: cpct_drawStringM1(temp, cpct_getScreenPtr(CPCT_VMEM_START, 0, posy));
+   40F8 DD 7E D1      [19]  231 	ld	a, -47 (ix)
+   40FB F5            [11]  232 	push	af
+   40FC 33            [ 6]  233 	inc	sp
+   40FD AF            [ 4]  234 	xor	a, a
+   40FE F5            [11]  235 	push	af
+   40FF 33            [ 6]  236 	inc	sp
+   4100 21 00 C0      [10]  237 	ld	hl, #0xc000
+   4103 E5            [11]  238 	push	hl
+   4104 CD E5 47      [17]  239 	call	_cpct_getScreenPtr
+   4107 DD 4E FA      [19]  240 	ld	c,-6 (ix)
+   410A DD 46 FB      [19]  241 	ld	b,-5 (ix)
+   410D E5            [11]  242 	push	hl
+   410E C5            [11]  243 	push	bc
+   410F CD 33 46      [17]  244 	call	_cpct_drawStringM1
+   4112 DD F9         [10]  245 	ld	sp, ix
+   4114 DD E1         [14]  246 	pop	ix
+   4116 C9            [10]  247 	ret
+   4117                     248 ___str_2:
+   4117 25 73 20 25 30 32   249 	.ascii "%s %02d. ATTACK: %02d. DEFENSE: %02d"
         64 2E 20 41 54 54
         41 43 4B 3A 20 25
         30 32 64 2E 20 44
         45 46 45 4E 53 45
         3A 20 25 30 32 64
-   4109 00                  219 	.db 0x00
-                            220 ;src/main.c:61: void showConsole  (void* string) {
-                            221 ;	---------------------------------
-                            222 ; Function showConsole
-                            223 ; ---------------------------------
-   410A                     224 _showConsole::
-   410A DD E5         [15]  225 	push	ix
-   410C DD 21 00 00   [14]  226 	ld	ix,#0
-   4110 DD 39         [15]  227 	add	ix,sp
-                            228 ;src/main.c:62: if (cursorPrint > 190){
-   4112 3E BE         [ 7]  229 	ld	a, #0xbe
-   4114 FD 21 97 52   [14]  230 	ld	iy, #_cursorPrint
-   4118 FD 96 00      [19]  231 	sub	a, 0 (iy)
-   411B 30 12         [12]  232 	jr	NC,00102$
-                            233 ;src/main.c:63: cpct_clearScreen(0x00);
-   411D 21 00 40      [10]  234 	ld	hl, #0x4000
-   4120 E5            [11]  235 	push	hl
-   4121 AF            [ 4]  236 	xor	a, a
-   4122 F5            [11]  237 	push	af
-   4123 33            [ 6]  238 	inc	sp
-   4124 26 C0         [ 7]  239 	ld	h, #0xc0
-   4126 E5            [11]  240 	push	hl
-   4127 CD 8F 46      [17]  241 	call	_cpct_memset
-                            242 ;src/main.c:64: cursorPrint = 30;
-   412A 21 97 52      [10]  243 	ld	hl,#_cursorPrint + 0
-   412D 36 1E         [10]  244 	ld	(hl), #0x1e
-   412F                     245 00102$:
-                            246 ;src/main.c:67: cpct_drawStringM1(string, cpct_getScreenPtr(CPCT_VMEM_START, 0, cursorPrint));
-   412F 3A 97 52      [13]  247 	ld	a, (_cursorPrint)
-   4132 F5            [11]  248 	push	af
-   4133 33            [ 6]  249 	inc	sp
-   4134 AF            [ 4]  250 	xor	a, a
-   4135 F5            [11]  251 	push	af
-   4136 33            [ 6]  252 	inc	sp
-   4137 21 00 C0      [10]  253 	ld	hl, #0xc000
-   413A E5            [11]  254 	push	hl
-   413B CD AE 46      [17]  255 	call	_cpct_getScreenPtr
-   413E DD 4E 04      [19]  256 	ld	c,4 (ix)
-   4141 DD 46 05      [19]  257 	ld	b,5 (ix)
-   4144 E5            [11]  258 	push	hl
-   4145 C5            [11]  259 	push	bc
-   4146 CD FC 44      [17]  260 	call	_cpct_drawStringM1
-                            261 ;src/main.c:68: cursorPrint +=8;
-   4149 21 97 52      [10]  262 	ld	hl, #_cursorPrint
-   414C 7E            [ 7]  263 	ld	a, (hl)
-   414D C6 08         [ 7]  264 	add	a, #0x08
-   414F 77            [ 7]  265 	ld	(hl), a
-                            266 ;src/main.c:70: cpct_setDrawCharM1(3, 0);
-   4150 21 03 00      [10]  267 	ld	hl, #0x0003
-   4153 E5            [11]  268 	push	hl
-   4154 CD CE 46      [17]  269 	call	_cpct_setDrawCharM1
-                            270 ;src/main.c:71: printStats(&player);
-   4157 21 7B 52      [10]  271 	ld	hl, #_player
-   415A E5            [11]  272 	push	hl
-   415B CD 54 40      [17]  273 	call	_printStats
-                            274 ;src/main.c:72: printStats(&goblin);
-   415E 21 89 52      [10]  275 	ld	hl, #_goblin
-   4161 E3            [19]  276 	ex	(sp),hl
-   4162 CD 54 40      [17]  277 	call	_printStats
-   4165 F1            [10]  278 	pop	af
-                            279 ;src/main.c:73: cpct_drawStringM1("========================================", cpct_getScreenPtr(CPCT_VMEM_START, 0, 20));
-   4166 21 00 14      [10]  280 	ld	hl, #0x1400
-   4169 E5            [11]  281 	push	hl
-   416A 26 C0         [ 7]  282 	ld	h, #0xc0
-   416C E5            [11]  283 	push	hl
-   416D CD AE 46      [17]  284 	call	_cpct_getScreenPtr
-   4170 01 7B 41      [10]  285 	ld	bc, #___str_3+0
-   4173 E5            [11]  286 	push	hl
-   4174 C5            [11]  287 	push	bc
-   4175 CD FC 44      [17]  288 	call	_cpct_drawStringM1
-   4178 DD E1         [14]  289 	pop	ix
-   417A C9            [10]  290 	ret
-   417B                     291 ___str_3:
-   417B 3D 3D 3D 3D 3D 3D   292 	.ascii "========================================"
+   413B 00                  250 	.db 0x00
+                            251 ;src/main.c:67: void showConsole  (void* string) {
+                            252 ;	---------------------------------
+                            253 ; Function showConsole
+                            254 ; ---------------------------------
+   413C                     255 _showConsole::
+                            256 ;src/main.c:68: if (cursorPrint > 190){
+   413C 3E BE         [ 7]  257 	ld	a, #0xbe
+   413E FD 21 D0 53   [14]  258 	ld	iy, #_cursorPrint
+   4142 FD 96 00      [19]  259 	sub	a, 0 (iy)
+   4145 30 12         [12]  260 	jr	NC,00102$
+                            261 ;src/main.c:69: cpct_clearScreen(0x00);
+   4147 21 00 40      [10]  262 	ld	hl, #0x4000
+   414A E5            [11]  263 	push	hl
+   414B AF            [ 4]  264 	xor	a, a
+   414C F5            [11]  265 	push	af
+   414D 33            [ 6]  266 	inc	sp
+   414E 26 C0         [ 7]  267 	ld	h, #0xc0
+   4150 E5            [11]  268 	push	hl
+   4151 CD C6 47      [17]  269 	call	_cpct_memset
+                            270 ;src/main.c:70: cursorPrint = 44;
+   4154 21 D0 53      [10]  271 	ld	hl,#_cursorPrint + 0
+   4157 36 2C         [10]  272 	ld	(hl), #0x2c
+   4159                     273 00102$:
+                            274 ;src/main.c:73: cpct_drawStringM1(string, cpct_getScreenPtr(CPCT_VMEM_START, 0, cursorPrint));
+   4159 3A D0 53      [13]  275 	ld	a, (_cursorPrint)
+   415C F5            [11]  276 	push	af
+   415D 33            [ 6]  277 	inc	sp
+   415E AF            [ 4]  278 	xor	a, a
+   415F F5            [11]  279 	push	af
+   4160 33            [ 6]  280 	inc	sp
+   4161 21 00 C0      [10]  281 	ld	hl, #0xc000
+   4164 E5            [11]  282 	push	hl
+   4165 CD E5 47      [17]  283 	call	_cpct_getScreenPtr
+   4168 D1            [10]  284 	pop	de
+   4169 C1            [10]  285 	pop	bc
+   416A C5            [11]  286 	push	bc
+   416B D5            [11]  287 	push	de
+   416C E5            [11]  288 	push	hl
+   416D C5            [11]  289 	push	bc
+   416E CD 33 46      [17]  290 	call	_cpct_drawStringM1
+                            291 ;src/main.c:74: cursorPrint +=8;
+   4171 21 D0 53      [10]  292 	ld	hl, #_cursorPrint
+   4174 7E            [ 7]  293 	ld	a, (hl)
+   4175 C6 08         [ 7]  294 	add	a, #0x08
+   4177 77            [ 7]  295 	ld	(hl), a
+   4178 C9            [10]  296 	ret
+                            297 ;src/main.c:79: void attack(TStats *a, TStats *b) {
+                            298 ;	---------------------------------
+                            299 ; Function attack
+                            300 ; ---------------------------------
+   4179                     301 _attack::
+   4179 DD E5         [15]  302 	push	ix
+   417B DD 21 00 00   [14]  303 	ld	ix,#0
+   417F DD 39         [15]  304 	add	ix,sp
+   4181 21 D5 FF      [10]  305 	ld	hl, #-43
+   4184 39            [11]  306 	add	hl, sp
+   4185 F9            [ 6]  307 	ld	sp, hl
+                            308 ;src/main.c:82: if (a->attack < b->energy) 
+   4186 DD 7E 04      [19]  309 	ld	a, 4 (ix)
+   4189 DD 77 FE      [19]  310 	ld	-2 (ix), a
+   418C DD 7E 05      [19]  311 	ld	a, 5 (ix)
+   418F DD 77 FF      [19]  312 	ld	-1 (ix), a
+   4192 DD 7E FE      [19]  313 	ld	a, -2 (ix)
+   4195 C6 0C         [ 7]  314 	add	a, #0x0c
+   4197 4F            [ 4]  315 	ld	c, a
+   4198 DD 7E FF      [19]  316 	ld	a, -1 (ix)
+   419B CE 00         [ 7]  317 	adc	a, #0x00
+   419D 47            [ 4]  318 	ld	b, a
+   419E 0A            [ 7]  319 	ld	a, (bc)
+   419F DD 77 FD      [19]  320 	ld	-3 (ix), a
+   41A2 DD 5E 06      [19]  321 	ld	e,6 (ix)
+   41A5 DD 56 07      [19]  322 	ld	d,7 (ix)
+   41A8 21 0A 00      [10]  323 	ld	hl, #0x000a
+   41AB 19            [11]  324 	add	hl,de
+   41AC EB            [ 4]  325 	ex	de,hl
+   41AD 1A            [ 7]  326 	ld	a, (de)
+   41AE 6F            [ 4]  327 	ld	l, a
+   41AF DD 7E FD      [19]  328 	ld	a, -3 (ix)
+   41B2 95            [ 4]  329 	sub	a, l
+   41B3 30 07         [12]  330 	jr	NC,00102$
+                            331 ;src/main.c:83: b->energy = b->energy - a->attack;
+   41B5 7D            [ 4]  332 	ld	a, l
+   41B6 DD 96 FD      [19]  333 	sub	a, -3 (ix)
+   41B9 12            [ 7]  334 	ld	(de), a
+   41BA 18 02         [12]  335 	jr	00103$
+   41BC                     336 00102$:
+                            337 ;src/main.c:85: b->energy = 0;
+   41BC AF            [ 4]  338 	xor	a, a
+   41BD 12            [ 7]  339 	ld	(de), a
+   41BE                     340 00103$:
+                            341 ;src/main.c:87: sprintf(temp, "%s attacks %02d.",a->name, a->attack);
+   41BE 0A            [ 7]  342 	ld	a, (bc)
+   41BF 4F            [ 4]  343 	ld	c, a
+   41C0 06 00         [ 7]  344 	ld	b, #0x00
+   41C2 21 00 00      [10]  345 	ld	hl, #0x0000
+   41C5 39            [11]  346 	add	hl, sp
+   41C6 5D            [ 4]  347 	ld	e, l
+   41C7 54            [ 4]  348 	ld	d, h
+   41C8 E5            [11]  349 	push	hl
+   41C9 C5            [11]  350 	push	bc
+   41CA DD 4E FE      [19]  351 	ld	c,-2 (ix)
+   41CD DD 46 FF      [19]  352 	ld	b,-1 (ix)
+   41D0 C5            [11]  353 	push	bc
+   41D1 01 F4 41      [10]  354 	ld	bc, #___str_3
+   41D4 C5            [11]  355 	push	bc
+   41D5 D5            [11]  356 	push	de
+   41D6 CD 45 47      [17]  357 	call	_sprintf
+   41D9 21 08 00      [10]  358 	ld	hl, #8
+   41DC 39            [11]  359 	add	hl, sp
+   41DD F9            [ 6]  360 	ld	sp, hl
+   41DE 01 02 00      [10]  361 	ld	bc, #0x0002
+   41E1 C5            [11]  362 	push	bc
+   41E2 CD 05 48      [17]  363 	call	_cpct_setDrawCharM1
+   41E5 CD 3C 41      [17]  364 	call	_showConsole
+                            365 ;src/main.c:91: cpct_setDrawCharM1(3, 0);
+   41E8 21 03 00      [10]  366 	ld	hl, #0x0003
+   41EB E3            [19]  367 	ex	(sp),hl
+   41EC CD 05 48      [17]  368 	call	_cpct_setDrawCharM1
+   41EF DD F9         [10]  369 	ld	sp, ix
+   41F1 DD E1         [14]  370 	pop	ix
+   41F3 C9            [10]  371 	ret
+   41F4                     372 ___str_3:
+   41F4 25 73 20 61 74 74   373 	.ascii "%s attacks %02d."
+        61 63 6B 73 20 25
+        30 32 64 2E
+   4204 00                  374 	.db 0x00
+                            375 ;src/main.c:94: void defense(TStats *a) {
+                            376 ;	---------------------------------
+                            377 ; Function defense
+                            378 ; ---------------------------------
+   4205                     379 _defense::
+   4205 DD E5         [15]  380 	push	ix
+   4207 DD 21 00 00   [14]  381 	ld	ix,#0
+   420B DD 39         [15]  382 	add	ix,sp
+   420D 21 D5 FF      [10]  383 	ld	hl, #-43
+   4210 39            [11]  384 	add	hl, sp
+   4211 F9            [ 6]  385 	ld	sp, hl
+                            386 ;src/main.c:97: healed = 0;
+   4212 DD 36 D5 00   [19]  387 	ld	-43 (ix), #0x00
+                            388 ;src/main.c:98: if (a->energy + a->defense < a->max_energy)
+   4216 DD 4E 04      [19]  389 	ld	c,4 (ix)
+   4219 DD 46 05      [19]  390 	ld	b,5 (ix)
+   421C FD 21 0A 00   [14]  391 	ld	iy, #0x000a
+   4220 FD 09         [15]  392 	add	iy, bc
+   4222 FD 7E 00      [19]  393 	ld	a, 0 (iy)
+   4225 DD 77 FF      [19]  394 	ld	-1 (ix), a
+   4228 5F            [ 4]  395 	ld	e, a
+   4229 16 00         [ 7]  396 	ld	d, #0x00
+   422B 69            [ 4]  397 	ld	l, c
+   422C 60            [ 4]  398 	ld	h, b
+   422D C5            [11]  399 	push	bc
+   422E 01 0D 00      [10]  400 	ld	bc, #0x000d
+   4231 09            [11]  401 	add	hl, bc
+   4232 C1            [10]  402 	pop	bc
+   4233 7E            [ 7]  403 	ld	a, (hl)
+   4234 DD 77 FE      [19]  404 	ld	-2 (ix), a
+   4237 6F            [ 4]  405 	ld	l, a
+   4238 26 00         [ 7]  406 	ld	h, #0x00
+   423A 19            [11]  407 	add	hl,de
+   423B EB            [ 4]  408 	ex	de,hl
+   423C 69            [ 4]  409 	ld	l, c
+   423D 60            [ 4]  410 	ld	h, b
+   423E C5            [11]  411 	push	bc
+   423F 01 0B 00      [10]  412 	ld	bc, #0x000b
+   4242 09            [11]  413 	add	hl, bc
+   4243 C1            [10]  414 	pop	bc
+   4244 6E            [ 7]  415 	ld	l, (hl)
+   4245 26 00         [ 7]  416 	ld	h, #0x00
+   4247 7B            [ 4]  417 	ld	a, e
+   4248 95            [ 4]  418 	sub	a, l
+   4249 7A            [ 4]  419 	ld	a, d
+   424A 9C            [ 4]  420 	sbc	a, h
+   424B E2 50 42      [10]  421 	jp	PO, 00109$
+   424E EE 80         [ 7]  422 	xor	a, #0x80
+   4250                     423 00109$:
+   4250 F2 59 42      [10]  424 	jp	P, 00102$
+                            425 ;src/main.c:99: healed = a->defense;
+   4253 DD 5E FE      [19]  426 	ld	e, -2 (ix)
+   4256 DD 73 D5      [19]  427 	ld	-43 (ix), e
+   4259                     428 00102$:
+                            429 ;src/main.c:101: a->energy = a->energy + healed;
+   4259 DD 7E FF      [19]  430 	ld	a, -1 (ix)
+   425C DD 86 D5      [19]  431 	add	a, -43 (ix)
+   425F FD 77 00      [19]  432 	ld	0 (iy), a
+                            433 ;src/main.c:103: sprintf(temp, "%s heals %02d.",a->name, healed);
+   4262 DD 5E D5      [19]  434 	ld	e, -43 (ix)
+   4265 16 00         [ 7]  435 	ld	d, #0x00
+   4267 21 01 00      [10]  436 	ld	hl, #0x0001
+   426A 39            [11]  437 	add	hl, sp
+   426B E5            [11]  438 	push	hl
+   426C FD E1         [14]  439 	pop	iy
+   426E E5            [11]  440 	push	hl
+   426F D5            [11]  441 	push	de
+   4270 C5            [11]  442 	push	bc
+   4271 01 95 42      [10]  443 	ld	bc, #___str_4
+   4274 C5            [11]  444 	push	bc
+   4275 FD E5         [15]  445 	push	iy
+   4277 CD 45 47      [17]  446 	call	_sprintf
+   427A 21 08 00      [10]  447 	ld	hl, #8
+   427D 39            [11]  448 	add	hl, sp
+   427E F9            [ 6]  449 	ld	sp, hl
+   427F 01 01 00      [10]  450 	ld	bc, #0x0001
+   4282 C5            [11]  451 	push	bc
+   4283 CD 05 48      [17]  452 	call	_cpct_setDrawCharM1
+   4286 CD 3C 41      [17]  453 	call	_showConsole
+                            454 ;src/main.c:107: cpct_setDrawCharM1(3, 0);
+   4289 21 03 00      [10]  455 	ld	hl, #0x0003
+   428C E3            [19]  456 	ex	(sp),hl
+   428D CD 05 48      [17]  457 	call	_cpct_setDrawCharM1
+   4290 DD F9         [10]  458 	ld	sp, ix
+   4292 DD E1         [14]  459 	pop	ix
+   4294 C9            [10]  460 	ret
+   4295                     461 ___str_4:
+   4295 25 73 20 68 65 61   462 	.ascii "%s heals %02d."
+        6C 73 20 25 30 32
+        64 2E
+   42A3 00                  463 	.db 0x00
+                            464 ;src/main.c:111: void game(){
+                            465 ;	---------------------------------
+                            466 ; Function game
+                            467 ; ---------------------------------
+   42A4                     468 _game::
+   42A4 DD E5         [15]  469 	push	ix
+   42A6 DD 21 00 00   [14]  470 	ld	ix,#0
+   42AA DD 39         [15]  471 	add	ix,sp
+   42AC 3B            [ 6]  472 	dec	sp
+                            473 ;src/main.c:112: while (player.energy) {
+   42AD                     474 00134$:
+   42AD 3A BC 53      [13]  475 	ld	a,(#(_player + 0x000a) + 0)
+   42B0 B7            [ 4]  476 	or	a, a
+   42B1 CA 5C 44      [10]  477 	jp	Z, 00137$
+                            478 ;src/main.c:113: cpct_clearScreen(0x00);
+   42B4 21 00 40      [10]  479 	ld	hl, #0x4000
+   42B7 E5            [11]  480 	push	hl
+   42B8 AF            [ 4]  481 	xor	a, a
+   42B9 F5            [11]  482 	push	af
+   42BA 33            [ 6]  483 	inc	sp
+   42BB 26 C0         [ 7]  484 	ld	h, #0xc0
+   42BD E5            [11]  485 	push	hl
+   42BE CD C6 47      [17]  486 	call	_cpct_memset
+                            487 ;src/main.c:114: cursorPrint = 44;
+   42C1 21 D0 53      [10]  488 	ld	hl,#_cursorPrint + 0
+   42C4 36 2C         [10]  489 	ld	(hl), #0x2c
+                            490 ;src/main.c:115: if (!goblin.energy) {
+   42C6 3A CB 53      [13]  491 	ld	a, (#(_goblin + 0x000a) + 0)
+   42C9 B7            [ 4]  492 	or	a, a
+   42CA 20 0B         [12]  493 	jr	NZ,00102$
+                            494 ;src/main.c:116: initGoblin();
+   42CC CD 59 40      [17]  495 	call	_initGoblin
+                            496 ;src/main.c:117: showConsole("A GOBLIN APPEARS.");
+   42CF 21 60 44      [10]  497 	ld	hl, #___str_5
+   42D2 E5            [11]  498 	push	hl
+   42D3 CD 3C 41      [17]  499 	call	_showConsole
+   42D6 F1            [10]  500 	pop	af
+   42D7                     501 00102$:
+                            502 ;src/main.c:121: printStats(&player);
+   42D7 21 B2 53      [10]  503 	ld	hl, #_player
+   42DA E5            [11]  504 	push	hl
+   42DB CD 86 40      [17]  505 	call	_printStats
+                            506 ;src/main.c:122: printStats(&goblin);
+   42DE 21 C1 53      [10]  507 	ld	hl, #_goblin
+   42E1 E3            [19]  508 	ex	(sp),hl
+   42E2 CD 86 40      [17]  509 	call	_printStats
+   42E5 F1            [10]  510 	pop	af
+                            511 ;src/main.c:123: cpct_drawStringM1("========================================", cpct_getScreenPtr(CPCT_VMEM_START, 0, 36));
+   42E6 21 00 24      [10]  512 	ld	hl, #0x2400
+   42E9 E5            [11]  513 	push	hl
+   42EA 26 C0         [ 7]  514 	ld	h, #0xc0
+   42EC E5            [11]  515 	push	hl
+   42ED CD E5 47      [17]  516 	call	_cpct_getScreenPtr
+   42F0 E5            [11]  517 	push	hl
+   42F1 21 72 44      [10]  518 	ld	hl, #___str_6
+   42F4 E5            [11]  519 	push	hl
+   42F5 CD 33 46      [17]  520 	call	_cpct_drawStringM1
+                            521 ;src/main.c:126: cpct_drawStringM1("@", cpct_getScreenPtr(CPCT_VMEM_START, (player.pos_x)*2, 28));
+   42F8 3A C0 53      [13]  522 	ld	a, (#(_player + 0x000e) + 0)
+   42FB 87            [ 4]  523 	add	a, a
+   42FC 47            [ 4]  524 	ld	b, a
+   42FD 3E 1C         [ 7]  525 	ld	a, #0x1c
+   42FF F5            [11]  526 	push	af
+   4300 33            [ 6]  527 	inc	sp
+   4301 C5            [11]  528 	push	bc
+   4302 33            [ 6]  529 	inc	sp
+   4303 21 00 C0      [10]  530 	ld	hl, #0xc000
+   4306 E5            [11]  531 	push	hl
+   4307 CD E5 47      [17]  532 	call	_cpct_getScreenPtr
+   430A E5            [11]  533 	push	hl
+   430B 21 9B 44      [10]  534 	ld	hl, #___str_7
+   430E E5            [11]  535 	push	hl
+   430F CD 33 46      [17]  536 	call	_cpct_drawStringM1
+                            537 ;src/main.c:128: cpct_drawStringM1("G", cpct_getScreenPtr(CPCT_VMEM_START, (goblin.pos_x)*2, 28));
+   4312 3A CF 53      [13]  538 	ld	a, (#(_goblin + 0x000e) + 0)
+   4315 87            [ 4]  539 	add	a, a
+   4316 47            [ 4]  540 	ld	b, a
+   4317 3E 1C         [ 7]  541 	ld	a, #0x1c
+   4319 F5            [11]  542 	push	af
+   431A 33            [ 6]  543 	inc	sp
+   431B C5            [11]  544 	push	bc
+   431C 33            [ 6]  545 	inc	sp
+   431D 21 00 C0      [10]  546 	ld	hl, #0xc000
+   4320 E5            [11]  547 	push	hl
+   4321 CD E5 47      [17]  548 	call	_cpct_getScreenPtr
+   4324 E5            [11]  549 	push	hl
+   4325 21 9D 44      [10]  550 	ld	hl, #___str_8
+   4328 E5            [11]  551 	push	hl
+   4329 CD 33 46      [17]  552 	call	_cpct_drawStringM1
+                            553 ;src/main.c:133: showConsole("ACTION (O/P/D)?");
+   432C 21 9F 44      [10]  554 	ld	hl, #___str_9
+   432F E5            [11]  555 	push	hl
+   4330 CD 3C 41      [17]  556 	call	_showConsole
+   4333 F1            [10]  557 	pop	af
+                            558 ;src/main.c:134: do 
+   4334                     559 00105$:
+                            560 ;src/main.c:135: cpct_scanKeyboard_f();
+   4334 CD BD 45      [17]  561 	call	_cpct_scanKeyboard_f
+                            562 ;src/main.c:136: while (!cpct_isKeyPressed(Key_O) && !cpct_isKeyPressed(Key_P) && !cpct_isKeyPressed(Key_D));
+   4337 21 04 04      [10]  563 	ld	hl, #0x0404
+   433A CD B1 45      [17]  564 	call	_cpct_isKeyPressed
+   433D 7D            [ 4]  565 	ld	a, l
+   433E B7            [ 4]  566 	or	a, a
+   433F 20 14         [12]  567 	jr	NZ,00107$
+   4341 21 03 08      [10]  568 	ld	hl, #0x0803
+   4344 CD B1 45      [17]  569 	call	_cpct_isKeyPressed
+   4347 7D            [ 4]  570 	ld	a, l
+   4348 B7            [ 4]  571 	or	a, a
+   4349 20 0A         [12]  572 	jr	NZ,00107$
+   434B 21 07 20      [10]  573 	ld	hl, #0x2007
+   434E CD B1 45      [17]  574 	call	_cpct_isKeyPressed
+   4351 7D            [ 4]  575 	ld	a, l
+   4352 B7            [ 4]  576 	or	a, a
+   4353 28 DF         [12]  577 	jr	Z,00105$
+   4355                     578 00107$:
+                            579 ;src/main.c:139: cpct_drawStringM1(" ", cpct_getScreenPtr(CPCT_VMEM_START, (player.pos_x)*2, 28));
+   4355 3A C0 53      [13]  580 	ld	a, (#(_player + 0x000e) + 0)
+   4358 87            [ 4]  581 	add	a, a
+   4359 47            [ 4]  582 	ld	b, a
+   435A 3E 1C         [ 7]  583 	ld	a, #0x1c
+   435C F5            [11]  584 	push	af
+   435D 33            [ 6]  585 	inc	sp
+   435E C5            [11]  586 	push	bc
+   435F 33            [ 6]  587 	inc	sp
+   4360 21 00 C0      [10]  588 	ld	hl, #0xc000
+   4363 E5            [11]  589 	push	hl
+   4364 CD E5 47      [17]  590 	call	_cpct_getScreenPtr
+   4367 E5            [11]  591 	push	hl
+   4368 21 AF 44      [10]  592 	ld	hl, #___str_10
+   436B E5            [11]  593 	push	hl
+   436C CD 33 46      [17]  594 	call	_cpct_drawStringM1
+                            595 ;src/main.c:141: if (cpct_isKeyPressed(Key_O)) {
+   436F 21 04 04      [10]  596 	ld	hl, #0x0404
+   4372 CD B1 45      [17]  597 	call	_cpct_isKeyPressed
+   4375 7D            [ 4]  598 	ld	a, l
+   4376 B7            [ 4]  599 	or	a, a
+   4377 28 0E         [12]  600 	jr	Z,00111$
+                            601 ;src/main.c:142: player.pos_x--;
+   4379 3A C0 53      [13]  602 	ld	a, (#(_player + 0x000e) + 0)
+   437C C6 FF         [ 7]  603 	add	a, #0xff
+   437E 21 C0 53      [10]  604 	ld	hl, #(_player + 0x000e)
+   4381 77            [ 7]  605 	ld	(hl), a
+                            606 ;src/main.c:143: if (!player.pos_x)
+   4382 B7            [ 4]  607 	or	a, a
+   4383 20 02         [12]  608 	jr	NZ,00111$
+                            609 ;src/main.c:144: player.pos_x = 1;
+   4385 36 01         [10]  610 	ld	(hl), #0x01
+   4387                     611 00111$:
+                            612 ;src/main.c:147: if (cpct_isKeyPressed(Key_P)) {
+   4387 21 03 08      [10]  613 	ld	hl, #0x0803
+   438A CD B1 45      [17]  614 	call	_cpct_isKeyPressed
+   438D 7D            [ 4]  615 	ld	a, l
+   438E B7            [ 4]  616 	or	a, a
+   438F 28 35         [12]  617 	jr	Z,00117$
+                            618 ;src/main.c:148: player.pos_x++;
+   4391 3A C0 53      [13]  619 	ld	a,(#(_player + 0x000e) + 0)
+   4394 DD 77 FF      [19]  620 	ld	-1 (ix), a
+   4397 DD 34 FF      [23]  621 	inc	-1 (ix)
+   439A 21 C0 53      [10]  622 	ld	hl, #(_player + 0x000e)
+   439D DD 7E FF      [19]  623 	ld	a, -1 (ix)
+   43A0 77            [ 7]  624 	ld	(hl), a
+                            625 ;src/main.c:149: if (player.pos_x == 40)
+   43A1 DD 7E FF      [19]  626 	ld	a, -1 (ix)
+   43A4 D6 28         [ 7]  627 	sub	a, #0x28
+   43A6 20 02         [12]  628 	jr	NZ,00113$
+                            629 ;src/main.c:150: player.pos_x = 39;
+   43A8 36 27         [10]  630 	ld	(hl), #0x27
+   43AA                     631 00113$:
+                            632 ;src/main.c:126: cpct_drawStringM1("@", cpct_getScreenPtr(CPCT_VMEM_START, (player.pos_x)*2, 28));
+   43AA 21 C0 53      [10]  633 	ld	hl, #(_player + 0x000e) + 0
+   43AD 4E            [ 7]  634 	ld	c, (hl)
+                            635 ;src/main.c:151: if (player.pos_x == goblin.pos_x) {
+   43AE 3A CF 53      [13]  636 	ld	a, (#(_goblin + 0x000e) + 0)
+   43B1 91            [ 4]  637 	sub	a, c
+   43B2 20 12         [12]  638 	jr	NZ,00117$
+                            639 ;src/main.c:152: player.pos_x--;
+   43B4 0D            [ 4]  640 	dec	c
+   43B5 21 C0 53      [10]  641 	ld	hl, #(_player + 0x000e)
+   43B8 71            [ 7]  642 	ld	(hl), c
+                            643 ;src/main.c:153: attack(&player, &goblin);
+   43B9 21 C1 53      [10]  644 	ld	hl, #_goblin
+   43BC E5            [11]  645 	push	hl
+   43BD 21 B2 53      [10]  646 	ld	hl, #_player
+   43C0 E5            [11]  647 	push	hl
+   43C1 CD 79 41      [17]  648 	call	_attack
+   43C4 F1            [10]  649 	pop	af
+   43C5 F1            [10]  650 	pop	af
+   43C6                     651 00117$:
+                            652 ;src/main.c:158: if (cpct_isKeyPressed(Key_D)) {
+   43C6 21 07 20      [10]  653 	ld	hl, #0x2007
+   43C9 CD B1 45      [17]  654 	call	_cpct_isKeyPressed
+   43CC 7D            [ 4]  655 	ld	a, l
+   43CD B7            [ 4]  656 	or	a, a
+   43CE 28 08         [12]  657 	jr	Z,00119$
+                            658 ;src/main.c:159: defense(&player);
+   43D0 21 B2 53      [10]  659 	ld	hl, #_player
+   43D3 E5            [11]  660 	push	hl
+   43D4 CD 05 42      [17]  661 	call	_defense
+   43D7 F1            [10]  662 	pop	af
+   43D8                     663 00119$:
+                            664 ;src/main.c:163: cpct_drawStringM1("@", cpct_getScreenPtr(CPCT_VMEM_START, (player.pos_x)*2, 28));
+   43D8 3A C0 53      [13]  665 	ld	a, (#(_player + 0x000e) + 0)
+   43DB 87            [ 4]  666 	add	a, a
+   43DC 47            [ 4]  667 	ld	b, a
+   43DD 3E 1C         [ 7]  668 	ld	a, #0x1c
+   43DF F5            [11]  669 	push	af
+   43E0 33            [ 6]  670 	inc	sp
+   43E1 C5            [11]  671 	push	bc
+   43E2 33            [ 6]  672 	inc	sp
+   43E3 21 00 C0      [10]  673 	ld	hl, #0xc000
+   43E6 E5            [11]  674 	push	hl
+   43E7 CD E5 47      [17]  675 	call	_cpct_getScreenPtr
+   43EA E5            [11]  676 	push	hl
+   43EB 21 9B 44      [10]  677 	ld	hl, #___str_7
+   43EE E5            [11]  678 	push	hl
+   43EF CD 33 46      [17]  679 	call	_cpct_drawStringM1
+                            680 ;src/main.c:167: if (goblin.energy) {
+   43F2 3A CB 53      [13]  681 	ld	a,(#(_goblin + 0x000a) + 0)
+   43F5 B7            [ 4]  682 	or	a, a
+   43F6 28 2D         [12]  683 	jr	Z,00124$
+                            684 ;src/main.c:168: if (abs(goblin.pos_x - player.pos_x) == 1) //attack
+   43F8 21 CF 53      [10]  685 	ld	hl, #(_goblin + 0x000e) + 0
+   43FB 4E            [ 7]  686 	ld	c, (hl)
+   43FC 21 C0 53      [10]  687 	ld	hl, #(_player + 0x000e) + 0
+   43FF 46            [ 7]  688 	ld	b, (hl)
+   4400 79            [ 4]  689 	ld	a, c
+   4401 90            [ 4]  690 	sub	a, b
+   4402 47            [ 4]  691 	ld	b, a
+   4403 C5            [11]  692 	push	bc
+   4404 33            [ 6]  693 	inc	sp
+   4405 CD 00 40      [17]  694 	call	_abs
+   4408 33            [ 6]  695 	inc	sp
+   4409 2D            [ 4]  696 	dec	l
+   440A 20 0F         [12]  697 	jr	NZ,00121$
+                            698 ;src/main.c:169: attack(&goblin,&player);
+   440C 21 B2 53      [10]  699 	ld	hl, #_player
+   440F E5            [11]  700 	push	hl
+   4410 21 C1 53      [10]  701 	ld	hl, #_goblin
+   4413 E5            [11]  702 	push	hl
+   4414 CD 79 41      [17]  703 	call	_attack
+   4417 F1            [10]  704 	pop	af
+   4418 F1            [10]  705 	pop	af
+   4419 18 12         [12]  706 	jr	00125$
+   441B                     707 00121$:
+                            708 ;src/main.c:171: defense(&goblin);
+   441B 21 C1 53      [10]  709 	ld	hl, #_goblin
+   441E E5            [11]  710 	push	hl
+   441F CD 05 42      [17]  711 	call	_defense
+   4422 F1            [10]  712 	pop	af
+   4423 18 08         [12]  713 	jr	00125$
+   4425                     714 00124$:
+                            715 ;src/main.c:173: showConsole("YOU KILLED THE GOBLIN.");
+   4425 21 B1 44      [10]  716 	ld	hl, #___str_11
+   4428 E5            [11]  717 	push	hl
+   4429 CD 3C 41      [17]  718 	call	_showConsole
+   442C F1            [10]  719 	pop	af
+   442D                     720 00125$:
+                            721 ;src/main.c:176: if (!player.energy){
+   442D 3A BC 53      [13]  722 	ld	a, (#(_player + 0x000a) + 0)
+   4430 B7            [ 4]  723 	or	a, a
+   4431 20 08         [12]  724 	jr	NZ,00128$
+                            725 ;src/main.c:177: showConsole("YOU DIED.");
+   4433 21 C8 44      [10]  726 	ld	hl, #___str_12
+   4436 E5            [11]  727 	push	hl
+   4437 CD 3C 41      [17]  728 	call	_showConsole
+   443A F1            [10]  729 	pop	af
+                            730 ;src/main.c:180: while (cpct_isAnyKeyPressed_f ()) { //Asegurarnos que se ha dejado de pulsar la tecla anterior 
+   443B                     731 00128$:
+   443B CD AB 47      [17]  732 	call	_cpct_isAnyKeyPressed_f
+   443E 7D            [ 4]  733 	ld	a, l
+   443F B7            [ 4]  734 	or	a, a
+   4440 28 05         [12]  735 	jr	Z,00130$
+                            736 ;src/main.c:181: cpct_scanKeyboard_f();
+   4442 CD BD 45      [17]  737 	call	_cpct_scanKeyboard_f
+   4445 18 F4         [12]  738 	jr	00128$
+   4447                     739 00130$:
+                            740 ;src/main.c:184: showConsole("PRESS ANY KEY TO CONTINUE");
+   4447 21 D2 44      [10]  741 	ld	hl, #___str_13
+   444A E5            [11]  742 	push	hl
+   444B CD 3C 41      [17]  743 	call	_showConsole
+   444E F1            [10]  744 	pop	af
+                            745 ;src/main.c:186: do 
+   444F                     746 00131$:
+                            747 ;src/main.c:187: cpct_scanKeyboard_f();
+   444F CD BD 45      [17]  748 	call	_cpct_scanKeyboard_f
+                            749 ;src/main.c:188: while (!cpct_isAnyKeyPressed_f());
+   4452 CD AB 47      [17]  750 	call	_cpct_isAnyKeyPressed_f
+   4455 7D            [ 4]  751 	ld	a, l
+   4456 B7            [ 4]  752 	or	a, a
+   4457 28 F6         [12]  753 	jr	Z,00131$
+   4459 C3 AD 42      [10]  754 	jp	00134$
+   445C                     755 00137$:
+   445C 33            [ 6]  756 	inc	sp
+   445D DD E1         [14]  757 	pop	ix
+   445F C9            [10]  758 	ret
+   4460                     759 ___str_5:
+   4460 41 20 47 4F 42 4C   760 	.ascii "A GOBLIN APPEARS."
+        49 4E 20 41 50 50
+        45 41 52 53 2E
+   4471 00                  761 	.db 0x00
+   4472                     762 ___str_6:
+   4472 3D 3D 3D 3D 3D 3D   763 	.ascii "========================================"
         3D 3D 3D 3D 3D 3D
         3D 3D 3D 3D 3D 3D
         3D 3D 3D 3D 3D 3D
         3D 3D 3D 3D 3D 3D
         3D 3D 3D 3D 3D 3D
         3D 3D 3D 3D
-   41A3 00                  293 	.db 0x00
-                            294 ;src/main.c:77: void attack(TStats *a, TStats *b) {
-                            295 ;	---------------------------------
-                            296 ; Function attack
-                            297 ; ---------------------------------
-   41A4                     298 _attack::
-   41A4 DD E5         [15]  299 	push	ix
-   41A6 DD 21 00 00   [14]  300 	ld	ix,#0
-   41AA DD 39         [15]  301 	add	ix,sp
-   41AC 21 D5 FF      [10]  302 	ld	hl, #-43
-   41AF 39            [11]  303 	add	hl, sp
-   41B0 F9            [ 6]  304 	ld	sp, hl
-                            305 ;src/main.c:80: if (a->attack < b->energy) 
-   41B1 DD 7E 04      [19]  306 	ld	a, 4 (ix)
-   41B4 DD 77 FE      [19]  307 	ld	-2 (ix), a
-   41B7 DD 7E 05      [19]  308 	ld	a, 5 (ix)
-   41BA DD 77 FF      [19]  309 	ld	-1 (ix), a
-   41BD DD 7E FE      [19]  310 	ld	a, -2 (ix)
-   41C0 C6 0C         [ 7]  311 	add	a, #0x0c
-   41C2 4F            [ 4]  312 	ld	c, a
-   41C3 DD 7E FF      [19]  313 	ld	a, -1 (ix)
-   41C6 CE 00         [ 7]  314 	adc	a, #0x00
-   41C8 47            [ 4]  315 	ld	b, a
-   41C9 0A            [ 7]  316 	ld	a, (bc)
-   41CA DD 77 FD      [19]  317 	ld	-3 (ix), a
-   41CD DD 5E 06      [19]  318 	ld	e,6 (ix)
-   41D0 DD 56 07      [19]  319 	ld	d,7 (ix)
-   41D3 21 0A 00      [10]  320 	ld	hl, #0x000a
-   41D6 19            [11]  321 	add	hl,de
-   41D7 EB            [ 4]  322 	ex	de,hl
-   41D8 1A            [ 7]  323 	ld	a, (de)
-   41D9 6F            [ 4]  324 	ld	l, a
-   41DA DD 7E FD      [19]  325 	ld	a, -3 (ix)
-   41DD 95            [ 4]  326 	sub	a, l
-   41DE 30 07         [12]  327 	jr	NC,00102$
-                            328 ;src/main.c:81: b->energy = b->energy - a->attack;
-   41E0 7D            [ 4]  329 	ld	a, l
-   41E1 DD 96 FD      [19]  330 	sub	a, -3 (ix)
-   41E4 12            [ 7]  331 	ld	(de), a
-   41E5 18 02         [12]  332 	jr	00103$
-   41E7                     333 00102$:
-                            334 ;src/main.c:83: b->energy = 0;
-   41E7 AF            [ 4]  335 	xor	a, a
-   41E8 12            [ 7]  336 	ld	(de), a
-   41E9                     337 00103$:
-                            338 ;src/main.c:85: sprintf(temp, "%s attacks %02d.",a->name, a->attack);
-   41E9 0A            [ 7]  339 	ld	a, (bc)
-   41EA 4F            [ 4]  340 	ld	c, a
-   41EB 06 00         [ 7]  341 	ld	b, #0x00
-   41ED 21 00 00      [10]  342 	ld	hl, #0x0000
-   41F0 39            [11]  343 	add	hl, sp
-   41F1 5D            [ 4]  344 	ld	e, l
-   41F2 54            [ 4]  345 	ld	d, h
-   41F3 E5            [11]  346 	push	hl
-   41F4 C5            [11]  347 	push	bc
-   41F5 DD 4E FE      [19]  348 	ld	c,-2 (ix)
-   41F8 DD 46 FF      [19]  349 	ld	b,-1 (ix)
-   41FB C5            [11]  350 	push	bc
-   41FC 01 18 42      [10]  351 	ld	bc, #___str_4
-   41FF C5            [11]  352 	push	bc
-   4200 D5            [11]  353 	push	de
-   4201 CD 0E 46      [17]  354 	call	_sprintf
-   4204 21 08 00      [10]  355 	ld	hl, #8
-   4207 39            [11]  356 	add	hl, sp
-   4208 F9            [ 6]  357 	ld	sp, hl
-   4209 01 02 00      [10]  358 	ld	bc, #0x0002
-   420C C5            [11]  359 	push	bc
-   420D CD CE 46      [17]  360 	call	_cpct_setDrawCharM1
-   4210 CD 0A 41      [17]  361 	call	_showConsole
-   4213 DD F9         [10]  362 	ld	sp,ix
-   4215 DD E1         [14]  363 	pop	ix
-   4217 C9            [10]  364 	ret
-   4218                     365 ___str_4:
-   4218 25 73 20 61 74 74   366 	.ascii "%s attacks %02d."
-        61 63 6B 73 20 25
-        30 32 64 2E
-   4228 00                  367 	.db 0x00
-                            368 ;src/main.c:91: void defense(TStats *a) {
-                            369 ;	---------------------------------
-                            370 ; Function defense
-                            371 ; ---------------------------------
-   4229                     372 _defense::
-   4229 DD E5         [15]  373 	push	ix
-   422B DD 21 00 00   [14]  374 	ld	ix,#0
-   422F DD 39         [15]  375 	add	ix,sp
-   4231 21 D5 FF      [10]  376 	ld	hl, #-43
-   4234 39            [11]  377 	add	hl, sp
-   4235 F9            [ 6]  378 	ld	sp, hl
-                            379 ;src/main.c:94: healed = 0;
-   4236 DD 36 FD 00   [19]  380 	ld	-3 (ix), #0x00
-                            381 ;src/main.c:95: if (a->energy + a->defense < a->max_energy)
-   423A DD 4E 04      [19]  382 	ld	c,4 (ix)
-   423D DD 46 05      [19]  383 	ld	b,5 (ix)
-   4240 FD 21 0A 00   [14]  384 	ld	iy, #0x000a
-   4244 FD 09         [15]  385 	add	iy, bc
-   4246 FD 7E 00      [19]  386 	ld	a, 0 (iy)
-   4249 DD 77 FF      [19]  387 	ld	-1 (ix), a
-   424C 5F            [ 4]  388 	ld	e, a
-   424D 16 00         [ 7]  389 	ld	d, #0x00
-   424F 69            [ 4]  390 	ld	l, c
-   4250 60            [ 4]  391 	ld	h, b
-   4251 C5            [11]  392 	push	bc
-   4252 01 0D 00      [10]  393 	ld	bc, #0x000d
-   4255 09            [11]  394 	add	hl, bc
-   4256 C1            [10]  395 	pop	bc
-   4257 7E            [ 7]  396 	ld	a, (hl)
-   4258 DD 77 FE      [19]  397 	ld	-2 (ix), a
-   425B 6F            [ 4]  398 	ld	l, a
-   425C 26 00         [ 7]  399 	ld	h, #0x00
-   425E 19            [11]  400 	add	hl,de
-   425F EB            [ 4]  401 	ex	de,hl
-   4260 69            [ 4]  402 	ld	l, c
-   4261 60            [ 4]  403 	ld	h, b
-   4262 C5            [11]  404 	push	bc
-   4263 01 0B 00      [10]  405 	ld	bc, #0x000b
-   4266 09            [11]  406 	add	hl, bc
-   4267 C1            [10]  407 	pop	bc
-   4268 6E            [ 7]  408 	ld	l, (hl)
-   4269 26 00         [ 7]  409 	ld	h, #0x00
-   426B 7B            [ 4]  410 	ld	a, e
-   426C 95            [ 4]  411 	sub	a, l
-   426D 7A            [ 4]  412 	ld	a, d
-   426E 9C            [ 4]  413 	sbc	a, h
-   426F E2 74 42      [10]  414 	jp	PO, 00109$
-   4272 EE 80         [ 7]  415 	xor	a, #0x80
-   4274                     416 00109$:
-   4274 F2 7D 42      [10]  417 	jp	P, 00102$
-                            418 ;src/main.c:96: healed = a->defense;
-   4277 DD 5E FE      [19]  419 	ld	e, -2 (ix)
-   427A DD 73 FD      [19]  420 	ld	-3 (ix), e
-   427D                     421 00102$:
-                            422 ;src/main.c:98: a->energy = a->energy + healed;
-   427D DD 7E FF      [19]  423 	ld	a, -1 (ix)
-   4280 DD 86 FD      [19]  424 	add	a, -3 (ix)
-   4283 FD 77 00      [19]  425 	ld	0 (iy), a
-                            426 ;src/main.c:100: sprintf(temp, "%s heals %02d.",a->name, healed);
-   4286 DD 5E FD      [19]  427 	ld	e, -3 (ix)
-   4289 16 00         [ 7]  428 	ld	d, #0x00
-   428B 21 00 00      [10]  429 	ld	hl, #0x0000
-   428E 39            [11]  430 	add	hl, sp
-   428F E5            [11]  431 	push	hl
-   4290 FD E1         [14]  432 	pop	iy
-   4292 E5            [11]  433 	push	hl
-   4293 D5            [11]  434 	push	de
-   4294 C5            [11]  435 	push	bc
-   4295 01 B2 42      [10]  436 	ld	bc, #___str_5
-   4298 C5            [11]  437 	push	bc
-   4299 FD E5         [15]  438 	push	iy
-   429B CD 0E 46      [17]  439 	call	_sprintf
-   429E 21 08 00      [10]  440 	ld	hl, #8
-   42A1 39            [11]  441 	add	hl, sp
-   42A2 F9            [ 6]  442 	ld	sp, hl
-   42A3 01 01 00      [10]  443 	ld	bc, #0x0001
-   42A6 C5            [11]  444 	push	bc
-   42A7 CD CE 46      [17]  445 	call	_cpct_setDrawCharM1
-   42AA CD 0A 41      [17]  446 	call	_showConsole
-   42AD DD F9         [10]  447 	ld	sp,ix
-   42AF DD E1         [14]  448 	pop	ix
-   42B1 C9            [10]  449 	ret
-   42B2                     450 ___str_5:
-   42B2 25 73 20 68 65 61   451 	.ascii "%s heals %02d."
-        6C 73 20 25 30 32
-        64 2E
-   42C0 00                  452 	.db 0x00
-                            453 ;src/main.c:107: void game(){
-                            454 ;	---------------------------------
-                            455 ; Function game
-                            456 ; ---------------------------------
-   42C1                     457 _game::
-                            458 ;src/main.c:108: while (player.energy) {
-   42C1                     459 00124$:
-   42C1 3A 85 52      [13]  460 	ld	a, (#(_player + 0x000a) + 0)
-   42C4 B7            [ 4]  461 	or	a, a
-   42C5 C8            [11]  462 	ret	Z
-                            463 ;src/main.c:109: initGoblin();
-   42C6 CD 2C 40      [17]  464 	call	_initGoblin
-                            465 ;src/main.c:110: showConsole("A GOBLIN APPEARS.");
-   42C9 21 6F 43      [10]  466 	ld	hl, #___str_6
-   42CC E5            [11]  467 	push	hl
-   42CD CD 0A 41      [17]  468 	call	_showConsole
-   42D0 F1            [10]  469 	pop	af
-                            470 ;src/main.c:112: while (player.energy && goblin.energy) {
-   42D1                     471 00121$:
-   42D1 3A 85 52      [13]  472 	ld	a, (#(_player + 0x000a) + 0)
-   42D4 B7            [ 4]  473 	or	a, a
-   42D5 28 EA         [12]  474 	jr	Z,00124$
-   42D7 3A 93 52      [13]  475 	ld	a, (#(_goblin + 0x000a) + 0)
-   42DA B7            [ 4]  476 	or	a, a
-   42DB 28 E4         [12]  477 	jr	Z,00124$
-                            478 ;src/main.c:114: showConsole("ACTION (A/D)?");
-   42DD 21 81 43      [10]  479 	ld	hl, #___str_7
-   42E0 E5            [11]  480 	push	hl
-   42E1 CD 0A 41      [17]  481 	call	_showConsole
-   42E4 F1            [10]  482 	pop	af
-                            483 ;src/main.c:115: do 
-   42E5                     484 00102$:
-                            485 ;src/main.c:116: cpct_scanKeyboard_f();
-   42E5 CD 86 44      [17]  486 	call	_cpct_scanKeyboard_f
-                            487 ;src/main.c:117: while (!cpct_isKeyPressed(Key_A) && !cpct_isKeyPressed(Key_D));
-   42E8 21 08 20      [10]  488 	ld	hl, #0x2008
-   42EB CD 7A 44      [17]  489 	call	_cpct_isKeyPressed
-   42EE 7D            [ 4]  490 	ld	a, l
-   42EF B7            [ 4]  491 	or	a, a
-   42F0 20 0A         [12]  492 	jr	NZ,00104$
-   42F2 21 07 20      [10]  493 	ld	hl, #0x2007
-   42F5 CD 7A 44      [17]  494 	call	_cpct_isKeyPressed
-   42F8 7D            [ 4]  495 	ld	a, l
-   42F9 B7            [ 4]  496 	or	a, a
-   42FA 28 E9         [12]  497 	jr	Z,00102$
-   42FC                     498 00104$:
-                            499 ;src/main.c:120: if (cpct_isKeyPressed(Key_A)) {
-   42FC 21 08 20      [10]  500 	ld	hl, #0x2008
-   42FF CD 7A 44      [17]  501 	call	_cpct_isKeyPressed
-   4302 7D            [ 4]  502 	ld	a, l
-   4303 B7            [ 4]  503 	or	a, a
-   4304 28 0D         [12]  504 	jr	Z,00106$
-                            505 ;src/main.c:121: attack(&player, &goblin);
-   4306 21 89 52      [10]  506 	ld	hl, #_goblin
-   4309 E5            [11]  507 	push	hl
-   430A 21 7B 52      [10]  508 	ld	hl, #_player
-   430D E5            [11]  509 	push	hl
-   430E CD A4 41      [17]  510 	call	_attack
-   4311 F1            [10]  511 	pop	af
-   4312 F1            [10]  512 	pop	af
-   4313                     513 00106$:
-                            514 ;src/main.c:124: if (cpct_isKeyPressed(Key_D)) {
-   4313 21 07 20      [10]  515 	ld	hl, #0x2007
-   4316 CD 7A 44      [17]  516 	call	_cpct_isKeyPressed
-   4319 7D            [ 4]  517 	ld	a, l
-   431A B7            [ 4]  518 	or	a, a
-   431B 28 08         [12]  519 	jr	Z,00108$
-                            520 ;src/main.c:125: defense(&player);
-   431D 21 7B 52      [10]  521 	ld	hl, #_player
-   4320 E5            [11]  522 	push	hl
-   4321 CD 29 42      [17]  523 	call	_defense
-   4324 F1            [10]  524 	pop	af
-   4325                     525 00108$:
-                            526 ;src/main.c:131: if (goblin.energy) {
-   4325 3A 93 52      [13]  527 	ld	a, (#(_goblin + 0x000a) + 0)
-   4328 B7            [ 4]  528 	or	a, a
-   4329 28 21         [12]  529 	jr	Z,00113$
-                            530 ;src/main.c:132: if (cpct_rand()%4) {// 75% of attack
-   432B CD 94 45      [17]  531 	call	_cpct_getRandom_mxor_u8
-   432E 7D            [ 4]  532 	ld	a, l
-   432F E6 03         [ 7]  533 	and	a, #0x03
-   4331 28 0F         [12]  534 	jr	Z,00110$
-                            535 ;src/main.c:133: attack(&goblin,&player);
-   4333 21 7B 52      [10]  536 	ld	hl, #_player
-   4336 E5            [11]  537 	push	hl
-   4337 21 89 52      [10]  538 	ld	hl, #_goblin
-   433A E5            [11]  539 	push	hl
-   433B CD A4 41      [17]  540 	call	_attack
-   433E F1            [10]  541 	pop	af
-   433F F1            [10]  542 	pop	af
-   4340 18 12         [12]  543 	jr	00114$
-   4342                     544 00110$:
-                            545 ;src/main.c:135: defense(&goblin);
-   4342 21 89 52      [10]  546 	ld	hl, #_goblin
-   4345 E5            [11]  547 	push	hl
-   4346 CD 29 42      [17]  548 	call	_defense
-   4349 F1            [10]  549 	pop	af
-   434A 18 08         [12]  550 	jr	00114$
-   434C                     551 00113$:
-                            552 ;src/main.c:138: showConsole("YOU KILLED THE GOBLIN.");
-   434C 21 8F 43      [10]  553 	ld	hl, #___str_8
-   434F E5            [11]  554 	push	hl
-   4350 CD 0A 41      [17]  555 	call	_showConsole
-   4353 F1            [10]  556 	pop	af
-   4354                     557 00114$:
-                            558 ;src/main.c:141: if (!player.energy){
-   4354 3A 85 52      [13]  559 	ld	a, (#(_player + 0x000a) + 0)
-   4357 B7            [ 4]  560 	or	a, a
-   4358 20 08         [12]  561 	jr	NZ,00117$
-                            562 ;src/main.c:142: showConsole("YOU DIED.");
-   435A 21 A6 43      [10]  563 	ld	hl, #___str_9
-   435D E5            [11]  564 	push	hl
-   435E CD 0A 41      [17]  565 	call	_showConsole
-   4361 F1            [10]  566 	pop	af
-                            567 ;src/main.c:145: while (cpct_isAnyKeyPressed_f ()) { //Asegurarnos que se ha dejado de pulsar la tecla anterior 
-   4362                     568 00117$:
-   4362 CD 74 46      [17]  569 	call	_cpct_isAnyKeyPressed_f
-   4365 7D            [ 4]  570 	ld	a, l
-   4366 B7            [ 4]  571 	or	a, a
-   4367 CA D1 42      [10]  572 	jp	Z, 00121$
-                            573 ;src/main.c:146: cpct_scanKeyboard_f();
-   436A CD 86 44      [17]  574 	call	_cpct_scanKeyboard_f
-   436D 18 F3         [12]  575 	jr	00117$
-   436F                     576 ___str_6:
-   436F 41 20 47 4F 42 4C   577 	.ascii "A GOBLIN APPEARS."
-        49 4E 20 41 50 50
-        45 41 52 53 2E
-   4380 00                  578 	.db 0x00
-   4381                     579 ___str_7:
-   4381 41 43 54 49 4F 4E   580 	.ascii "ACTION (A/D)?"
-        20 28 41 2F 44 29
-        3F
-   438E 00                  581 	.db 0x00
-   438F                     582 ___str_8:
-   438F 59 4F 55 20 4B 49   583 	.ascii "YOU KILLED THE GOBLIN."
+   449A 00                  764 	.db 0x00
+   449B                     765 ___str_7:
+   449B 40                  766 	.ascii "@"
+   449C 00                  767 	.db 0x00
+   449D                     768 ___str_8:
+   449D 47                  769 	.ascii "G"
+   449E 00                  770 	.db 0x00
+   449F                     771 ___str_9:
+   449F 41 43 54 49 4F 4E   772 	.ascii "ACTION (O/P/D)?"
+        20 28 4F 2F 50 2F
+        44 29 3F
+   44AE 00                  773 	.db 0x00
+   44AF                     774 ___str_10:
+   44AF 20                  775 	.ascii " "
+   44B0 00                  776 	.db 0x00
+   44B1                     777 ___str_11:
+   44B1 59 4F 55 20 4B 49   778 	.ascii "YOU KILLED THE GOBLIN."
         4C 4C 45 44 20 54
         48 45 20 47 4F 42
         4C 49 4E 2E
-   43A5 00                  584 	.db 0x00
-   43A6                     585 ___str_9:
-   43A6 59 4F 55 20 44 49   586 	.ascii "YOU DIED."
+   44C7 00                  779 	.db 0x00
+   44C8                     780 ___str_12:
+   44C8 59 4F 55 20 44 49   781 	.ascii "YOU DIED."
         45 44 2E
-   43AF 00                  587 	.db 0x00
-                            588 ;src/main.c:152: void main(void) {
-                            589 ;	---------------------------------
-                            590 ; Function main
-                            591 ; ---------------------------------
-   43B0                     592 _main::
-                            593 ;src/main.c:156: cpct_disableFirmware();
-   43B0 CD 9D 46      [17]  594 	call	_cpct_disableFirmware
-                            595 ;src/main.c:159: while (1) {
-   43B3                     596 00107$:
-                            597 ;src/main.c:160: cpct_setVideoMode(1);
-   43B3 2E 01         [ 7]  598 	ld	l, #0x01
-   43B5 CD 66 46      [17]  599 	call	_cpct_setVideoMode
-                            600 ;src/main.c:161: cpct_clearScreen(0x00);
-   43B8 21 00 40      [10]  601 	ld	hl, #0x4000
-   43BB E5            [11]  602 	push	hl
-   43BC AF            [ 4]  603 	xor	a, a
-   43BD F5            [11]  604 	push	af
-   43BE 33            [ 6]  605 	inc	sp
-   43BF 26 C0         [ 7]  606 	ld	h, #0xc0
-   43C1 E5            [11]  607 	push	hl
-   43C2 CD 8F 46      [17]  608 	call	_cpct_memset
-                            609 ;src/main.c:162: cpct_setPalette(paletaM1,4);
-   43C5 21 04 00      [10]  610 	ld	hl, #0x0004
-   43C8 E5            [11]  611 	push	hl
-   43C9 21 21 40      [10]  612 	ld	hl, #_paletaM1
-   43CC E5            [11]  613 	push	hl
-   43CD CD 63 44      [17]  614 	call	_cpct_setPalette
-                            615 ;src/main.c:163: cpct_setBorder(HW_BLACK);
-   43D0 21 10 14      [10]  616 	ld	hl, #0x1410
-   43D3 E5            [11]  617 	push	hl
-   43D4 CD F0 44      [17]  618 	call	_cpct_setPALColour
-                            619 ;src/main.c:166: cpct_setDrawCharM1(3, 0);
-   43D7 21 03 00      [10]  620 	ld	hl, #0x0003
-   43DA E5            [11]  621 	push	hl
-   43DB CD CE 46      [17]  622 	call	_cpct_setDrawCharM1
-                            623 ;src/main.c:167: cpct_drawStringM1("RPG GAME", cpct_getScreenPtr(CPCT_VMEM_START, 0, 0));
-   43DE 21 00 00      [10]  624 	ld	hl, #0x0000
-   43E1 E5            [11]  625 	push	hl
-   43E2 26 C0         [ 7]  626 	ld	h, #0xc0
-   43E4 E5            [11]  627 	push	hl
-   43E5 CD AE 46      [17]  628 	call	_cpct_getScreenPtr
-   43E8 01 43 44      [10]  629 	ld	bc, #___str_10+0
-   43EB E5            [11]  630 	push	hl
-   43EC C5            [11]  631 	push	bc
-   43ED CD FC 44      [17]  632 	call	_cpct_drawStringM1
-                            633 ;src/main.c:168: cpct_drawStringM1("PRESS ANY KEY TO START", cpct_getScreenPtr(CPCT_VMEM_START, 0, 20));
-   43F0 21 00 14      [10]  634 	ld	hl, #0x1400
-   43F3 E5            [11]  635 	push	hl
-   43F4 26 C0         [ 7]  636 	ld	h, #0xc0
-   43F6 E5            [11]  637 	push	hl
-   43F7 CD AE 46      [17]  638 	call	_cpct_getScreenPtr
-   43FA 01 4C 44      [10]  639 	ld	bc, #___str_11+0
-   43FD E5            [11]  640 	push	hl
-   43FE C5            [11]  641 	push	bc
-   43FF CD FC 44      [17]  642 	call	_cpct_drawStringM1
-                            643 ;src/main.c:172: do {
-   4402 06 00         [ 7]  644 	ld	b, #0x00
-   4404                     645 00101$:
-                            646 ;src/main.c:173: cpct_scanKeyboard_f();
-   4404 C5            [11]  647 	push	bc
-   4405 CD 86 44      [17]  648 	call	_cpct_scanKeyboard_f
-   4408 C1            [10]  649 	pop	bc
-                            650 ;src/main.c:174: semilla++;
-   4409 04            [ 4]  651 	inc	b
-                            652 ;src/main.c:176: while (!cpct_isAnyKeyPressed_f());
-   440A C5            [11]  653 	push	bc
-   440B CD 74 46      [17]  654 	call	_cpct_isAnyKeyPressed_f
-   440E C1            [10]  655 	pop	bc
-   440F 7D            [ 4]  656 	ld	a, l
-   4410 B7            [ 4]  657 	or	a, a
-   4411 28 F1         [12]  658 	jr	Z,00101$
-                            659 ;src/main.c:177: cpct_clearScreen(0x00);
-   4413 48            [ 4]  660 	ld	c, b
-   4414 C5            [11]  661 	push	bc
-   4415 21 00 40      [10]  662 	ld	hl, #0x4000
-   4418 E5            [11]  663 	push	hl
-   4419 AF            [ 4]  664 	xor	a, a
-   441A F5            [11]  665 	push	af
-   441B 33            [ 6]  666 	inc	sp
-   441C 26 C0         [ 7]  667 	ld	h, #0xc0
-   441E E5            [11]  668 	push	hl
-   441F CD 8F 46      [17]  669 	call	_cpct_memset
-   4422 C1            [10]  670 	pop	bc
-                            671 ;src/main.c:179: cursorPrint = 30;
-   4423 21 97 52      [10]  672 	ld	hl,#_cursorPrint + 0
-   4426 36 1E         [10]  673 	ld	(hl), #0x1e
-                            674 ;src/main.c:180: if (!semilla)
-   4428 78            [ 4]  675 	ld	a, b
-   4429 B7            [ 4]  676 	or	a, a
-   442A 20 02         [12]  677 	jr	NZ,00105$
-                            678 ;src/main.c:181: semilla = 1;
-   442C 0E 01         [ 7]  679 	ld	c, #0x01
-   442E                     680 00105$:
-                            681 ;src/main.c:183: cpct_srand8(semilla);
-   442E 26 00         [ 7]  682 	ld	h, #0x00
-   4430 11 00 00      [10]  683 	ld	de,#0x0000
-   4433 69            [ 4]  684 	ld	l, c
-   4434 CD 86 45      [17]  685 	call	_cpct_setSeed_mxor
-   4437 CD 8E 45      [17]  686 	call	_cpct_restoreState_mxor_u8
-                            687 ;src/main.c:184: initPlayer();
-   443A CD 00 40      [17]  688 	call	_initPlayer
-                            689 ;src/main.c:185: game();
-   443D CD C1 42      [17]  690 	call	_game
-   4440 C3 B3 43      [10]  691 	jp	00107$
-   4443                     692 ___str_10:
-   4443 52 50 47 20 47 41   693 	.ascii "RPG GAME"
+   44D1 00                  782 	.db 0x00
+   44D2                     783 ___str_13:
+   44D2 50 52 45 53 53 20   784 	.ascii "PRESS ANY KEY TO CONTINUE"
+        41 4E 59 20 4B 45
+        59 20 54 4F 20 43
+        4F 4E 54 49 4E 55
+        45
+   44EB 00                  785 	.db 0x00
+                            786 ;src/main.c:192: void main(void) {
+                            787 ;	---------------------------------
+                            788 ; Function main
+                            789 ; ---------------------------------
+   44EC                     790 _main::
+                            791 ;src/main.c:196: cpct_disableFirmware();
+   44EC CD D4 47      [17]  792 	call	_cpct_disableFirmware
+                            793 ;src/main.c:199: while (1) {
+   44EF                     794 00107$:
+                            795 ;src/main.c:200: cpct_setVideoMode(1);
+   44EF 2E 01         [ 7]  796 	ld	l, #0x01
+   44F1 CD 9D 47      [17]  797 	call	_cpct_setVideoMode
+                            798 ;src/main.c:201: cpct_clearScreen(0x00);
+   44F4 21 00 40      [10]  799 	ld	hl, #0x4000
+   44F7 E5            [11]  800 	push	hl
+   44F8 AF            [ 4]  801 	xor	a, a
+   44F9 F5            [11]  802 	push	af
+   44FA 33            [ 6]  803 	inc	sp
+   44FB 26 C0         [ 7]  804 	ld	h, #0xc0
+   44FD E5            [11]  805 	push	hl
+   44FE CD C6 47      [17]  806 	call	_cpct_memset
+                            807 ;src/main.c:202: cpct_setPalette(paletaM1,4);
+   4501 21 04 00      [10]  808 	ld	hl, #0x0004
+   4504 E5            [11]  809 	push	hl
+   4505 21 28 40      [10]  810 	ld	hl, #_paletaM1
+   4508 E5            [11]  811 	push	hl
+   4509 CD 9A 45      [17]  812 	call	_cpct_setPalette
+                            813 ;src/main.c:203: cpct_setBorder(HW_BLACK);
+   450C 21 10 14      [10]  814 	ld	hl, #0x1410
+   450F E5            [11]  815 	push	hl
+   4510 CD 27 46      [17]  816 	call	_cpct_setPALColour
+                            817 ;src/main.c:206: cpct_setDrawCharM1(3, 0);
+   4513 21 03 00      [10]  818 	ld	hl, #0x0003
+   4516 E5            [11]  819 	push	hl
+   4517 CD 05 48      [17]  820 	call	_cpct_setDrawCharM1
+                            821 ;src/main.c:207: cpct_drawStringM1("RPG GAME", cpct_getScreenPtr(CPCT_VMEM_START, 0, 0));
+   451A 21 00 00      [10]  822 	ld	hl, #0x0000
+   451D E5            [11]  823 	push	hl
+   451E 26 C0         [ 7]  824 	ld	h, #0xc0
+   4520 E5            [11]  825 	push	hl
+   4521 CD E5 47      [17]  826 	call	_cpct_getScreenPtr
+   4524 01 7A 45      [10]  827 	ld	bc, #___str_14+0
+   4527 E5            [11]  828 	push	hl
+   4528 C5            [11]  829 	push	bc
+   4529 CD 33 46      [17]  830 	call	_cpct_drawStringM1
+                            831 ;src/main.c:208: cpct_drawStringM1("PRESS ANY KEY TO START", cpct_getScreenPtr(CPCT_VMEM_START, 0, 20));
+   452C 21 00 14      [10]  832 	ld	hl, #0x1400
+   452F E5            [11]  833 	push	hl
+   4530 26 C0         [ 7]  834 	ld	h, #0xc0
+   4532 E5            [11]  835 	push	hl
+   4533 CD E5 47      [17]  836 	call	_cpct_getScreenPtr
+   4536 01 83 45      [10]  837 	ld	bc, #___str_15+0
+   4539 E5            [11]  838 	push	hl
+   453A C5            [11]  839 	push	bc
+   453B CD 33 46      [17]  840 	call	_cpct_drawStringM1
+                            841 ;src/main.c:212: do {
+   453E 26 00         [ 7]  842 	ld	h, #0x00
+   4540                     843 00101$:
+                            844 ;src/main.c:213: cpct_scanKeyboard_f();
+   4540 E5            [11]  845 	push	hl
+   4541 CD BD 45      [17]  846 	call	_cpct_scanKeyboard_f
+   4544 E1            [10]  847 	pop	hl
+                            848 ;src/main.c:214: semilla++;
+   4545 24            [ 4]  849 	inc	h
+                            850 ;src/main.c:216: while (!cpct_isAnyKeyPressed_f());
+   4546 E5            [11]  851 	push	hl
+   4547 CD AB 47      [17]  852 	call	_cpct_isAnyKeyPressed_f
+   454A 7D            [ 4]  853 	ld	a, l
+   454B E1            [10]  854 	pop	hl
+   454C B7            [ 4]  855 	or	a, a
+   454D 28 F1         [12]  856 	jr	Z,00101$
+                            857 ;src/main.c:217: cpct_clearScreen(0x00);
+   454F 6C            [ 4]  858 	ld	l, h
+   4550 E5            [11]  859 	push	hl
+   4551 01 00 40      [10]  860 	ld	bc, #0x4000
+   4554 C5            [11]  861 	push	bc
+   4555 AF            [ 4]  862 	xor	a, a
+   4556 F5            [11]  863 	push	af
+   4557 33            [ 6]  864 	inc	sp
+   4558 01 00 C0      [10]  865 	ld	bc, #0xc000
+   455B C5            [11]  866 	push	bc
+   455C CD C6 47      [17]  867 	call	_cpct_memset
+   455F E1            [10]  868 	pop	hl
+                            869 ;src/main.c:220: if (!semilla)
+   4560 7C            [ 4]  870 	ld	a, h
+   4561 B7            [ 4]  871 	or	a, a
+   4562 20 02         [12]  872 	jr	NZ,00105$
+                            873 ;src/main.c:221: semilla = 1;
+   4564 2E 01         [ 7]  874 	ld	l, #0x01
+   4566                     875 00105$:
+                            876 ;src/main.c:223: cpct_srand8(semilla);
+   4566 26 00         [ 7]  877 	ld	h, #0x00
+   4568 11 00 00      [10]  878 	ld	de,#0x0000
+   456B CD BD 46      [17]  879 	call	_cpct_setSeed_mxor
+   456E CD C5 46      [17]  880 	call	_cpct_restoreState_mxor_u8
+                            881 ;src/main.c:224: initPlayer();
+   4571 CD 2C 40      [17]  882 	call	_initPlayer
+                            883 ;src/main.c:225: game();
+   4574 CD A4 42      [17]  884 	call	_game
+   4577 C3 EF 44      [10]  885 	jp	00107$
+   457A                     886 ___str_14:
+   457A 52 50 47 20 47 41   887 	.ascii "RPG GAME"
         4D 45
-   444B 00                  694 	.db 0x00
-   444C                     695 ___str_11:
-   444C 50 52 45 53 53 20   696 	.ascii "PRESS ANY KEY TO START"
+   4582 00                  888 	.db 0x00
+   4583                     889 ___str_15:
+   4583 50 52 45 53 53 20   890 	.ascii "PRESS ANY KEY TO START"
         41 4E 59 20 4B 45
         59 20 54 4F 20 53
         54 41 52 54
-   4462 00                  697 	.db 0x00
-                            698 	.area _CODE
-                            699 	.area _INITIALIZER
-                            700 	.area _CABS (ABS)
+   4599 00                  891 	.db 0x00
+                            892 	.area _CODE
+                            893 	.area _INITIALIZER
+                            894 	.area _CABS (ABS)

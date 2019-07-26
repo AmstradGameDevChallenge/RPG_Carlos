@@ -7,22 +7,26 @@ Symbol Table
     .__.ABS.                                                    =  0000 G
     .__.CPU.                                                    =  0000 L
     .__.H$L.                                                    =  0000 L
-  0 ___str_0                                                       0025 R
-  0 ___str_1                                                       004D R
-  0 ___str_10                                                      0443 R
-  0 ___str_11                                                      044C R
-  0 ___str_2                                                       00E5 R
-  0 ___str_3                                                       017B R
-  0 ___str_4                                                       0218 R
-  0 ___str_5                                                       02B2 R
-  0 ___str_6                                                       036F R
-  0 ___str_7                                                       0381 R
-  0 ___str_8                                                       038F R
-  0 ___str_9                                                       03A6 R
-  0 _attack                                                        01A4 GR
+  0 ___str_0                                                       0052 R
+  0 ___str_1                                                       007F R
+  0 ___str_10                                                      04AF R
+  0 ___str_11                                                      04B1 R
+  0 ___str_12                                                      04C8 R
+  0 ___str_13                                                      04D2 R
+  0 ___str_14                                                      057A R
+  0 ___str_15                                                      0583 R
+  0 ___str_2                                                       0117 R
+  0 ___str_3                                                       01F4 R
+  0 ___str_4                                                       0295 R
+  0 ___str_5                                                       0460 R
+  0 ___str_6                                                       0472 R
+  0 ___str_7                                                       049B R
+  0 ___str_8                                                       049D R
+  0 ___str_9                                                       049F R
+  0 _abs                                                           0000 GR
+  0 _attack                                                        0179 GR
     _cpct_disableFirmware                                          **** GX
     _cpct_drawStringM1                                             **** GX
-    _cpct_getRandom_mxor_u8                                        **** GX
     _cpct_getScreenPtr                                             **** GX
     _cpct_isAnyKeyPressed_f                                        **** GX
     _cpct_isKeyPressed                                             **** GX
@@ -34,17 +38,17 @@ Symbol Table
     _cpct_setPalette                                               **** GX
     _cpct_setSeed_mxor                                             **** GX
     _cpct_setVideoMode                                             **** GX
-  1 _cursorPrint                                                   001C GR
-  0 _defense                                                       0229 GR
-  0 _game                                                          02C1 GR
-  1 _goblin                                                        000E GR
-  0 _initGoblin                                                    002C GR
-  0 _initPlayer                                                    0000 GR
-  0 _main                                                          03B0 GR
-  0 _paletaM1                                                      0021 GR
+  1 _cursorPrint                                                   001E GR
+  0 _defense                                                       0205 GR
+  0 _game                                                          02A4 GR
+  1 _goblin                                                        000F GR
+  0 _initGoblin                                                    0059 GR
+  0 _initPlayer                                                    002C GR
+  0 _main                                                          04EC GR
+  0 _paletaM1                                                      0028 GR
   1 _player                                                        0000 GR
-  0 _printStats                                                    0054 GR
-  0 _showConsole                                                   010A GR
+  0 _printStats                                                    0086 GR
+  0 _showConsole                                                   013C GR
     _sprintf                                                       **** GX
 
 
@@ -53,8 +57,8 @@ Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size  463   flags    0
-   1 _DATA                                      size   1D   flags    0
+   0 _CODE                                      size  59A   flags    0
+   1 _DATA                                      size   1F   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8
    4 _HOME                                      size    0   flags    0
