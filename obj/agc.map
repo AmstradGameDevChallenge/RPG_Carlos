@@ -17,90 +17,130 @@ Area                                    Addr        Size        Decimal Bytes (A
      00000000  l__INITIALIZER                  
      00000000  s__CABS                         
      00000000  s__DABS                         
-     0000001F  l__DATA                         
-     000013B2  l__CODE                         
+     00000062  l__DATA                         
+     000020EB  l__CODE                         
      00004000  s__CODE                         
-     000053B2  s__DATA                         
-     000053D1  s__GSFINAL                      
-     000053D1  s__GSINIT                       
-     000053D1  s__HOME                         
-     000053D1  s__INITIALIZED                  
-     000053D1  s__INITIALIZER                  
+     000060EB  s__DATA                         
+     0000614D  s__GSFINAL                      
+     0000614D  s__GSINIT                       
+     0000614D  s__HOME                         
+     0000614D  s__INITIALIZED                  
+     0000614D  s__INITIALIZER                  
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    000013B2 =        5042. bytes (REL,CON)
+_CODE                               00004000    000020EB =        8427. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00004000  _abs                               main
-     00004028  _paletaM1                          main
-     0000402C  _initPlayer                        main
-     00004059  _initGoblin                        main
-     00004086  _printStats                        main
-     0000413C  _showConsole                       main
-     00004179  _attack                            main
-     00004205  _defense                           main
-     000042A4  _game                              main
-     000044EC  _main                              main
-     0000459A  _cpct_setPalette                   cpct_video
-     000045B1  _cpct_isKeyPressed                 cpct_keyboard
-     000045B1  cpct_isKeyPressed_asm              cpct_keyboard
-     000045BD  _cpct_scanKeyboard_f               cpct_keyboard
-     000045BD  cpct_scanKeyboard_f_asm            cpct_keyboard
-     00004627  _cpct_setPALColour                 cpct_video
-     00004633  _cpct_drawStringM1                 cpct_strings
-     00004663  cpct_drawCharM1_inner_asm          cpct_strings
-     000046A3  cpct_char2pxM1                     cpct_strings
-     000046B3  _cpct_keyboardStatusBuffer         cpct_keyboard
-     000046BD  _cpct_setSeed_mxor                 cpct_random
-     000046BD  cpct_setSeed_mxor_asm              cpct_random
-     000046C5  _cpct_restoreState_mxor_u8         cpct_random
-     000046C5  cpct_restoreState_mxor_u8_asm      cpct_random
-     000046CB  _cpct_getRandom_mxor_u8            cpct_random
-     000046CB  cpct_getRandom_mxor_u8_asm         cpct_random
-     000046CC  cpct_randomIdx_mxor_u8             cpct_random
-     00004710  _vsprintf                          sprintf
-     00004745  _sprintf                           sprintf
-     0000477A  _cpct_nextRandom_mxor_u32          cpct_random
-     0000477A  cpct_nextRandom_mxor_u32_asm       cpct_random
-     0000479D  _cpct_setVideoMode                 cpct_video
-     000047AB  _cpct_isAnyKeyPressed_f            cpct_keyboard
-     000047AB  cpct_isAnyKeyPressed_f_asm         cpct_keyboard
-     000047C6  _cpct_memset                       cpct_memutils
-     000047D4  _cpct_disableFirmware              cpct_firmware
-     000047D4  _cpct_removeInterruptHandler       cpct_firmware
-     000047D4  cpct_disableFirmware_asm           cpct_firmware
-     000047D4  cpct_removeInterruptHandler_asm    cpct_firmware
-     000047E4  _cpct_mode_rom_status              cpct_firmware
-     000047E5  _cpct_getScreenPtr                 cpct_video
-     00004805  _cpct_setDrawCharM1                cpct_strings
-     00004958  __print_format                     printf_large
-     0000539A  _cpct_mxor32_seed                  cpct_random
-     0000539E  ___sdcc_call_hl                    
-     0000539F  dc_mode1_ct                        
-     000053A3  _strlen                            
-
+     00004000  _initGoblin                        main
+     0000402B  _paletaM1                          main
+     00004036  _showConsole                       main
+     00004073  _attack                            main
+     00004107  _defense                           main
+     000041A6  _game                              main
+     000042EC  _main                              main
+     0000438F  _abs                               juego
+     000043B7  _pausa                             juego
+     000043C4  _pausaTecladoLibre                 juego
+     000043CF  _dibujarMarco                      juego
+     000044D5  _dibujarEscenario                  juego
+     0000451D  _initPlayer                        juego
+     0000455D  _initNivel                         juego
+     000045B5  _printStats                        juego
+     00004698  _printLevel                        juego
+     000046E7  _printConsole                      juego
+     00004753  _atacar                            juego
+     00004889  _defender                          juego
+     0000495F  _turno                             juego
+     00004E5C  _juego                             juego
+     00004E92  _G_mendo                           graficos
+     00004F72  _G_arabe_1                         graficos
+     00005052  _G_tile_cruzada                    graficos
+     00005092  _G_suelo_cruzada_1                 graficos
+     000050D2  _cpct_setPalette                   cpct_video
+     000050E9  _cpct_isKeyPressed                 cpct_keyboard
+     000050E9  cpct_isKeyPressed_asm              cpct_keyboard
+     000050F5  _cpct_scanKeyboard_f               cpct_keyboard
+     000050F5  cpct_scanKeyboard_f_asm            cpct_keyboard
+     0000515F  _cpct_setPALColour                 cpct_video
+     0000516B  _cpct_drawStringM1                 cpct_strings
+     0000519B  _cpct_drawSprite                   cpct_sprites
+     00005240  cpct_drawCharM1_inner_asm          cpct_strings
+     00005280  cpct_char2pxM1                     cpct_strings
+     00005290  __moduchar                         
+     0000529C  __moduint                          
+     000052A7  __divuint                          
+     000052AF  __divuchar                         
+     000052B6  __divu8                            
+     000052B9  __divu16                           
+     000052E8  _cpct_keyboardStatusBuffer         cpct_keyboard
+     000052F2  _cpct_setSeed_mxor                 cpct_random
+     000052F2  cpct_setSeed_mxor_asm              cpct_random
+     000052FA  _cpct_restoreState_mxor_u8         cpct_random
+     000052FA  cpct_restoreState_mxor_u8_asm      cpct_random
+     00005300  _cpct_getRandom_mxor_u8            cpct_random
+     00005300  cpct_getRandom_mxor_u8_asm         cpct_random
+     00005301  cpct_randomIdx_mxor_u8             cpct_random
+     00005325  _cpct_drawSpriteMasked             cpct_sprites
 ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_DATA                               000053B2    0000001F =          31. bytes (REL,CON)
+_CODE                               00004000    000020EB =        8427. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000053B2  _player                            main
-     000053C1  _goblin                            main
-     000053D0  _cursorPrint                       main
+     00005374  _vsprintf                          sprintf
+     000053A9  _sprintf                           sprintf
+     000053DE  _cpct_nextRandom_mxor_u32          cpct_random
+     000053DE  cpct_nextRandom_mxor_u32_asm       cpct_random
+     00005401  _cpct_setVideoMode                 cpct_video
+     0000540F  _cpct_isAnyKeyPressed_f            cpct_keyboard
+     0000540F  cpct_isAnyKeyPressed_f_asm         cpct_keyboard
+     0000542A  _cpct_memset                       cpct_memutils
+     00005438  _cpct_px2byteM1                    cpct_sprites
+     00005438  cpct_px2byteM1_asm                 cpct_sprites
+     00005455  _cpct_disableFirmware              cpct_firmware
+     00005455  _cpct_removeInterruptHandler       cpct_firmware
+     00005455  cpct_disableFirmware_asm           cpct_firmware
+     00005455  cpct_removeInterruptHandler_asm    cpct_firmware
+     00005465  _cpct_drawSolidBox                 cpct_sprites
+     0000551D  _cpct_mode_rom_status              cpct_firmware
+     0000551E  _cpct_getScreenPtr                 cpct_video
+     0000553E  _cpct_setDrawCharM1                cpct_strings
+     00005691  __print_format                     printf_large
+     000060D3  _cpct_mxor32_seed                  cpct_random
+     000060D7  ___sdcc_call_hl                    
+     000060D8  dc_mode1_ct                        
+     000060DC  _strlen                            
+
 ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_DATA                               000060EB    00000062 =          98. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000060EB  _entidad                           main
+     00006124  _nivel                             main
+     00006125  _player                            main
+     00006138  _goblin                            main
+     0000614B  _cursorPrint                       main
+     0000614C  _cursorConsola                     juego
+ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
 
 Files Linked                              [ module(s) ]
 
 obj/main.rel                              [ main ]
+obj/juego.rel                             [ juego ]
+obj/graficos.rel                          [ graficos ]
 
 
 Libraries Linked                          [ object file ]
@@ -116,7 +156,13 @@ Libraries Linked                          [ object file ]
 /home/cpp76s/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_drawStringM1_cbindings.rel ]
 /home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_drawSprite_cbindings.rel ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_drawCharM1_inner.rel ]
+/home/cpp76s/cpctelera/cpctelera/tools/sdcc-3.6.8-r9946/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ modunsigned.rel ]
+/home/cpp76s/cpctelera/cpctelera/tools/sdcc-3.6.8-r9946/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ divunsigned.rel ]
 /home/cpp76s/cpctelera/cpctelera/cpctelera.lib
                                           [ keyboard.rel ]
 /home/cpp76s/cpctelera/cpctelera/cpctelera.lib
@@ -125,6 +171,8 @@ Libraries Linked                          [ object file ]
                                           [ cpct_restoreState_mxor_u8.rel ]
 /home/cpp76s/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_getRandom_mxor_u8.rel ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_drawSpriteMasked_cbindings. ]
 /home/cpp76s/cpctelera/cpctelera/tools/sdcc-3.6.8-r9946/bin/../share/sdcc/lib/z80/z80.lib
                                           [ sprintf.rel ]
 /home/cpp76s/cpctelera/cpctelera/cpctelera.lib
@@ -136,7 +184,11 @@ Libraries Linked                          [ object file ]
 /home/cpp76s/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_memset_cbinding.rel ]
 /home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_px2byteM1.rel ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_removeInterruptHandler.rel ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_drawSolidBox_cbindings.rel ]
 /home/cpp76s/cpctelera/cpctelera/cpctelera.lib
                                           [ cpc_mode_rom_status.rel ]
 /home/cpp76s/cpctelera/cpctelera/cpctelera.lib
@@ -154,7 +206,7 @@ Libraries Linked                          [ object file ]
 /home/cpp76s/cpctelera/cpctelera/tools/sdcc-3.6.8-r9946/bin/../share/sdcc/lib/z80/z80.lib
                                           [ strlen.rel ]
 
-ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 6.
 
 User Base Address Definitions
 

@@ -1,0 +1,115 @@
+﻿{
+  "$type": "RGAS.PlatformProviders.AmstradSpriteSet, RGAS",
+  "PlusInks": {
+    "$type": "System.UInt16[], mscorlib",
+    "$values": [
+      255,
+      0,
+      1092,
+      240,
+      2032,
+      3568,
+      4000,
+      3920,
+      3842,
+      3849,
+      3855,
+      2575,
+      527,
+      95,
+      175,
+      4095
+    ]
+  },
+  "_ImageList": {
+    "$type": "System.Collections.Generic.List`1[[RGAS.SpriteBase, RGAS]], mscorlib",
+    "$values": [
+      {
+        "$type": "RGAS.CPCSprite, RGAS",
+        "Align256": false,
+        "GenerateVerticalMirror": false,
+        "GenerateHorizontalMirror": false,
+        "pixels": {
+          "$type": "System.Byte[], mscorlib",
+          "$value": "/////////////////////////////wEBAf///////////////wEBAQEB//////////////8BAQICAv///wH/////////AQECAgL///8B//////////8BAQH/////Af///////////////////wH/////////AQEBAf////8B////////AQEBAQEB////Af//////AQEBAQEBAQH//wH/////AQH/AQEBAQEB//8B/////wH//wEBAQEBAf//Af////8B//8BAQEBAQEB/wH///8B////AQEBAQH//wEBAf//Af///wEBAQEB////Af///wH///8BAQEBAf///////////////wEBAf////////////////////////////////////8BAf8BAf//////////////AQH/AQH//////////////wEB//8BAf////////////8BAf//AQH///////////8BAf////8BAf//////////AQH/////AQH//////////wEB/////wEB/////////wEB////////AQH///////8BAf////////8B////////Af//////////AQH//wA="
+        },
+        "Width": 16,
+        "Height": 28,
+        "_guid": "aa6c09bf-a7a1-455f-ac28-4fd0c3ce66b9",
+        "_name": "mendo",
+        "MaskDataInline": true,
+        "UseInLevelDesigner": false
+      },
+      {
+        "$type": "RGAS.CPCSprite, RGAS",
+        "Align256": false,
+        "GenerateVerticalMirror": false,
+        "GenerateHorizontalMirror": false,
+        "pixels": {
+          "$type": "System.Byte[], mscorlib",
+          "$value": "/////////wICAgL//////////////wICAgICAv////////////8CAgICAgL/////////////AwMDAgIC/////////////wMDAwIC////////////////AgIC////////////////////////////////////Av8CAgL/Av///////////wL/AgIC/wL//////////wL/AgICAgL/Av///////wIC/wICAgIC/wL///////8C//8CAgICAv8C////////Av//AgICAgL/Av///////wL//wICAgIC/wL//wH//wL///8CAgICAv8C/wEB//8C////AgICAgL/AgEB/////////wICAgIC/wEB/////////wICAgICAgL///////////8CAgICAgIC////////////AgICAgICAv///////////wICAgICAgL///////////8CAgICAgIC////////////AgICAgICAv////////////8CAv8CAv//////////////AgL//wIC/////////////wIC//8CAgP///////////8DA////wMD//////////8DAwP/////A////wA="
+        },
+        "Width": 16,
+        "Height": 28,
+        "_guid": "aa6c09bf-a7a1-455f-ac28-4fd0c3ce66b9",
+        "_name": "arabe_1",
+        "MaskDataInline": true,
+        "UseInLevelDesigner": false
+      },
+      {
+        "$type": "RGAS.CPCSprite, RGAS",
+        "Align256": false,
+        "GenerateVerticalMirror": false,
+        "GenerateHorizontalMirror": false,
+        "pixels": {
+          "$type": "System.Byte[], mscorlib",
+          "$value": "AgICAgAAAAAAAAACAgIAAAICAAAAAAAAAAAAAAAAAAACAAAAAAACAgICAgAAAAAAAAAAAgICAgICAgICAAAAAAAAAgICAgAAAAAAAgICAAACAgIAAAAAAAAAAAAAAgICAgAAAAAAAAAAAAAAAAACAgAAAAAAAgICAAAAAAAAAAAAAAICAgICAgIAAAAAAAAAAAICAgICAAACAgAAAAICAgICAgIAAAAAAAICAgICAgICAgAAAAAAAAAAAAICAgIAAAAAAgICAgIAAAAAAAAAAAACAgICAgICAgAAAAACAgICAgICAgAAAAICAAACAgIAAgICAgAAAAAAAAICAgIAAAA="
+        },
+        "Width": 16,
+        "Height": 16,
+        "_guid": "d39cfbe9-2954-42ea-82d7-7258cbbb424c",
+        "_name": "tile_cruzada",
+        "MaskDataInline": false,
+        "UseInLevelDesigner": false
+      },
+      {
+        "$type": "RGAS.CPCSprite, RGAS",
+        "Align256": false,
+        "GenerateVerticalMirror": false,
+        "GenerateHorizontalMirror": false,
+        "pixels": {
+          "$type": "System.Byte[], mscorlib",
+          "$value": "AgICAgICAgICAgICAgICAgICAgICAgIAAAICAgICAgICAgAAAAAAAgIAAAAAAAICAgIAAgIAAgICAgACAgACAgICAAIAAgICAgICAAIAAgICAgAAAgACAAACAAIAAAICAgIAAgICAAICAAICAgACAgIAAgICAAIAAAIAAgICAAICAAICAgACAAACAAICAgACAgIAAgICAAICAAICAgACAgICAAACAAIAAAIAAgAAAgICAgACAAICAgICAgACAAICAgIAAgIAAgICAgACAgACAgICAAAAAAACAgAAAAAAAgICAgICAgICAAACAgICAgICAgICAgICAgICAgICAgICAgA="
+        },
+        "Width": 16,
+        "Height": 16,
+        "_guid": "5fc2e38a-9b71-49e4-89a0-c536773e979b",
+        "_name": "suelo_cruzada_1",
+        "MaskDataInline": false,
+        "UseInLevelDesigner": false
+      }
+    ]
+  },
+  "_levelList": {
+    "$type": "System.Collections.Generic.List`1[[RGAS.GameLevel, RGAS]], mscorlib",
+    "$values": []
+  },
+  "_sound": {
+    "$type": "RGAS.SoundSet, RGAS",
+    "MusicList": {
+      "$type": "System.Collections.Generic.List`1[[RGAS.AYMusic, RGAS]], mscorlib",
+      "$values": []
+    }
+  },
+  "Mode": 1,
+  "_targetPlatform": 0,
+  "Inks": {
+    "$type": "System.Byte[], mscorlib",
+    "$value": "AA0aAQsJGRgUBgIICgwOEA=="
+  },
+  "_formatterType": "RGAS.PlatformProviders.AmstradSpriteSet+AmstradCPCRSLibCArrayFormatter, RGAS, Version=1.2.5.0, Culture=neutral, PublicKeyToken=null",
+  "OSPlatform": "Microsoft Windows NT 6.1.7601 Service Pack 1 C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\",
+  "RGASVersion": "1.2.5.0",
+  "EncodeLevelsRLE": false,
+  "OutputSpriteDimensions": false
+}

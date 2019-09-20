@@ -23,45 +23,33 @@
 #include <stdio.h>
 #include <string.h>
 #include "main.h"
+#include "juego.h"
 
-const u8 paletaM1[4] = {0x54, 0x43, 0x4C, 0x4B};
+
+//////// VARIABLES GLOBALES ///////////////////////////////////////////////////////////////
+
+const u8 paletaM1[4] = {0x54, 0x40, 0x4B, 0x44};
+TStats entidad[3];
+u8 nivel;
+
+
 TStats player;
 TStats goblin;
 u8 cursorPrint;
 
-u8 abs (i8 valor){
-   return (valor > 0 ? valor : -valor);
-}
 
-void initPlayer(){
-   strcpy(player.name,"PLAYER");
-   player.max_energy = 99;
-   player.energy = player.max_energy;
-   player.attack = 30;
-   player.defense = 15;
-   player.pos_x = 5;
-}
 
 void initGoblin(){
    strcpy(goblin.name,"GOBLIN");
    goblin.max_energy = 90;
    goblin.energy = goblin.max_energy;
    goblin.attack = 20;
+   goblin.force = 3;
    goblin.defense = 10;
    goblin.pos_x = 7;
 }
 
-void printStats(TStats *a) {
 
-   u8 temp[40];
-   u8 posy = 10;
-   sprintf(temp, "%s %02d. ATTACK: %02d. DEFENSE: %02d",a->name, a->energy,a->attack,a->defense);
-
-   if (a == &player) 
-      posy = 0;
-
-   cpct_drawStringM1(temp, cpct_getScreenPtr(CPCT_VMEM_START, 0, posy));
-}
 
 
 void showConsole  (void* string) {
@@ -77,14 +65,17 @@ void showConsole  (void* string) {
 
 
 void attack(TStats *a, TStats *b) {
-   u8 temp[40];
+   u8 temp[40], ataque;
 
-   if (a->attack < b->energy) 
-      b->energy = b->energy - a->attack;
+   ataque = a->attack + (2*(cpct_rand()%a->force)) - a->force;
+
+
+   if (ataque < b->energy) 
+      b->energy = b->energy - ataque;
    else
       b->energy = 0;
 
-   sprintf(temp, "%s attacks %02d.",a->name, a->attack);
+   sprintf(temp, "%s attacks %02d.",a->name, ataque);
 
    cpct_setDrawCharM1(2, 0);
    showConsole(temp);
@@ -109,6 +100,8 @@ void defense(TStats *a) {
 
 
 void game(){
+   u8 enemy_mov;
+
    while (player.energy) {
       cpct_clearScreen(0x00);
       cursorPrint = 44;
@@ -116,17 +109,6 @@ void game(){
          initGoblin();
          showConsole("A GOBLIN APPEARS.");
       }
-
-      
-      printStats(&player);
-      printStats(&goblin);
-      cpct_drawStringM1("========================================", cpct_getScreenPtr(CPCT_VMEM_START, 0, 36));
-  
-      // RENDER Player
-      cpct_drawStringM1("@", cpct_getScreenPtr(CPCT_VMEM_START, (player.pos_x)*2, 28));
-      // RENDER Enemy
-      cpct_drawStringM1("G", cpct_getScreenPtr(CPCT_VMEM_START, (goblin.pos_x)*2, 28));
-
 
       
       // Get Player Action
@@ -137,22 +119,7 @@ void game(){
       
       //Erase prior position
       cpct_drawStringM1(" ", cpct_getScreenPtr(CPCT_VMEM_START, (player.pos_x)*2, 28));
-
-      if (cpct_isKeyPressed(Key_O)) {
-         player.pos_x--;
-         if (!player.pos_x)
-            player.pos_x = 1;
-      }
-
-      if (cpct_isKeyPressed(Key_P)) {
-         player.pos_x++;
-         if (player.pos_x == 40)
-            player.pos_x = 39;
-         if (player.pos_x == goblin.pos_x) {
-            player.pos_x--;
-            attack(&player, &goblin);
-         }
-      }
+      cpct_drawStringM1(" ", cpct_getScreenPtr(CPCT_VMEM_START, (goblin.pos_x)*2, 28));
 
       //Defense
       if (cpct_isKeyPressed(Key_D)) {
@@ -163,15 +130,10 @@ void game(){
       cpct_drawStringM1("@", cpct_getScreenPtr(CPCT_VMEM_START, (player.pos_x)*2, 28));
 
       
-      //Enemy turn
-      if (goblin.energy) {
-         if (abs(goblin.pos_x - player.pos_x) == 1) //attack
-            attack(&goblin,&player);
-         else  //defense
-            defense(&goblin);
-      } else {
-         showConsole("YOU KILLED THE GOBLIN.");
-      }
+      
+
+      // RENDER Player 
+      cpct_drawStringM1("G", cpct_getScreenPtr(CPCT_VMEM_START, (goblin.pos_x)*2, 28));
 
       if (!player.energy){
          showConsole("YOU DIED.");
@@ -203,29 +165,28 @@ void main(void) {
       cpct_setBorder(HW_BLACK);
 
       //Intro (text int white)
-      cpct_setDrawCharM1(3, 0);
+      cpct_setDrawCharM1(2, 0);
       cpct_drawStringM1("RPG GAME", cpct_getScreenPtr(CPCT_VMEM_START, 0, 0));
       cpct_drawStringM1("PRESS ANY KEY TO START", cpct_getScreenPtr(CPCT_VMEM_START, 0, 20));
 
-      //Wait for key
-      while (cpct_isAnyKeyPressed_f ()) { //Asegurarnos que se ha dejado de pulsar la tecla anterior 
-         cpct_scanKeyboard_f();
-      }
       
+      pausaTecladoLibre();
+      
+      //Wait for key
       semilla = 0;
       do {
          cpct_scanKeyboard_f();
          semilla++;
       }
       while (!cpct_isAnyKeyPressed_f());
-      cpct_clearScreen(0x00);
 
       
       if (!semilla)
          semilla = 1;
 
       cpct_srand8(semilla);
-      initPlayer();
-      game();
+      nivel = 1;
+      //game();
+      juego();
    }
 }

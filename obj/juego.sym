@@ -1,0 +1,72 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 1.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+    .__.$$$.                                                    =  2710 L
+    .__.ABS.                                                    =  0000 G
+    .__.CPU.                                                    =  0000 L
+    .__.H$L.                                                    =  0000 L
+    _G_arabe_1                                                     **** GX
+    _G_mendo                                                       **** GX
+    _G_suelo_cruzada_1                                             **** GX
+    _G_tile_cruzada                                                **** GX
+  0 ___str_0                                                       01C4 R
+  0 ___str_1                                                       021E R
+  0 ___str_10                                                      0AC0 R
+  0 ___str_2                                                       02BF R
+  0 ___str_3                                                       02E4 R
+  0 ___str_4                                                       034C R
+  0 ___str_5                                                       04D2 R
+  0 ___str_6                                                       04E0 R
+  0 ___str_7                                                       04EE R
+  0 ___str_8                                                       05C1 R
+  0 ___str_9                                                       0AAE R
+    __divuchar                                                     **** GX
+    __moduchar                                                     **** GX
+  0 _abs                                                           0000 GR
+  0 _atacar                                                        03C4 GR
+    _cpct_drawSolidBox                                             **** GX
+    _cpct_drawSprite                                               **** GX
+    _cpct_drawSpriteMasked                                         **** GX
+    _cpct_drawStringM1                                             **** GX
+    _cpct_getRandom_mxor_u8                                        **** GX
+    _cpct_getScreenPtr                                             **** GX
+    _cpct_isAnyKeyPressed_f                                        **** GX
+    _cpct_isKeyPressed                                             **** GX
+    _cpct_memset                                                   **** GX
+    _cpct_px2byteM1                                                **** GX
+    _cpct_scanKeyboard_f                                           **** GX
+    _cpct_setDrawCharM1                                            **** GX
+  1 _cursorConsola                                                 0000 GR
+  0 _defender                                                      04FA GR
+  0 _dibujarEscenario                                              0146 GR
+  0 _dibujarMarco                                                  0040 GR
+    _entidad                                                       **** GX
+  0 _initNivel                                                     01CE GR
+  0 _initPlayer                                                    018E GR
+  0 _juego                                                         0ACD GR
+    _nivel                                                         **** GX
+  0 _pausa                                                         0028 GR
+  0 _pausaTecladoLibre                                             0035 GR
+  0 _printConsole                                                  0358 GR
+  0 _printLevel                                                    0309 GR
+  0 _printStats                                                    0226 GR
+    _sprintf                                                       **** GX
+  0 _turno                                                         05D0 GR
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
+Hexadecimal [16-Bits]
+
+Area Table
+
+   0 _CODE                                      size  B03   flags    0
+   1 _DATA                                      size    1   flags    0
+   2 _INITIALIZED                               size    0   flags    0
+   3 _DABS                                      size    0   flags    8
+   4 _HOME                                      size    0   flags    0
+   5 _GSINIT                                    size    0   flags    0
+   6 _GSFINAL                                   size    0   flags    0
+   7 _INITIALIZER                               size    0   flags    0
+   8 _CABS                                      size    0   flags    8
+

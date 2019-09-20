@@ -8,5 +8,7 @@
 -l /home/cpp76s/cpctelera/cpctelera/cpctelera.lib
 -l z80
 obj/main.rel
+obj/juego.rel
+obj/graficos.rel
 
 -e
