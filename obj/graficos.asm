@@ -8,7 +8,6 @@
 ;--------------------------------------------------------
 ; Public variables in this module
 ;--------------------------------------------------------
-	.globl _G_suelo_cruzada_1
 	.globl _G_tile_cruzada
 	.globl _G_arabe_1
 	.globl _G_mendo
@@ -559,70 +558,5 @@ _G_tile_cruzada:
 	.db #0x00	; 0
 	.db #0x03	; 3
 	.db #0x0c	; 12
-_G_suelo_cruzada_1:
-	.db #0x0f	; 15
-	.db #0x0f	; 15
-	.db #0x0f	; 15
-	.db #0x0f	; 15
-	.db #0x0f	; 15
-	.db #0x0e	; 14
-	.db #0x07	; 7
-	.db #0x0f	; 15
-	.db #0x0c	; 12
-	.db #0x01	; 1
-	.db #0x08	; 8
-	.db #0x03	; 3
-	.db #0x0d	; 13
-	.db #0x0b	; 11
-	.db #0x0d	; 13
-	.db #0x0b	; 11
-	.db #0x0d	; 13
-	.db #0x07	; 7
-	.db #0x0e	; 14
-	.db #0x0b	; 11
-	.db #0x0c	; 12
-	.db #0x0a	; 10
-	.db #0x05	; 5
-	.db #0x03	; 3
-	.db #0x0d	; 13
-	.db #0x0d	; 13
-	.db #0x0b	; 11
-	.db #0x0b	; 11
-	.db #0x0b	; 11
-	.db #0x0a	; 10
-	.db #0x05	; 5
-	.db #0x0d	; 13
-	.db #0x0b	; 11
-	.db #0x0a	; 10
-	.db #0x05	; 5
-	.db #0x0d	; 13
-	.db #0x0d	; 13
-	.db #0x0d	; 13
-	.db #0x0b	; 11
-	.db #0x0b	; 11
-	.db #0x0c	; 12
-	.db #0x0a	; 10
-	.db #0x05	; 5
-	.db #0x03	; 3
-	.db #0x0d	; 13
-	.db #0x07	; 7
-	.db #0x0e	; 14
-	.db #0x0b	; 11
-	.db #0x0d	; 13
-	.db #0x0b	; 11
-	.db #0x0d	; 13
-	.db #0x0b	; 11
-	.db #0x0c	; 12
-	.db #0x01	; 1
-	.db #0x08	; 8
-	.db #0x03	; 3
-	.db #0x0f	; 15
-	.db #0x0e	; 14
-	.db #0x07	; 7
-	.db #0x0f	; 15
-	.db #0x0f	; 15
-	.db #0x0f	; 15
-	.db #0x0f	; 15
-	.db #0x0f	; 15
 	.area _INITIALIZER
 	.area _CABS (ABS)

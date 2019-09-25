@@ -71,22 +71,6 @@
         "_name": "tile_cruzada",
         "MaskDataInline": false,
         "UseInLevelDesigner": false
-      },
-      {
-        "$type": "RGAS.CPCSprite, RGAS",
-        "Align256": false,
-        "GenerateVerticalMirror": false,
-        "GenerateHorizontalMirror": false,
-        "pixels": {
-          "$type": "System.Byte[], mscorlib",
-          "$value": "AgICAgICAgICAgICAgICAgICAgICAgIAAAICAgICAgICAgAAAAAAAgIAAAAAAAICAgIAAgIAAgICAgACAgACAgICAAIAAgICAgICAAIAAgICAgAAAgACAAACAAIAAAICAgIAAgICAAICAAICAgACAgIAAgICAAIAAAIAAgICAAICAAICAgACAAACAAICAgACAgIAAgICAAICAAICAgACAgICAAACAAIAAAIAAgAAAgICAgACAAICAgICAgACAAICAgIAAgIAAgICAgACAgACAgICAAAAAAACAgAAAAAAAgICAgICAgICAAACAgICAgICAgICAgICAgICAgICAgICAgA="
-        },
-        "Width": 16,
-        "Height": 16,
-        "_guid": "5fc2e38a-9b71-49e4-89a0-c536773e979b",
-        "_name": "suelo_cruzada_1",
-        "MaskDataInline": false,
-        "UseInLevelDesigner": false
       }
     ]
   },

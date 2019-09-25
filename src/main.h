@@ -6,12 +6,14 @@ typedef struct {
 	u8 force;  //fuerza
 	u8 defense; //puntos de curación
 	u8 pos_x; //posición x en el área de juego
+	u8 pos_x_ant; //posición x anterior en el área de juego (para borrados)
 	u8 pos_y; //posición y en el marcador
 	u8* sprite; //sprite asociado
 } TStats;
 
 extern TStats entidad[3];  //entidad[0] es el jugador; los otros dos los enemigos
 extern u8 nivel;
+extern const TStats SoldadoArabe;
 
 
 /*

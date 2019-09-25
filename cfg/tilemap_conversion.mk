@@ -38,6 +38,26 @@
 # Conversion 
 #$(eval $(call TMX2DATA, CONVERT, tmxfile, array )) 
 
+$(eval $(call TMX2DATA, SET_ASMVARPREFIX, yes       ))   
+$(eval $(call TMX2DATA, SET_USEMACROS   , yes       ))   
+$(eval $(call TMX2DATA, SET_OUTPUTS     , h c       ))  
+$(eval $(call TMX2DATA, SET_BASE        , dec       ))  
+$(eval $(call TMX2DATA, SET_BITSPERITEM , 8         ))   
+$(eval $(call TMX2DATA, SET_FOLDER      , src/mapas      )) 
+$(eval $(call TMX2DATA, SET_EXTRAPAR    ,           ))	
+#Los pongo en orden decreciente para que luego se creen los datos en orden en memoria g_mapa01, g_mapa02,...
+#y así poder usar desplazamientos para obtener el puntero de la fase correcta según el nivel => mapa = (u8*) (&g_mapa01[0] + ((nivel-1) * 504));
+$(eval $(call TMX2DATA, CONVERT, doc/mapas_fases/fase_10.tmx, g_mapa10 )) 
+$(eval $(call TMX2DATA, CONVERT, doc/mapas_fases/fase_09.tmx, g_mapa09 )) 
+$(eval $(call TMX2DATA, CONVERT, doc/mapas_fases/fase_08.tmx, g_mapa08 )) 
+$(eval $(call TMX2DATA, CONVERT, doc/mapas_fases/fase_07.tmx, g_mapa07 )) 
+$(eval $(call TMX2DATA, CONVERT, doc/mapas_fases/fase_06.tmx, g_mapa06 )) 
+$(eval $(call TMX2DATA, CONVERT, doc/mapas_fases/fase_05.tmx, g_mapa05 )) 
+$(eval $(call TMX2DATA, CONVERT, doc/mapas_fases/fase_04.tmx, g_mapa04 )) 
+$(eval $(call TMX2DATA, CONVERT, doc/mapas_fases/fase_03.tmx, g_mapa03 )) 
+$(eval $(call TMX2DATA, CONVERT, doc/mapas_fases/fase_02.tmx, g_mapa02 )) 
+$(eval $(call TMX2DATA, CONVERT, doc/mapas_fases/fase_01.tmx, g_mapa01 )) 
+
 
 ##
 ## OLD MACROS (For compatibility)

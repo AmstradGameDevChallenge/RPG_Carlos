@@ -33,4 +33,3 @@ Firmware | Hardware  | Hard+Command | Colour Name    |  R%   G%   B% Colour
 extern const unsigned char G_mendo[224];
 extern const unsigned char G_arabe_1[224];
 extern const unsigned char G_tile_cruzada[64];
-extern const unsigned char G_suelo_cruzada_1[64];

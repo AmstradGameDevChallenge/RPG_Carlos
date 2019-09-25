@@ -23,6 +23,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "main.h"
+#include "graficos.h"
 #include "juego.h"
 
 
@@ -37,119 +38,8 @@ TStats player;
 TStats goblin;
 u8 cursorPrint;
 
+const TStats SoldadoArabe = { "Soldier", 90, 90, 20, 3, 10, 28, 28, 32, &G_arabe_1[0] };
 
-
-void initGoblin(){
-   strcpy(goblin.name,"GOBLIN");
-   goblin.max_energy = 90;
-   goblin.energy = goblin.max_energy;
-   goblin.attack = 20;
-   goblin.force = 3;
-   goblin.defense = 10;
-   goblin.pos_x = 7;
-}
-
-
-
-
-void showConsole  (void* string) {
-   if (cursorPrint > 190){
-      cpct_clearScreen(0x00);
-      cursorPrint = 44;
-   }
-
-   cpct_drawStringM1(string, cpct_getScreenPtr(CPCT_VMEM_START, 0, cursorPrint));
-   cursorPrint +=8;
-
-}
-
-
-void attack(TStats *a, TStats *b) {
-   u8 temp[40], ataque;
-
-   ataque = a->attack + (2*(cpct_rand()%a->force)) - a->force;
-
-
-   if (ataque < b->energy) 
-      b->energy = b->energy - ataque;
-   else
-      b->energy = 0;
-
-   sprintf(temp, "%s attacks %02d.",a->name, ataque);
-
-   cpct_setDrawCharM1(2, 0);
-   showConsole(temp);
-   cpct_setDrawCharM1(3, 0);
-}
-
-void defense(TStats *a) {
-   u8 temp[40], healed;
-
-   healed = 0;
-   if (a->energy + a->defense < a->max_energy)
-      healed = a->defense;
-
-   a->energy = a->energy + healed;
-   
-   sprintf(temp, "%s heals %02d.",a->name, healed);
-
-   cpct_setDrawCharM1(1, 0);
-   showConsole(temp);
-   cpct_setDrawCharM1(3, 0);
-}
-
-
-void game(){
-   u8 enemy_mov;
-
-   while (player.energy) {
-      cpct_clearScreen(0x00);
-      cursorPrint = 44;
-      if (!goblin.energy) {
-         initGoblin();
-         showConsole("A GOBLIN APPEARS.");
-      }
-
-      
-      // Get Player Action
-      showConsole("ACTION (O/P/D)?");
-      do 
-         cpct_scanKeyboard_f();
-      while (!cpct_isKeyPressed(Key_O) && !cpct_isKeyPressed(Key_P) && !cpct_isKeyPressed(Key_D));
-      
-      //Erase prior position
-      cpct_drawStringM1(" ", cpct_getScreenPtr(CPCT_VMEM_START, (player.pos_x)*2, 28));
-      cpct_drawStringM1(" ", cpct_getScreenPtr(CPCT_VMEM_START, (goblin.pos_x)*2, 28));
-
-      //Defense
-      if (cpct_isKeyPressed(Key_D)) {
-         defense(&player);
-      }
-
-      // RENDER Player 
-      cpct_drawStringM1("@", cpct_getScreenPtr(CPCT_VMEM_START, (player.pos_x)*2, 28));
-
-      
-      
-
-      // RENDER Player 
-      cpct_drawStringM1("G", cpct_getScreenPtr(CPCT_VMEM_START, (goblin.pos_x)*2, 28));
-
-      if (!player.energy){
-         showConsole("YOU DIED.");
-      }
-
-      while (cpct_isAnyKeyPressed_f ()) { //Asegurarnos que se ha dejado de pulsar la tecla anterior 
-         cpct_scanKeyboard_f();
-      }
-      
-      showConsole("PRESS ANY KEY TO CONTINUE");
-      //Wait for key
-      do 
-         cpct_scanKeyboard_f();
-      while (!cpct_isAnyKeyPressed_f());
-   }
-}
 
 void main(void) {
    u8 semilla;
@@ -166,8 +56,23 @@ void main(void) {
 
       //Intro (text int white)
       cpct_setDrawCharM1(2, 0);
-      cpct_drawStringM1("RPG GAME", cpct_getScreenPtr(CPCT_VMEM_START, 0, 0));
-      cpct_drawStringM1("PRESS ANY KEY TO START", cpct_getScreenPtr(CPCT_VMEM_START, 0, 20));
+      cpct_drawStringM1("         Don Mendo and Lady Sol", cpctm_screenPtr(CPCT_VMEM_START, 0, 0));
+      cpct_drawStringM1("                   in", cpctm_screenPtr(CPCT_VMEM_START, 0, 8));
+      cpct_drawStringM1("           Castle Concepcion", cpctm_screenPtr(CPCT_VMEM_START, 0, 16));
+      cpct_drawStringM1("Mendo was in love with Lady Sol, a rich ", cpctm_screenPtr(CPCT_VMEM_START, 0, 40));
+      cpct_drawStringM1("and beautiful woman. He was so poor that", cpctm_screenPtr(CPCT_VMEM_START, 0, 48));
+      cpct_drawStringM1("he couldn't marry her. He decided to go ", cpctm_screenPtr(CPCT_VMEM_START, 0, 56));
+      cpct_drawStringM1("to the Crusades to get Fortune and Fame.", cpctm_screenPtr(CPCT_VMEM_START, 0, 64));
+
+      cpct_drawStringM1("When he became a brave hero, he heard", cpctm_screenPtr(CPCT_VMEM_START, 0, 80));
+      cpct_drawStringM1("Lady Sol was forced to marry don Ricardo", cpctm_screenPtr(CPCT_VMEM_START, 0, 88));
+      cpct_drawStringM1("a very important noble. ", cpctm_screenPtr(CPCT_VMEM_START, 0, 96));
+
+      cpct_drawStringM1("Bring to an end the bloody Crusades war,", cpctm_screenPtr(CPCT_VMEM_START, 0, 112));
+      cpct_drawStringM1("go through the underway passage and ", cpctm_screenPtr(CPCT_VMEM_START, 0, 120));
+      cpct_drawStringM1("finally assault the Castle to help Don ", cpctm_screenPtr(CPCT_VMEM_START, 0, 128));
+      cpct_drawStringM1("Mendo to go back to his love: Lady Sun.", cpctm_screenPtr(CPCT_VMEM_START, 0, 136));
+      cpct_drawStringM1("PRESS ANY KEY TO START", cpct_getScreenPtr(CPCT_VMEM_START, 0, 168));
 
       
       pausaTecladoLibre();
@@ -186,7 +91,6 @@ void main(void) {
 
       cpct_srand8(semilla);
       nivel = 1;
-      //game();
       juego();
    }
 }

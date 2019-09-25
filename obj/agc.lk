@@ -7,6 +7,18 @@
 -k /home/cpp76s/cpctelera/cpctelera/tools/sdcc-3.6.8-r9946/share/sdcc/lib/z80
 -l /home/cpp76s/cpctelera/cpctelera/cpctelera.lib
 -l z80
+obj/mapas/fase_01.rel
+obj/mapas/fase_02.rel
+obj/mapas/fase_03.rel
+obj/mapas/fase_04.rel
+obj/mapas/fase_05.rel
+obj/mapas/fase_06.rel
+obj/mapas/fase_07.rel
+obj/mapas/fase_08.rel
+obj/mapas/fase_09.rel
+obj/mapas/fase_10.rel
+obj/patrones/patronesTiles_1.rel
+obj/patrones/g_palette.rel
 obj/main.rel
 obj/juego.rel
 obj/graficos.rel

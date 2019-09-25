@@ -1,0 +1,243 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 1.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+    .__.$$$.                                                    =  2710 L
+    .__.ABS.                                                    =  0000 G
+    .__.CPU.                                                    =  0000 L
+    .__.H$L.                                                    =  0000 L
+  0 _g_tileset1_000                                                0194 GR
+  0 _g_tileset1_001                                                019C GR
+  0 _g_tileset1_002                                                01A4 GR
+  0 _g_tileset1_003                                                01AC GR
+  0 _g_tileset1_004                                                01B4 GR
+  0 _g_tileset1_005                                                01BC GR
+  0 _g_tileset1_006                                                01C4 GR
+  0 _g_tileset1_007                                                01CC GR
+  0 _g_tileset1_008                                                01D4 GR
+  0 _g_tileset1_009                                                01DC GR
+  0 _g_tileset1_010                                                01E4 GR
+  0 _g_tileset1_011                                                01EC GR
+  0 _g_tileset1_012                                                01F4 GR
+  0 _g_tileset1_013                                                01FC GR
+  0 _g_tileset1_014                                                0204 GR
+  0 _g_tileset1_015                                                020C GR
+  0 _g_tileset1_016                                                0214 GR
+  0 _g_tileset1_017                                                021C GR
+  0 _g_tileset1_018                                                0224 GR
+  0 _g_tileset1_019                                                022C GR
+  0 _g_tileset1_020                                                0234 GR
+  0 _g_tileset1_021                                                023C GR
+  0 _g_tileset1_022                                                0244 GR
+  0 _g_tileset1_023                                                024C GR
+  0 _g_tileset1_024                                                0254 GR
+  0 _g_tileset1_025                                                025C GR
+  0 _g_tileset1_026                                                0264 GR
+  0 _g_tileset1_027                                                026C GR
+  0 _g_tileset1_028                                                0274 GR
+  0 _g_tileset1_029                                                027C GR
+  0 _g_tileset1_030                                                0284 GR
+  0 _g_tileset1_031                                                028C GR
+  0 _g_tileset1_032                                                0294 GR
+  0 _g_tileset1_033                                                029C GR
+  0 _g_tileset1_034                                                02A4 GR
+  0 _g_tileset1_035                                                02AC GR
+  0 _g_tileset1_036                                                02B4 GR
+  0 _g_tileset1_037                                                02BC GR
+  0 _g_tileset1_038                                                02C4 GR
+  0 _g_tileset1_039                                                02CC GR
+  0 _g_tileset1_040                                                02D4 GR
+  0 _g_tileset1_041                                                02DC GR
+  0 _g_tileset1_042                                                02E4 GR
+  0 _g_tileset1_043                                                02EC GR
+  0 _g_tileset1_044                                                02F4 GR
+  0 _g_tileset1_045                                                02FC GR
+  0 _g_tileset1_046                                                0304 GR
+  0 _g_tileset1_047                                                030C GR
+  0 _g_tileset1_048                                                0314 GR
+  0 _g_tileset1_049                                                031C GR
+  0 _g_tileset1_050                                                0324 GR
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+  0 _g_tileset1_051                                                032C GR
+  0 _g_tileset1_052                                                0334 GR
+  0 _g_tileset1_053                                                033C GR
+  0 _g_tileset1_054                                                0344 GR
+  0 _g_tileset1_055                                                034C GR
+  0 _g_tileset1_056                                                0354 GR
+  0 _g_tileset1_057                                                035C GR
+  0 _g_tileset1_058                                                0364 GR
+  0 _g_tileset1_059                                                036C GR
+  0 _g_tileset1_060                                                0374 GR
+  0 _g_tileset1_061                                                037C GR
+  0 _g_tileset1_062                                                0384 GR
+  0 _g_tileset1_063                                                038C GR
+  0 _g_tileset1_064                                                0394 GR
+  0 _g_tileset1_065                                                039C GR
+  0 _g_tileset1_066                                                03A4 GR
+  0 _g_tileset1_067                                                03AC GR
+  0 _g_tileset1_068                                                03B4 GR
+  0 _g_tileset1_069                                                03BC GR
+  0 _g_tileset1_070                                                03C4 GR
+  0 _g_tileset1_071                                                03CC GR
+  0 _g_tileset1_072                                                03D4 GR
+  0 _g_tileset1_073                                                03DC GR
+  0 _g_tileset1_074                                                03E4 GR
+  0 _g_tileset1_075                                                03EC GR
+  0 _g_tileset1_076                                                03F4 GR
+  0 _g_tileset1_077                                                03FC GR
+  0 _g_tileset1_078                                                0404 GR
+  0 _g_tileset1_079                                                040C GR
+  0 _g_tileset1_080                                                0414 GR
+  0 _g_tileset1_081                                                041C GR
+  0 _g_tileset1_082                                                0424 GR
+  0 _g_tileset1_083                                                042C GR
+  0 _g_tileset1_084                                                0434 GR
+  0 _g_tileset1_085                                                043C GR
+  0 _g_tileset1_086                                                0444 GR
+  0 _g_tileset1_087                                                044C GR
+  0 _g_tileset1_088                                                0454 GR
+  0 _g_tileset1_089                                                045C GR
+  0 _g_tileset1_090                                                0464 GR
+  0 _g_tileset1_091                                                046C GR
+  0 _g_tileset1_092                                                0474 GR
+  0 _g_tileset1_093                                                047C GR
+  0 _g_tileset1_094                                                0484 GR
+  0 _g_tileset1_095                                                048C GR
+  0 _g_tileset1_096                                                0494 GR
+  0 _g_tileset1_097                                                049C GR
+  0 _g_tileset1_098                                                04A4 GR
+  0 _g_tileset1_099                                                04AC GR
+  0 _g_tileset1_100                                                04B4 GR
+  0 _g_tileset1_101                                                04BC GR
+  0 _g_tileset1_102                                                04C4 GR
+  0 _g_tileset1_103                                                04CC GR
+  0 _g_tileset1_104                                                04D4 GR
+  0 _g_tileset1_105                                                04DC GR
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+  0 _g_tileset1_106                                                04E4 GR
+  0 _g_tileset1_107                                                04EC GR
+  0 _g_tileset1_108                                                04F4 GR
+  0 _g_tileset1_109                                                04FC GR
+  0 _g_tileset1_110                                                0504 GR
+  0 _g_tileset1_111                                                050C GR
+  0 _g_tileset1_112                                                0514 GR
+  0 _g_tileset1_113                                                051C GR
+  0 _g_tileset1_114                                                0524 GR
+  0 _g_tileset1_115                                                052C GR
+  0 _g_tileset1_116                                                0534 GR
+  0 _g_tileset1_117                                                053C GR
+  0 _g_tileset1_118                                                0544 GR
+  0 _g_tileset1_119                                                054C GR
+  0 _g_tileset1_120                                                0554 GR
+  0 _g_tileset1_121                                                055C GR
+  0 _g_tileset1_122                                                0564 GR
+  0 _g_tileset1_123                                                056C GR
+  0 _g_tileset1_124                                                0574 GR
+  0 _g_tileset1_125                                                057C GR
+  0 _g_tileset1_126                                                0584 GR
+  0 _g_tileset1_127                                                058C GR
+  0 _g_tileset1_128                                                0594 GR
+  0 _g_tileset1_129                                                059C GR
+  0 _g_tileset1_130                                                05A4 GR
+  0 _g_tileset1_131                                                05AC GR
+  0 _g_tileset1_132                                                05B4 GR
+  0 _g_tileset1_133                                                05BC GR
+  0 _g_tileset1_134                                                05C4 GR
+  0 _g_tileset1_135                                                05CC GR
+  0 _g_tileset1_136                                                05D4 GR
+  0 _g_tileset1_137                                                05DC GR
+  0 _g_tileset1_138                                                05E4 GR
+  0 _g_tileset1_139                                                05EC GR
+  0 _g_tileset1_140                                                05F4 GR
+  0 _g_tileset1_141                                                05FC GR
+  0 _g_tileset1_142                                                0604 GR
+  0 _g_tileset1_143                                                060C GR
+  0 _g_tileset1_144                                                0614 GR
+  0 _g_tileset1_145                                                061C GR
+  0 _g_tileset1_146                                                0624 GR
+  0 _g_tileset1_147                                                062C GR
+  0 _g_tileset1_148                                                0634 GR
+  0 _g_tileset1_149                                                063C GR
+  0 _g_tileset1_150                                                0644 GR
+  0 _g_tileset1_151                                                064C GR
+  0 _g_tileset1_152                                                0654 GR
+  0 _g_tileset1_153                                                065C GR
+  0 _g_tileset1_154                                                0664 GR
+  0 _g_tileset1_155                                                066C GR
+  0 _g_tileset1_156                                                0674 GR
+  0 _g_tileset1_157                                                067C GR
+  0 _g_tileset1_158                                                0684 GR
+  0 _g_tileset1_159                                                068C GR
+  0 _g_tileset1_160                                                0694 GR
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 4.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+  0 _g_tileset1_161                                                069C GR
+  0 _g_tileset1_162                                                06A4 GR
+  0 _g_tileset1_163                                                06AC GR
+  0 _g_tileset1_164                                                06B4 GR
+  0 _g_tileset1_165                                                06BC GR
+  0 _g_tileset1_166                                                06C4 GR
+  0 _g_tileset1_167                                                06CC GR
+  0 _g_tileset1_168                                                06D4 GR
+  0 _g_tileset1_169                                                06DC GR
+  0 _g_tileset1_170                                                06E4 GR
+  0 _g_tileset1_171                                                06EC GR
+  0 _g_tileset1_172                                                06F4 GR
+  0 _g_tileset1_173                                                06FC GR
+  0 _g_tileset1_174                                                0704 GR
+  0 _g_tileset1_175                                                070C GR
+  0 _g_tileset1_176                                                0714 GR
+  0 _g_tileset1_177                                                071C GR
+  0 _g_tileset1_178                                                0724 GR
+  0 _g_tileset1_179                                                072C GR
+  0 _g_tileset1_180                                                0734 GR
+  0 _g_tileset1_181                                                073C GR
+  0 _g_tileset1_182                                                0744 GR
+  0 _g_tileset1_183                                                074C GR
+  0 _g_tileset1_184                                                0754 GR
+  0 _g_tileset1_185                                                075C GR
+  0 _g_tileset1_186                                                0764 GR
+  0 _g_tileset1_187                                                076C GR
+  0 _g_tileset1_188                                                0774 GR
+  0 _g_tileset1_189                                                077C GR
+  0 _g_tileset1_190                                                0784 GR
+  0 _g_tileset1_191                                                078C GR
+  0 _g_tileset1_192                                                0794 GR
+  0 _g_tileset1_193                                                079C GR
+  0 _g_tileset1_194                                                07A4 GR
+  0 _g_tileset1_195                                                07AC GR
+  0 _g_tileset1_196                                                07B4 GR
+  0 _g_tileset1_197                                                07BC GR
+  0 _g_tileset1_198                                                07C4 GR
+  0 _g_tileset1_199                                                07CC GR
+  0 _palette                                                       0000 GR
+  0 _tileset1                                                      0004 GR
+
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 5.
+Hexadecimal [16-Bits]
+
+Area Table
+
+   0 _CODE                                      size  7D4   flags    0
+   1 _DATA                                      size    0   flags    0
+   2 _INITIALIZED                               size    0   flags    0
+   3 _DABS                                      size    0   flags    8
+   4 _HOME                                      size    0   flags    0
+   5 _GSINIT                                    size    0   flags    0
+   6 _GSFINAL                                   size    0   flags    0
+   7 _INITIALIZER                               size    0   flags    0
+   8 _CABS                                      size    0   flags    8
+

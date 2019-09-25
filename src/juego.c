@@ -1,10 +1,21 @@
-
+#define INICIO_AREA_JUEGO  cpctm_screenPtr (CPCT_VMEM_START, 4, 64)
 
 #include <cpctelera.h>
 #include <stdio.h>
 #include <string.h>
 #include "main.h"
 #include "graficos.h"
+#include "patrones/patronesTiles_1.h"
+#include "mapas/fase_02.h"
+#include "mapas/fase_01.h"
+#include "mapas/fase_03.h"
+#include "mapas/fase_04.h"
+#include "mapas/fase_05.h"
+#include "mapas/fase_06.h"
+#include "mapas/fase_07.h"
+#include "mapas/fase_08.h"
+#include "mapas/fase_09.h"
+#include "mapas/fase_10.h"
 
 u8 cursorConsola;
 
@@ -49,22 +60,21 @@ void dibujarMarco (){
 			cpct_drawSprite (tile,  cpct_getScreenPtr (CPCT_VMEM_START,40, i), 4, 16);
 		
 	}
-	//dibujar separador de las 3 partes (marcador, área de juego y consola)
+
+  //Hueco para consola de mensajes
+  cpct_drawSolidBox (cpctm_screenPtr (CPCT_VMEM_START, 43, 56), cpct_px2byteM1 (0, 0, 0, 0), 34, 128); //borrar pantalla
 }
 
 void dibujarEscenario(){
-	u8 i;
-	u8* tile;
+  u8* mapa;
 
-	//suelo
-	tile = (u8*) &G_suelo_cruzada_1[0];
-	if (nivel < 6) {
-		tile = (u8*) &G_suelo_cruzada_1[0];
-	}
+  cpct_etm_setTileset2x4(tileset1);
+  if (nivel > 10)
+    cpct_etm_setTileset2x4(tileset1);
 
-	for (i=4; i < 40; i+=4) {
-		cpct_drawSprite (tile,  cpct_getScreenPtr (CPCT_VMEM_START, i,   160), 4, 16);
-	}
+  mapa = (u8*) (&g_mapa01[0] + ((nivel-1) * 504));
+  
+  cpct_etm_drawTilemap2x4 ( g_mapa01_W, g_mapa01_H , INICIO_AREA_JUEGO, mapa);
 }
 
 void initPlayer(){
@@ -75,6 +85,7 @@ void initPlayer(){
    entidad[0].force = 6;
    entidad[0].defense = 15;
    entidad[0].pos_x = 8;
+   entidad[0].pos_x_ant = 8;
    entidad[0].pos_y = 24;
    entidad[0].sprite = (u8*) &G_mendo[0];
 }
@@ -82,27 +93,31 @@ void initPlayer(){
 void initNivel(){
 	//Por defecto enemigos a 0
 	entidad[1].max_energy = 0;
-	entidad[2].max_energy = 0;
+  entidad[1].pos_x_ant = 4;
+  entidad[2].max_energy = 0;
+	entidad[2].pos_x_ant = 4;
+
 
 	//Crear enemigos
 	if (nivel == 1) {
-		strcpy(entidad[1].name,"Soldier");
-   		entidad[1].max_energy = 90;
-   		entidad[1].attack = 20;
-   		entidad[1].force = 3;
-   		entidad[1].defense = 10;
-   		entidad[1].pos_x = 28;
-   		entidad[1].pos_y = 32;
-   		entidad[1].sprite = (u8*) &G_arabe_1[0];
-   	}
+    cpct_memcpy (&entidad[1],&SoldadoArabe,sizeof(TStats));
+ 	}
+  if (nivel == 2) {
+    cpct_memcpy (&entidad[1],&SoldadoArabe,sizeof(TStats));
+    cpct_memcpy (&entidad[2],&SoldadoArabe,sizeof(TStats));
+    entidad[2].pos_x = 36;
+  }
 
-   	entidad[1].energy = entidad[1].max_energy;
-   	entidad[2].energy = entidad[2].max_energy;
+  entidad[1].pos_y = 32;
+  entidad[2].pos_y = 40;
+ 	entidad[1].energy = entidad[1].max_energy;
+ 	entidad[2].energy = entidad[2].max_energy;
 }
 
 void printStats(TStats *a) {
 	u8 temp[36];
-   
+  
+  cpct_setDrawCharM1(2, 0);
 	sprintf(temp, "                                    ");
 	if (a->energy)
    		sprintf(temp, "%-9s=> HP:%02d. ATT: %02d. DEF: %02d",a->name, a->energy,a->attack,a->defense);
@@ -111,25 +126,24 @@ void printStats(TStats *a) {
 }
 
 void printLevel() {
-   u8 temp[40];
+  u8 temp[40];
    
-   sprintf(temp, "LEVEL: %02d",nivel);
-   cpct_setDrawCharM1(2, 0);
-   cpct_drawStringM1(temp, cpct_getScreenPtr(CPCT_VMEM_START, 4, 16));
+  sprintf(temp, "LEVEL: %02d",nivel);
+  cpct_setDrawCharM1(2, 0);
+  cpct_drawStringM1(temp, cpctm_screenPtr(CPCT_VMEM_START, 4, 16));
 }
 
 void printConsole  (void* string, u8 pen, u8 bground) {
    if (cursorConsola > 175){
-   	  //pausa y borrar
-   	  pausa();
-   	  cpct_drawSolidBox (cpct_getScreenPtr (CPCT_VMEM_START, 44, 64), cpct_px2byteM1 (0, 0, 0, 0), 32, 112);
-      cursorConsola = 64;
+   	//pausa y volver al inicio
+   	pausa();
+    cpct_drawSolidBox (cpctm_screenPtr (CPCT_VMEM_START, 43, 56), cpct_px2byteM1 (0, 0, 0, 0), 34, 128); //borrar pantalla
+    cursorConsola = 64;
    }
 
    cpct_setDrawCharM1(pen, bground);
    cpct_drawStringM1(string, cpct_getScreenPtr(CPCT_VMEM_START, 44, cursorConsola));
    cursorConsola +=8;
-
 }
 
 void atacar(TStats *a, TStats *b) {
@@ -144,29 +158,28 @@ void atacar(TStats *a, TStats *b) {
 	}
 
 
-   	ataque = a->attack + (2*(cpct_rand()%a->force)) - a->force;
+  ataque = a->attack + (2*(cpct_rand()%a->force)) - a->force;
 	sprintf(temp, "%-9s ATT %02d",a->name, ataque);
-   	printConsole(temp, pen, bg);
+  printConsole(temp, pen, bg);
 
-   	if (ataque < b->energy) {
-    	b->energy = b->energy - ataque;
-    	sprintf(temp, "%-9s HP=>%02d",b->name, b->energy);
-   	}
-   	else {
-    	b->energy = 0;
-    	sprintf(temp, "%-9s DIED! ",b->name, b->energy);
-    	printStats(b);
-    	//Invertir colores 
-    	ataque = pen;
-    	pen = bg;
-    	bg = ataque;
-    }
+  if (ataque < b->energy) {
+  	b->energy = b->energy - ataque;
+   	sprintf(temp, "%-9s HP=>%02d",b->name, b->energy);
+  } else {
+   	b->energy = 0;
+   	sprintf(temp, "%-9s DIED! ",b->name, b->energy);
+    printStats(b);
+    //Invertir colores 
+    ataque = pen;
+    pen = bg;
+    bg = ataque;
+  }
 
-   printConsole(temp, pen, bg);
+  printConsole(temp, pen, bg);
 }
 
 void defender(TStats *a) {
-   	u8 temp[20], healed, pen, bg;
+  u8 temp[20], healed, pen, bg;
 
 	pen = 0;
 	bg = 2;
@@ -175,27 +188,37 @@ void defender(TStats *a) {
 		bg = 0;
 	}
 
-   	healed = 0;
-   	if (a->energy + a->defense < a->max_energy)
-    	healed = a->defense;
+  if (a->energy + a->defense < a->max_energy)
+    healed = a->defense;
+  else
+    healed = a->max_energy - a->energy;
 
-   	a->energy = a->energy + healed;
-   
-	sprintf(temp, "%-9s %c %02dHP",a->name, 240,healed);
-
-	printConsole(temp, pen, bg);
+  a->energy = a->energy + healed;
+  
+  if (healed) {
+    sprintf(temp, "%-9s %c %02dHP",a->name, 240,healed);
+    printConsole(temp, pen, bg);
+  }
 }
 
 u8 turno() { //devuelve valor 0 cuando muere personaje o se termina nivel
 	u8 i,j,temp[36], enemy_mov, nueva_pos;
+  u8* mapa;
+	
+  //borrar personajes en posición anterior (no se puede hacer en mismo bucle que pintado porque un enemigo puede borrar al protagonista)
+  for (i = 0; i < 3; i++) {
+    mapa = (u8*) (&g_mapa01[0] + ((nivel-1) * 504));
+    cpct_etm_drawTileBox2x4 ((entidad[i].pos_x_ant - 4)/2, 17, 2, 7, g_mapa01_W, INICIO_AREA_JUEGO, mapa );
+  }
 
-	printLevel();
+  cpct_waitVSYNC();
 	//pintar stats & sprites
 	for (i = 0; i < 3; i++) {
-		if (entidad[i].energy){
+		if (entidad[i].energy) {
 			printStats(&entidad[i]);
 			cpct_drawSpriteMasked (entidad[i].sprite, cpct_getScreenPtr (CPCT_VMEM_START, entidad[i].pos_x, 132), 4,28);
-			}
+      entidad[i].pos_x_ant = entidad[i].pos_x;
+		}
 	}
 
 
@@ -203,9 +226,9 @@ u8 turno() { //devuelve valor 0 cuando muere personaje o se termina nivel
 
 		// Tomar acción
 	i = 0;
-    do  {
+  do  {
     	cpct_scanKeyboard_f();
-    	sprintf(temp, "ACTION (%c/%c/D)?",242,243);
+    	sprintf(temp, "ACTION (%c/%c/D) ?",242,243);
     	if (i < 25) {
 			printConsole(temp, 2, 0);
     	} else {
@@ -216,108 +239,113 @@ u8 turno() { //devuelve valor 0 cuando muere personaje o se termina nivel
 		if (i == 50)
 			i=0;
 	}
-    while (!cpct_isKeyPressed(Key_O) && !cpct_isKeyPressed(Key_CursorLeft)  && !cpct_isKeyPressed(Joy0_Left) 
+  while (!cpct_isKeyPressed(Key_O) && !cpct_isKeyPressed(Key_CursorLeft)  && !cpct_isKeyPressed(Joy0_Left) 
     	&& !cpct_isKeyPressed(Key_P) && !cpct_isKeyPressed(Key_CursorRight) && !cpct_isKeyPressed(Joy0_Right) 
     	&& !cpct_isKeyPressed(Key_D) && !cpct_isKeyPressed(Joy0_Fire1));
+  
+  nueva_pos = 0;
 
-    
-    nueva_pos = 0;
+	// Mover izquierda
+  if (cpct_isKeyPressed(Key_O) || cpct_isKeyPressed(Key_CursorLeft) || cpct_isKeyPressed(Joy0_Left)) {
+   	sprintf(temp, "%-9s GOES %c",entidad[0].name,242);
+   	printConsole(temp, 2, 0);
 
-    	//limpiar posición anterior sprites
-	for (i = 0; i < 3; i++) {
-		if (entidad[i].energy){
-			cpct_drawSolidBox (cpct_getScreenPtr (CPCT_VMEM_START, entidad[i].pos_x, 132), cpct_px2byteM1 (0, 0, 0, 0), 4, 28);
-		}
-	}
+    nueva_pos = entidad[0].pos_x - 4;
+  }
 
-		// Mover izquierda
-    if (cpct_isKeyPressed(Key_O) || cpct_isKeyPressed(Key_CursorLeft) || cpct_isKeyPressed(Joy0_Left)) {
-    	sprintf(temp, "%-9s GOES %c",entidad[0].name,242);
-     	printConsole(temp, 2, 0);
+  // Mover derecha y posible ataque
+  if (cpct_isKeyPressed(Key_P) || cpct_isKeyPressed(Key_CursorRight) || cpct_isKeyPressed(Joy0_Right)) {
+   	sprintf(temp, "%-9s GOES %c",entidad[0].name,243);
+   	printConsole(temp, 2 ,0);
 
-        nueva_pos = entidad[0].pos_x - 4;
-    }
-
-    	// Mover derecha y posible ataque
-    if (cpct_isKeyPressed(Key_P) || cpct_isKeyPressed(Key_CursorRight) || cpct_isKeyPressed(Joy0_Right)) {
-    	sprintf(temp, "%-9s GOES %c",entidad[0].name,243);
-     	printConsole(temp, 2 ,0);
-
-		nueva_pos = entidad[0].pos_x + 4;
+    nueva_pos = entidad[0].pos_x + 4;
             
-    	if (nueva_pos == entidad[1].pos_x)
-        	atacar(&entidad[0], &entidad[1]);
+    if (nueva_pos == entidad[1].pos_x)
+     	atacar(&entidad[0], &entidad[1]);
 
-        if (nueva_pos == entidad[2].pos_x)
-        	atacar(&entidad[0], &entidad[2]);
+    if (nueva_pos == entidad[2].pos_x)
+     	atacar(&entidad[0], &entidad[2]);
 
     }
 
-    	// Defensa
-    if (cpct_isKeyPressed(Key_D) || cpct_isKeyPressed(Joy0_Fire1)) {
-    	defender(&entidad[0]);
+  // Defensa
+  if (cpct_isKeyPressed(Key_D) || cpct_isKeyPressed(Joy0_Fire1)) {
+   	defender(&entidad[0]);
     }
 
-    //Comprobar que el movimiento es posible (límites pantalla o enemigos)
-    if (nueva_pos > 3 
-    	&& nueva_pos < 37 
-    	&& (!entidad[1].energy || nueva_pos != entidad[1].pos_x)
-    	&& (!entidad[2].energy || nueva_pos != entidad[2].pos_x)
-    	)
-		entidad[0].pos_x = nueva_pos;
 
+  //Comprobar que el movimiento es posible (límites pantalla o enemigos)
+  if (nueva_pos > 3 
+   	&& nueva_pos < 37 
+   	&& (!entidad[1].energy || nueva_pos != entidad[1].pos_x)
+   	&& (!entidad[2].energy || nueva_pos != entidad[2].pos_x)
+   	)
+    entidad[0].pos_x = nueva_pos;
 
+  // TURNO ENEMIGOS //////////////
 
-    // TURNO ENEMIGOS //////////////
-    for (i = 1; i < 3; i++) {
-    	if (entidad[i].energy) {
-    		if (abs(entidad[i].pos_x - entidad[0].pos_x) == 4) //Si está en casilla contigua, atacar
-    			atacar(&entidad[i], &entidad[0]);
-    		else { 
-            	enemy_mov = cpct_rand()%3; //33% de moverse a izquierda, derecha o curarse
-            	if (enemy_mov == 1) {
-            		sprintf(temp, "%-9s GOES %c",entidad[i].name,242);
-			     	printConsole(temp, 2, 0);
+  for (i = 1; i < 3; i++) {
+   	if (entidad[i].energy) {
+   		if (abs(entidad[i].pos_x - entidad[0].pos_x) == 4) //Si está en casilla contigua, atacar
+   			atacar(&entidad[i], &entidad[0]);
+   		else { 
+       	enemy_mov = cpct_rand()%3; //33% de moverse a izquierda, derecha o curarse
+       	if (enemy_mov == 1) {
+       		sprintf(temp, "%-9s GOES %c",entidad[i].name,242);
+		     	printConsole(temp, 0, 2);
 
-			        nueva_pos = entidad[i].pos_x - 4;
-            	} else if (enemy_mov == 2) {
-            		sprintf(temp, "%-9s GOES %c",entidad[i].name,243);
-			     	printConsole(temp, 2, 0);
+	        nueva_pos = entidad[i].pos_x - 4;
+       	} else if (enemy_mov == 2) {
+         		sprintf(temp, "%-9s GOES %c",entidad[i].name,243);
+	   	     	printConsole(temp, 0, 2);
 
-			        nueva_pos = entidad[i].pos_x + 4;
-            	} else
-               		defender(&entidad[i]);
-         	}
+		        nueva_pos = entidad[i].pos_x + 4;
+       	} else
+         		defender(&entidad[i]);
+     	}
 
-         	//COmprobar colisión con otros personajes
-         	for (j = 0; j < 3; j++) {
-         		if (i!=j) {
-         			if (entidad[j].pos_x == nueva_pos) {
-         				nueva_pos = 0;
-         				break;
-         			}
-         		}
-         	}
+     	//Comprobar colisión con otros personajes
+      for (j = 0; j < 3; j++) {
+      	if (i!=j) {
+      		if (entidad[j].pos_x == nueva_pos) {
+      			nueva_pos = 0;
+      			break;
+      		}
+      	}
+      }
 
-         	//Comprobar que el movimiento es posible (límites pantalla)
-		    if (nueva_pos > 3 && nueva_pos < 37)
+      //Comprobar que el movimiento es posible (límites pantalla)
+		  if (nueva_pos > 3 && nueva_pos < 37)
 				entidad[i].pos_x = nueva_pos; 
-    	}
     }
+  }
 
-    pausa();
-    pausaTecladoLibre();
+  pausa();
+  pausaTecladoLibre();
 
-    if (entidad[0].energy)
-     	return 1;
 
-	if (!entidad[1].energy && !entidad[2].energy){
-		nivel++;
-		return 1;
+  // Se ha completado nivel
+	if (!(entidad[1].energy || entidad[2].energy)) {
+    if (nivel == 10) {// Fin del Juego
+      sprintf(temp, "CONGRATULATIONS!");
+      entidad[0].energy = 0;
+    } else {
+		  nivel++;
+      entidad[0].pos_x = 8;
+      sprintf(temp, "   NEXT LEVEL   ");
+    }
+    printConsole(temp, 0, 2);
+		return 0;
 	}
-     	
-	     
-     return 0;
+
+  // Hemos muerto
+  if (!entidad[0].energy) {
+    sprintf(temp, "    GAME OVER   ");
+    printConsole(temp, 0, 2);
+    return 0;
+  }
+  else
+    return 1;
 }
 
 void juego() {
@@ -331,14 +359,12 @@ void juego() {
 		dibujarEscenario();
 
 		initNivel();
+    printLevel();
 		while (turno())
 			;
 
-
-
 		do {
-	         cpct_scanKeyboard_f();
-	      }
-	    while (!cpct_isAnyKeyPressed_f());
-	 }
+      cpct_scanKeyboard_f();
+    } while (!cpct_isAnyKeyPressed_f());
+	}
 }

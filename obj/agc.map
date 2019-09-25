@@ -17,127 +17,392 @@ Area                                    Addr        Size        Decimal Bytes (A
      00000000  l__INITIALIZER                  
      00000000  s__CABS                         
      00000000  s__DABS                         
-     00000062  l__DATA                         
-     000020EB  l__CODE                         
+     00000067  l__DATA                         
+     00003E52  l__CODE                         
      00004000  s__CODE                         
-     000060EB  s__DATA                         
-     0000614D  s__GSFINAL                      
-     0000614D  s__GSINIT                       
-     0000614D  s__HOME                         
-     0000614D  s__INITIALIZED                  
-     0000614D  s__INITIALIZER                  
+     00007E52  s__DATA                         
+     00007EB9  s__GSFINAL                      
+     00007EB9  s__GSINIT                       
+     00007EB9  s__HOME                         
+     00007EB9  s__INITIALIZED                  
+     00007EB9  s__INITIALIZER                  
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    000020EB =        8427. bytes (REL,CON)
+_CODE                               00004000    00003E52 =       15954. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00004000  _initGoblin                        main
-     0000402B  _paletaM1                          main
-     00004036  _showConsole                       main
-     00004073  _attack                            main
-     00004107  _defense                           main
-     000041A6  _game                              main
-     000042EC  _main                              main
-     0000438F  _abs                               juego
-     000043B7  _pausa                             juego
-     000043C4  _pausaTecladoLibre                 juego
-     000043CF  _dibujarMarco                      juego
-     000044D5  _dibujarEscenario                  juego
-     0000451D  _initPlayer                        juego
-     0000455D  _initNivel                         juego
-     000045B5  _printStats                        juego
-     00004698  _printLevel                        juego
-     000046E7  _printConsole                      juego
-     00004753  _atacar                            juego
-     00004889  _defender                          juego
-     0000495F  _turno                             juego
-     00004E5C  _juego                             juego
-     00004E92  _G_mendo                           graficos
-     00004F72  _G_arabe_1                         graficos
-     00005052  _G_tile_cruzada                    graficos
-     00005092  _G_suelo_cruzada_1                 graficos
-     000050D2  _cpct_setPalette                   cpct_video
-     000050E9  _cpct_isKeyPressed                 cpct_keyboard
-     000050E9  cpct_isKeyPressed_asm              cpct_keyboard
-     000050F5  _cpct_scanKeyboard_f               cpct_keyboard
-     000050F5  cpct_scanKeyboard_f_asm            cpct_keyboard
-     0000515F  _cpct_setPALColour                 cpct_video
-     0000516B  _cpct_drawStringM1                 cpct_strings
-     0000519B  _cpct_drawSprite                   cpct_sprites
-     00005240  cpct_drawCharM1_inner_asm          cpct_strings
-     00005280  cpct_char2pxM1                     cpct_strings
-     00005290  __moduchar                         
-     0000529C  __moduint                          
-     000052A7  __divuint                          
-     000052AF  __divuchar                         
-     000052B6  __divu8                            
-     000052B9  __divu16                           
-     000052E8  _cpct_keyboardStatusBuffer         cpct_keyboard
-     000052F2  _cpct_setSeed_mxor                 cpct_random
-     000052F2  cpct_setSeed_mxor_asm              cpct_random
-     000052FA  _cpct_restoreState_mxor_u8         cpct_random
-     000052FA  cpct_restoreState_mxor_u8_asm      cpct_random
-     00005300  _cpct_getRandom_mxor_u8            cpct_random
-     00005300  cpct_getRandom_mxor_u8_asm         cpct_random
-     00005301  cpct_randomIdx_mxor_u8             cpct_random
-     00005325  _cpct_drawSpriteMasked             cpct_sprites
+     00004000  _g_mapa01                          fase_01
+     000041F8  _g_mapa02                          fase_02
+     000043F0  _g_mapa03                          fase_03
+     000045E8  _g_mapa04                          fase_04
+     000047E0  _g_mapa05                          fase_05
+     000049D8  _g_mapa06                          fase_06
+     00004BD0  _g_mapa07                          fase_07
+     00004DC8  _g_mapa08                          fase_08
+     00004FC0  _g_mapa09                          fase_09
+     000051B8  _g_mapa10                          fase_10
+     000053B0  _palette                           patronesTiles_1
+     000053B4  _tileset1                          patronesTiles_1
+     00005544  _g_tileset1_000                    patronesTiles_1
+     0000554C  _g_tileset1_001                    patronesTiles_1
+     00005554  _g_tileset1_002                    patronesTiles_1
+     0000555C  _g_tileset1_003                    patronesTiles_1
+     00005564  _g_tileset1_004                    patronesTiles_1
+     0000556C  _g_tileset1_005                    patronesTiles_1
+     00005574  _g_tileset1_006                    patronesTiles_1
+     0000557C  _g_tileset1_007                    patronesTiles_1
+     00005584  _g_tileset1_008                    patronesTiles_1
+     0000558C  _g_tileset1_009                    patronesTiles_1
+     00005594  _g_tileset1_010                    patronesTiles_1
+     0000559C  _g_tileset1_011                    patronesTiles_1
+     000055A4  _g_tileset1_012                    patronesTiles_1
+     000055AC  _g_tileset1_013                    patronesTiles_1
+     000055B4  _g_tileset1_014                    patronesTiles_1
+     000055BC  _g_tileset1_015                    patronesTiles_1
+     000055C4  _g_tileset1_016                    patronesTiles_1
+     000055CC  _g_tileset1_017                    patronesTiles_1
+     000055D4  _g_tileset1_018                    patronesTiles_1
+     000055DC  _g_tileset1_019                    patronesTiles_1
+     000055E4  _g_tileset1_020                    patronesTiles_1
+     000055EC  _g_tileset1_021                    patronesTiles_1
+     000055F4  _g_tileset1_022                    patronesTiles_1
+     000055FC  _g_tileset1_023                    patronesTiles_1
+     00005604  _g_tileset1_024                    patronesTiles_1
+     0000560C  _g_tileset1_025                    patronesTiles_1
+     00005614  _g_tileset1_026                    patronesTiles_1
+     0000561C  _g_tileset1_027                    patronesTiles_1
+     00005624  _g_tileset1_028                    patronesTiles_1
+     0000562C  _g_tileset1_029                    patronesTiles_1
+     00005634  _g_tileset1_030                    patronesTiles_1
+     0000563C  _g_tileset1_031                    patronesTiles_1
+     00005644  _g_tileset1_032                    patronesTiles_1
+     0000564C  _g_tileset1_033                    patronesTiles_1
+     00005654  _g_tileset1_034                    patronesTiles_1
+     0000565C  _g_tileset1_035                    patronesTiles_1
+     00005664  _g_tileset1_036                    patronesTiles_1
+     0000566C  _g_tileset1_037                    patronesTiles_1
 ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    000020EB =        8427. bytes (REL,CON)
+_CODE                               00004000    00003E52 =       15954. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00005374  _vsprintf                          sprintf
-     000053A9  _sprintf                           sprintf
-     000053DE  _cpct_nextRandom_mxor_u32          cpct_random
-     000053DE  cpct_nextRandom_mxor_u32_asm       cpct_random
-     00005401  _cpct_setVideoMode                 cpct_video
-     0000540F  _cpct_isAnyKeyPressed_f            cpct_keyboard
-     0000540F  cpct_isAnyKeyPressed_f_asm         cpct_keyboard
-     0000542A  _cpct_memset                       cpct_memutils
-     00005438  _cpct_px2byteM1                    cpct_sprites
-     00005438  cpct_px2byteM1_asm                 cpct_sprites
-     00005455  _cpct_disableFirmware              cpct_firmware
-     00005455  _cpct_removeInterruptHandler       cpct_firmware
-     00005455  cpct_disableFirmware_asm           cpct_firmware
-     00005455  cpct_removeInterruptHandler_asm    cpct_firmware
-     00005465  _cpct_drawSolidBox                 cpct_sprites
-     0000551D  _cpct_mode_rom_status              cpct_firmware
-     0000551E  _cpct_getScreenPtr                 cpct_video
-     0000553E  _cpct_setDrawCharM1                cpct_strings
-     00005691  __print_format                     printf_large
-     000060D3  _cpct_mxor32_seed                  cpct_random
-     000060D7  ___sdcc_call_hl                    
-     000060D8  dc_mode1_ct                        
-     000060DC  _strlen                            
-
+     00005674  _g_tileset1_038                    patronesTiles_1
+     0000567C  _g_tileset1_039                    patronesTiles_1
+     00005684  _g_tileset1_040                    patronesTiles_1
+     0000568C  _g_tileset1_041                    patronesTiles_1
+     00005694  _g_tileset1_042                    patronesTiles_1
+     0000569C  _g_tileset1_043                    patronesTiles_1
+     000056A4  _g_tileset1_044                    patronesTiles_1
+     000056AC  _g_tileset1_045                    patronesTiles_1
+     000056B4  _g_tileset1_046                    patronesTiles_1
+     000056BC  _g_tileset1_047                    patronesTiles_1
+     000056C4  _g_tileset1_048                    patronesTiles_1
+     000056CC  _g_tileset1_049                    patronesTiles_1
+     000056D4  _g_tileset1_050                    patronesTiles_1
+     000056DC  _g_tileset1_051                    patronesTiles_1
+     000056E4  _g_tileset1_052                    patronesTiles_1
+     000056EC  _g_tileset1_053                    patronesTiles_1
+     000056F4  _g_tileset1_054                    patronesTiles_1
+     000056FC  _g_tileset1_055                    patronesTiles_1
+     00005704  _g_tileset1_056                    patronesTiles_1
+     0000570C  _g_tileset1_057                    patronesTiles_1
+     00005714  _g_tileset1_058                    patronesTiles_1
+     0000571C  _g_tileset1_059                    patronesTiles_1
+     00005724  _g_tileset1_060                    patronesTiles_1
+     0000572C  _g_tileset1_061                    patronesTiles_1
+     00005734  _g_tileset1_062                    patronesTiles_1
+     0000573C  _g_tileset1_063                    patronesTiles_1
+     00005744  _g_tileset1_064                    patronesTiles_1
+     0000574C  _g_tileset1_065                    patronesTiles_1
+     00005754  _g_tileset1_066                    patronesTiles_1
+     0000575C  _g_tileset1_067                    patronesTiles_1
+     00005764  _g_tileset1_068                    patronesTiles_1
+     0000576C  _g_tileset1_069                    patronesTiles_1
+     00005774  _g_tileset1_070                    patronesTiles_1
+     0000577C  _g_tileset1_071                    patronesTiles_1
+     00005784  _g_tileset1_072                    patronesTiles_1
+     0000578C  _g_tileset1_073                    patronesTiles_1
+     00005794  _g_tileset1_074                    patronesTiles_1
+     0000579C  _g_tileset1_075                    patronesTiles_1
+     000057A4  _g_tileset1_076                    patronesTiles_1
+     000057AC  _g_tileset1_077                    patronesTiles_1
+     000057B4  _g_tileset1_078                    patronesTiles_1
+     000057BC  _g_tileset1_079                    patronesTiles_1
+     000057C4  _g_tileset1_080                    patronesTiles_1
+     000057CC  _g_tileset1_081                    patronesTiles_1
+     000057D4  _g_tileset1_082                    patronesTiles_1
+     000057DC  _g_tileset1_083                    patronesTiles_1
+     000057E4  _g_tileset1_084                    patronesTiles_1
+     000057EC  _g_tileset1_085                    patronesTiles_1
+     000057F4  _g_tileset1_086                    patronesTiles_1
+     000057FC  _g_tileset1_087                    patronesTiles_1
+     00005804  _g_tileset1_088                    patronesTiles_1
 ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_DATA                               000060EB    00000062 =          98. bytes (REL,CON)
+_CODE                               00004000    00003E52 =       15954. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000060EB  _entidad                           main
-     00006124  _nivel                             main
-     00006125  _player                            main
-     00006138  _goblin                            main
-     0000614B  _cursorPrint                       main
-     0000614C  _cursorConsola                     juego
+     0000580C  _g_tileset1_089                    patronesTiles_1
+     00005814  _g_tileset1_090                    patronesTiles_1
+     0000581C  _g_tileset1_091                    patronesTiles_1
+     00005824  _g_tileset1_092                    patronesTiles_1
+     0000582C  _g_tileset1_093                    patronesTiles_1
+     00005834  _g_tileset1_094                    patronesTiles_1
+     0000583C  _g_tileset1_095                    patronesTiles_1
+     00005844  _g_tileset1_096                    patronesTiles_1
+     0000584C  _g_tileset1_097                    patronesTiles_1
+     00005854  _g_tileset1_098                    patronesTiles_1
+     0000585C  _g_tileset1_099                    patronesTiles_1
+     00005864  _g_tileset1_100                    patronesTiles_1
+     0000586C  _g_tileset1_101                    patronesTiles_1
+     00005874  _g_tileset1_102                    patronesTiles_1
+     0000587C  _g_tileset1_103                    patronesTiles_1
+     00005884  _g_tileset1_104                    patronesTiles_1
+     0000588C  _g_tileset1_105                    patronesTiles_1
+     00005894  _g_tileset1_106                    patronesTiles_1
+     0000589C  _g_tileset1_107                    patronesTiles_1
+     000058A4  _g_tileset1_108                    patronesTiles_1
+     000058AC  _g_tileset1_109                    patronesTiles_1
+     000058B4  _g_tileset1_110                    patronesTiles_1
+     000058BC  _g_tileset1_111                    patronesTiles_1
+     000058C4  _g_tileset1_112                    patronesTiles_1
+     000058CC  _g_tileset1_113                    patronesTiles_1
+     000058D4  _g_tileset1_114                    patronesTiles_1
+     000058DC  _g_tileset1_115                    patronesTiles_1
+     000058E4  _g_tileset1_116                    patronesTiles_1
+     000058EC  _g_tileset1_117                    patronesTiles_1
+     000058F4  _g_tileset1_118                    patronesTiles_1
+     000058FC  _g_tileset1_119                    patronesTiles_1
+     00005904  _g_tileset1_120                    patronesTiles_1
+     0000590C  _g_tileset1_121                    patronesTiles_1
+     00005914  _g_tileset1_122                    patronesTiles_1
+     0000591C  _g_tileset1_123                    patronesTiles_1
+     00005924  _g_tileset1_124                    patronesTiles_1
+     0000592C  _g_tileset1_125                    patronesTiles_1
+     00005934  _g_tileset1_126                    patronesTiles_1
+     0000593C  _g_tileset1_127                    patronesTiles_1
+     00005944  _g_tileset1_128                    patronesTiles_1
+     0000594C  _g_tileset1_129                    patronesTiles_1
+     00005954  _g_tileset1_130                    patronesTiles_1
+     0000595C  _g_tileset1_131                    patronesTiles_1
+     00005964  _g_tileset1_132                    patronesTiles_1
+     0000596C  _g_tileset1_133                    patronesTiles_1
+     00005974  _g_tileset1_134                    patronesTiles_1
+     0000597C  _g_tileset1_135                    patronesTiles_1
+     00005984  _g_tileset1_136                    patronesTiles_1
+     0000598C  _g_tileset1_137                    patronesTiles_1
+     00005994  _g_tileset1_138                    patronesTiles_1
+     0000599C  _g_tileset1_139                    patronesTiles_1
 ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_CODE                               00004000    00003E52 =       15954. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000059A4  _g_tileset1_140                    patronesTiles_1
+     000059AC  _g_tileset1_141                    patronesTiles_1
+     000059B4  _g_tileset1_142                    patronesTiles_1
+     000059BC  _g_tileset1_143                    patronesTiles_1
+     000059C4  _g_tileset1_144                    patronesTiles_1
+     000059CC  _g_tileset1_145                    patronesTiles_1
+     000059D4  _g_tileset1_146                    patronesTiles_1
+     000059DC  _g_tileset1_147                    patronesTiles_1
+     000059E4  _g_tileset1_148                    patronesTiles_1
+     000059EC  _g_tileset1_149                    patronesTiles_1
+     000059F4  _g_tileset1_150                    patronesTiles_1
+     000059FC  _g_tileset1_151                    patronesTiles_1
+     00005A04  _g_tileset1_152                    patronesTiles_1
+     00005A0C  _g_tileset1_153                    patronesTiles_1
+     00005A14  _g_tileset1_154                    patronesTiles_1
+     00005A1C  _g_tileset1_155                    patronesTiles_1
+     00005A24  _g_tileset1_156                    patronesTiles_1
+     00005A2C  _g_tileset1_157                    patronesTiles_1
+     00005A34  _g_tileset1_158                    patronesTiles_1
+     00005A3C  _g_tileset1_159                    patronesTiles_1
+     00005A44  _g_tileset1_160                    patronesTiles_1
+     00005A4C  _g_tileset1_161                    patronesTiles_1
+     00005A54  _g_tileset1_162                    patronesTiles_1
+     00005A5C  _g_tileset1_163                    patronesTiles_1
+     00005A64  _g_tileset1_164                    patronesTiles_1
+     00005A6C  _g_tileset1_165                    patronesTiles_1
+     00005A74  _g_tileset1_166                    patronesTiles_1
+     00005A7C  _g_tileset1_167                    patronesTiles_1
+     00005A84  _g_tileset1_168                    patronesTiles_1
+     00005A8C  _g_tileset1_169                    patronesTiles_1
+     00005A94  _g_tileset1_170                    patronesTiles_1
+     00005A9C  _g_tileset1_171                    patronesTiles_1
+     00005AA4  _g_tileset1_172                    patronesTiles_1
+     00005AAC  _g_tileset1_173                    patronesTiles_1
+     00005AB4  _g_tileset1_174                    patronesTiles_1
+     00005ABC  _g_tileset1_175                    patronesTiles_1
+     00005AC4  _g_tileset1_176                    patronesTiles_1
+     00005ACC  _g_tileset1_177                    patronesTiles_1
+     00005AD4  _g_tileset1_178                    patronesTiles_1
+     00005ADC  _g_tileset1_179                    patronesTiles_1
+     00005AE4  _g_tileset1_180                    patronesTiles_1
+     00005AEC  _g_tileset1_181                    patronesTiles_1
+     00005AF4  _g_tileset1_182                    patronesTiles_1
+     00005AFC  _g_tileset1_183                    patronesTiles_1
+     00005B04  _g_tileset1_184                    patronesTiles_1
+     00005B0C  _g_tileset1_185                    patronesTiles_1
+     00005B14  _g_tileset1_186                    patronesTiles_1
+     00005B1C  _g_tileset1_187                    patronesTiles_1
+     00005B24  _g_tileset1_188                    patronesTiles_1
+     00005B2C  _g_tileset1_189                    patronesTiles_1
+     00005B34  _g_tileset1_190                    patronesTiles_1
+ASxxxx Linker V03.00 + NoICE + sdld,  page 6.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_CODE                               00004000    00003E52 =       15954. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00005B3C  _g_tileset1_191                    patronesTiles_1
+     00005B44  _g_tileset1_192                    patronesTiles_1
+     00005B4C  _g_tileset1_193                    patronesTiles_1
+     00005B54  _g_tileset1_194                    patronesTiles_1
+     00005B5C  _g_tileset1_195                    patronesTiles_1
+     00005B64  _g_tileset1_196                    patronesTiles_1
+     00005B6C  _g_tileset1_197                    patronesTiles_1
+     00005B74  _g_tileset1_198                    patronesTiles_1
+     00005B7C  _g_tileset1_199                    patronesTiles_1
+     00005B84  _g_palette                         g_palette
+     00005B88  _main                              main
+     00005C93  _paletaM1                          main
+     00005C97  _SoldadoArabe                      main
+     00005EBF  _abs                               juego
+     00005EE7  _pausa                             juego
+     00005EF4  _pausaTecladoLibre                 juego
+     00005EFF  _dibujarMarco                      juego
+     00006022  _dibujarEscenario                  juego
+     00006066  _initPlayer                        juego
+     000060AB  _initNivel                         juego
+     00006117  _printStats                        juego
+     00006201  _printLevel                        juego
+     0000624A  _printConsole                      juego
+     000062AA  _atacar                            juego
+     000063E0  _defender                          juego
+     000064B6  _turno                             juego
+     00006B1B  _juego                             juego
+     00006B54  _G_mendo                           graficos
+     00006C34  _G_arabe_1                         graficos
+     00006D14  _G_tile_cruzada                    graficos
+     00006D54  _cpct_isKeyPressed                 cpct_keyboard
+     00006D54  cpct_isKeyPressed_asm              cpct_keyboard
+     00006D60  _cpct_setPalette                   cpct_video
+     00006D77  _cpct_scanKeyboard_f               cpct_keyboard
+     00006D77  cpct_scanKeyboard_f_asm            cpct_keyboard
+     00006DE1  _cpct_setPALColour                 cpct_video
+     00006DED  _cpct_drawStringM1                 cpct_strings
+     00006E1D  _cpct_drawSprite                   cpct_sprites
+     00006EC2  cpct_drawCharM1_inner_asm          cpct_strings
+     00006F02  cpct_char2pxM1                     cpct_strings
+     00006F12  _cpct_etm_drawTileBox2x4           cpct_easytilemaps
+     00006FA1  _cpct_etm_setTileset2x4            cpct_easytilemaps
+     00006FA1  cpct_etm_setTileset2x4_asm         cpct_easytilemaps
+     00006FA5  __moduchar                         
+     00006FB1  __moduint                          
+     00006FBC  __divuint                          
+     00006FC4  __divuchar                         
+     00006FCB  __divu8                            
+     00006FCE  __divu16                           
+     00006FFD  _cpct_keyboardStatusBuffer         cpct_keyboard
+     00007007  _cpct_setSeed_mxor                 cpct_random
+ASxxxx Linker V03.00 + NoICE + sdld,  page 7.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_CODE                               00004000    00003E52 =       15954. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00007007  cpct_setSeed_mxor_asm              cpct_random
+     0000700F  _cpct_restoreState_mxor_u8         cpct_random
+     0000700F  cpct_restoreState_mxor_u8_asm      cpct_random
+     00007015  _cpct_getRandom_mxor_u8            cpct_random
+     00007015  cpct_getRandom_mxor_u8_asm         cpct_random
+     00007016  cpct_randomIdx_mxor_u8             cpct_random
+     0000703A  _cpct_etm_drawTileRow2x4           cpct_easytilemaps
+     00007041  cpct_etm_drawTileRow2x4_asm        cpct_easytilemaps
+     00007043  dtr_restore_ptileset               cpct_easytilemaps
+     0000705B  _cpct_drawSpriteMasked             cpct_sprites
+     000070AA  _vsprintf                          sprintf
+     000070DF  _sprintf                           sprintf
+     00007114  _cpct_nextRandom_mxor_u32          cpct_random
+     00007114  cpct_nextRandom_mxor_u32_asm       cpct_random
+     00007137  _cpct_waitVSYNC                    cpct_video
+     00007137  cpct_waitVSYNC_asm                 cpct_video
+     0000713F  _cpct_setVideoMode                 cpct_video
+     0000714D  _cpct_isAnyKeyPressed_f            cpct_keyboard
+     0000714D  cpct_isAnyKeyPressed_f_asm         cpct_keyboard
+     00007168  _cpct_memcpy                       cpct_memutils
+     00007170  _cpct_memset                       cpct_memutils
+     0000717E  _cpct_px2byteM1                    cpct_sprites
+     0000717E  cpct_px2byteM1_asm                 cpct_sprites
+     0000719B  _cpct_disableFirmware              cpct_firmware
+     0000719B  _cpct_removeInterruptHandler       cpct_firmware
+     0000719B  cpct_disableFirmware_asm           cpct_firmware
+     0000719B  cpct_removeInterruptHandler_asm    cpct_firmware
+     000071AB  _cpct_drawSolidBox                 cpct_sprites
+     00007263  cpct_drawTileAligned2x4_f_asm      cpct_sprites
+     00007284  _cpct_mode_rom_status              cpct_firmware
+     00007285  _cpct_getScreenPtr                 cpct_video
+     000072A5  _cpct_setDrawCharM1                cpct_strings
+     000073F8  __print_format                     printf_large
+     00007E3A  _cpct_mxor32_seed                  cpct_random
+     00007E3E  ___sdcc_call_hl                    
+     00007E3F  dc_mode1_ct                        
+     00007E43  _strlen                            
+ASxxxx Linker V03.00 + NoICE + sdld,  page 8.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_DATA                               00007E52    00000067 =         103. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00007E52  _entidad                           main
+     00007E8E  _nivel                             main
+     00007E8F  _player                            main
+     00007EA3  _goblin                            main
+     00007EB7  _cursorPrint                       main
+     00007EB8  _cursorConsola                     juego
+ASxxxx Linker V03.00 + NoICE + sdld,  page 9.
 
 Files Linked                              [ module(s) ]
 
+obj/mapas/fase_01.rel                     [ fase_01 ]
+obj/mapas/fase_02.rel                     [ fase_02 ]
+obj/mapas/fase_03.rel                     [ fase_03 ]
+obj/mapas/fase_04.rel                     [ fase_04 ]
+obj/mapas/fase_05.rel                     [ fase_05 ]
+obj/mapas/fase_06.rel                     [ fase_06 ]
+obj/mapas/fase_07.rel                     [ fase_07 ]
+obj/mapas/fase_08.rel                     [ fase_08 ]
+obj/mapas/fase_09.rel                     [ fase_09 ]
+obj/mapas/fase_10.rel                     [ fase_10 ]
+obj/patrones/patronesTiles_1.rel          [ patronesTiles_1 ]
+obj/patrones/g_palette.rel                [ g_palette ]
 obj/main.rel                              [ main ]
 obj/juego.rel                             [ juego ]
 obj/graficos.rel                          [ graficos ]
@@ -146,9 +411,9 @@ obj/graficos.rel                          [ graficos ]
 Libraries Linked                          [ object file ]
 
 /home/cpp76s/cpctelera/cpctelera/cpctelera.lib
-                                          [ cpct_setPalette_cbindings.rel ]
-/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_isKeyPressed.rel ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setPalette_cbindings.rel ]
 /home/cpp76s/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_scanKeyboard_f.rel ]
 /home/cpp76s/cpctelera/cpctelera/cpctelera.lib
@@ -159,6 +424,10 @@ Libraries Linked                          [ object file ]
                                           [ cpct_drawSprite_cbindings.rel ]
 /home/cpp76s/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_drawCharM1_inner.rel ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_etm_drawTileBox2x4_cbinding ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_etm_setTileset2x4.rel ]
 /home/cpp76s/cpctelera/cpctelera/tools/sdcc-3.6.8-r9946/bin/../share/sdcc/lib/z80/z80.lib
                                           [ modunsigned.rel ]
 /home/cpp76s/cpctelera/cpctelera/tools/sdcc-3.6.8-r9946/bin/../share/sdcc/lib/z80/z80.lib
@@ -172,15 +441,21 @@ Libraries Linked                          [ object file ]
 /home/cpp76s/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_getRandom_mxor_u8.rel ]
 /home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_etm_drawTileRow2x4.rel ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_drawSpriteMasked_cbindings. ]
 /home/cpp76s/cpctelera/cpctelera/tools/sdcc-3.6.8-r9946/bin/../share/sdcc/lib/z80/z80.lib
                                           [ sprintf.rel ]
 /home/cpp76s/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_nextRandom_mxor_u32.rel ]
 /home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_waitVSYNC.rel ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_setVideoMode_cbindings.rel ]
 /home/cpp76s/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_isAnyKeyPressed_f.rel ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_memcpy_cbindings.rel ]
 /home/cpp76s/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_memset_cbinding.rel ]
 /home/cpp76s/cpctelera/cpctelera/cpctelera.lib
@@ -189,6 +464,8 @@ Libraries Linked                          [ object file ]
                                           [ cpct_removeInterruptHandler.rel ]
 /home/cpp76s/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_drawSolidBox_cbindings.rel ]
+/home/cpp76s/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_drawTileAligned2x4_f_asmbin ]
 /home/cpp76s/cpctelera/cpctelera/cpctelera.lib
                                           [ cpc_mode_rom_status.rel ]
 /home/cpp76s/cpctelera/cpctelera/cpctelera.lib
@@ -206,7 +483,7 @@ Libraries Linked                          [ object file ]
 /home/cpp76s/cpctelera/cpctelera/tools/sdcc-3.6.8-r9946/bin/../share/sdcc/lib/z80/z80.lib
                                           [ strlen.rel ]
 
-ASxxxx Linker V03.00 + NoICE + sdld,  page 6.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 10.
 
 User Base Address Definitions
 
