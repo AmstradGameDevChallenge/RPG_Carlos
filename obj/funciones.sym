@@ -1,0 +1,69 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 1.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+    .__.$$$.                                                    =  2710 L
+    .__.ABS.                                                    =  0000 G
+    .__.CPU.                                                    =  0000 L
+    .__.H$L.                                                    =  0000 L
+    _G_mendo                                                       **** GX
+    _G_pocion                                                      **** GX
+    _G_tile_cruzada                                                **** GX
+  0 ___str_0                                                       02D6 R
+  0 ___str_1                                                       02FB R
+  0 ___str_2                                                       035D R
+  0 ___str_3                                                       04DC R
+  0 ___str_4                                                       04EA R
+  0 ___str_5                                                       04F8 R
+  0 ___str_6                                                       05CB R
+    __divuchar                                                     **** GX
+    __moduchar                                                     **** GX
+  0 _abs                                                           0000 GR
+  0 _atacar                                                        03CE GR
+    _cpct_drawSolidBox                                             **** GX
+    _cpct_drawSprite                                               **** GX
+    _cpct_drawSpriteMasked                                         **** GX
+    _cpct_drawStringM1                                             **** GX
+    _cpct_etm_drawTileBox2x4                                       **** GX
+    _cpct_etm_setTileset2x4                                        **** GX
+    _cpct_getRandom_mxor_u8                                        **** GX
+    _cpct_getScreenPtr                                             **** GX
+    _cpct_isAnyKeyPressed_f                                        **** GX
+    _cpct_px2byteM1                                                **** GX
+    _cpct_scanKeyboard_f                                           **** GX
+    _cpct_setCRTCReg                                               **** GX
+    _cpct_setDrawCharM1                                            **** GX
+    _cursorConsola                                                 **** GX
+  0 _defender                                                      0504 GR
+  0 _dibujarEscenario                                              01F2 GR
+  0 _dibujarMarcoExterior                                          008F GR
+  0 _dibujarMarcoInterior                                          0157 GR
+  0 _drawPotion                                                    05DA GR
+  0 _efecto_pliegue                                                0038 GR
+    _g_mapa01                                                      **** GX
+    _nivel                                                         **** GX
+  0 _pausa                                                         0028 GR
+  0 _pausaTecladoLibre                                             0084 GR
+  0 _printConsole                                                  0369 GR
+  0 _printLevel                                                    0320 GR
+  0 _printStats                                                    0236 GR
+    _sprintf                                                       **** GX
+    _tileset1                                                      **** GX
+
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
+Hexadecimal [16-Bits]
+
+Area Table
+
+   0 _CODE                                      size  5EA   flags    0
+   1 _DATA                                      size    0   flags    0
+   2 _INITIALIZED                               size    0   flags    0
+   3 _DABS                                      size    0   flags    8
+   4 _HOME                                      size    0   flags    0
+   5 _GSINIT                                    size    0   flags    0
+   6 _GSFINAL                                   size    0   flags    0
+   7 _INITIALIZER                               size    0   flags    0
+   8 _CABS                                      size    0   flags    8
+

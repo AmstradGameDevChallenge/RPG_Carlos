@@ -7,74 +7,58 @@ Symbol Table
     .__.ABS.                                                    =  0000 G
     .__.CPU.                                                    =  0000 L
     .__.H$L.                                                    =  0000 L
-    _G_mendo                                                       **** GX
-    _G_tile_cruzada                                                **** GX
-    _SoldadoArabe                                                  **** GX
-  0 ___str_0                                                       01E2 R
-  0 ___str_1                                                       02F8 R
-  0 ___str_10                                                      0C29 R
-  0 ___str_11                                                      0C3A R
-  0 ___str_12                                                      0C4B R
-  0 ___str_2                                                       031D R
-  0 ___str_3                                                       037F R
-  0 ___str_4                                                       04F9 R
-  0 ___str_5                                                       0507 R
-  0 ___str_6                                                       0515 R
-  0 ___str_7                                                       05E8 R
-  0 ___str_8                                                       0C09 R
-  0 ___str_9                                                       0C1C R
-    __divuchar                                                     **** GX
+  0 ___str_0                                                       0747 R
+  0 ___str_1                                                       075A R
+  0 ___str_2                                                       0767 R
+  0 ___str_3                                                       0773 R
+  0 ___str_4                                                       077F R
+  0 ___str_5                                                       078B R
+  0 ___str_6                                                       079C R
+  0 ___str_7                                                       07AD R
+  0 ___str_8                                                       0853 R
+  0 ___str_9                                                       085D R
     __moduchar                                                     **** GX
-  0 _abs                                                           0000 GR
-  0 _atacar                                                        03EB GR
-    _cpct_drawSolidBox                                             **** GX
-    _cpct_drawSprite                                               **** GX
+    _abs                                                           **** GX
+    _atacar                                                        **** GX
     _cpct_drawSpriteMasked                                         **** GX
     _cpct_drawStringM1                                             **** GX
     _cpct_etm_drawTileBox2x4                                       **** GX
-    _cpct_etm_setTileset2x4                                        **** GX
     _cpct_getRandom_mxor_u8                                        **** GX
     _cpct_getScreenPtr                                             **** GX
     _cpct_isAnyKeyPressed_f                                        **** GX
     _cpct_isKeyPressed                                             **** GX
-    _cpct_memcpy                                                   **** GX
     _cpct_memset                                                   **** GX
-    _cpct_px2byteM1                                                **** GX
     _cpct_scanKeyboard_f                                           **** GX
-    _cpct_setDrawCharM1                                            **** GX
     _cpct_waitVSYNC                                                **** GX
-  1 _cursorConsola                                                 0000 GR
-  0 _defender                                                      0521 GR
-  0 _dibujarEscenario                                              0163 GR
-  0 _dibujarMarco                                                  0040 GR
+    _cursorConsola                                                 **** GX
+    _defender                                                      **** GX
+    _dibujarEscenario                                              **** GX
+    _dibujarMarcoExterior                                          **** GX
+    _dibujarMarcoInterior                                          **** GX
+    _drawPotion                                                    **** GX
+    _efecto_pliegue                                                **** GX
     _entidad                                                       **** GX
     _g_mapa01                                                      **** GX
-  0 _initNivel                                                     01EC GR
-  0 _initPlayer                                                    01A7 GR
-  0 _juego                                                         0C5C GR
+    _initNivel                                                     **** GX
+    _initPlayer                                                    **** GX
+  0 _juego                                                         07BE GR
     _nivel                                                         **** GX
-  0 _pausa                                                         0028 GR
-  0 _pausaTecladoLibre                                             0035 GR
-  0 _printConsole                                                  038B GR
-  0 _printLevel                                                    0342 GR
-  0 _printStats                                                    0258 GR
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
-Hexadecimal [16-Bits]
-
-Symbol Table
-
+    _pausa                                                         **** GX
+    _pausaTecladoLibre                                             **** GX
+    _printConsole                                                  **** GX
+    _printLevel                                                    **** GX
+    _printStats                                                    **** GX
+    _sig_nivel                                                     **** GX
     _sprintf                                                       **** GX
-    _tileset1                                                      **** GX
-  0 _turno                                                         05F7 GR
+  0 _turno                                                         0000 GR
 
-
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size  C95   flags    0
-   1 _DATA                                      size    1   flags    0
+   0 _CODE                                      size  87C   flags    0
+   1 _DATA                                      size    0   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8
    4 _HOME                                      size    0   flags    0

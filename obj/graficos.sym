@@ -7,9 +7,15 @@ Symbol Table
     .__.ABS.                                                    =  0000 G
     .__.CPU.                                                    =  0000 L
     .__.H$L.                                                    =  0000 L
-  0 _G_arabe_1                                                     00E0 GR
-  0 _G_mendo                                                       0000 GR
-  0 _G_tile_cruzada                                                01C0 GR
+  0 _G_abeja                                                       0580 GR
+  0 _G_arabe_1                                                     0120 GR
+  0 _G_arabe_2                                                     0200 GR
+  0 _G_arabe_3                                                     02E0 GR
+  0 _G_arabe_boss                                                  04A0 GR
+  0 _G_fakir                                                       03C0 GR
+  0 _G_mendo                                                       0040 GR
+  0 _G_pocion                                                      0660 GR
+  0 _G_tile_cruzada                                                0000 GR
 
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
@@ -17,7 +23,7 @@ Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size  200   flags    0
+   0 _CODE                                      size  6A0   flags    0
    1 _DATA                                      size    0   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8

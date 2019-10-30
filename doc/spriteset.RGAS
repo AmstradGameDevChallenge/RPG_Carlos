@@ -31,6 +31,22 @@
         "GenerateHorizontalMirror": false,
         "pixels": {
           "$type": "System.Byte[], mscorlib",
+          "$value": "AgICAgAAAAAAAAACAgIAAAICAAAAAAAAAAAAAAAAAAACAAAAAAACAgICAgAAAAAAAAAAAgICAgICAgICAAAAAAAAAgICAgAAAAAAAgICAAACAgIAAAAAAAAAAAAAAgICAgAAAAAAAAAAAAAAAAACAgAAAAAAAgICAAAAAAAAAAAAAAICAgICAgIAAAAAAAAAAAICAgICAAACAgAAAAICAgICAgIAAAAAAAICAgICAgICAgAAAAAAAAAAAAICAgIAAAAAAgICAgIAAAAAAAAAAAACAgICAgICAgAAAAACAgICAgICAgAAAAICAAACAgIAAgICAgAAAAAAAAICAgIAAAA="
+        },
+        "Width": 16,
+        "Height": 16,
+        "_guid": "d39cfbe9-2954-42ea-82d7-7258cbbb424c",
+        "_name": "tile_cruzada",
+        "MaskDataInline": false,
+        "UseInLevelDesigner": false
+      },
+      {
+        "$type": "RGAS.CPCSprite, RGAS",
+        "Align256": false,
+        "GenerateVerticalMirror": false,
+        "GenerateHorizontalMirror": false,
+        "pixels": {
+          "$type": "System.Byte[], mscorlib",
           "$value": "/////////////////////////////wEBAf///////////////wEBAQEB//////////////8BAQICAv///wH/////////AQECAgL///8B//////////8BAQH/////Af///////////////////wH/////////AQEBAf////8B////////AQEBAQEB////Af//////AQEBAQEBAQH//wH/////AQH/AQEBAQEB//8B/////wH//wEBAQEBAf//Af////8B//8BAQEBAQEB/wH///8B////AQEBAQH//wEBAf//Af///wEBAQEB////Af///wH///8BAQEBAf///////////////wEBAf////////////////////////////////////8BAf8BAf//////////////AQH/AQH//////////////wEB//8BAf////////////8BAf//AQH///////////8BAf////8BAf//////////AQH/////AQH//////////wEB/////wEB/////////wEB////////AQH///////8BAf////////8B////////Af//////////AQH//wA="
         },
         "Width": 16,
@@ -63,13 +79,93 @@
         "GenerateHorizontalMirror": false,
         "pixels": {
           "$type": "System.Byte[], mscorlib",
-          "$value": "AgICAgAAAAAAAAACAgIAAAICAAAAAAAAAAAAAAAAAAACAAAAAAACAgICAgAAAAAAAAAAAgICAgICAgICAAAAAAAAAgICAgAAAAAAAgICAAACAgIAAAAAAAAAAAAAAgICAgAAAAAAAAAAAAAAAAACAgAAAAAAAgICAAAAAAAAAAAAAAICAgICAgIAAAAAAAAAAAICAgICAAACAgAAAAICAgICAgIAAAAAAAICAgICAgICAgAAAAAAAAAAAAICAgIAAAAAAgICAgIAAAAAAAAAAAACAgICAgICAgAAAAACAgICAgICAgAAAAICAAACAgIAAgICAgAAAAAAAAICAgIAAAA="
+          "$value": "//////////////////////////////////8CAgIC/////////////wEBAQICAgL/////////AQEBAgICAgIC//////8BAQH//wMDAwIC/////wEBAf////8DAwIC////AQEB////////AgICAv////8CAv///////wICAv///////wL///////////////////8CAv///wIBAgIC/////////wIC/wICAQECAgL/////////AgICAgIBAgICAv////////8CAgICAQICAgIC/////////wICAgIBAgL/Av////////8CAgICAQIC/wL/////////AgICAgEB//8C//////////8CAgICAv//Av//////////AQECAv//Av////////8CAgICAQH//wL///////8CAgICAgICAv////////8CAgICAgICAgIC////////AgICAgL/AgICAv//////AgICAgIC/wICAgL//////wICAgIC////AgIC//////8CAgIC//////8CAgICA///AgIC/////////wICAgMDAwIC/////////////wMD/wMD/////////////////wA="
         },
         "Width": 16,
+        "Height": 28,
+        "_guid": "538ec0b6-344f-4ee4-8591-1f003b6cc43d",
+        "_name": "arabe_2",
+        "MaskDataInline": true,
+        "UseInLevelDesigner": false
+      },
+      {
+        "$type": "RGAS.CPCSprite, RGAS",
+        "Align256": false,
+        "GenerateVerticalMirror": false,
+        "GenerateHorizontalMirror": false,
+        "pixels": {
+          "$type": "System.Byte[], mscorlib",
+          "$value": "/////////////wIC/////////////////wICAgL///////////8C/wICAgIC////////////Av8DAwICAv//////////Av//AwMCAv///////////wIC/wICAgL//////////wL/////AgL///////////8C/wL/////////////////Av8C/wL/AgIC////////Av///wL/AgIC/wL///8C/wL/AgL//wICAv//Av8CAgICAv8C/wICAgICAv///wL/Av//////AgIC/////////wL//wL//wICAv//////////Av8C//8CAgL//////////wL/////AgIC//////////8C/wL//wICAv///////////wL//wICAgL///////////8CAv8CAgIC/////////////wL/AgICAv///////////////wICAgL//////////////wIC/wIC//////////////8CAv//AgL/////////////AgL//wIC/////////////wIC//8CAgL///////////8CAv////8CA////////wP/AgL//////wP/////////AwMD/////wMD/wA="
+        },
+        "Width": 16,
+        "Height": 28,
+        "_guid": "bc4579a0-e799-4554-867f-0f52c4c14974",
+        "_name": "arabe_3",
+        "MaskDataInline": true,
+        "UseInLevelDesigner": false
+      },
+      {
+        "$type": "RGAS.CPCSprite, RGAS",
+        "Align256": false,
+        "GenerateVerticalMirror": false,
+        "GenerateHorizontalMirror": false,
+        "pixels": {
+          "$type": "System.Byte[], mscorlib",
+          "$value": "////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////AQIC////////////////AgICAgL/////////////////AgICAv////////////8CAv//AgL//////wICAv///////wIC/////wICAgL//////wIC//////8DAwIC//////8C////////AwMC////////Av///////wICAv//////Av//AgICAv8CAv//////AgL/////Av///////////wL//////wL//wICAv////8C//////8C//8CAgL/////Av///////wICAgICAv//////////////AgICAgL//wICAv//////////AgIC/wICAgIC/////wIC/wICAv8CAgICAv///wICAgICAgL/AgICAgL//wICAgICAgIC/wICAgIC//8CAv//AgICAv8CAgICAv8CAgL//wICAgL//wICAv8DAwP/////AgL//wA="
+        },
+        "Width": 16,
+        "Height": 28,
+        "_guid": "ebf46213-64ef-4702-a8a5-80911df21f8f",
+        "_name": "fakir",
+        "MaskDataInline": true,
+        "UseInLevelDesigner": false
+      },
+      {
+        "$type": "RGAS.CPCSprite, RGAS",
+        "Align256": false,
+        "GenerateVerticalMirror": false,
+        "GenerateHorizontalMirror": false,
+        "pixels": {
+          "$type": "System.Byte[], mscorlib",
+          "$value": "////////AgICAgL/////////////AgICAgICAv///////////wICAwMDAgL/////////////AgMDAwL//////////////wICAgIC/wH/////////////AgIC//8BAf////////////////8BAQH/////AgICAgICAgIBAQEBAv///wICAgICAgIBAQEBAv//////AgICAgIBAQEBAgL///8C/wICAgIBAQEBAgL/Av//AgL/AgIBAQEBAgIC/wL//wIC//8BAQECAgIC/wIC//8CAgIBAQICAgICAv8CAv///wICAQMDAwMDAwP/AgL/////Af//AwMCAwP//wIC/////////wMDAwMD//8C/////////wICAgICAgL///////////8CAgICAgIC//////////8CAgIC/wICAgL/////////AgICAv8CAgIC/////////wICAgL/AgICAv////////8CAgIC/wICAgL/////////AgICAv8CAgIC/////////wICAgL/AgICAv//////////AgL///8CAv//////A////wMD////AwP///8D//8DAwMDA////wMDAwMD/wA="
+        },
+        "Width": 16,
+        "Height": 28,
+        "_guid": "3c73e463-b2ea-48c5-bc2b-4d8f68d6a516",
+        "_name": "arabe_boss",
+        "MaskDataInline": true,
+        "UseInLevelDesigner": false
+      },
+      {
+        "$type": "RGAS.CPCSprite, RGAS",
+        "Align256": false,
+        "GenerateVerticalMirror": false,
+        "GenerateHorizontalMirror": false,
+        "pixels": {
+          "$type": "System.Byte[], mscorlib",
+          "$value": "//////////////////////8CAgL/////////AgIC////AgICAv//////AgICAv////8CAgIC////AgICAv////////8CAgL//wICAv///////////////wIC/////////////wICAgEC////////////AgMCAgECAgIB////////AgICAgECAgIBAgL///////8CAgIBAgEBAgICAf////8CAgL/AgL//wIBAQL//////////wL///8C/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////wA="
+        },
+        "Width": 16,
+        "Height": 28,
+        "_guid": "1d166901-93ca-492b-9667-e4e1157ab64e",
+        "_name": "abeja",
+        "MaskDataInline": true,
+        "UseInLevelDesigner": false
+      },
+      {
+        "$type": "RGAS.CPCSprite, RGAS",
+        "Align256": false,
+        "GenerateVerticalMirror": false,
+        "GenerateHorizontalMirror": false,
+        "pixels": {
+          "$type": "System.Byte[], mscorlib",
+          "$value": "/////////////wICAgL///8CAAAAAAL///8CAgIC/////wIAAAL/////AgAAAv///wIAAAAAAv8CAwMAAAAAAgIDAgMDAgMCAgMCAwMCAwICAwIDAwIDAgIDAgMDAgMCAgIDAgMDAgL/AgMCAwMC//8CAwIDAwL///8CAgIC//8A"
+        },
+        "Width": 8,
         "Height": 16,
-        "_guid": "d39cfbe9-2954-42ea-82d7-7258cbbb424c",
-        "_name": "tile_cruzada",
-        "MaskDataInline": false,
+        "_guid": "6b77adcc-4c4e-4b1d-9629-cd34c9734797",
+        "_name": "pocion",
+        "MaskDataInline": true,
         "UseInLevelDesigner": false
       }
     ]

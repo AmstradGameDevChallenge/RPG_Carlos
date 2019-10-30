@@ -22,5 +22,7 @@ obj/patrones/g_palette.rel
 obj/main.rel
 obj/juego.rel
 obj/graficos.rel
+obj/funciones.rel
+obj/niveles.rel
 
 -e

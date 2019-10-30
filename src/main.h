@@ -1,3 +1,8 @@
+#define INICIO_AREA_JUEGO  cpctm_screenPtr (CPCT_VMEM_START, 4, 64)
+#define SEGUNDO 32768
+#define PLIEGUE 0
+#define DESPLIEGUE 1
+
 typedef struct {
 	u8 name[10]; //nombre 
     u8 energy;   //HP
@@ -13,7 +18,10 @@ typedef struct {
 
 extern TStats entidad[3];  //entidad[0] es el jugador; los otros dos los enemigos
 extern u8 nivel;
+extern u8 cursorConsola;
+extern u8 sig_nivel;
 extern const TStats SoldadoArabe;
+
 
 
 /*

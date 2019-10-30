@@ -1,0 +1,13 @@
+u8 abs (i8 valor);
+void pausa(u16 ciclos);
+void efecto_pliegue(u8 modo);
+void pausaTecladoLibre();
+void dibujarMarcoExterior ();
+void dibujarMarcoInterior ();
+void dibujarEscenario();
+void printStats(TStats *a);
+void printLevel() ;
+void printConsole  (void* string, u8 pen, u8 bground);
+void atacar(TStats *a, TStats *b);
+void defender(TStats *a);
+void drawPotion();

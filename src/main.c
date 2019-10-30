@@ -32,13 +32,8 @@
 const u8 paletaM1[4] = {0x54, 0x40, 0x4B, 0x44};
 TStats entidad[3];
 u8 nivel;
-
-
-TStats player;
-TStats goblin;
-u8 cursorPrint;
-
-const TStats SoldadoArabe = { "Soldier", 90, 90, 20, 3, 10, 28, 28, 32, &G_arabe_1[0] };
+u8 cursorConsola;
+u8 sig_nivel;
 
 
 void main(void) {
@@ -46,7 +41,6 @@ void main(void) {
 
    // Disable firmware, clear and colour screen (black)
    cpct_disableFirmware();
-
 
    while (1) {
       cpct_setVideoMode(1);
@@ -90,7 +84,6 @@ void main(void) {
          semilla = 1;
 
       cpct_srand8(semilla);
-      nivel = 1;
       juego();
    }
 }

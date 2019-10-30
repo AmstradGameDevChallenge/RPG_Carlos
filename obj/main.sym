@@ -7,23 +7,21 @@ Symbol Table
     .__.ABS.                                                    =  0000 G
     .__.CPU.                                                    =  0000 L
     .__.H$L.                                                    =  0000 L
-    _G_arabe_1                                                     **** GX
-  0 _SoldadoArabe                                                  010F GR
-  0 ___str_0                                                       0123 R
-  0 ___str_1                                                       0143 R
-  0 ___str_10                                                      0282 R
-  0 ___str_11                                                      02AB R
-  0 ___str_12                                                      02D0 R
-  0 ___str_13                                                      02F8 R
-  0 ___str_14                                                      0320 R
-  0 ___str_2                                                       0159 R
-  0 ___str_3                                                       0176 R
-  0 ___str_4                                                       019F R
-  0 ___str_5                                                       01C8 R
-  0 ___str_6                                                       01F1 R
-  0 ___str_7                                                       021A R
-  0 ___str_8                                                       0240 R
-  0 ___str_9                                                       0269 R
+  0 ___str_0                                                       010A R
+  0 ___str_1                                                       012A R
+  0 ___str_10                                                      0269 R
+  0 ___str_11                                                      0292 R
+  0 ___str_12                                                      02B7 R
+  0 ___str_13                                                      02DF R
+  0 ___str_14                                                      0307 R
+  0 ___str_2                                                       0140 R
+  0 ___str_3                                                       015D R
+  0 ___str_4                                                       0186 R
+  0 ___str_5                                                       01AF R
+  0 ___str_6                                                       01D8 R
+  0 ___str_7                                                       0201 R
+  0 ___str_8                                                       0227 R
+  0 ___str_9                                                       0250 R
     _cpct_disableFirmware                                          **** GX
     _cpct_drawStringM1                                             **** GX
     _cpct_getScreenPtr                                             **** GX
@@ -36,23 +34,22 @@ Symbol Table
     _cpct_setPalette                                               **** GX
     _cpct_setSeed_mxor                                             **** GX
     _cpct_setVideoMode                                             **** GX
-  1 _cursorPrint                                                   0065 GR
+  1 _cursorConsola                                                 003D GR
   1 _entidad                                                       0000 GR
-  1 _goblin                                                        0051 GR
     _juego                                                         **** GX
   0 _main                                                          0000 GR
   1 _nivel                                                         003C GR
-  0 _paletaM1                                                      010B GR
+  0 _paletaM1                                                      0106 GR
     _pausaTecladoLibre                                             **** GX
-  1 _player                                                        003D GR
+  1 _sig_nivel                                                     003E GR
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size  337   flags    0
-   1 _DATA                                      size   66   flags    0
+   0 _CODE                                      size  31E   flags    0
+   1 _DATA                                      size   3F   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8
    4 _HOME                                      size    0   flags    0

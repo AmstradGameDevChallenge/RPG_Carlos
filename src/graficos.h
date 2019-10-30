@@ -30,6 +30,14 @@ Firmware | Hardware  | Hard+Command | Colour Name    |  R%   G%   B% Colour
     1A   | 11 (0x0B) |  0x4B        | Bright White   | 100  100  100
 */
 
+
+extern const unsigned char G_tile_cruzada[64];
 extern const unsigned char G_mendo[224];
 extern const unsigned char G_arabe_1[224];
-extern const unsigned char G_tile_cruzada[64];
+extern const unsigned char G_arabe_2[224];
+extern const unsigned char G_arabe_3[224];
+extern const unsigned char G_fakir[224];
+extern const unsigned char G_arabe_boss[224];
+extern const unsigned char G_abeja[224];
+extern const unsigned char G_pocion[64];
+
