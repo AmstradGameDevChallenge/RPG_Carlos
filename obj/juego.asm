@@ -25,12 +25,12 @@
 	.globl _abs
 	.globl _initNivel
 	.globl _initPlayer
+	.globl _mydrawStringM1
 	.globl _sprintf
 	.globl _cpct_etm_drawTileBox2x4
 	.globl _cpct_getRandom_mxor_u8
 	.globl _cpct_getScreenPtr
 	.globl _cpct_waitVSYNC
-	.globl _cpct_drawStringM1
 	.globl _cpct_drawSpriteMasked
 	.globl _cpct_isAnyKeyPressed_f
 	.globl _cpct_isKeyPressed
@@ -311,24 +311,19 @@ _turno::
 00121$:
 ;src/juego.c:41: cpct_scanKeyboard_f();
 	call	_cpct_scanKeyboard_f
-;src/juego.c:42: sprintf(temp, "ACTION (%c/%c/D) ?",242,243);
+;src/juego.c:42: sprintf(temp, "ACTION (</>/D) ?");
 	ld	a, -8 (ix)
 	ld	-6 (ix), a
 	ld	a, -7 (ix)
 	ld	-5 (ix), a
-	ld	hl, #0x00f3
-	push	hl
-	ld	l, #0xf2
-	push	hl
 	ld	hl, #___str_0
 	push	hl
 	ld	l,-6 (ix)
 	ld	h,-5 (ix)
 	push	hl
 	call	_sprintf
-	ld	hl, #8
-	add	hl, sp
-	ld	sp, hl
+	pop	af
+	pop	af
 ;src/juego.c:43: if (i < 25) {
 	ld	a, -13 (ix)
 	sub	a, #0x19
@@ -443,18 +438,16 @@ _turno::
 	or	a, a
 	jr	Z,00125$
 00124$:
-;src/juego.c:61: sprintf(temp, "%-9s GOES %c",entidad[0].name,242);
+;src/juego.c:61: sprintf(temp, "%-9s GOES <",entidad[0].name);
 	ld	de, #___str_1+0
 	ld	c,-8 (ix)
 	ld	b,-7 (ix)
-	ld	hl, #0x00f2
-	push	hl
 	ld	hl, #_entidad
 	push	hl
 	push	de
 	push	bc
 	call	_sprintf
-	ld	hl, #8
+	ld	hl, #6
 	add	hl, sp
 	ld	sp, hl
 ;src/juego.c:62: printConsole(temp, 2, 0);
@@ -491,18 +484,16 @@ _turno::
 	or	a, a
 	jr	Z,00135$
 00134$:
-;src/juego.c:69: sprintf(temp, "%-9s GOES %c",entidad[0].name,243);
-	ld	de, #___str_1+0
+;src/juego.c:69: sprintf(temp, "%-9s GOES >",entidad[0].name);
+	ld	de, #___str_2+0
 	ld	c,-8 (ix)
 	ld	b,-7 (ix)
-	ld	hl, #0x00f3
-	push	hl
 	ld	hl, #_entidad
 	push	hl
 	push	de
 	push	bc
 	call	_sprintf
-	ld	hl, #8
+	ld	hl, #6
 	add	hl, sp
 	ld	sp, hl
 ;src/juego.c:70: printConsole(temp, 2 ,0);
@@ -698,22 +689,18 @@ _turno::
 	ld	a, e
 	dec	a
 	jr	NZ,00152$
-;src/juego.c:105: sprintf(temp, "%-9s GOES %c",entidad[i].name,242);
-	ld	e,-12 (ix)
-	ld	d,-11 (ix)
-	push	de
-	pop	iy
+;src/juego.c:105: sprintf(temp, "%-9s GOES <",entidad[i].name);
+	ld	l,-12 (ix)
+	ld	h,-11 (ix)
 	ld	e,-2 (ix)
 	ld	d,-1 (ix)
 	push	bc
-	ld	hl, #0x00f2
 	push	hl
-	push	iy
 	ld	hl, #___str_1
 	push	hl
 	push	de
 	call	_sprintf
-	ld	hl, #8
+	ld	hl, #6
 	add	hl, sp
 	ld	sp, hl
 	pop	bc
@@ -738,22 +725,18 @@ _turno::
 	ld	a, e
 	sub	a, #0x02
 	jr	NZ,00149$
-;src/juego.c:110: sprintf(temp, "%-9s GOES %c",entidad[i].name,243);
+;src/juego.c:110: sprintf(temp, "%-9s GOES >",entidad[i].name);
 	ld	e,-12 (ix)
 	ld	d,-11 (ix)
-	push	de
-	pop	iy
-	ld	e,-6 (ix)
-	ld	d,-5 (ix)
+	ld	l,-6 (ix)
+	ld	h,-5 (ix)
 	push	bc
-	ld	hl, #0x00f3
-	push	hl
-	push	iy
-	ld	hl, #___str_1
-	push	hl
 	push	de
+	ld	de, #___str_2
+	push	de
+	push	hl
 	call	_sprintf
-	ld	hl, #8
+	ld	hl, #6
 	add	hl, sp
 	ld	sp, hl
 	pop	bc
@@ -876,7 +859,7 @@ _turno::
 	ld	-11 (ix), a
 	ld	hl, #_entidad
 	push	hl
-	ld	hl, #___str_2
+	ld	hl, #___str_3
 	push	hl
 	ld	l,-12 (ix)
 	ld	h,-11 (ix)
@@ -907,22 +890,20 @@ _turno::
 	ld	hl, #(_entidad + 0x000c)
 	ld	a, -12 (ix)
 	ld	(hl), a
-;src/juego.c:150: sprintf(temp, "%-9s %c ATT",entidad[0].name,240);
+;src/juego.c:150: sprintf(temp, "%-9s ^ ATT",entidad[0].name);
 	ld	a, -8 (ix)
 	ld	-12 (ix), a
 	ld	a, -7 (ix)
 	ld	-11 (ix), a
-	ld	hl, #0x00f0
-	push	hl
 	ld	hl, #_entidad
 	push	hl
-	ld	hl, #___str_3
+	ld	hl, #___str_4
 	push	hl
 	ld	l,-12 (ix)
 	ld	h,-11 (ix)
 	push	hl
 	call	_sprintf
-	ld	hl, #8
+	ld	hl, #6
 	add	hl, sp
 	ld	sp, hl
 ;src/juego.c:151: printConsole(temp, 2, 0);
@@ -941,22 +922,20 @@ _turno::
 	ld	a, (bc)
 	add	a, #0x05
 	ld	(bc), a
-;src/juego.c:155: sprintf(temp, "%-9s %c DEF",entidad[0].name,240);
+;src/juego.c:155: sprintf(temp, "%-9s ^ DEF",entidad[0].name);
 	ld	a, -8 (ix)
 	ld	-12 (ix), a
 	ld	a, -7 (ix)
 	ld	-11 (ix), a
-	ld	hl, #0x00f0
-	push	hl
 	ld	hl, #_entidad
 	push	hl
-	ld	hl, #___str_4
+	ld	hl, #___str_5
 	push	hl
 	ld	l,-12 (ix)
 	ld	h,-11 (ix)
 	push	hl
 	call	_sprintf
-	ld	hl, #8
+	ld	hl, #6
 	add	hl, sp
 	ld	sp, hl
 ;src/juego.c:156: printConsole(temp, 2, 0);
@@ -1004,7 +983,7 @@ _turno::
 	ld	-12 (ix), a
 	ld	a, -7 (ix)
 	ld	-11 (ix), a
-	ld	hl, #___str_5
+	ld	hl, #___str_6
 	push	hl
 	ld	l,-12 (ix)
 	ld	h,-11 (ix)
@@ -1028,7 +1007,7 @@ _turno::
 	ld	-12 (ix), a
 	ld	a, -7 (ix)
 	ld	-11 (ix), a
-	ld	hl, #___str_6
+	ld	hl, #___str_7
 	push	hl
 	ld	l,-12 (ix)
 	ld	h,-11 (ix)
@@ -1062,7 +1041,7 @@ _turno::
 	ld	-12 (ix), a
 	ld	a, -7 (ix)
 	ld	-11 (ix), a
-	ld	hl, #___str_7
+	ld	hl, #___str_8
 	push	hl
 	ld	l,-12 (ix)
 	ld	h,-11 (ix)
@@ -1090,27 +1069,30 @@ _turno::
 	pop	ix
 	ret
 ___str_0:
-	.ascii "ACTION (%c/%c/D) ?"
+	.ascii "ACTION (</>/D) ?"
 	.db 0x00
 ___str_1:
-	.ascii "%-9s GOES %c"
+	.ascii "%-9s GOES <"
 	.db 0x00
 ___str_2:
-	.ascii "%-9s MAX HP"
+	.ascii "%-9s GOES >"
 	.db 0x00
 ___str_3:
-	.ascii "%-9s %c ATT"
+	.ascii "%-9s MAX HP"
 	.db 0x00
 ___str_4:
-	.ascii "%-9s %c DEF"
+	.ascii "%-9s ^ ATT"
 	.db 0x00
 ___str_5:
-	.ascii "CONGRATULATIONS!"
+	.ascii "%-9s ^ DEF"
 	.db 0x00
 ___str_6:
-	.ascii "   NEXT LEVEL   "
+	.ascii "CONGRATULATIONS!"
 	.db 0x00
 ___str_7:
+	.ascii "   NEXT LEVEL   "
+	.db 0x00
+___str_8:
 	.ascii "    GAME OVER   "
 	.db 0x00
 ;src/juego.c:192: void juego() {
@@ -1127,7 +1109,7 @@ _juego::
 ;src/juego.c:198: initPlayer();
 	call	_initPlayer
 ;src/juego.c:200: while(entidad[0].energy) {
-00112$:
+00116$:
 	ld	a, (#(_entidad + 0x000a) + 0)
 	or	a, a
 	ret	Z
@@ -1149,91 +1131,141 @@ _juego::
 	ld	a,(#_nivel + 0)
 	dec	a
 	jr	NZ,00102$
-;src/juego.c:206: cpct_drawStringM1("Chapter 1", cpctm_screenPtr(CPCT_VMEM_START, 30, 80));
+;src/juego.c:206: mydrawStringM1("Chapter 1", cpctm_screenPtr(CPCT_VMEM_START, 30, 80));
 	ld	hl, #0xc33e
-	push	hl
-	ld	hl, #___str_8
-	push	hl
-	call	_cpct_drawStringM1
-;src/juego.c:207: cpct_drawStringM1("A faraway and foreign land ...", cpctm_screenPtr(CPCT_VMEM_START, 12, 96));
-	ld	hl, #0xc3cc
 	push	hl
 	ld	hl, #___str_9
 	push	hl
-	call	_cpct_drawStringM1
+	call	_mydrawStringM1
+;src/juego.c:207: mydrawStringM1("A faraway and foreign land ...", cpctm_screenPtr(CPCT_VMEM_START, 12, 96));
+	ld	hl, #0xc3cc
+	push	hl
+	ld	hl, #___str_10
+	push	hl
+	call	_mydrawStringM1
 ;src/juego.c:208: i = 1;
 	ld	c, #0x01
 00102$:
-;src/juego.c:211: if (i) {
+;src/juego.c:210: if (nivel == 11) {
+	ld	a,(#_nivel + 0)
+	sub	a, #0x0b
+	jr	NZ,00104$
+;src/juego.c:211: mydrawStringM1("Chapter 2", cpctm_screenPtr(CPCT_VMEM_START, 30, 80));
+	ld	hl, #0xc33e
+	push	hl
+	ld	hl, #___str_11
+	push	hl
+	call	_mydrawStringM1
+;src/juego.c:212: mydrawStringM1("A hidden passage to the Castle ...", cpctm_screenPtr(CPCT_VMEM_START, 10, 96));
+	ld	hl, #0xc3ca
+	push	hl
+	ld	hl, #___str_12
+	push	hl
+	call	_mydrawStringM1
+;src/juego.c:213: i = 1;
+	ld	c, #0x01
+00104$:
+;src/juego.c:215: if (nivel == 21) {
+	ld	a,(#_nivel + 0)
+	sub	a, #0x15
+	jr	NZ,00106$
+;src/juego.c:216: mydrawStringM1("Chapter 3", cpctm_screenPtr(CPCT_VMEM_START, 30, 80));
+	ld	hl, #0xc33e
+	push	hl
+	ld	hl, #___str_13
+	push	hl
+	call	_mydrawStringM1
+;src/juego.c:217: mydrawStringM1("don Ricardo's Castle ...", cpctm_screenPtr(CPCT_VMEM_START, 15, 96));
+	ld	hl, #0xc3cf
+	push	hl
+	ld	hl, #___str_14
+	push	hl
+	call	_mydrawStringM1
+;src/juego.c:218: i = 1;
+	ld	c, #0x01
+00106$:
+;src/juego.c:221: if (i) {
 	ld	a, c
 	or	a, a
-	jr	Z,00105$
-;src/juego.c:212: for (i=0; i< 5; i++)
+	jr	Z,00109$
+;src/juego.c:222: for (i=0; i< 5; i++)
 	ld	c, #0x00
-00115$:
-;src/juego.c:213: pausa(SEGUNDO);
+00119$:
+;src/juego.c:223: pausa(SEGUNDO);
 	push	bc
 	ld	hl, #0x8000
 	push	hl
 	call	_pausa
 	pop	af
 	pop	bc
-;src/juego.c:212: for (i=0; i< 5; i++)
+;src/juego.c:222: for (i=0; i< 5; i++)
 	inc	c
 	ld	a, c
 	sub	a, #0x05
-	jr	C,00115$
-;src/juego.c:215: efecto_pliegue(PLIEGUE);
+	jr	C,00119$
+;src/juego.c:225: efecto_pliegue(PLIEGUE);
 	xor	a, a
 	push	af
 	inc	sp
 	call	_efecto_pliegue
 	inc	sp
-00105$:
-;src/juego.c:218: cursorConsola = 64;
+00109$:
+;src/juego.c:228: cursorConsola = 64;
 	ld	hl,#_cursorConsola + 0
 	ld	(hl), #0x40
-;src/juego.c:220: initNivel();
+;src/juego.c:230: initNivel();
 	call	_initNivel
-;src/juego.c:221: dibujarMarcoInterior();
+;src/juego.c:231: dibujarMarcoInterior();
 	call	_dibujarMarcoInterior
-;src/juego.c:222: dibujarEscenario();
+;src/juego.c:232: dibujarEscenario();
 	call	_dibujarEscenario
-;src/juego.c:223: printLevel();
+;src/juego.c:233: printLevel();
 	call	_printLevel
-;src/juego.c:225: efecto_pliegue(DESPLIEGUE);
+;src/juego.c:235: efecto_pliegue(DESPLIEGUE);
 	ld	a, #0x01
 	push	af
 	inc	sp
 	call	_efecto_pliegue
 	inc	sp
-;src/juego.c:226: while (turno())
-00106$:
+;src/juego.c:236: while (turno())
+00110$:
 	call	_turno
 	ld	a, l
 	or	a, a
-	jr	NZ,00106$
-;src/juego.c:229: do {
-00109$:
-;src/juego.c:230: cpct_scanKeyboard_f();
+	jr	NZ,00110$
+;src/juego.c:239: do {
+00113$:
+;src/juego.c:240: cpct_scanKeyboard_f();
 	call	_cpct_scanKeyboard_f
-;src/juego.c:231: } while (!cpct_isAnyKeyPressed_f());
+;src/juego.c:241: } while (!cpct_isAnyKeyPressed_f());
 	call	_cpct_isAnyKeyPressed_f
 	ld	a, l
 	or	a, a
-	jr	Z,00109$
-;src/juego.c:232: efecto_pliegue(PLIEGUE);
+	jr	Z,00113$
+;src/juego.c:242: efecto_pliegue(PLIEGUE);
 	xor	a, a
 	push	af
 	inc	sp
 	call	_efecto_pliegue
 	inc	sp
-	jp	00112$
-___str_8:
+	jp	00116$
+___str_9:
 	.ascii "Chapter 1"
 	.db 0x00
-___str_9:
+___str_10:
 	.ascii "A faraway and foreign land ..."
+	.db 0x00
+___str_11:
+	.ascii "Chapter 2"
+	.db 0x00
+___str_12:
+	.ascii "A hidden passage to the Castle ..."
+	.db 0x00
+___str_13:
+	.ascii "Chapter 3"
+	.db 0x00
+___str_14:
+	.ascii "don Ricardo's Castle ..."
 	.db 0x00
 	.area _CODE
 	.area _INITIALIZER

@@ -1,5 +1,5 @@
 //
-// File doc/mapas_fases/fase_03.tmx converted to csv using cpct_tmx2data [Wed Oct 30 18:08:12 2019]
+// File doc/mapas_fases/fase_03.tmx converted to csv using cpct_tmx2data [Thu Nov  7 09:49:40 2019]
 //   * Visible Layers:  1
 //   * Layer Width:     18
 //   * Layer Height:    28
@@ -7,7 +7,7 @@
 //   * Layer Bytes:     504 (18 x 28 items, 8 bits per item)
 //   * Total Bytes:     504 (504 x 1, bytes per layer times layers)
 //
-#include <types.h>
+#include <cpctelera.h>
 
 //#### Converted layer tilemaps ####
 //   Visible layers: 1

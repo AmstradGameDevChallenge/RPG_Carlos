@@ -49,7 +49,9 @@
 # Name of the project (without spaces, as it will be used as filename)
 #   and Z80 memory location where code will start in the generated binary
 PROJNAME   := agc
-Z80CODELOC := 0x4000
+# +40 para vector de interrupciones
+# +300 fuentes de caracteres propias
+Z80CODELOC := 0x0340
 
 ##
 ## Folders 

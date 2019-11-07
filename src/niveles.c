@@ -49,6 +49,51 @@ void initAbeja(TStats *entidad) {
   entidad->sprite = (u8*) &G_abeja[0];
 }
 
+void initMurcielago(TStats *entidad) {
+  strcpy(entidad->name,"Evil Bat");
+   entidad->max_energy = 60;
+   entidad->attack = 20;
+   entidad->force = 5;
+   entidad->defense = 10;
+   entidad->sprite = (u8*) &G_murcielago[0];
+}
+
+void initEsqueleto(TStats *entidad) {
+  strcpy(entidad->name,"Skeleton");
+   entidad->max_energy = 75;
+   entidad->attack = 30;
+   entidad->force = 10;
+   entidad->defense = 20;
+   entidad->sprite = (u8*) &G_esqueleto[0];
+}
+
+void initGusano(TStats *entidad) {
+  strcpy(entidad->name,"Worm");
+   entidad->max_energy = 60;
+   entidad->attack = 40;
+   entidad->force = 0;
+   entidad->defense = 5;
+   entidad->sprite = (u8*) &G_gusano[0];
+}
+
+void initSpider(TStats *entidad) {
+  strcpy(entidad->name,"Spider");
+   entidad->max_energy = 90;
+   entidad->attack = 30;
+   entidad->force = 20;
+   entidad->defense = 30;
+   entidad->sprite = (u8*) &G_spider[0];
+}
+
+void initGoblin(TStats *entidad) {
+  strcpy(entidad->name,"Goblin");
+  entidad->max_energy = 60;
+  entidad->attack = 30;
+  entidad->force = 10;
+  entidad->defense = 5;
+  entidad->sprite = (u8*) &G_goblin[0];
+}
+
 void initPlayer(){
    strcpy(entidad[0].name,"Don Mendo");
    entidad[0].max_energy = entidad[0].energy = 99;
@@ -106,6 +151,46 @@ void initNivel(){
     entidad[2].force = 10;
     entidad[2].defense = 25;
     entidad[2].sprite = (u8*) &G_arabe_boss[0];
+  }
+
+  if (nivel == 11) {
+    initMurcielago(&entidad[1]);
+  }
+  if (nivel == 12) {
+    initMurcielago(&entidad[1]);
+    initEsqueleto(&entidad[2]);
+  }
+  if (nivel == 13){
+    initEsqueleto(&entidad[1]);
+    initEsqueleto(&entidad[2]);
+  }
+  if (nivel == 14){
+    initMurcielago(&entidad[1]);
+    initGusano(&entidad[2]);
+  }
+  if (nivel == 16){
+    initEsqueleto(&entidad[1]);
+    initGusano(&entidad[2]);
+  }
+  if (nivel == 17){
+    initSpider(&entidad[1]);
+    initSpider(&entidad[2]);
+  }
+  if (nivel == 18){
+    initGoblin(&entidad[1]);
+    initGoblin(&entidad[2]);
+  }
+  if (nivel == 19){
+    initGoblin(&entidad[1]);
+    initSpider(&entidad[2]);
+  }
+  if (nivel == 20){
+    strcpy(entidad[2].name,"Boss Lvl2");
+    entidad[2].max_energy = 99;
+    entidad[2].attack = 40;
+    entidad[2].force = 10;
+    entidad[2].defense = 25;
+    entidad[2].sprite = (u8*) &G_cavern_boss[0];
   }
 
   entidad[1].pos_x = 28;  //Posición del sprite en pantalla

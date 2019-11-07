@@ -25,12 +25,12 @@
                              25 	.globl _abs
                              26 	.globl _initNivel
                              27 	.globl _initPlayer
-                             28 	.globl _sprintf
-                             29 	.globl _cpct_etm_drawTileBox2x4
-                             30 	.globl _cpct_getRandom_mxor_u8
-                             31 	.globl _cpct_getScreenPtr
-                             32 	.globl _cpct_waitVSYNC
-                             33 	.globl _cpct_drawStringM1
+                             28 	.globl _mydrawStringM1
+                             29 	.globl _sprintf
+                             30 	.globl _cpct_etm_drawTileBox2x4
+                             31 	.globl _cpct_getRandom_mxor_u8
+                             32 	.globl _cpct_getScreenPtr
+                             33 	.globl _cpct_waitVSYNC
                              34 	.globl _cpct_drawSpriteMasked
                              35 	.globl _cpct_isAnyKeyPressed_f
                              36 	.globl _cpct_isKeyPressed
@@ -311,947 +311,990 @@
    01EA                     311 00121$:
                             312 ;src/juego.c:41: cpct_scanKeyboard_f();
    01EA CDr00r00      [17]  313 	call	_cpct_scanKeyboard_f
-                            314 ;src/juego.c:42: sprintf(temp, "ACTION (%c/%c/D) ?",242,243);
+                            314 ;src/juego.c:42: sprintf(temp, "ACTION (</>/D) ?");
    01ED DD 7E F8      [19]  315 	ld	a, -8 (ix)
    01F0 DD 77 FA      [19]  316 	ld	-6 (ix), a
    01F3 DD 7E F9      [19]  317 	ld	a, -7 (ix)
    01F6 DD 77 FB      [19]  318 	ld	-5 (ix), a
-   01F9 21 F3 00      [10]  319 	ld	hl, #0x00f3
+   01F9 21r1Dr07      [10]  319 	ld	hl, #___str_0
    01FC E5            [11]  320 	push	hl
-   01FD 2E F2         [ 7]  321 	ld	l, #0xf2
-   01FF E5            [11]  322 	push	hl
-   0200 21r47r07      [10]  323 	ld	hl, #___str_0
-   0203 E5            [11]  324 	push	hl
-   0204 DD 6E FA      [19]  325 	ld	l,-6 (ix)
-   0207 DD 66 FB      [19]  326 	ld	h,-5 (ix)
-   020A E5            [11]  327 	push	hl
-   020B CDr00r00      [17]  328 	call	_sprintf
-   020E 21 08 00      [10]  329 	ld	hl, #8
-   0211 39            [11]  330 	add	hl, sp
-   0212 F9            [ 6]  331 	ld	sp, hl
-                            332 ;src/juego.c:43: if (i < 25) {
-   0213 DD 7E F3      [19]  333 	ld	a, -13 (ix)
-   0216 D6 19         [ 7]  334 	sub	a, #0x19
-   0218 30 1E         [12]  335 	jr	NC,00110$
-                            336 ;src/juego.c:44: printConsole(temp, 2, 0);
-   021A DD 7E F8      [19]  337 	ld	a, -8 (ix)
-   021D DD 77 FA      [19]  338 	ld	-6 (ix), a
-   0220 DD 7E F9      [19]  339 	ld	a, -7 (ix)
-   0223 DD 77 FB      [19]  340 	ld	-5 (ix), a
-   0226 21 02 00      [10]  341 	ld	hl, #0x0002
-   0229 E5            [11]  342 	push	hl
-   022A DD 6E FA      [19]  343 	ld	l,-6 (ix)
-   022D DD 66 FB      [19]  344 	ld	h,-5 (ix)
-   0230 E5            [11]  345 	push	hl
-   0231 CDr00r00      [17]  346 	call	_printConsole
-   0234 F1            [10]  347 	pop	af
-   0235 F1            [10]  348 	pop	af
-   0236 18 1C         [12]  349 	jr	00111$
-   0238                     350 00110$:
-                            351 ;src/juego.c:46: printConsole(temp, 0, 2);
-   0238 DD 7E F8      [19]  352 	ld	a, -8 (ix)
-   023B DD 77 FA      [19]  353 	ld	-6 (ix), a
-   023E DD 7E F9      [19]  354 	ld	a, -7 (ix)
-   0241 DD 77 FB      [19]  355 	ld	-5 (ix), a
-   0244 21 00 02      [10]  356 	ld	hl, #0x0200
-   0247 E5            [11]  357 	push	hl
-   0248 DD 6E FA      [19]  358 	ld	l,-6 (ix)
-   024B DD 66 FB      [19]  359 	ld	h,-5 (ix)
-   024E E5            [11]  360 	push	hl
-   024F CDr00r00      [17]  361 	call	_printConsole
-   0252 F1            [10]  362 	pop	af
-   0253 F1            [10]  363 	pop	af
-   0254                     364 00111$:
-                            365 ;src/juego.c:48: i++;
-   0254 DD 34 F3      [23]  366 	inc	-13 (ix)
-                            367 ;src/juego.c:49: cursorConsola -=8;
-   0257 21r00r00      [10]  368 	ld	hl, #_cursorConsola
-   025A 7E            [ 7]  369 	ld	a, (hl)
-   025B C6 F8         [ 7]  370 	add	a, #0xf8
-   025D 77            [ 7]  371 	ld	(hl), a
-                            372 ;src/juego.c:50: if (i == 50)
-   025E DD 7E F3      [19]  373 	ld	a, -13 (ix)
-   0261 D6 32         [ 7]  374 	sub	a, #0x32
-   0263 20 04         [12]  375 	jr	NZ,00122$
-                            376 ;src/juego.c:51: i=0;
-   0265 DD 36 F3 00   [19]  377 	ld	-13 (ix), #0x00
-   0269                     378 00122$:
-                            379 ;src/juego.c:53: while (!cpct_isKeyPressed(Key_O) && !cpct_isKeyPressed(Key_CursorLeft)  && !cpct_isKeyPressed(Joy0_Left) 
-   0269 21 04 04      [10]  380 	ld	hl, #0x0404
-   026C CDr00r00      [17]  381 	call	_cpct_isKeyPressed
-   026F DD 75 FA      [19]  382 	ld	-6 (ix), l
-   0272 7D            [ 4]  383 	ld	a, l
-   0273 B7            [ 4]  384 	or	a, a
-   0274 20 4A         [12]  385 	jr	NZ,00123$
-   0276 21 01 01      [10]  386 	ld	hl, #0x0101
-   0279 CDr00r00      [17]  387 	call	_cpct_isKeyPressed
-   027C DD 75 FA      [19]  388 	ld	-6 (ix), l
+   01FD DD 6E FA      [19]  321 	ld	l,-6 (ix)
+   0200 DD 66 FB      [19]  322 	ld	h,-5 (ix)
+   0203 E5            [11]  323 	push	hl
+   0204 CDr00r00      [17]  324 	call	_sprintf
+   0207 F1            [10]  325 	pop	af
+   0208 F1            [10]  326 	pop	af
+                            327 ;src/juego.c:43: if (i < 25) {
+   0209 DD 7E F3      [19]  328 	ld	a, -13 (ix)
+   020C D6 19         [ 7]  329 	sub	a, #0x19
+   020E 30 1E         [12]  330 	jr	NC,00110$
+                            331 ;src/juego.c:44: printConsole(temp, 2, 0);
+   0210 DD 7E F8      [19]  332 	ld	a, -8 (ix)
+   0213 DD 77 FA      [19]  333 	ld	-6 (ix), a
+   0216 DD 7E F9      [19]  334 	ld	a, -7 (ix)
+   0219 DD 77 FB      [19]  335 	ld	-5 (ix), a
+   021C 21 02 00      [10]  336 	ld	hl, #0x0002
+   021F E5            [11]  337 	push	hl
+   0220 DD 6E FA      [19]  338 	ld	l,-6 (ix)
+   0223 DD 66 FB      [19]  339 	ld	h,-5 (ix)
+   0226 E5            [11]  340 	push	hl
+   0227 CDr00r00      [17]  341 	call	_printConsole
+   022A F1            [10]  342 	pop	af
+   022B F1            [10]  343 	pop	af
+   022C 18 1C         [12]  344 	jr	00111$
+   022E                     345 00110$:
+                            346 ;src/juego.c:46: printConsole(temp, 0, 2);
+   022E DD 7E F8      [19]  347 	ld	a, -8 (ix)
+   0231 DD 77 FA      [19]  348 	ld	-6 (ix), a
+   0234 DD 7E F9      [19]  349 	ld	a, -7 (ix)
+   0237 DD 77 FB      [19]  350 	ld	-5 (ix), a
+   023A 21 00 02      [10]  351 	ld	hl, #0x0200
+   023D E5            [11]  352 	push	hl
+   023E DD 6E FA      [19]  353 	ld	l,-6 (ix)
+   0241 DD 66 FB      [19]  354 	ld	h,-5 (ix)
+   0244 E5            [11]  355 	push	hl
+   0245 CDr00r00      [17]  356 	call	_printConsole
+   0248 F1            [10]  357 	pop	af
+   0249 F1            [10]  358 	pop	af
+   024A                     359 00111$:
+                            360 ;src/juego.c:48: i++;
+   024A DD 34 F3      [23]  361 	inc	-13 (ix)
+                            362 ;src/juego.c:49: cursorConsola -=8;
+   024D 21r00r00      [10]  363 	ld	hl, #_cursorConsola
+   0250 7E            [ 7]  364 	ld	a, (hl)
+   0251 C6 F8         [ 7]  365 	add	a, #0xf8
+   0253 77            [ 7]  366 	ld	(hl), a
+                            367 ;src/juego.c:50: if (i == 50)
+   0254 DD 7E F3      [19]  368 	ld	a, -13 (ix)
+   0257 D6 32         [ 7]  369 	sub	a, #0x32
+   0259 20 04         [12]  370 	jr	NZ,00122$
+                            371 ;src/juego.c:51: i=0;
+   025B DD 36 F3 00   [19]  372 	ld	-13 (ix), #0x00
+   025F                     373 00122$:
+                            374 ;src/juego.c:53: while (!cpct_isKeyPressed(Key_O) && !cpct_isKeyPressed(Key_CursorLeft)  && !cpct_isKeyPressed(Joy0_Left) 
+   025F 21 04 04      [10]  375 	ld	hl, #0x0404
+   0262 CDr00r00      [17]  376 	call	_cpct_isKeyPressed
+   0265 DD 75 FA      [19]  377 	ld	-6 (ix), l
+   0268 7D            [ 4]  378 	ld	a, l
+   0269 B7            [ 4]  379 	or	a, a
+   026A 20 4A         [12]  380 	jr	NZ,00123$
+   026C 21 01 01      [10]  381 	ld	hl, #0x0101
+   026F CDr00r00      [17]  382 	call	_cpct_isKeyPressed
+   0272 DD 75 FA      [19]  383 	ld	-6 (ix), l
+   0275 7D            [ 4]  384 	ld	a, l
+   0276 B7            [ 4]  385 	or	a, a
+   0277 20 3D         [12]  386 	jr	NZ,00123$
+   0279 21 09 04      [10]  387 	ld	hl, #0x0409
+   027C CDr00r00      [17]  388 	call	_cpct_isKeyPressed
    027F 7D            [ 4]  389 	ld	a, l
    0280 B7            [ 4]  390 	or	a, a
-   0281 20 3D         [12]  391 	jr	NZ,00123$
-   0283 21 09 04      [10]  392 	ld	hl, #0x0409
-   0286 CDr00r00      [17]  393 	call	_cpct_isKeyPressed
-   0289 7D            [ 4]  394 	ld	a, l
-   028A B7            [ 4]  395 	or	a, a
-   028B 20 33         [12]  396 	jr	NZ,00123$
-                            397 ;src/juego.c:54: && !cpct_isKeyPressed(Key_P) && !cpct_isKeyPressed(Key_CursorRight) && !cpct_isKeyPressed(Joy0_Right) 
-   028D 21 03 08      [10]  398 	ld	hl, #0x0803
+   0281 20 33         [12]  391 	jr	NZ,00123$
+                            392 ;src/juego.c:54: && !cpct_isKeyPressed(Key_P) && !cpct_isKeyPressed(Key_CursorRight) && !cpct_isKeyPressed(Joy0_Right) 
+   0283 21 03 08      [10]  393 	ld	hl, #0x0803
+   0286 CDr00r00      [17]  394 	call	_cpct_isKeyPressed
+   0289 7D            [ 4]  395 	ld	a, l
+   028A B7            [ 4]  396 	or	a, a
+   028B 20 29         [12]  397 	jr	NZ,00123$
+   028D 21 00 02      [10]  398 	ld	hl, #0x0200
    0290 CDr00r00      [17]  399 	call	_cpct_isKeyPressed
    0293 7D            [ 4]  400 	ld	a, l
    0294 B7            [ 4]  401 	or	a, a
-   0295 20 29         [12]  402 	jr	NZ,00123$
-   0297 21 00 02      [10]  403 	ld	hl, #0x0200
+   0295 20 1F         [12]  402 	jr	NZ,00123$
+   0297 21 09 08      [10]  403 	ld	hl, #0x0809
    029A CDr00r00      [17]  404 	call	_cpct_isKeyPressed
    029D 7D            [ 4]  405 	ld	a, l
    029E B7            [ 4]  406 	or	a, a
-   029F 20 1F         [12]  407 	jr	NZ,00123$
-   02A1 21 09 08      [10]  408 	ld	hl, #0x0809
-   02A4 CDr00r00      [17]  409 	call	_cpct_isKeyPressed
-   02A7 7D            [ 4]  410 	ld	a, l
-   02A8 B7            [ 4]  411 	or	a, a
-   02A9 20 15         [12]  412 	jr	NZ,00123$
-                            413 ;src/juego.c:55: && !cpct_isKeyPressed(Key_D) && !cpct_isKeyPressed(Joy0_Fire1));
-   02AB 21 07 20      [10]  414 	ld	hl, #0x2007
+   029F 20 15         [12]  407 	jr	NZ,00123$
+                            408 ;src/juego.c:55: && !cpct_isKeyPressed(Key_D) && !cpct_isKeyPressed(Joy0_Fire1));
+   02A1 21 07 20      [10]  409 	ld	hl, #0x2007
+   02A4 CDr00r00      [17]  410 	call	_cpct_isKeyPressed
+   02A7 7D            [ 4]  411 	ld	a, l
+   02A8 B7            [ 4]  412 	or	a, a
+   02A9 20 0B         [12]  413 	jr	NZ,00123$
+   02AB 21 09 10      [10]  414 	ld	hl, #0x1009
    02AE CDr00r00      [17]  415 	call	_cpct_isKeyPressed
    02B1 7D            [ 4]  416 	ld	a, l
    02B2 B7            [ 4]  417 	or	a, a
-   02B3 20 0B         [12]  418 	jr	NZ,00123$
-   02B5 21 09 10      [10]  419 	ld	hl, #0x1009
-   02B8 CDr00r00      [17]  420 	call	_cpct_isKeyPressed
-   02BB 7D            [ 4]  421 	ld	a, l
-   02BC B7            [ 4]  422 	or	a, a
-   02BD CArEAr01      [10]  423 	jp	Z, 00121$
-   02C0                     424 00123$:
-                            425 ;src/juego.c:57: nueva_pos = 0;
-   02C0 DD 36 CE 00   [19]  426 	ld	-50 (ix), #0x00
-                            427 ;src/juego.c:60: if (cpct_isKeyPressed(Key_O) || cpct_isKeyPressed(Key_CursorLeft) || cpct_isKeyPressed(Joy0_Left)) {
-   02C4 21 04 04      [10]  428 	ld	hl, #0x0404
-   02C7 CDr00r00      [17]  429 	call	_cpct_isKeyPressed
-                            430 ;src/juego.c:64: nueva_pos = entidad[0].pos_x - 4;
-                            431 ;src/juego.c:60: if (cpct_isKeyPressed(Key_O) || cpct_isKeyPressed(Key_CursorLeft) || cpct_isKeyPressed(Joy0_Left)) {
+   02B3 CArEAr01      [10]  418 	jp	Z, 00121$
+   02B6                     419 00123$:
+                            420 ;src/juego.c:57: nueva_pos = 0;
+   02B6 DD 36 CE 00   [19]  421 	ld	-50 (ix), #0x00
+                            422 ;src/juego.c:60: if (cpct_isKeyPressed(Key_O) || cpct_isKeyPressed(Key_CursorLeft) || cpct_isKeyPressed(Joy0_Left)) {
+   02BA 21 04 04      [10]  423 	ld	hl, #0x0404
+   02BD CDr00r00      [17]  424 	call	_cpct_isKeyPressed
+                            425 ;src/juego.c:64: nueva_pos = entidad[0].pos_x - 4;
+                            426 ;src/juego.c:60: if (cpct_isKeyPressed(Key_O) || cpct_isKeyPressed(Key_CursorLeft) || cpct_isKeyPressed(Joy0_Left)) {
+   02C0 7D            [ 4]  427 	ld	a, l
+   02C1 B7            [ 4]  428 	or	a, a
+   02C2 20 14         [12]  429 	jr	NZ,00124$
+   02C4 21 01 01      [10]  430 	ld	hl, #0x0101
+   02C7 CDr00r00      [17]  431 	call	_cpct_isKeyPressed
    02CA 7D            [ 4]  432 	ld	a, l
    02CB B7            [ 4]  433 	or	a, a
-   02CC 20 14         [12]  434 	jr	NZ,00124$
-   02CE 21 01 01      [10]  435 	ld	hl, #0x0101
+   02CC 20 0A         [12]  434 	jr	NZ,00124$
+   02CE 21 09 04      [10]  435 	ld	hl, #0x0409
    02D1 CDr00r00      [17]  436 	call	_cpct_isKeyPressed
    02D4 7D            [ 4]  437 	ld	a, l
    02D5 B7            [ 4]  438 	or	a, a
-   02D6 20 0A         [12]  439 	jr	NZ,00124$
-   02D8 21 09 04      [10]  440 	ld	hl, #0x0409
-   02DB CDr00r00      [17]  441 	call	_cpct_isKeyPressed
-   02DE 7D            [ 4]  442 	ld	a, l
-   02DF B7            [ 4]  443 	or	a, a
-   02E0 28 33         [12]  444 	jr	Z,00125$
-   02E2                     445 00124$:
-                            446 ;src/juego.c:61: sprintf(temp, "%-9s GOES %c",entidad[0].name,242);
-   02E2 11r5Ar07      [10]  447 	ld	de, #___str_1+0
-   02E5 DD 4E F8      [19]  448 	ld	c,-8 (ix)
-   02E8 DD 46 F9      [19]  449 	ld	b,-7 (ix)
-   02EB 21 F2 00      [10]  450 	ld	hl, #0x00f2
-   02EE E5            [11]  451 	push	hl
-   02EF 21r00r00      [10]  452 	ld	hl, #_entidad
-   02F2 E5            [11]  453 	push	hl
-   02F3 D5            [11]  454 	push	de
-   02F4 C5            [11]  455 	push	bc
-   02F5 CDr00r00      [17]  456 	call	_sprintf
-   02F8 21 08 00      [10]  457 	ld	hl, #8
-   02FB 39            [11]  458 	add	hl, sp
-   02FC F9            [ 6]  459 	ld	sp, hl
-                            460 ;src/juego.c:62: printConsole(temp, 2, 0);
-   02FD DD 4E F8      [19]  461 	ld	c,-8 (ix)
-   0300 DD 46 F9      [19]  462 	ld	b,-7 (ix)
-   0303 21 02 00      [10]  463 	ld	hl, #0x0002
-   0306 E5            [11]  464 	push	hl
-   0307 C5            [11]  465 	push	bc
-   0308 CDr00r00      [17]  466 	call	_printConsole
-   030B F1            [10]  467 	pop	af
-   030C F1            [10]  468 	pop	af
-                            469 ;src/juego.c:64: nueva_pos = entidad[0].pos_x - 4;
-   030D 3Ar0Fr00      [13]  470 	ld	a, (#(_entidad + 0x000f) + 0)
-   0310 C6 FC         [ 7]  471 	add	a, #0xfc
-   0312 DD 77 CE      [19]  472 	ld	-50 (ix), a
-   0315                     473 00125$:
-                            474 ;src/juego.c:68: if (cpct_isKeyPressed(Key_P) || cpct_isKeyPressed(Key_CursorRight) || cpct_isKeyPressed(Joy0_Right)) {
-   0315 21 03 08      [10]  475 	ld	hl, #0x0803
-   0318 CDr00r00      [17]  476 	call	_cpct_isKeyPressed
-                            477 ;src/juego.c:74: if (nueva_pos == entidad[1].pos_x && entidad[1].energy)
-                            478 ;src/juego.c:77: if (nueva_pos == entidad[2].pos_x && entidad[2].energy)
-                            479 ;src/juego.c:68: if (cpct_isKeyPressed(Key_P) || cpct_isKeyPressed(Key_CursorRight) || cpct_isKeyPressed(Joy0_Right)) {
-   031B 7D            [ 4]  480 	ld	a, l
-   031C B7            [ 4]  481 	or	a, a
-   031D 20 14         [12]  482 	jr	NZ,00134$
-   031F 21 00 02      [10]  483 	ld	hl, #0x0200
-   0322 CDr00r00      [17]  484 	call	_cpct_isKeyPressed
-   0325 7D            [ 4]  485 	ld	a, l
-   0326 B7            [ 4]  486 	or	a, a
-   0327 20 0A         [12]  487 	jr	NZ,00134$
-   0329 21 09 08      [10]  488 	ld	hl, #0x0809
-   032C CDr00r00      [17]  489 	call	_cpct_isKeyPressed
-   032F 7D            [ 4]  490 	ld	a, l
-   0330 B7            [ 4]  491 	or	a, a
-   0331 28 6E         [12]  492 	jr	Z,00135$
-   0333                     493 00134$:
-                            494 ;src/juego.c:69: sprintf(temp, "%-9s GOES %c",entidad[0].name,243);
-   0333 11r5Ar07      [10]  495 	ld	de, #___str_1+0
-   0336 DD 4E F8      [19]  496 	ld	c,-8 (ix)
-   0339 DD 46 F9      [19]  497 	ld	b,-7 (ix)
-   033C 21 F3 00      [10]  498 	ld	hl, #0x00f3
-   033F E5            [11]  499 	push	hl
-   0340 21r00r00      [10]  500 	ld	hl, #_entidad
-   0343 E5            [11]  501 	push	hl
-   0344 D5            [11]  502 	push	de
-   0345 C5            [11]  503 	push	bc
-   0346 CDr00r00      [17]  504 	call	_sprintf
-   0349 21 08 00      [10]  505 	ld	hl, #8
-   034C 39            [11]  506 	add	hl, sp
-   034D F9            [ 6]  507 	ld	sp, hl
-                            508 ;src/juego.c:70: printConsole(temp, 2 ,0);
-   034E DD 4E F8      [19]  509 	ld	c,-8 (ix)
-   0351 DD 46 F9      [19]  510 	ld	b,-7 (ix)
-   0354 21 02 00      [10]  511 	ld	hl, #0x0002
-   0357 E5            [11]  512 	push	hl
-   0358 C5            [11]  513 	push	bc
-   0359 CDr00r00      [17]  514 	call	_printConsole
-   035C F1            [10]  515 	pop	af
-   035D F1            [10]  516 	pop	af
-                            517 ;src/juego.c:72: nueva_pos = entidad[0].pos_x + 4;
-   035E 3Ar0Fr00      [13]  518 	ld	a, (#(_entidad + 0x000f) + 0)
-   0361 C6 04         [ 7]  519 	add	a, #0x04
-   0363 DD 77 CE      [19]  520 	ld	-50 (ix), a
-                            521 ;src/juego.c:74: if (nueva_pos == entidad[1].pos_x && entidad[1].energy)
-   0366 21r23r00      [10]  522 	ld	hl, #(_entidad + 0x0023) + 0
-   0369 DD 7E CE      [19]  523 	ld	a,-50 (ix)
-   036C 96            [ 7]  524 	sub	a,(hl)
-   036D 20 16         [12]  525 	jr	NZ,00129$
-   036F 3Ar1Er00      [13]  526 	ld	a,(#(_entidad + 0x001e) + 0)
-   0372 DD 77 FA      [19]  527 	ld	-6 (ix), a
-   0375 B7            [ 4]  528 	or	a, a
-   0376 28 0D         [12]  529 	jr	Z,00129$
-                            530 ;src/juego.c:75: atacar(&entidad[0], &entidad[1]);
-   0378 21r14r00      [10]  531 	ld	hl, #(_entidad + 0x0014)
-   037B E5            [11]  532 	push	hl
-   037C 21r00r00      [10]  533 	ld	hl, #_entidad
-   037F E5            [11]  534 	push	hl
-   0380 CDr00r00      [17]  535 	call	_atacar
-   0383 F1            [10]  536 	pop	af
-   0384 F1            [10]  537 	pop	af
-   0385                     538 00129$:
-                            539 ;src/juego.c:77: if (nueva_pos == entidad[2].pos_x && entidad[2].energy)
-   0385 21r37r00      [10]  540 	ld	hl, #(_entidad + 0x0037) + 0
-   0388 DD 7E CE      [19]  541 	ld	a,-50 (ix)
-   038B 96            [ 7]  542 	sub	a,(hl)
-   038C 20 13         [12]  543 	jr	NZ,00135$
-   038E 3Ar32r00      [13]  544 	ld	a, (#(_entidad + 0x0032) + 0)
-   0391 B7            [ 4]  545 	or	a, a
-   0392 28 0D         [12]  546 	jr	Z,00135$
-                            547 ;src/juego.c:78: atacar(&entidad[0], &entidad[2]);
-   0394 21r28r00      [10]  548 	ld	hl, #(_entidad + 0x0028)
-   0397 E5            [11]  549 	push	hl
-   0398 21r00r00      [10]  550 	ld	hl, #_entidad
-   039B E5            [11]  551 	push	hl
-   039C CDr00r00      [17]  552 	call	_atacar
-   039F F1            [10]  553 	pop	af
-   03A0 F1            [10]  554 	pop	af
-   03A1                     555 00135$:
-                            556 ;src/juego.c:83: if (cpct_isKeyPressed(Key_D) || cpct_isKeyPressed(Joy0_Fire1)) {
-   03A1 21 07 20      [10]  557 	ld	hl, #0x2007
-   03A4 CDr00r00      [17]  558 	call	_cpct_isKeyPressed
-   03A7 7D            [ 4]  559 	ld	a, l
-   03A8 B7            [ 4]  560 	or	a, a
-   03A9 20 0A         [12]  561 	jr	NZ,00138$
-   03AB 21 09 10      [10]  562 	ld	hl, #0x1009
-   03AE CDr00r00      [17]  563 	call	_cpct_isKeyPressed
-   03B1 7D            [ 4]  564 	ld	a, l
-   03B2 B7            [ 4]  565 	or	a, a
-   03B3 28 08         [12]  566 	jr	Z,00139$
-   03B5                     567 00138$:
-                            568 ;src/juego.c:84: defender(&entidad[0]);
-   03B5 21r00r00      [10]  569 	ld	hl, #_entidad
-   03B8 E5            [11]  570 	push	hl
-   03B9 CDr00r00      [17]  571 	call	_defender
-   03BC F1            [10]  572 	pop	af
-   03BD                     573 00139$:
-                            574 ;src/juego.c:90: && nueva_pos < 37 
-   03BD 3E 03         [ 7]  575 	ld	a, #0x03
-   03BF DD 96 CE      [19]  576 	sub	a, -50 (ix)
-   03C2 30 2C         [12]  577 	jr	NC,00243$
-                            578 ;src/juego.c:91: && (!entidad[1].energy || nueva_pos != entidad[1].pos_x)
-   03C4 DD 7E CE      [19]  579 	ld	a, -50 (ix)
-   03C7 D6 25         [ 7]  580 	sub	a, #0x25
-   03C9 30 25         [12]  581 	jr	NC,00243$
-   03CB 3Ar1Er00      [13]  582 	ld	a, (#(_entidad + 0x001e) + 0)
-   03CE B7            [ 4]  583 	or	a, a
-   03CF 28 09         [12]  584 	jr	Z,00147$
-   03D1 21r23r00      [10]  585 	ld	hl, #(_entidad + 0x0023) + 0
-   03D4 DD 7E CE      [19]  586 	ld	a,-50 (ix)
-   03D7 96            [ 7]  587 	sub	a,(hl)
-   03D8 28 16         [12]  588 	jr	Z,00243$
-   03DA                     589 00147$:
-                            590 ;src/juego.c:92: && (!entidad[2].energy || nueva_pos != entidad[2].pos_x)
-   03DA 3Ar32r00      [13]  591 	ld	a, (#(_entidad + 0x0032) + 0)
-   03DD B7            [ 4]  592 	or	a, a
-   03DE 28 09         [12]  593 	jr	Z,00141$
-   03E0 21r37r00      [10]  594 	ld	hl, #(_entidad + 0x0037) + 0
-   03E3 DD 7E CE      [19]  595 	ld	a,-50 (ix)
-   03E6 96            [ 7]  596 	sub	a,(hl)
-   03E7 28 07         [12]  597 	jr	Z,00243$
-   03E9                     598 00141$:
-                            599 ;src/juego.c:94: entidad[0].pos_x = nueva_pos;
-   03E9 21r0Fr00      [10]  600 	ld	hl, #(_entidad + 0x000f)
-   03EC DD 7E CE      [19]  601 	ld	a, -50 (ix)
-   03EF 77            [ 7]  602 	ld	(hl), a
-                            603 ;src/juego.c:98: for (i = 1; i < 3; i++) {
-   03F0                     604 00243$:
-   03F0 DD 7E F8      [19]  605 	ld	a, -8 (ix)
-   03F3 DD 77 FA      [19]  606 	ld	-6 (ix), a
-   03F6 DD 7E F9      [19]  607 	ld	a, -7 (ix)
-   03F9 DD 77 FB      [19]  608 	ld	-5 (ix), a
-   03FC DD 7E F8      [19]  609 	ld	a, -8 (ix)
-   03FF DD 77 FC      [19]  610 	ld	-4 (ix), a
-   0402 DD 7E F9      [19]  611 	ld	a, -7 (ix)
-   0405 DD 77 FD      [19]  612 	ld	-3 (ix), a
-   0408 DD 7E F8      [19]  613 	ld	a, -8 (ix)
-   040B DD 77 FE      [19]  614 	ld	-2 (ix), a
-   040E DD 7E F9      [19]  615 	ld	a, -7 (ix)
-   0411 DD 77 FF      [19]  616 	ld	-1 (ix), a
-   0414 DD 7E F8      [19]  617 	ld	a, -8 (ix)
-   0417 DD 77 F6      [19]  618 	ld	-10 (ix), a
-   041A DD 7E F9      [19]  619 	ld	a, -7 (ix)
-   041D DD 77 F7      [19]  620 	ld	-9 (ix), a
-   0420 DD 36 F3 01   [19]  621 	ld	-13 (ix), #0x01
-   0424                     622 00198$:
-                            623 ;src/juego.c:99: if (entidad[i].energy) {
-   0424 DD 4E F3      [19]  624 	ld	c,-13 (ix)
-   0427 06 00         [ 7]  625 	ld	b,#0x00
-   0429 69            [ 4]  626 	ld	l, c
-   042A 60            [ 4]  627 	ld	h, b
-   042B 29            [11]  628 	add	hl, hl
-   042C 29            [11]  629 	add	hl, hl
-   042D 09            [11]  630 	add	hl, bc
-   042E 29            [11]  631 	add	hl, hl
-   042F 29            [11]  632 	add	hl, hl
-   0430 DD 75 F4      [19]  633 	ld	-12 (ix), l
-   0433 DD 74 F5      [19]  634 	ld	-11 (ix), h
-   0436 DD 7E F4      [19]  635 	ld	a, -12 (ix)
-   0439 C6r00         [ 7]  636 	add	a, #<(_entidad)
-   043B DD 77 F4      [19]  637 	ld	-12 (ix), a
-   043E DD 7E F5      [19]  638 	ld	a, -11 (ix)
-   0441 CEs00         [ 7]  639 	adc	a, #>(_entidad)
-   0443 DD 77 F5      [19]  640 	ld	-11 (ix), a
-   0446 DD 6E F4      [19]  641 	ld	l,-12 (ix)
-   0449 DD 66 F5      [19]  642 	ld	h,-11 (ix)
-   044C 11 0A 00      [10]  643 	ld	de, #0x000a
-   044F 19            [11]  644 	add	hl, de
-   0450 7E            [ 7]  645 	ld	a, (hl)
-   0451 B7            [ 4]  646 	or	a, a
-   0452 CAr71r05      [10]  647 	jp	Z, 00199$
-                            648 ;src/juego.c:100: if (abs(entidad[i].pos_x - entidad[0].pos_x) == 4) //Si está en casilla contigua, atacar
-   0455 DD 7E F4      [19]  649 	ld	a, -12 (ix)
-   0458 C6 0F         [ 7]  650 	add	a, #0x0f
-   045A 4F            [ 4]  651 	ld	c, a
-   045B DD 7E F5      [19]  652 	ld	a, -11 (ix)
-   045E CE 00         [ 7]  653 	adc	a, #0x00
-   0460 47            [ 4]  654 	ld	b, a
-   0461 0A            [ 7]  655 	ld	a, (bc)
-   0462 5F            [ 4]  656 	ld	e, a
-   0463 21r0Fr00      [10]  657 	ld	hl, #(_entidad + 0x000f) + 0
-   0466 56            [ 7]  658 	ld	d, (hl)
-   0467 7B            [ 4]  659 	ld	a, e
-   0468 92            [ 4]  660 	sub	a, d
-   0469 57            [ 4]  661 	ld	d, a
-   046A C5            [11]  662 	push	bc
-   046B D5            [11]  663 	push	de
-   046C 33            [ 6]  664 	inc	sp
-   046D CDr00r00      [17]  665 	call	_abs
-   0470 33            [ 6]  666 	inc	sp
-   0471 C1            [10]  667 	pop	bc
-   0472 7D            [ 4]  668 	ld	a, l
-   0473 D6 04         [ 7]  669 	sub	a, #0x04
-   0475 20 15         [12]  670 	jr	NZ,00155$
-                            671 ;src/juego.c:101: atacar(&entidad[i], &entidad[0]);
-   0477 11r00r00      [10]  672 	ld	de, #_entidad
-   047A DD 6E F4      [19]  673 	ld	l,-12 (ix)
-   047D DD 66 F5      [19]  674 	ld	h,-11 (ix)
-   0480 C5            [11]  675 	push	bc
-   0481 D5            [11]  676 	push	de
-   0482 E5            [11]  677 	push	hl
-   0483 CDr00r00      [17]  678 	call	_atacar
-   0486 F1            [10]  679 	pop	af
-   0487 F1            [10]  680 	pop	af
-   0488 C1            [10]  681 	pop	bc
-   0489 C3r2Fr05      [10]  682 	jp	00240$
-   048C                     683 00155$:
-                            684 ;src/juego.c:103: enemy_mov = cpct_rand()%3; //33% de moverse a izquierda, derecha o curarse
-   048C C5            [11]  685 	push	bc
-   048D CDr00r00      [17]  686 	call	_cpct_getRandom_mxor_u8
-   0490 55            [ 4]  687 	ld	d, l
-   0491 3E 03         [ 7]  688 	ld	a, #0x03
-   0493 F5            [11]  689 	push	af
-   0494 33            [ 6]  690 	inc	sp
-   0495 D5            [11]  691 	push	de
-   0496 33            [ 6]  692 	inc	sp
-   0497 CDr00r00      [17]  693 	call	__moduchar
-   049A F1            [10]  694 	pop	af
-   049B 5D            [ 4]  695 	ld	e, l
-   049C C1            [10]  696 	pop	bc
-                            697 ;src/juego.c:104: if (enemy_mov == 1) {
-   049D 7B            [ 4]  698 	ld	a, e
-   049E 3D            [ 4]  699 	dec	a
-   049F 20 3E         [12]  700 	jr	NZ,00152$
-                            701 ;src/juego.c:105: sprintf(temp, "%-9s GOES %c",entidad[i].name,242);
-   04A1 DD 5E F4      [19]  702 	ld	e,-12 (ix)
-   04A4 DD 56 F5      [19]  703 	ld	d,-11 (ix)
-   04A7 D5            [11]  704 	push	de
-   04A8 FD E1         [14]  705 	pop	iy
-   04AA DD 5E FE      [19]  706 	ld	e,-2 (ix)
-   04AD DD 56 FF      [19]  707 	ld	d,-1 (ix)
-   04B0 C5            [11]  708 	push	bc
-   04B1 21 F2 00      [10]  709 	ld	hl, #0x00f2
-   04B4 E5            [11]  710 	push	hl
-   04B5 FD E5         [15]  711 	push	iy
-   04B7 21r5Ar07      [10]  712 	ld	hl, #___str_1
-   04BA E5            [11]  713 	push	hl
-   04BB D5            [11]  714 	push	de
-   04BC CDr00r00      [17]  715 	call	_sprintf
-   04BF 21 08 00      [10]  716 	ld	hl, #8
-   04C2 39            [11]  717 	add	hl, sp
-   04C3 F9            [ 6]  718 	ld	sp, hl
-   04C4 C1            [10]  719 	pop	bc
-                            720 ;src/juego.c:106: printConsole(temp, 0, 2);
-   04C5 DD 5E F6      [19]  721 	ld	e,-10 (ix)
-   04C8 DD 56 F7      [19]  722 	ld	d,-9 (ix)
-   04CB C5            [11]  723 	push	bc
-   04CC 21 00 02      [10]  724 	ld	hl, #0x0200
-   04CF E5            [11]  725 	push	hl
-   04D0 D5            [11]  726 	push	de
-   04D1 CDr00r00      [17]  727 	call	_printConsole
-   04D4 F1            [10]  728 	pop	af
-   04D5 F1            [10]  729 	pop	af
-   04D6 C1            [10]  730 	pop	bc
-                            731 ;src/juego.c:108: nueva_pos = entidad[i].pos_x - 4;
-   04D7 0A            [ 7]  732 	ld	a, (bc)
-   04D8 C6 FC         [ 7]  733 	add	a, #0xfc
-   04DA DD 77 CE      [19]  734 	ld	-50 (ix), a
-   04DD 18 50         [12]  735 	jr	00240$
-   04DF                     736 00152$:
-                            737 ;src/juego.c:109: } else if (enemy_mov == 2) {
-   04DF 7B            [ 4]  738 	ld	a, e
-   04E0 D6 02         [ 7]  739 	sub	a, #0x02
-   04E2 20 3E         [12]  740 	jr	NZ,00149$
-                            741 ;src/juego.c:110: sprintf(temp, "%-9s GOES %c",entidad[i].name,243);
-   04E4 DD 5E F4      [19]  742 	ld	e,-12 (ix)
-   04E7 DD 56 F5      [19]  743 	ld	d,-11 (ix)
-   04EA D5            [11]  744 	push	de
-   04EB FD E1         [14]  745 	pop	iy
-   04ED DD 5E FA      [19]  746 	ld	e,-6 (ix)
-   04F0 DD 56 FB      [19]  747 	ld	d,-5 (ix)
-   04F3 C5            [11]  748 	push	bc
-   04F4 21 F3 00      [10]  749 	ld	hl, #0x00f3
-   04F7 E5            [11]  750 	push	hl
-   04F8 FD E5         [15]  751 	push	iy
-   04FA 21r5Ar07      [10]  752 	ld	hl, #___str_1
-   04FD E5            [11]  753 	push	hl
-   04FE D5            [11]  754 	push	de
-   04FF CDr00r00      [17]  755 	call	_sprintf
-   0502 21 08 00      [10]  756 	ld	hl, #8
-   0505 39            [11]  757 	add	hl, sp
-   0506 F9            [ 6]  758 	ld	sp, hl
-   0507 C1            [10]  759 	pop	bc
-                            760 ;src/juego.c:111: printConsole(temp, 0, 2);
-   0508 DD 5E FC      [19]  761 	ld	e,-4 (ix)
-   050B DD 56 FD      [19]  762 	ld	d,-3 (ix)
-   050E C5            [11]  763 	push	bc
-   050F 21 00 02      [10]  764 	ld	hl, #0x0200
-   0512 E5            [11]  765 	push	hl
-   0513 D5            [11]  766 	push	de
-   0514 CDr00r00      [17]  767 	call	_printConsole
-   0517 F1            [10]  768 	pop	af
-   0518 F1            [10]  769 	pop	af
-   0519 C1            [10]  770 	pop	bc
-                            771 ;src/juego.c:113: nueva_pos = entidad[i].pos_x + 4;
-   051A 0A            [ 7]  772 	ld	a, (bc)
-   051B C6 04         [ 7]  773 	add	a, #0x04
-   051D DD 77 CE      [19]  774 	ld	-50 (ix), a
-   0520 18 0D         [12]  775 	jr	00240$
-   0522                     776 00149$:
-                            777 ;src/juego.c:115: defender(&entidad[i]);
-   0522 DD 5E F4      [19]  778 	ld	e,-12 (ix)
-   0525 DD 56 F5      [19]  779 	ld	d,-11 (ix)
-   0528 C5            [11]  780 	push	bc
-   0529 D5            [11]  781 	push	de
-   052A CDr00r00      [17]  782 	call	_defender
-   052D F1            [10]  783 	pop	af
-   052E C1            [10]  784 	pop	bc
-                            785 ;src/juego.c:119: for (j = 0; j < 3; j++) {
-   052F                     786 00240$:
-   052F 1E 00         [ 7]  787 	ld	e, #0x00
-   0531                     788 00196$:
-                            789 ;src/juego.c:120: if (i!=j) {
-   0531 DD 7E F3      [19]  790 	ld	a, -13 (ix)
-   0534 93            [ 4]  791 	sub	a, e
-   0535 28 22         [12]  792 	jr	Z,00197$
-                            793 ;src/juego.c:121: if (entidad[j].pos_x == nueva_pos) {
-   0537 D5            [11]  794 	push	de
-   0538 16 00         [ 7]  795 	ld	d,#0x00
-   053A 6B            [ 4]  796 	ld	l, e
-   053B 62            [ 4]  797 	ld	h, d
-   053C 29            [11]  798 	add	hl, hl
-   053D 29            [11]  799 	add	hl, hl
-   053E 19            [11]  800 	add	hl, de
-   053F 29            [11]  801 	add	hl, hl
-   0540 29            [11]  802 	add	hl, hl
-   0541 D1            [10]  803 	pop	de
-   0542 C5            [11]  804 	push	bc
-   0543 01r00r00      [10]  805 	ld	bc, #_entidad
-   0546 09            [11]  806 	add	hl, bc
-   0547 01 0F 00      [10]  807 	ld	bc, #0x000f
-   054A 09            [11]  808 	add	hl, bc
-   054B C1            [10]  809 	pop	bc
-   054C 56            [ 7]  810 	ld	d, (hl)
-   054D DD 7E CE      [19]  811 	ld	a, -50 (ix)
-   0550 92            [ 4]  812 	sub	a, d
-   0551 20 06         [12]  813 	jr	NZ,00197$
-                            814 ;src/juego.c:122: nueva_pos = 0;
-   0553 DD 36 CE 00   [19]  815 	ld	-50 (ix), #0x00
-                            816 ;src/juego.c:123: break;
-   0557 18 06         [12]  817 	jr	00161$
-   0559                     818 00197$:
-                            819 ;src/juego.c:119: for (j = 0; j < 3; j++) {
-   0559 1C            [ 4]  820 	inc	e
-   055A 7B            [ 4]  821 	ld	a, e
-   055B D6 03         [ 7]  822 	sub	a, #0x03
-   055D 38 D2         [12]  823 	jr	C,00196$
-   055F                     824 00161$:
-                            825 ;src/juego.c:129: if (nueva_pos > 3 && nueva_pos < 37)
-   055F 3E 03         [ 7]  826 	ld	a, #0x03
-   0561 DD 96 CE      [19]  827 	sub	a, -50 (ix)
-   0564 30 0B         [12]  828 	jr	NC,00199$
-   0566 DD 7E CE      [19]  829 	ld	a, -50 (ix)
-   0569 D6 25         [ 7]  830 	sub	a, #0x25
-   056B 30 04         [12]  831 	jr	NC,00199$
-                            832 ;src/juego.c:130: entidad[i].pos_x = nueva_pos; 
-   056D DD 7E CE      [19]  833 	ld	a, -50 (ix)
-   0570 02            [ 7]  834 	ld	(bc), a
-   0571                     835 00199$:
-                            836 ;src/juego.c:98: for (i = 1; i < 3; i++) {
-   0571 DD 34 F3      [23]  837 	inc	-13 (ix)
-   0574 DD 7E F3      [19]  838 	ld	a, -13 (ix)
-   0577 D6 03         [ 7]  839 	sub	a, #0x03
-   0579 DAr24r04      [10]  840 	jp	C, 00198$
-                            841 ;src/juego.c:134: pausa(SEGUNDO);
-   057C 21 00 80      [10]  842 	ld	hl, #0x8000
-   057F E5            [11]  843 	push	hl
-   0580 CDr00r00      [17]  844 	call	_pausa
-   0583 F1            [10]  845 	pop	af
-                            846 ;src/juego.c:135: pausaTecladoLibre();
-   0584 CDr00r00      [17]  847 	call	_pausaTecladoLibre
-                            848 ;src/juego.c:144: entidad[0].energy = entidad[0].max_energy;
-                            849 ;src/juego.c:139: if (nivel == 5 || nivel == 15 || nivel == 25) {
-   0587 FD 21r00r00   [14]  850 	ld	iy, #_nivel
-   058B FD 7E 00      [19]  851 	ld	a, 0 (iy)
-   058E D6 05         [ 7]  852 	sub	a, #0x05
-   0590 28 0F         [12]  853 	jr	Z,00179$
-   0592 FD 7E 00      [19]  854 	ld	a, 0 (iy)
-   0595 D6 0F         [ 7]  855 	sub	a, #0x0f
-   0597 28 08         [12]  856 	jr	Z,00179$
-   0599 FD 7E 00      [19]  857 	ld	a, 0 (iy)
-   059C D6 19         [ 7]  858 	sub	a, #0x19
-   059E C2r88r06      [10]  859 	jp	NZ,00180$
-   05A1                     860 00179$:
-                            861 ;src/juego.c:140: if (entidad[0].pos_x == 28) {
-   05A1 3Ar0Fr00      [13]  862 	ld	a, (#(_entidad + 0x000f) + 0)
-   05A4 D6 1C         [ 7]  863 	sub	a, #0x1c
-   05A6 C2r9Cr06      [10]  864 	jp	NZ,00181$
-                            865 ;src/juego.c:142: if (cpct_rand() % 2){
-   05A9 CDr00r00      [17]  866 	call	_cpct_getRandom_mxor_u8
-   05AC CB 45         [ 8]  867 	bit	0, l
-   05AE 28 3C         [12]  868 	jr	Z,00172$
-                            869 ;src/juego.c:144: entidad[0].energy = entidad[0].max_energy;
-   05B0 3Ar0Br00      [13]  870 	ld	a, (#_entidad + 11)
-   05B3 32r0Ar00      [13]  871 	ld	(#(_entidad + 0x000a)),a
-                            872 ;src/juego.c:145: sprintf(temp, "%-9s MAX HP",entidad[0].name);
-   05B6 DD 7E F8      [19]  873 	ld	a, -8 (ix)
-   05B9 DD 77 F4      [19]  874 	ld	-12 (ix), a
-   05BC DD 7E F9      [19]  875 	ld	a, -7 (ix)
-   05BF DD 77 F5      [19]  876 	ld	-11 (ix), a
-   05C2 21r00r00      [10]  877 	ld	hl, #_entidad
-   05C5 E5            [11]  878 	push	hl
-   05C6 21r67r07      [10]  879 	ld	hl, #___str_2
-   05C9 E5            [11]  880 	push	hl
-   05CA DD 6E F4      [19]  881 	ld	l,-12 (ix)
-   05CD DD 66 F5      [19]  882 	ld	h,-11 (ix)
-   05D0 E5            [11]  883 	push	hl
-   05D1 CDr00r00      [17]  884 	call	_sprintf
-   05D4 21 06 00      [10]  885 	ld	hl, #6
-   05D7 39            [11]  886 	add	hl, sp
-   05D8 F9            [ 6]  887 	ld	sp, hl
-                            888 ;src/juego.c:146: printConsole(temp, 2, 0);
-   05D9 DD 4E F8      [19]  889 	ld	c,-8 (ix)
-   05DC DD 46 F9      [19]  890 	ld	b,-7 (ix)
-   05DF 21 02 00      [10]  891 	ld	hl, #0x0002
-   05E2 E5            [11]  892 	push	hl
-   05E3 C5            [11]  893 	push	bc
-   05E4 CDr00r00      [17]  894 	call	_printConsole
-   05E7 F1            [10]  895 	pop	af
-   05E8 F1            [10]  896 	pop	af
-   05E9 C3r79r06      [10]  897 	jp	00173$
-   05EC                     898 00172$:
-                            899 ;src/juego.c:147: } else if (cpct_rand() % 2){
-   05EC CDr00r00      [17]  900 	call	_cpct_getRandom_mxor_u8
-   05EF CB 45         [ 8]  901 	bit	0, l
-   05F1 28 48         [12]  902 	jr	Z,00169$
-                            903 ;src/juego.c:149: entidad[0].attack += 5;
-   05F3 3Ar0Cr00      [13]  904 	ld	a, (#(_entidad + 0x000c) + 0)
-   05F6 C6 05         [ 7]  905 	add	a, #0x05
-   05F8 DD 77 F4      [19]  906 	ld	-12 (ix), a
-   05FB 21r0Cr00      [10]  907 	ld	hl, #(_entidad + 0x000c)
-   05FE DD 7E F4      [19]  908 	ld	a, -12 (ix)
-   0601 77            [ 7]  909 	ld	(hl), a
-                            910 ;src/juego.c:150: sprintf(temp, "%-9s %c ATT",entidad[0].name,240);
-   0602 DD 7E F8      [19]  911 	ld	a, -8 (ix)
-   0605 DD 77 F4      [19]  912 	ld	-12 (ix), a
-   0608 DD 7E F9      [19]  913 	ld	a, -7 (ix)
-   060B DD 77 F5      [19]  914 	ld	-11 (ix), a
-   060E 21 F0 00      [10]  915 	ld	hl, #0x00f0
-   0611 E5            [11]  916 	push	hl
-   0612 21r00r00      [10]  917 	ld	hl, #_entidad
-   0615 E5            [11]  918 	push	hl
-   0616 21r73r07      [10]  919 	ld	hl, #___str_3
-   0619 E5            [11]  920 	push	hl
-   061A DD 6E F4      [19]  921 	ld	l,-12 (ix)
-   061D DD 66 F5      [19]  922 	ld	h,-11 (ix)
-   0620 E5            [11]  923 	push	hl
-   0621 CDr00r00      [17]  924 	call	_sprintf
-   0624 21 08 00      [10]  925 	ld	hl, #8
-   0627 39            [11]  926 	add	hl, sp
-   0628 F9            [ 6]  927 	ld	sp, hl
-                            928 ;src/juego.c:151: printConsole(temp, 2, 0);
-   0629 DD 4E F8      [19]  929 	ld	c,-8 (ix)
-   062C DD 46 F9      [19]  930 	ld	b,-7 (ix)
-   062F 21 02 00      [10]  931 	ld	hl, #0x0002
-   0632 E5            [11]  932 	push	hl
-   0633 C5            [11]  933 	push	bc
-   0634 CDr00r00      [17]  934 	call	_printConsole
-   0637 F1            [10]  935 	pop	af
-   0638 F1            [10]  936 	pop	af
-   0639 18 3E         [12]  937 	jr	00173$
-   063B                     938 00169$:
-                            939 ;src/juego.c:154: entidad[0].defense += 5;
-   063B 01r0Er00      [10]  940 	ld	bc, #_entidad + 14
-   063E 0A            [ 7]  941 	ld	a, (bc)
-   063F C6 05         [ 7]  942 	add	a, #0x05
-   0641 02            [ 7]  943 	ld	(bc), a
-                            944 ;src/juego.c:155: sprintf(temp, "%-9s %c DEF",entidad[0].name,240);
-   0642 DD 7E F8      [19]  945 	ld	a, -8 (ix)
-   0645 DD 77 F4      [19]  946 	ld	-12 (ix), a
-   0648 DD 7E F9      [19]  947 	ld	a, -7 (ix)
-   064B DD 77 F5      [19]  948 	ld	-11 (ix), a
-   064E 21 F0 00      [10]  949 	ld	hl, #0x00f0
-   0651 E5            [11]  950 	push	hl
-   0652 21r00r00      [10]  951 	ld	hl, #_entidad
-   0655 E5            [11]  952 	push	hl
-   0656 21r7Fr07      [10]  953 	ld	hl, #___str_4
-   0659 E5            [11]  954 	push	hl
-   065A DD 6E F4      [19]  955 	ld	l,-12 (ix)
-   065D DD 66 F5      [19]  956 	ld	h,-11 (ix)
-   0660 E5            [11]  957 	push	hl
-   0661 CDr00r00      [17]  958 	call	_sprintf
-   0664 21 08 00      [10]  959 	ld	hl, #8
-   0667 39            [11]  960 	add	hl, sp
-   0668 F9            [ 6]  961 	ld	sp, hl
-                            962 ;src/juego.c:156: printConsole(temp, 2, 0);
-   0669 DD 4E F8      [19]  963 	ld	c,-8 (ix)
-   066C DD 46 F9      [19]  964 	ld	b,-7 (ix)
-   066F 21 02 00      [10]  965 	ld	hl, #0x0002
-   0672 E5            [11]  966 	push	hl
-   0673 C5            [11]  967 	push	bc
-   0674 CDr00r00      [17]  968 	call	_printConsole
-   0677 F1            [10]  969 	pop	af
-   0678 F1            [10]  970 	pop	af
-   0679                     971 00173$:
-                            972 ;src/juego.c:159: printStats(&entidad[0]);
-   0679 21r00r00      [10]  973 	ld	hl, #_entidad
-   067C E5            [11]  974 	push	hl
-   067D CDr00r00      [17]  975 	call	_printStats
-   0680 F1            [10]  976 	pop	af
-                            977 ;src/juego.c:160: sig_nivel = 1;
-   0681 21r00r00      [10]  978 	ld	hl,#_sig_nivel + 0
-   0684 36 01         [10]  979 	ld	(hl), #0x01
-   0686 18 14         [12]  980 	jr	00181$
-   0688                     981 00180$:
-                            982 ;src/juego.c:163: } else if (!(entidad[1].energy || entidad[2].energy)) {
-   0688 3Ar1Er00      [13]  983 	ld	a, (#(_entidad + 0x001e) + 0)
-   068B B7            [ 4]  984 	or	a, a
-   068C 20 0E         [12]  985 	jr	NZ,00181$
-   068E 3Ar32r00      [13]  986 	ld	a,(#(_entidad + 0x0032) + 0)
-   0691 DD 77 F4      [19]  987 	ld	-12 (ix), a
-   0694 B7            [ 4]  988 	or	a, a
-   0695 20 05         [12]  989 	jr	NZ,00181$
-                            990 ;src/juego.c:164: sig_nivel = 1;
-   0697 21r00r00      [10]  991 	ld	hl,#_sig_nivel + 0
-   069A 36 01         [10]  992 	ld	(hl), #0x01
-   069C                     993 00181$:
-                            994 ;src/juego.c:168: if (sig_nivel) {
-   069C 3Ar00r00      [13]  995 	ld	a,(#_sig_nivel + 0)
-   069F B7            [ 4]  996 	or	a, a
-   06A0 28 68         [12]  997 	jr	Z,00188$
-                            998 ;src/juego.c:169: if (nivel == 10) {// Fin del Juego
-   06A2 3Ar00r00      [13]  999 	ld	a,(#_nivel + 0)
-   06A5 D6 0A         [ 7] 1000 	sub	a, #0x0a
-   06A7 20 23         [12] 1001 	jr	NZ,00185$
-                           1002 ;src/juego.c:170: sprintf(temp, "CONGRATULATIONS!");
-   06A9 DD 7E F8      [19] 1003 	ld	a, -8 (ix)
-   06AC DD 77 F4      [19] 1004 	ld	-12 (ix), a
-   06AF DD 7E F9      [19] 1005 	ld	a, -7 (ix)
-   06B2 DD 77 F5      [19] 1006 	ld	-11 (ix), a
-   06B5 21r8Br07      [10] 1007 	ld	hl, #___str_5
-   06B8 E5            [11] 1008 	push	hl
-   06B9 DD 6E F4      [19] 1009 	ld	l,-12 (ix)
-   06BC DD 66 F5      [19] 1010 	ld	h,-11 (ix)
-   06BF E5            [11] 1011 	push	hl
-   06C0 CDr00r00      [17] 1012 	call	_sprintf
-   06C3 F1            [10] 1013 	pop	af
-   06C4 F1            [10] 1014 	pop	af
-                           1015 ;src/juego.c:171: entidad[0].energy = 0;
-   06C5 21r0Ar00      [10] 1016 	ld	hl, #(_entidad + 0x000a)
-   06C8 36 00         [10] 1017 	ld	(hl), #0x00
-   06CA 18 25         [12] 1018 	jr	00186$
-   06CC                    1019 00185$:
-                           1020 ;src/juego.c:173: nivel++;
-   06CC 21r00r00      [10] 1021 	ld	hl, #_nivel+0
-   06CF 34            [11] 1022 	inc	(hl)
-                           1023 ;src/juego.c:174: entidad[0].pos_x = 8;
-   06D0 21r0Fr00      [10] 1024 	ld	hl, #(_entidad + 0x000f)
-   06D3 36 08         [10] 1025 	ld	(hl), #0x08
-                           1026 ;src/juego.c:175: sprintf(temp, "   NEXT LEVEL   ");
-   06D5 DD 7E F8      [19] 1027 	ld	a, -8 (ix)
-   06D8 DD 77 F4      [19] 1028 	ld	-12 (ix), a
-   06DB DD 7E F9      [19] 1029 	ld	a, -7 (ix)
-   06DE DD 77 F5      [19] 1030 	ld	-11 (ix), a
-   06E1 21r9Cr07      [10] 1031 	ld	hl, #___str_6
-   06E4 E5            [11] 1032 	push	hl
-   06E5 DD 6E F4      [19] 1033 	ld	l,-12 (ix)
-   06E8 DD 66 F5      [19] 1034 	ld	h,-11 (ix)
-   06EB E5            [11] 1035 	push	hl
-   06EC CDr00r00      [17] 1036 	call	_sprintf
-   06EF F1            [10] 1037 	pop	af
-   06F0 F1            [10] 1038 	pop	af
-   06F1                    1039 00186$:
-                           1040 ;src/juego.c:177: printConsole(temp, 0, 2);
-   06F1 DD 4E F8      [19] 1041 	ld	c,-8 (ix)
-   06F4 DD 46 F9      [19] 1042 	ld	b,-7 (ix)
-   06F7 21 00 02      [10] 1043 	ld	hl, #0x0200
-   06FA E5            [11] 1044 	push	hl
-   06FB C5            [11] 1045 	push	bc
-   06FC CDr00r00      [17] 1046 	call	_printConsole
-   06FF F1            [10] 1047 	pop	af
-   0700 F1            [10] 1048 	pop	af
-                           1049 ;src/juego.c:178: sig_nivel = 0;
-   0701 21r00r00      [10] 1050 	ld	hl,#_sig_nivel + 0
-   0704 36 00         [10] 1051 	ld	(hl), #0x00
-                           1052 ;src/juego.c:179: return 0;
-   0706 2E 00         [ 7] 1053 	ld	l, #0x00
-   0708 18 38         [12] 1054 	jr	00200$
-   070A                    1055 00188$:
-                           1056 ;src/juego.c:183: if (!entidad[0].energy) {
-   070A 3Ar0Ar00      [13] 1057 	ld	a, (#(_entidad + 0x000a) + 0)
-   070D B7            [ 4] 1058 	or	a, a
-   070E 20 30         [12] 1059 	jr	NZ,00190$
-                           1060 ;src/juego.c:184: sprintf(temp, "    GAME OVER   ");
-   0710 DD 7E F8      [19] 1061 	ld	a, -8 (ix)
-   0713 DD 77 F4      [19] 1062 	ld	-12 (ix), a
-   0716 DD 7E F9      [19] 1063 	ld	a, -7 (ix)
-   0719 DD 77 F5      [19] 1064 	ld	-11 (ix), a
-   071C 21rADr07      [10] 1065 	ld	hl, #___str_7
-   071F E5            [11] 1066 	push	hl
-   0720 DD 6E F4      [19] 1067 	ld	l,-12 (ix)
-   0723 DD 66 F5      [19] 1068 	ld	h,-11 (ix)
-   0726 E5            [11] 1069 	push	hl
-   0727 CDr00r00      [17] 1070 	call	_sprintf
-   072A F1            [10] 1071 	pop	af
-   072B F1            [10] 1072 	pop	af
-                           1073 ;src/juego.c:185: printConsole(temp, 0, 2);
-   072C DD 4E F8      [19] 1074 	ld	c,-8 (ix)
-   072F DD 46 F9      [19] 1075 	ld	b,-7 (ix)
-   0732 21 00 02      [10] 1076 	ld	hl, #0x0200
-   0735 E5            [11] 1077 	push	hl
-   0736 C5            [11] 1078 	push	bc
-   0737 CDr00r00      [17] 1079 	call	_printConsole
-   073A F1            [10] 1080 	pop	af
-   073B F1            [10] 1081 	pop	af
-                           1082 ;src/juego.c:186: return 0;
-   073C 2E 00         [ 7] 1083 	ld	l, #0x00
-   073E 18 02         [12] 1084 	jr	00200$
-   0740                    1085 00190$:
-                           1086 ;src/juego.c:189: return 1;
-   0740 2E 01         [ 7] 1087 	ld	l, #0x01
-   0742                    1088 00200$:
-   0742 DD F9         [10] 1089 	ld	sp, ix
-   0744 DD E1         [14] 1090 	pop	ix
-   0746 C9            [10] 1091 	ret
-   0747                    1092 ___str_0:
-   0747 41 43 54 49 4F 4E  1093 	.ascii "ACTION (%c/%c/D) ?"
-        20 28 25 63 2F 25
-        63 2F 44 29 20 3F
-   0759 00                 1094 	.db 0x00
-   075A                    1095 ___str_1:
-   075A 25 2D 39 73 20 47  1096 	.ascii "%-9s GOES %c"
-        4F 45 53 20 25 63
-   0766 00                 1097 	.db 0x00
-   0767                    1098 ___str_2:
-   0767 25 2D 39 73 20 4D  1099 	.ascii "%-9s MAX HP"
+   02D6 28 2F         [12]  439 	jr	Z,00125$
+   02D8                     440 00124$:
+                            441 ;src/juego.c:61: sprintf(temp, "%-9s GOES <",entidad[0].name);
+   02D8 11r2Er07      [10]  442 	ld	de, #___str_1+0
+   02DB DD 4E F8      [19]  443 	ld	c,-8 (ix)
+   02DE DD 46 F9      [19]  444 	ld	b,-7 (ix)
+   02E1 21r00r00      [10]  445 	ld	hl, #_entidad
+   02E4 E5            [11]  446 	push	hl
+   02E5 D5            [11]  447 	push	de
+   02E6 C5            [11]  448 	push	bc
+   02E7 CDr00r00      [17]  449 	call	_sprintf
+   02EA 21 06 00      [10]  450 	ld	hl, #6
+   02ED 39            [11]  451 	add	hl, sp
+   02EE F9            [ 6]  452 	ld	sp, hl
+                            453 ;src/juego.c:62: printConsole(temp, 2, 0);
+   02EF DD 4E F8      [19]  454 	ld	c,-8 (ix)
+   02F2 DD 46 F9      [19]  455 	ld	b,-7 (ix)
+   02F5 21 02 00      [10]  456 	ld	hl, #0x0002
+   02F8 E5            [11]  457 	push	hl
+   02F9 C5            [11]  458 	push	bc
+   02FA CDr00r00      [17]  459 	call	_printConsole
+   02FD F1            [10]  460 	pop	af
+   02FE F1            [10]  461 	pop	af
+                            462 ;src/juego.c:64: nueva_pos = entidad[0].pos_x - 4;
+   02FF 3Ar0Fr00      [13]  463 	ld	a, (#(_entidad + 0x000f) + 0)
+   0302 C6 FC         [ 7]  464 	add	a, #0xfc
+   0304 DD 77 CE      [19]  465 	ld	-50 (ix), a
+   0307                     466 00125$:
+                            467 ;src/juego.c:68: if (cpct_isKeyPressed(Key_P) || cpct_isKeyPressed(Key_CursorRight) || cpct_isKeyPressed(Joy0_Right)) {
+   0307 21 03 08      [10]  468 	ld	hl, #0x0803
+   030A CDr00r00      [17]  469 	call	_cpct_isKeyPressed
+                            470 ;src/juego.c:74: if (nueva_pos == entidad[1].pos_x && entidad[1].energy)
+                            471 ;src/juego.c:77: if (nueva_pos == entidad[2].pos_x && entidad[2].energy)
+                            472 ;src/juego.c:68: if (cpct_isKeyPressed(Key_P) || cpct_isKeyPressed(Key_CursorRight) || cpct_isKeyPressed(Joy0_Right)) {
+   030D 7D            [ 4]  473 	ld	a, l
+   030E B7            [ 4]  474 	or	a, a
+   030F 20 14         [12]  475 	jr	NZ,00134$
+   0311 21 00 02      [10]  476 	ld	hl, #0x0200
+   0314 CDr00r00      [17]  477 	call	_cpct_isKeyPressed
+   0317 7D            [ 4]  478 	ld	a, l
+   0318 B7            [ 4]  479 	or	a, a
+   0319 20 0A         [12]  480 	jr	NZ,00134$
+   031B 21 09 08      [10]  481 	ld	hl, #0x0809
+   031E CDr00r00      [17]  482 	call	_cpct_isKeyPressed
+   0321 7D            [ 4]  483 	ld	a, l
+   0322 B7            [ 4]  484 	or	a, a
+   0323 28 6A         [12]  485 	jr	Z,00135$
+   0325                     486 00134$:
+                            487 ;src/juego.c:69: sprintf(temp, "%-9s GOES >",entidad[0].name);
+   0325 11r3Ar07      [10]  488 	ld	de, #___str_2+0
+   0328 DD 4E F8      [19]  489 	ld	c,-8 (ix)
+   032B DD 46 F9      [19]  490 	ld	b,-7 (ix)
+   032E 21r00r00      [10]  491 	ld	hl, #_entidad
+   0331 E5            [11]  492 	push	hl
+   0332 D5            [11]  493 	push	de
+   0333 C5            [11]  494 	push	bc
+   0334 CDr00r00      [17]  495 	call	_sprintf
+   0337 21 06 00      [10]  496 	ld	hl, #6
+   033A 39            [11]  497 	add	hl, sp
+   033B F9            [ 6]  498 	ld	sp, hl
+                            499 ;src/juego.c:70: printConsole(temp, 2 ,0);
+   033C DD 4E F8      [19]  500 	ld	c,-8 (ix)
+   033F DD 46 F9      [19]  501 	ld	b,-7 (ix)
+   0342 21 02 00      [10]  502 	ld	hl, #0x0002
+   0345 E5            [11]  503 	push	hl
+   0346 C5            [11]  504 	push	bc
+   0347 CDr00r00      [17]  505 	call	_printConsole
+   034A F1            [10]  506 	pop	af
+   034B F1            [10]  507 	pop	af
+                            508 ;src/juego.c:72: nueva_pos = entidad[0].pos_x + 4;
+   034C 3Ar0Fr00      [13]  509 	ld	a, (#(_entidad + 0x000f) + 0)
+   034F C6 04         [ 7]  510 	add	a, #0x04
+   0351 DD 77 CE      [19]  511 	ld	-50 (ix), a
+                            512 ;src/juego.c:74: if (nueva_pos == entidad[1].pos_x && entidad[1].energy)
+   0354 21r23r00      [10]  513 	ld	hl, #(_entidad + 0x0023) + 0
+   0357 DD 7E CE      [19]  514 	ld	a,-50 (ix)
+   035A 96            [ 7]  515 	sub	a,(hl)
+   035B 20 16         [12]  516 	jr	NZ,00129$
+   035D 3Ar1Er00      [13]  517 	ld	a,(#(_entidad + 0x001e) + 0)
+   0360 DD 77 FA      [19]  518 	ld	-6 (ix), a
+   0363 B7            [ 4]  519 	or	a, a
+   0364 28 0D         [12]  520 	jr	Z,00129$
+                            521 ;src/juego.c:75: atacar(&entidad[0], &entidad[1]);
+   0366 21r14r00      [10]  522 	ld	hl, #(_entidad + 0x0014)
+   0369 E5            [11]  523 	push	hl
+   036A 21r00r00      [10]  524 	ld	hl, #_entidad
+   036D E5            [11]  525 	push	hl
+   036E CDr00r00      [17]  526 	call	_atacar
+   0371 F1            [10]  527 	pop	af
+   0372 F1            [10]  528 	pop	af
+   0373                     529 00129$:
+                            530 ;src/juego.c:77: if (nueva_pos == entidad[2].pos_x && entidad[2].energy)
+   0373 21r37r00      [10]  531 	ld	hl, #(_entidad + 0x0037) + 0
+   0376 DD 7E CE      [19]  532 	ld	a,-50 (ix)
+   0379 96            [ 7]  533 	sub	a,(hl)
+   037A 20 13         [12]  534 	jr	NZ,00135$
+   037C 3Ar32r00      [13]  535 	ld	a, (#(_entidad + 0x0032) + 0)
+   037F B7            [ 4]  536 	or	a, a
+   0380 28 0D         [12]  537 	jr	Z,00135$
+                            538 ;src/juego.c:78: atacar(&entidad[0], &entidad[2]);
+   0382 21r28r00      [10]  539 	ld	hl, #(_entidad + 0x0028)
+   0385 E5            [11]  540 	push	hl
+   0386 21r00r00      [10]  541 	ld	hl, #_entidad
+   0389 E5            [11]  542 	push	hl
+   038A CDr00r00      [17]  543 	call	_atacar
+   038D F1            [10]  544 	pop	af
+   038E F1            [10]  545 	pop	af
+   038F                     546 00135$:
+                            547 ;src/juego.c:83: if (cpct_isKeyPressed(Key_D) || cpct_isKeyPressed(Joy0_Fire1)) {
+   038F 21 07 20      [10]  548 	ld	hl, #0x2007
+   0392 CDr00r00      [17]  549 	call	_cpct_isKeyPressed
+   0395 7D            [ 4]  550 	ld	a, l
+   0396 B7            [ 4]  551 	or	a, a
+   0397 20 0A         [12]  552 	jr	NZ,00138$
+   0399 21 09 10      [10]  553 	ld	hl, #0x1009
+   039C CDr00r00      [17]  554 	call	_cpct_isKeyPressed
+   039F 7D            [ 4]  555 	ld	a, l
+   03A0 B7            [ 4]  556 	or	a, a
+   03A1 28 08         [12]  557 	jr	Z,00139$
+   03A3                     558 00138$:
+                            559 ;src/juego.c:84: defender(&entidad[0]);
+   03A3 21r00r00      [10]  560 	ld	hl, #_entidad
+   03A6 E5            [11]  561 	push	hl
+   03A7 CDr00r00      [17]  562 	call	_defender
+   03AA F1            [10]  563 	pop	af
+   03AB                     564 00139$:
+                            565 ;src/juego.c:90: && nueva_pos < 37 
+   03AB 3E 03         [ 7]  566 	ld	a, #0x03
+   03AD DD 96 CE      [19]  567 	sub	a, -50 (ix)
+   03B0 30 2C         [12]  568 	jr	NC,00243$
+                            569 ;src/juego.c:91: && (!entidad[1].energy || nueva_pos != entidad[1].pos_x)
+   03B2 DD 7E CE      [19]  570 	ld	a, -50 (ix)
+   03B5 D6 25         [ 7]  571 	sub	a, #0x25
+   03B7 30 25         [12]  572 	jr	NC,00243$
+   03B9 3Ar1Er00      [13]  573 	ld	a, (#(_entidad + 0x001e) + 0)
+   03BC B7            [ 4]  574 	or	a, a
+   03BD 28 09         [12]  575 	jr	Z,00147$
+   03BF 21r23r00      [10]  576 	ld	hl, #(_entidad + 0x0023) + 0
+   03C2 DD 7E CE      [19]  577 	ld	a,-50 (ix)
+   03C5 96            [ 7]  578 	sub	a,(hl)
+   03C6 28 16         [12]  579 	jr	Z,00243$
+   03C8                     580 00147$:
+                            581 ;src/juego.c:92: && (!entidad[2].energy || nueva_pos != entidad[2].pos_x)
+   03C8 3Ar32r00      [13]  582 	ld	a, (#(_entidad + 0x0032) + 0)
+   03CB B7            [ 4]  583 	or	a, a
+   03CC 28 09         [12]  584 	jr	Z,00141$
+   03CE 21r37r00      [10]  585 	ld	hl, #(_entidad + 0x0037) + 0
+   03D1 DD 7E CE      [19]  586 	ld	a,-50 (ix)
+   03D4 96            [ 7]  587 	sub	a,(hl)
+   03D5 28 07         [12]  588 	jr	Z,00243$
+   03D7                     589 00141$:
+                            590 ;src/juego.c:94: entidad[0].pos_x = nueva_pos;
+   03D7 21r0Fr00      [10]  591 	ld	hl, #(_entidad + 0x000f)
+   03DA DD 7E CE      [19]  592 	ld	a, -50 (ix)
+   03DD 77            [ 7]  593 	ld	(hl), a
+                            594 ;src/juego.c:98: for (i = 1; i < 3; i++) {
+   03DE                     595 00243$:
+   03DE DD 7E F8      [19]  596 	ld	a, -8 (ix)
+   03E1 DD 77 FA      [19]  597 	ld	-6 (ix), a
+   03E4 DD 7E F9      [19]  598 	ld	a, -7 (ix)
+   03E7 DD 77 FB      [19]  599 	ld	-5 (ix), a
+   03EA DD 7E F8      [19]  600 	ld	a, -8 (ix)
+   03ED DD 77 FC      [19]  601 	ld	-4 (ix), a
+   03F0 DD 7E F9      [19]  602 	ld	a, -7 (ix)
+   03F3 DD 77 FD      [19]  603 	ld	-3 (ix), a
+   03F6 DD 7E F8      [19]  604 	ld	a, -8 (ix)
+   03F9 DD 77 FE      [19]  605 	ld	-2 (ix), a
+   03FC DD 7E F9      [19]  606 	ld	a, -7 (ix)
+   03FF DD 77 FF      [19]  607 	ld	-1 (ix), a
+   0402 DD 7E F8      [19]  608 	ld	a, -8 (ix)
+   0405 DD 77 F6      [19]  609 	ld	-10 (ix), a
+   0408 DD 7E F9      [19]  610 	ld	a, -7 (ix)
+   040B DD 77 F7      [19]  611 	ld	-9 (ix), a
+   040E DD 36 F3 01   [19]  612 	ld	-13 (ix), #0x01
+   0412                     613 00198$:
+                            614 ;src/juego.c:99: if (entidad[i].energy) {
+   0412 DD 4E F3      [19]  615 	ld	c,-13 (ix)
+   0415 06 00         [ 7]  616 	ld	b,#0x00
+   0417 69            [ 4]  617 	ld	l, c
+   0418 60            [ 4]  618 	ld	h, b
+   0419 29            [11]  619 	add	hl, hl
+   041A 29            [11]  620 	add	hl, hl
+   041B 09            [11]  621 	add	hl, bc
+   041C 29            [11]  622 	add	hl, hl
+   041D 29            [11]  623 	add	hl, hl
+   041E DD 75 F4      [19]  624 	ld	-12 (ix), l
+   0421 DD 74 F5      [19]  625 	ld	-11 (ix), h
+   0424 DD 7E F4      [19]  626 	ld	a, -12 (ix)
+   0427 C6r00         [ 7]  627 	add	a, #<(_entidad)
+   0429 DD 77 F4      [19]  628 	ld	-12 (ix), a
+   042C DD 7E F5      [19]  629 	ld	a, -11 (ix)
+   042F CEs00         [ 7]  630 	adc	a, #>(_entidad)
+   0431 DD 77 F5      [19]  631 	ld	-11 (ix), a
+   0434 DD 6E F4      [19]  632 	ld	l,-12 (ix)
+   0437 DD 66 F5      [19]  633 	ld	h,-11 (ix)
+   043A 11 0A 00      [10]  634 	ld	de, #0x000a
+   043D 19            [11]  635 	add	hl, de
+   043E 7E            [ 7]  636 	ld	a, (hl)
+   043F B7            [ 4]  637 	or	a, a
+   0440 CAr4Fr05      [10]  638 	jp	Z, 00199$
+                            639 ;src/juego.c:100: if (abs(entidad[i].pos_x - entidad[0].pos_x) == 4) //Si está en casilla contigua, atacar
+   0443 DD 7E F4      [19]  640 	ld	a, -12 (ix)
+   0446 C6 0F         [ 7]  641 	add	a, #0x0f
+   0448 4F            [ 4]  642 	ld	c, a
+   0449 DD 7E F5      [19]  643 	ld	a, -11 (ix)
+   044C CE 00         [ 7]  644 	adc	a, #0x00
+   044E 47            [ 4]  645 	ld	b, a
+   044F 0A            [ 7]  646 	ld	a, (bc)
+   0450 5F            [ 4]  647 	ld	e, a
+   0451 21r0Fr00      [10]  648 	ld	hl, #(_entidad + 0x000f) + 0
+   0454 56            [ 7]  649 	ld	d, (hl)
+   0455 7B            [ 4]  650 	ld	a, e
+   0456 92            [ 4]  651 	sub	a, d
+   0457 57            [ 4]  652 	ld	d, a
+   0458 C5            [11]  653 	push	bc
+   0459 D5            [11]  654 	push	de
+   045A 33            [ 6]  655 	inc	sp
+   045B CDr00r00      [17]  656 	call	_abs
+   045E 33            [ 6]  657 	inc	sp
+   045F C1            [10]  658 	pop	bc
+   0460 7D            [ 4]  659 	ld	a, l
+   0461 D6 04         [ 7]  660 	sub	a, #0x04
+   0463 20 15         [12]  661 	jr	NZ,00155$
+                            662 ;src/juego.c:101: atacar(&entidad[i], &entidad[0]);
+   0465 11r00r00      [10]  663 	ld	de, #_entidad
+   0468 DD 6E F4      [19]  664 	ld	l,-12 (ix)
+   046B DD 66 F5      [19]  665 	ld	h,-11 (ix)
+   046E C5            [11]  666 	push	bc
+   046F D5            [11]  667 	push	de
+   0470 E5            [11]  668 	push	hl
+   0471 CDr00r00      [17]  669 	call	_atacar
+   0474 F1            [10]  670 	pop	af
+   0475 F1            [10]  671 	pop	af
+   0476 C1            [10]  672 	pop	bc
+   0477 C3r0Dr05      [10]  673 	jp	00240$
+   047A                     674 00155$:
+                            675 ;src/juego.c:103: enemy_mov = cpct_rand()%3; //33% de moverse a izquierda, derecha o curarse
+   047A C5            [11]  676 	push	bc
+   047B CDr00r00      [17]  677 	call	_cpct_getRandom_mxor_u8
+   047E 55            [ 4]  678 	ld	d, l
+   047F 3E 03         [ 7]  679 	ld	a, #0x03
+   0481 F5            [11]  680 	push	af
+   0482 33            [ 6]  681 	inc	sp
+   0483 D5            [11]  682 	push	de
+   0484 33            [ 6]  683 	inc	sp
+   0485 CDr00r00      [17]  684 	call	__moduchar
+   0488 F1            [10]  685 	pop	af
+   0489 5D            [ 4]  686 	ld	e, l
+   048A C1            [10]  687 	pop	bc
+                            688 ;src/juego.c:104: if (enemy_mov == 1) {
+   048B 7B            [ 4]  689 	ld	a, e
+   048C 3D            [ 4]  690 	dec	a
+   048D 20 36         [12]  691 	jr	NZ,00152$
+                            692 ;src/juego.c:105: sprintf(temp, "%-9s GOES <",entidad[i].name);
+   048F DD 6E F4      [19]  693 	ld	l,-12 (ix)
+   0492 DD 66 F5      [19]  694 	ld	h,-11 (ix)
+   0495 DD 5E FE      [19]  695 	ld	e,-2 (ix)
+   0498 DD 56 FF      [19]  696 	ld	d,-1 (ix)
+   049B C5            [11]  697 	push	bc
+   049C E5            [11]  698 	push	hl
+   049D 21r2Er07      [10]  699 	ld	hl, #___str_1
+   04A0 E5            [11]  700 	push	hl
+   04A1 D5            [11]  701 	push	de
+   04A2 CDr00r00      [17]  702 	call	_sprintf
+   04A5 21 06 00      [10]  703 	ld	hl, #6
+   04A8 39            [11]  704 	add	hl, sp
+   04A9 F9            [ 6]  705 	ld	sp, hl
+   04AA C1            [10]  706 	pop	bc
+                            707 ;src/juego.c:106: printConsole(temp, 0, 2);
+   04AB DD 5E F6      [19]  708 	ld	e,-10 (ix)
+   04AE DD 56 F7      [19]  709 	ld	d,-9 (ix)
+   04B1 C5            [11]  710 	push	bc
+   04B2 21 00 02      [10]  711 	ld	hl, #0x0200
+   04B5 E5            [11]  712 	push	hl
+   04B6 D5            [11]  713 	push	de
+   04B7 CDr00r00      [17]  714 	call	_printConsole
+   04BA F1            [10]  715 	pop	af
+   04BB F1            [10]  716 	pop	af
+   04BC C1            [10]  717 	pop	bc
+                            718 ;src/juego.c:108: nueva_pos = entidad[i].pos_x - 4;
+   04BD 0A            [ 7]  719 	ld	a, (bc)
+   04BE C6 FC         [ 7]  720 	add	a, #0xfc
+   04C0 DD 77 CE      [19]  721 	ld	-50 (ix), a
+   04C3 18 48         [12]  722 	jr	00240$
+   04C5                     723 00152$:
+                            724 ;src/juego.c:109: } else if (enemy_mov == 2) {
+   04C5 7B            [ 4]  725 	ld	a, e
+   04C6 D6 02         [ 7]  726 	sub	a, #0x02
+   04C8 20 36         [12]  727 	jr	NZ,00149$
+                            728 ;src/juego.c:110: sprintf(temp, "%-9s GOES >",entidad[i].name);
+   04CA DD 5E F4      [19]  729 	ld	e,-12 (ix)
+   04CD DD 56 F5      [19]  730 	ld	d,-11 (ix)
+   04D0 DD 6E FA      [19]  731 	ld	l,-6 (ix)
+   04D3 DD 66 FB      [19]  732 	ld	h,-5 (ix)
+   04D6 C5            [11]  733 	push	bc
+   04D7 D5            [11]  734 	push	de
+   04D8 11r3Ar07      [10]  735 	ld	de, #___str_2
+   04DB D5            [11]  736 	push	de
+   04DC E5            [11]  737 	push	hl
+   04DD CDr00r00      [17]  738 	call	_sprintf
+   04E0 21 06 00      [10]  739 	ld	hl, #6
+   04E3 39            [11]  740 	add	hl, sp
+   04E4 F9            [ 6]  741 	ld	sp, hl
+   04E5 C1            [10]  742 	pop	bc
+                            743 ;src/juego.c:111: printConsole(temp, 0, 2);
+   04E6 DD 5E FC      [19]  744 	ld	e,-4 (ix)
+   04E9 DD 56 FD      [19]  745 	ld	d,-3 (ix)
+   04EC C5            [11]  746 	push	bc
+   04ED 21 00 02      [10]  747 	ld	hl, #0x0200
+   04F0 E5            [11]  748 	push	hl
+   04F1 D5            [11]  749 	push	de
+   04F2 CDr00r00      [17]  750 	call	_printConsole
+   04F5 F1            [10]  751 	pop	af
+   04F6 F1            [10]  752 	pop	af
+   04F7 C1            [10]  753 	pop	bc
+                            754 ;src/juego.c:113: nueva_pos = entidad[i].pos_x + 4;
+   04F8 0A            [ 7]  755 	ld	a, (bc)
+   04F9 C6 04         [ 7]  756 	add	a, #0x04
+   04FB DD 77 CE      [19]  757 	ld	-50 (ix), a
+   04FE 18 0D         [12]  758 	jr	00240$
+   0500                     759 00149$:
+                            760 ;src/juego.c:115: defender(&entidad[i]);
+   0500 DD 5E F4      [19]  761 	ld	e,-12 (ix)
+   0503 DD 56 F5      [19]  762 	ld	d,-11 (ix)
+   0506 C5            [11]  763 	push	bc
+   0507 D5            [11]  764 	push	de
+   0508 CDr00r00      [17]  765 	call	_defender
+   050B F1            [10]  766 	pop	af
+   050C C1            [10]  767 	pop	bc
+                            768 ;src/juego.c:119: for (j = 0; j < 3; j++) {
+   050D                     769 00240$:
+   050D 1E 00         [ 7]  770 	ld	e, #0x00
+   050F                     771 00196$:
+                            772 ;src/juego.c:120: if (i!=j) {
+   050F DD 7E F3      [19]  773 	ld	a, -13 (ix)
+   0512 93            [ 4]  774 	sub	a, e
+   0513 28 22         [12]  775 	jr	Z,00197$
+                            776 ;src/juego.c:121: if (entidad[j].pos_x == nueva_pos) {
+   0515 D5            [11]  777 	push	de
+   0516 16 00         [ 7]  778 	ld	d,#0x00
+   0518 6B            [ 4]  779 	ld	l, e
+   0519 62            [ 4]  780 	ld	h, d
+   051A 29            [11]  781 	add	hl, hl
+   051B 29            [11]  782 	add	hl, hl
+   051C 19            [11]  783 	add	hl, de
+   051D 29            [11]  784 	add	hl, hl
+   051E 29            [11]  785 	add	hl, hl
+   051F D1            [10]  786 	pop	de
+   0520 C5            [11]  787 	push	bc
+   0521 01r00r00      [10]  788 	ld	bc, #_entidad
+   0524 09            [11]  789 	add	hl, bc
+   0525 01 0F 00      [10]  790 	ld	bc, #0x000f
+   0528 09            [11]  791 	add	hl, bc
+   0529 C1            [10]  792 	pop	bc
+   052A 56            [ 7]  793 	ld	d, (hl)
+   052B DD 7E CE      [19]  794 	ld	a, -50 (ix)
+   052E 92            [ 4]  795 	sub	a, d
+   052F 20 06         [12]  796 	jr	NZ,00197$
+                            797 ;src/juego.c:122: nueva_pos = 0;
+   0531 DD 36 CE 00   [19]  798 	ld	-50 (ix), #0x00
+                            799 ;src/juego.c:123: break;
+   0535 18 06         [12]  800 	jr	00161$
+   0537                     801 00197$:
+                            802 ;src/juego.c:119: for (j = 0; j < 3; j++) {
+   0537 1C            [ 4]  803 	inc	e
+   0538 7B            [ 4]  804 	ld	a, e
+   0539 D6 03         [ 7]  805 	sub	a, #0x03
+   053B 38 D2         [12]  806 	jr	C,00196$
+   053D                     807 00161$:
+                            808 ;src/juego.c:129: if (nueva_pos > 3 && nueva_pos < 37)
+   053D 3E 03         [ 7]  809 	ld	a, #0x03
+   053F DD 96 CE      [19]  810 	sub	a, -50 (ix)
+   0542 30 0B         [12]  811 	jr	NC,00199$
+   0544 DD 7E CE      [19]  812 	ld	a, -50 (ix)
+   0547 D6 25         [ 7]  813 	sub	a, #0x25
+   0549 30 04         [12]  814 	jr	NC,00199$
+                            815 ;src/juego.c:130: entidad[i].pos_x = nueva_pos; 
+   054B DD 7E CE      [19]  816 	ld	a, -50 (ix)
+   054E 02            [ 7]  817 	ld	(bc), a
+   054F                     818 00199$:
+                            819 ;src/juego.c:98: for (i = 1; i < 3; i++) {
+   054F DD 34 F3      [23]  820 	inc	-13 (ix)
+   0552 DD 7E F3      [19]  821 	ld	a, -13 (ix)
+   0555 D6 03         [ 7]  822 	sub	a, #0x03
+   0557 DAr12r04      [10]  823 	jp	C, 00198$
+                            824 ;src/juego.c:134: pausa(SEGUNDO);
+   055A 21 00 80      [10]  825 	ld	hl, #0x8000
+   055D E5            [11]  826 	push	hl
+   055E CDr00r00      [17]  827 	call	_pausa
+   0561 F1            [10]  828 	pop	af
+                            829 ;src/juego.c:135: pausaTecladoLibre();
+   0562 CDr00r00      [17]  830 	call	_pausaTecladoLibre
+                            831 ;src/juego.c:144: entidad[0].energy = entidad[0].max_energy;
+                            832 ;src/juego.c:139: if (nivel == 5 || nivel == 15 || nivel == 25) {
+   0565 FD 21r00r00   [14]  833 	ld	iy, #_nivel
+   0569 FD 7E 00      [19]  834 	ld	a, 0 (iy)
+   056C D6 05         [ 7]  835 	sub	a, #0x05
+   056E 28 0F         [12]  836 	jr	Z,00179$
+   0570 FD 7E 00      [19]  837 	ld	a, 0 (iy)
+   0573 D6 0F         [ 7]  838 	sub	a, #0x0f
+   0575 28 08         [12]  839 	jr	Z,00179$
+   0577 FD 7E 00      [19]  840 	ld	a, 0 (iy)
+   057A D6 19         [ 7]  841 	sub	a, #0x19
+   057C C2r5Er06      [10]  842 	jp	NZ,00180$
+   057F                     843 00179$:
+                            844 ;src/juego.c:140: if (entidad[0].pos_x == 28) {
+   057F 3Ar0Fr00      [13]  845 	ld	a, (#(_entidad + 0x000f) + 0)
+   0582 D6 1C         [ 7]  846 	sub	a, #0x1c
+   0584 C2r72r06      [10]  847 	jp	NZ,00181$
+                            848 ;src/juego.c:142: if (cpct_rand() % 2){
+   0587 CDr00r00      [17]  849 	call	_cpct_getRandom_mxor_u8
+   058A CB 45         [ 8]  850 	bit	0, l
+   058C 28 3C         [12]  851 	jr	Z,00172$
+                            852 ;src/juego.c:144: entidad[0].energy = entidad[0].max_energy;
+   058E 3Ar0Br00      [13]  853 	ld	a, (#_entidad + 11)
+   0591 32r0Ar00      [13]  854 	ld	(#(_entidad + 0x000a)),a
+                            855 ;src/juego.c:145: sprintf(temp, "%-9s MAX HP",entidad[0].name);
+   0594 DD 7E F8      [19]  856 	ld	a, -8 (ix)
+   0597 DD 77 F4      [19]  857 	ld	-12 (ix), a
+   059A DD 7E F9      [19]  858 	ld	a, -7 (ix)
+   059D DD 77 F5      [19]  859 	ld	-11 (ix), a
+   05A0 21r00r00      [10]  860 	ld	hl, #_entidad
+   05A3 E5            [11]  861 	push	hl
+   05A4 21r46r07      [10]  862 	ld	hl, #___str_3
+   05A7 E5            [11]  863 	push	hl
+   05A8 DD 6E F4      [19]  864 	ld	l,-12 (ix)
+   05AB DD 66 F5      [19]  865 	ld	h,-11 (ix)
+   05AE E5            [11]  866 	push	hl
+   05AF CDr00r00      [17]  867 	call	_sprintf
+   05B2 21 06 00      [10]  868 	ld	hl, #6
+   05B5 39            [11]  869 	add	hl, sp
+   05B6 F9            [ 6]  870 	ld	sp, hl
+                            871 ;src/juego.c:146: printConsole(temp, 2, 0);
+   05B7 DD 4E F8      [19]  872 	ld	c,-8 (ix)
+   05BA DD 46 F9      [19]  873 	ld	b,-7 (ix)
+   05BD 21 02 00      [10]  874 	ld	hl, #0x0002
+   05C0 E5            [11]  875 	push	hl
+   05C1 C5            [11]  876 	push	bc
+   05C2 CDr00r00      [17]  877 	call	_printConsole
+   05C5 F1            [10]  878 	pop	af
+   05C6 F1            [10]  879 	pop	af
+   05C7 C3r4Fr06      [10]  880 	jp	00173$
+   05CA                     881 00172$:
+                            882 ;src/juego.c:147: } else if (cpct_rand() % 2){
+   05CA CDr00r00      [17]  883 	call	_cpct_getRandom_mxor_u8
+   05CD CB 45         [ 8]  884 	bit	0, l
+   05CF 28 44         [12]  885 	jr	Z,00169$
+                            886 ;src/juego.c:149: entidad[0].attack += 5;
+   05D1 3Ar0Cr00      [13]  887 	ld	a, (#(_entidad + 0x000c) + 0)
+   05D4 C6 05         [ 7]  888 	add	a, #0x05
+   05D6 DD 77 F4      [19]  889 	ld	-12 (ix), a
+   05D9 21r0Cr00      [10]  890 	ld	hl, #(_entidad + 0x000c)
+   05DC DD 7E F4      [19]  891 	ld	a, -12 (ix)
+   05DF 77            [ 7]  892 	ld	(hl), a
+                            893 ;src/juego.c:150: sprintf(temp, "%-9s ^ ATT",entidad[0].name);
+   05E0 DD 7E F8      [19]  894 	ld	a, -8 (ix)
+   05E3 DD 77 F4      [19]  895 	ld	-12 (ix), a
+   05E6 DD 7E F9      [19]  896 	ld	a, -7 (ix)
+   05E9 DD 77 F5      [19]  897 	ld	-11 (ix), a
+   05EC 21r00r00      [10]  898 	ld	hl, #_entidad
+   05EF E5            [11]  899 	push	hl
+   05F0 21r52r07      [10]  900 	ld	hl, #___str_4
+   05F3 E5            [11]  901 	push	hl
+   05F4 DD 6E F4      [19]  902 	ld	l,-12 (ix)
+   05F7 DD 66 F5      [19]  903 	ld	h,-11 (ix)
+   05FA E5            [11]  904 	push	hl
+   05FB CDr00r00      [17]  905 	call	_sprintf
+   05FE 21 06 00      [10]  906 	ld	hl, #6
+   0601 39            [11]  907 	add	hl, sp
+   0602 F9            [ 6]  908 	ld	sp, hl
+                            909 ;src/juego.c:151: printConsole(temp, 2, 0);
+   0603 DD 4E F8      [19]  910 	ld	c,-8 (ix)
+   0606 DD 46 F9      [19]  911 	ld	b,-7 (ix)
+   0609 21 02 00      [10]  912 	ld	hl, #0x0002
+   060C E5            [11]  913 	push	hl
+   060D C5            [11]  914 	push	bc
+   060E CDr00r00      [17]  915 	call	_printConsole
+   0611 F1            [10]  916 	pop	af
+   0612 F1            [10]  917 	pop	af
+   0613 18 3A         [12]  918 	jr	00173$
+   0615                     919 00169$:
+                            920 ;src/juego.c:154: entidad[0].defense += 5;
+   0615 01r0Er00      [10]  921 	ld	bc, #_entidad + 14
+   0618 0A            [ 7]  922 	ld	a, (bc)
+   0619 C6 05         [ 7]  923 	add	a, #0x05
+   061B 02            [ 7]  924 	ld	(bc), a
+                            925 ;src/juego.c:155: sprintf(temp, "%-9s ^ DEF",entidad[0].name);
+   061C DD 7E F8      [19]  926 	ld	a, -8 (ix)
+   061F DD 77 F4      [19]  927 	ld	-12 (ix), a
+   0622 DD 7E F9      [19]  928 	ld	a, -7 (ix)
+   0625 DD 77 F5      [19]  929 	ld	-11 (ix), a
+   0628 21r00r00      [10]  930 	ld	hl, #_entidad
+   062B E5            [11]  931 	push	hl
+   062C 21r5Dr07      [10]  932 	ld	hl, #___str_5
+   062F E5            [11]  933 	push	hl
+   0630 DD 6E F4      [19]  934 	ld	l,-12 (ix)
+   0633 DD 66 F5      [19]  935 	ld	h,-11 (ix)
+   0636 E5            [11]  936 	push	hl
+   0637 CDr00r00      [17]  937 	call	_sprintf
+   063A 21 06 00      [10]  938 	ld	hl, #6
+   063D 39            [11]  939 	add	hl, sp
+   063E F9            [ 6]  940 	ld	sp, hl
+                            941 ;src/juego.c:156: printConsole(temp, 2, 0);
+   063F DD 4E F8      [19]  942 	ld	c,-8 (ix)
+   0642 DD 46 F9      [19]  943 	ld	b,-7 (ix)
+   0645 21 02 00      [10]  944 	ld	hl, #0x0002
+   0648 E5            [11]  945 	push	hl
+   0649 C5            [11]  946 	push	bc
+   064A CDr00r00      [17]  947 	call	_printConsole
+   064D F1            [10]  948 	pop	af
+   064E F1            [10]  949 	pop	af
+   064F                     950 00173$:
+                            951 ;src/juego.c:159: printStats(&entidad[0]);
+   064F 21r00r00      [10]  952 	ld	hl, #_entidad
+   0652 E5            [11]  953 	push	hl
+   0653 CDr00r00      [17]  954 	call	_printStats
+   0656 F1            [10]  955 	pop	af
+                            956 ;src/juego.c:160: sig_nivel = 1;
+   0657 21r00r00      [10]  957 	ld	hl,#_sig_nivel + 0
+   065A 36 01         [10]  958 	ld	(hl), #0x01
+   065C 18 14         [12]  959 	jr	00181$
+   065E                     960 00180$:
+                            961 ;src/juego.c:163: } else if (!(entidad[1].energy || entidad[2].energy)) {
+   065E 3Ar1Er00      [13]  962 	ld	a, (#(_entidad + 0x001e) + 0)
+   0661 B7            [ 4]  963 	or	a, a
+   0662 20 0E         [12]  964 	jr	NZ,00181$
+   0664 3Ar32r00      [13]  965 	ld	a,(#(_entidad + 0x0032) + 0)
+   0667 DD 77 F4      [19]  966 	ld	-12 (ix), a
+   066A B7            [ 4]  967 	or	a, a
+   066B 20 05         [12]  968 	jr	NZ,00181$
+                            969 ;src/juego.c:164: sig_nivel = 1;
+   066D 21r00r00      [10]  970 	ld	hl,#_sig_nivel + 0
+   0670 36 01         [10]  971 	ld	(hl), #0x01
+   0672                     972 00181$:
+                            973 ;src/juego.c:168: if (sig_nivel) {
+   0672 3Ar00r00      [13]  974 	ld	a,(#_sig_nivel + 0)
+   0675 B7            [ 4]  975 	or	a, a
+   0676 28 68         [12]  976 	jr	Z,00188$
+                            977 ;src/juego.c:169: if (nivel == 10) {// Fin del Juego
+   0678 3Ar00r00      [13]  978 	ld	a,(#_nivel + 0)
+   067B D6 0A         [ 7]  979 	sub	a, #0x0a
+   067D 20 23         [12]  980 	jr	NZ,00185$
+                            981 ;src/juego.c:170: sprintf(temp, "CONGRATULATIONS!");
+   067F DD 7E F8      [19]  982 	ld	a, -8 (ix)
+   0682 DD 77 F4      [19]  983 	ld	-12 (ix), a
+   0685 DD 7E F9      [19]  984 	ld	a, -7 (ix)
+   0688 DD 77 F5      [19]  985 	ld	-11 (ix), a
+   068B 21r68r07      [10]  986 	ld	hl, #___str_6
+   068E E5            [11]  987 	push	hl
+   068F DD 6E F4      [19]  988 	ld	l,-12 (ix)
+   0692 DD 66 F5      [19]  989 	ld	h,-11 (ix)
+   0695 E5            [11]  990 	push	hl
+   0696 CDr00r00      [17]  991 	call	_sprintf
+   0699 F1            [10]  992 	pop	af
+   069A F1            [10]  993 	pop	af
+                            994 ;src/juego.c:171: entidad[0].energy = 0;
+   069B 21r0Ar00      [10]  995 	ld	hl, #(_entidad + 0x000a)
+   069E 36 00         [10]  996 	ld	(hl), #0x00
+   06A0 18 25         [12]  997 	jr	00186$
+   06A2                     998 00185$:
+                            999 ;src/juego.c:173: nivel++;
+   06A2 21r00r00      [10] 1000 	ld	hl, #_nivel+0
+   06A5 34            [11] 1001 	inc	(hl)
+                           1002 ;src/juego.c:174: entidad[0].pos_x = 8;
+   06A6 21r0Fr00      [10] 1003 	ld	hl, #(_entidad + 0x000f)
+   06A9 36 08         [10] 1004 	ld	(hl), #0x08
+                           1005 ;src/juego.c:175: sprintf(temp, "   NEXT LEVEL   ");
+   06AB DD 7E F8      [19] 1006 	ld	a, -8 (ix)
+   06AE DD 77 F4      [19] 1007 	ld	-12 (ix), a
+   06B1 DD 7E F9      [19] 1008 	ld	a, -7 (ix)
+   06B4 DD 77 F5      [19] 1009 	ld	-11 (ix), a
+   06B7 21r79r07      [10] 1010 	ld	hl, #___str_7
+   06BA E5            [11] 1011 	push	hl
+   06BB DD 6E F4      [19] 1012 	ld	l,-12 (ix)
+   06BE DD 66 F5      [19] 1013 	ld	h,-11 (ix)
+   06C1 E5            [11] 1014 	push	hl
+   06C2 CDr00r00      [17] 1015 	call	_sprintf
+   06C5 F1            [10] 1016 	pop	af
+   06C6 F1            [10] 1017 	pop	af
+   06C7                    1018 00186$:
+                           1019 ;src/juego.c:177: printConsole(temp, 0, 2);
+   06C7 DD 4E F8      [19] 1020 	ld	c,-8 (ix)
+   06CA DD 46 F9      [19] 1021 	ld	b,-7 (ix)
+   06CD 21 00 02      [10] 1022 	ld	hl, #0x0200
+   06D0 E5            [11] 1023 	push	hl
+   06D1 C5            [11] 1024 	push	bc
+   06D2 CDr00r00      [17] 1025 	call	_printConsole
+   06D5 F1            [10] 1026 	pop	af
+   06D6 F1            [10] 1027 	pop	af
+                           1028 ;src/juego.c:178: sig_nivel = 0;
+   06D7 21r00r00      [10] 1029 	ld	hl,#_sig_nivel + 0
+   06DA 36 00         [10] 1030 	ld	(hl), #0x00
+                           1031 ;src/juego.c:179: return 0;
+   06DC 2E 00         [ 7] 1032 	ld	l, #0x00
+   06DE 18 38         [12] 1033 	jr	00200$
+   06E0                    1034 00188$:
+                           1035 ;src/juego.c:183: if (!entidad[0].energy) {
+   06E0 3Ar0Ar00      [13] 1036 	ld	a, (#(_entidad + 0x000a) + 0)
+   06E3 B7            [ 4] 1037 	or	a, a
+   06E4 20 30         [12] 1038 	jr	NZ,00190$
+                           1039 ;src/juego.c:184: sprintf(temp, "    GAME OVER   ");
+   06E6 DD 7E F8      [19] 1040 	ld	a, -8 (ix)
+   06E9 DD 77 F4      [19] 1041 	ld	-12 (ix), a
+   06EC DD 7E F9      [19] 1042 	ld	a, -7 (ix)
+   06EF DD 77 F5      [19] 1043 	ld	-11 (ix), a
+   06F2 21r8Ar07      [10] 1044 	ld	hl, #___str_8
+   06F5 E5            [11] 1045 	push	hl
+   06F6 DD 6E F4      [19] 1046 	ld	l,-12 (ix)
+   06F9 DD 66 F5      [19] 1047 	ld	h,-11 (ix)
+   06FC E5            [11] 1048 	push	hl
+   06FD CDr00r00      [17] 1049 	call	_sprintf
+   0700 F1            [10] 1050 	pop	af
+   0701 F1            [10] 1051 	pop	af
+                           1052 ;src/juego.c:185: printConsole(temp, 0, 2);
+   0702 DD 4E F8      [19] 1053 	ld	c,-8 (ix)
+   0705 DD 46 F9      [19] 1054 	ld	b,-7 (ix)
+   0708 21 00 02      [10] 1055 	ld	hl, #0x0200
+   070B E5            [11] 1056 	push	hl
+   070C C5            [11] 1057 	push	bc
+   070D CDr00r00      [17] 1058 	call	_printConsole
+   0710 F1            [10] 1059 	pop	af
+   0711 F1            [10] 1060 	pop	af
+                           1061 ;src/juego.c:186: return 0;
+   0712 2E 00         [ 7] 1062 	ld	l, #0x00
+   0714 18 02         [12] 1063 	jr	00200$
+   0716                    1064 00190$:
+                           1065 ;src/juego.c:189: return 1;
+   0716 2E 01         [ 7] 1066 	ld	l, #0x01
+   0718                    1067 00200$:
+   0718 DD F9         [10] 1068 	ld	sp, ix
+   071A DD E1         [14] 1069 	pop	ix
+   071C C9            [10] 1070 	ret
+   071D                    1071 ___str_0:
+   071D 41 43 54 49 4F 4E  1072 	.ascii "ACTION (</>/D) ?"
+        20 28 3C 2F 3E 2F
+        44 29 20 3F
+   072D 00                 1073 	.db 0x00
+   072E                    1074 ___str_1:
+   072E 25 2D 39 73 20 47  1075 	.ascii "%-9s GOES <"
+        4F 45 53 20 3C
+   0739 00                 1076 	.db 0x00
+   073A                    1077 ___str_2:
+   073A 25 2D 39 73 20 47  1078 	.ascii "%-9s GOES >"
+        4F 45 53 20 3E
+   0745 00                 1079 	.db 0x00
+   0746                    1080 ___str_3:
+   0746 25 2D 39 73 20 4D  1081 	.ascii "%-9s MAX HP"
         41 58 20 48 50
-   0772 00                 1100 	.db 0x00
-   0773                    1101 ___str_3:
-   0773 25 2D 39 73 20 25  1102 	.ascii "%-9s %c ATT"
-        63 20 41 54 54
-   077E 00                 1103 	.db 0x00
-   077F                    1104 ___str_4:
-   077F 25 2D 39 73 20 25  1105 	.ascii "%-9s %c DEF"
-        63 20 44 45 46
-   078A 00                 1106 	.db 0x00
-   078B                    1107 ___str_5:
-   078B 43 4F 4E 47 52 41  1108 	.ascii "CONGRATULATIONS!"
+   0751 00                 1082 	.db 0x00
+   0752                    1083 ___str_4:
+   0752 25 2D 39 73 20 5E  1084 	.ascii "%-9s ^ ATT"
+        20 41 54 54
+   075C 00                 1085 	.db 0x00
+   075D                    1086 ___str_5:
+   075D 25 2D 39 73 20 5E  1087 	.ascii "%-9s ^ DEF"
+        20 44 45 46
+   0767 00                 1088 	.db 0x00
+   0768                    1089 ___str_6:
+   0768 43 4F 4E 47 52 41  1090 	.ascii "CONGRATULATIONS!"
         54 55 4C 41 54 49
         4F 4E 53 21
-   079B 00                 1109 	.db 0x00
-   079C                    1110 ___str_6:
-   079C 20 20 20 4E 45 58  1111 	.ascii "   NEXT LEVEL   "
+   0778 00                 1091 	.db 0x00
+   0779                    1092 ___str_7:
+   0779 20 20 20 4E 45 58  1093 	.ascii "   NEXT LEVEL   "
         54 20 4C 45 56 45
         4C 20 20 20
-   07AC 00                 1112 	.db 0x00
-   07AD                    1113 ___str_7:
-   07AD 20 20 20 20 47 41  1114 	.ascii "    GAME OVER   "
+   0789 00                 1094 	.db 0x00
+   078A                    1095 ___str_8:
+   078A 20 20 20 20 47 41  1096 	.ascii "    GAME OVER   "
         4D 45 20 4F 56 45
         52 20 20 20
-   07BD 00                 1115 	.db 0x00
-                           1116 ;src/juego.c:192: void juego() {
-                           1117 ;	---------------------------------
-                           1118 ; Function juego
-                           1119 ; ---------------------------------
-   07BE                    1120 _juego::
-                           1121 ;src/juego.c:195: nivel = 1;
-   07BE 21r00r00      [10] 1122 	ld	hl,#_nivel + 0
-   07C1 36 01         [10] 1123 	ld	(hl), #0x01
-                           1124 ;src/juego.c:196: sig_nivel = 0;
-   07C3 21r00r00      [10] 1125 	ld	hl,#_sig_nivel + 0
-   07C6 36 00         [10] 1126 	ld	(hl), #0x00
-                           1127 ;src/juego.c:198: initPlayer();
-   07C8 CDr00r00      [17] 1128 	call	_initPlayer
-                           1129 ;src/juego.c:200: while(entidad[0].energy) {
-   07CB                    1130 00112$:
-   07CB 3Ar0Ar00      [13] 1131 	ld	a, (#(_entidad + 0x000a) + 0)
-   07CE B7            [ 4] 1132 	or	a, a
-   07CF C8            [11] 1133 	ret	Z
-                           1134 ;src/juego.c:201: i = 0;
-   07D0 0E 00         [ 7] 1135 	ld	c, #0x00
-                           1136 ;src/juego.c:202: cpct_clearScreen(0x00);
-   07D2 C5            [11] 1137 	push	bc
-   07D3 21 00 40      [10] 1138 	ld	hl, #0x4000
-   07D6 E5            [11] 1139 	push	hl
-   07D7 AF            [ 4] 1140 	xor	a, a
-   07D8 F5            [11] 1141 	push	af
-   07D9 33            [ 6] 1142 	inc	sp
-   07DA 26 C0         [ 7] 1143 	ld	h, #0xc0
-   07DC E5            [11] 1144 	push	hl
-   07DD CDr00r00      [17] 1145 	call	_cpct_memset
-   07E0 CDr00r00      [17] 1146 	call	_dibujarMarcoExterior
-   07E3 C1            [10] 1147 	pop	bc
-                           1148 ;src/juego.c:205: if (nivel == 1) {
-   07E4 3Ar00r00      [13] 1149 	ld	a,(#_nivel + 0)
-   07E7 3D            [ 4] 1150 	dec	a
-   07E8 20 18         [12] 1151 	jr	NZ,00102$
-                           1152 ;src/juego.c:206: cpct_drawStringM1("Chapter 1", cpctm_screenPtr(CPCT_VMEM_START, 30, 80));
-   07EA 21 3E C3      [10] 1153 	ld	hl, #0xc33e
-   07ED E5            [11] 1154 	push	hl
-   07EE 21r53r08      [10] 1155 	ld	hl, #___str_8
-   07F1 E5            [11] 1156 	push	hl
-   07F2 CDr00r00      [17] 1157 	call	_cpct_drawStringM1
-                           1158 ;src/juego.c:207: cpct_drawStringM1("A faraway and foreign land ...", cpctm_screenPtr(CPCT_VMEM_START, 12, 96));
-   07F5 21 CC C3      [10] 1159 	ld	hl, #0xc3cc
-   07F8 E5            [11] 1160 	push	hl
-   07F9 21r5Dr08      [10] 1161 	ld	hl, #___str_9
-   07FC E5            [11] 1162 	push	hl
-   07FD CDr00r00      [17] 1163 	call	_cpct_drawStringM1
-                           1164 ;src/juego.c:208: i = 1;
-   0800 0E 01         [ 7] 1165 	ld	c, #0x01
-   0802                    1166 00102$:
-                           1167 ;src/juego.c:211: if (i) {
-   0802 79            [ 4] 1168 	ld	a, c
-   0803 B7            [ 4] 1169 	or	a, a
-   0804 28 19         [12] 1170 	jr	Z,00105$
-                           1171 ;src/juego.c:212: for (i=0; i< 5; i++)
-   0806 0E 00         [ 7] 1172 	ld	c, #0x00
-   0808                    1173 00115$:
-                           1174 ;src/juego.c:213: pausa(SEGUNDO);
-   0808 C5            [11] 1175 	push	bc
-   0809 21 00 80      [10] 1176 	ld	hl, #0x8000
-   080C E5            [11] 1177 	push	hl
-   080D CDr00r00      [17] 1178 	call	_pausa
-   0810 F1            [10] 1179 	pop	af
-   0811 C1            [10] 1180 	pop	bc
-                           1181 ;src/juego.c:212: for (i=0; i< 5; i++)
-   0812 0C            [ 4] 1182 	inc	c
-   0813 79            [ 4] 1183 	ld	a, c
-   0814 D6 05         [ 7] 1184 	sub	a, #0x05
-   0816 38 F0         [12] 1185 	jr	C,00115$
-                           1186 ;src/juego.c:215: efecto_pliegue(PLIEGUE);
-   0818 AF            [ 4] 1187 	xor	a, a
-   0819 F5            [11] 1188 	push	af
-   081A 33            [ 6] 1189 	inc	sp
-   081B CDr00r00      [17] 1190 	call	_efecto_pliegue
-   081E 33            [ 6] 1191 	inc	sp
-   081F                    1192 00105$:
-                           1193 ;src/juego.c:218: cursorConsola = 64;
-   081F 21r00r00      [10] 1194 	ld	hl,#_cursorConsola + 0
-   0822 36 40         [10] 1195 	ld	(hl), #0x40
-                           1196 ;src/juego.c:220: initNivel();
-   0824 CDr00r00      [17] 1197 	call	_initNivel
-                           1198 ;src/juego.c:221: dibujarMarcoInterior();
-   0827 CDr00r00      [17] 1199 	call	_dibujarMarcoInterior
-                           1200 ;src/juego.c:222: dibujarEscenario();
-   082A CDr00r00      [17] 1201 	call	_dibujarEscenario
-                           1202 ;src/juego.c:223: printLevel();
-   082D CDr00r00      [17] 1203 	call	_printLevel
-                           1204 ;src/juego.c:225: efecto_pliegue(DESPLIEGUE);
-   0830 3E 01         [ 7] 1205 	ld	a, #0x01
-   0832 F5            [11] 1206 	push	af
-   0833 33            [ 6] 1207 	inc	sp
-   0834 CDr00r00      [17] 1208 	call	_efecto_pliegue
-   0837 33            [ 6] 1209 	inc	sp
-                           1210 ;src/juego.c:226: while (turno())
-   0838                    1211 00106$:
-   0838 CDr00r00      [17] 1212 	call	_turno
-   083B 7D            [ 4] 1213 	ld	a, l
-   083C B7            [ 4] 1214 	or	a, a
-   083D 20 F9         [12] 1215 	jr	NZ,00106$
-                           1216 ;src/juego.c:229: do {
-   083F                    1217 00109$:
-                           1218 ;src/juego.c:230: cpct_scanKeyboard_f();
-   083F CDr00r00      [17] 1219 	call	_cpct_scanKeyboard_f
-                           1220 ;src/juego.c:231: } while (!cpct_isAnyKeyPressed_f());
-   0842 CDr00r00      [17] 1221 	call	_cpct_isAnyKeyPressed_f
-   0845 7D            [ 4] 1222 	ld	a, l
-   0846 B7            [ 4] 1223 	or	a, a
-   0847 28 F6         [12] 1224 	jr	Z,00109$
-                           1225 ;src/juego.c:232: efecto_pliegue(PLIEGUE);
-   0849 AF            [ 4] 1226 	xor	a, a
-   084A F5            [11] 1227 	push	af
-   084B 33            [ 6] 1228 	inc	sp
-   084C CDr00r00      [17] 1229 	call	_efecto_pliegue
-   084F 33            [ 6] 1230 	inc	sp
-   0850 C3rCBr07      [10] 1231 	jp	00112$
-   0853                    1232 ___str_8:
-   0853 43 68 61 70 74 65  1233 	.ascii "Chapter 1"
+   079A 00                 1097 	.db 0x00
+                           1098 ;src/juego.c:192: void juego() {
+                           1099 ;	---------------------------------
+                           1100 ; Function juego
+                           1101 ; ---------------------------------
+   079B                    1102 _juego::
+                           1103 ;src/juego.c:195: nivel = 1;
+   079B 21r00r00      [10] 1104 	ld	hl,#_nivel + 0
+   079E 36 01         [10] 1105 	ld	(hl), #0x01
+                           1106 ;src/juego.c:196: sig_nivel = 0;
+   07A0 21r00r00      [10] 1107 	ld	hl,#_sig_nivel + 0
+   07A3 36 00         [10] 1108 	ld	(hl), #0x00
+                           1109 ;src/juego.c:198: initPlayer();
+   07A5 CDr00r00      [17] 1110 	call	_initPlayer
+                           1111 ;src/juego.c:200: while(entidad[0].energy) {
+   07A8                    1112 00116$:
+   07A8 3Ar0Ar00      [13] 1113 	ld	a, (#(_entidad + 0x000a) + 0)
+   07AB B7            [ 4] 1114 	or	a, a
+   07AC C8            [11] 1115 	ret	Z
+                           1116 ;src/juego.c:201: i = 0;
+   07AD 0E 00         [ 7] 1117 	ld	c, #0x00
+                           1118 ;src/juego.c:202: cpct_clearScreen(0x00);
+   07AF C5            [11] 1119 	push	bc
+   07B0 21 00 40      [10] 1120 	ld	hl, #0x4000
+   07B3 E5            [11] 1121 	push	hl
+   07B4 AF            [ 4] 1122 	xor	a, a
+   07B5 F5            [11] 1123 	push	af
+   07B6 33            [ 6] 1124 	inc	sp
+   07B7 26 C0         [ 7] 1125 	ld	h, #0xc0
+   07B9 E5            [11] 1126 	push	hl
+   07BA CDr00r00      [17] 1127 	call	_cpct_memset
+   07BD CDr00r00      [17] 1128 	call	_dibujarMarcoExterior
+   07C0 C1            [10] 1129 	pop	bc
+                           1130 ;src/juego.c:205: if (nivel == 1) {
+   07C1 3Ar00r00      [13] 1131 	ld	a,(#_nivel + 0)
+   07C4 3D            [ 4] 1132 	dec	a
+   07C5 20 18         [12] 1133 	jr	NZ,00102$
+                           1134 ;src/juego.c:206: mydrawStringM1("Chapter 1", cpctm_screenPtr(CPCT_VMEM_START, 30, 80));
+   07C7 21 3E C3      [10] 1135 	ld	hl, #0xc33e
+   07CA E5            [11] 1136 	push	hl
+   07CB 21r6Er08      [10] 1137 	ld	hl, #___str_9
+   07CE E5            [11] 1138 	push	hl
+   07CF CDr00r00      [17] 1139 	call	_mydrawStringM1
+                           1140 ;src/juego.c:207: mydrawStringM1("A faraway and foreign land ...", cpctm_screenPtr(CPCT_VMEM_START, 12, 96));
+   07D2 21 CC C3      [10] 1141 	ld	hl, #0xc3cc
+   07D5 E5            [11] 1142 	push	hl
+   07D6 21r78r08      [10] 1143 	ld	hl, #___str_10
+   07D9 E5            [11] 1144 	push	hl
+   07DA CDr00r00      [17] 1145 	call	_mydrawStringM1
+                           1146 ;src/juego.c:208: i = 1;
+   07DD 0E 01         [ 7] 1147 	ld	c, #0x01
+   07DF                    1148 00102$:
+                           1149 ;src/juego.c:210: if (nivel == 11) {
+   07DF 3Ar00r00      [13] 1150 	ld	a,(#_nivel + 0)
+   07E2 D6 0B         [ 7] 1151 	sub	a, #0x0b
+   07E4 20 18         [12] 1152 	jr	NZ,00104$
+                           1153 ;src/juego.c:211: mydrawStringM1("Chapter 2", cpctm_screenPtr(CPCT_VMEM_START, 30, 80));
+   07E6 21 3E C3      [10] 1154 	ld	hl, #0xc33e
+   07E9 E5            [11] 1155 	push	hl
+   07EA 21r97r08      [10] 1156 	ld	hl, #___str_11
+   07ED E5            [11] 1157 	push	hl
+   07EE CDr00r00      [17] 1158 	call	_mydrawStringM1
+                           1159 ;src/juego.c:212: mydrawStringM1("A hidden passage to the Castle ...", cpctm_screenPtr(CPCT_VMEM_START, 10, 96));
+   07F1 21 CA C3      [10] 1160 	ld	hl, #0xc3ca
+   07F4 E5            [11] 1161 	push	hl
+   07F5 21rA1r08      [10] 1162 	ld	hl, #___str_12
+   07F8 E5            [11] 1163 	push	hl
+   07F9 CDr00r00      [17] 1164 	call	_mydrawStringM1
+                           1165 ;src/juego.c:213: i = 1;
+   07FC 0E 01         [ 7] 1166 	ld	c, #0x01
+   07FE                    1167 00104$:
+                           1168 ;src/juego.c:215: if (nivel == 21) {
+   07FE 3Ar00r00      [13] 1169 	ld	a,(#_nivel + 0)
+   0801 D6 15         [ 7] 1170 	sub	a, #0x15
+   0803 20 18         [12] 1171 	jr	NZ,00106$
+                           1172 ;src/juego.c:216: mydrawStringM1("Chapter 3", cpctm_screenPtr(CPCT_VMEM_START, 30, 80));
+   0805 21 3E C3      [10] 1173 	ld	hl, #0xc33e
+   0808 E5            [11] 1174 	push	hl
+   0809 21rC4r08      [10] 1175 	ld	hl, #___str_13
+   080C E5            [11] 1176 	push	hl
+   080D CDr00r00      [17] 1177 	call	_mydrawStringM1
+                           1178 ;src/juego.c:217: mydrawStringM1("don Ricardo's Castle ...", cpctm_screenPtr(CPCT_VMEM_START, 15, 96));
+   0810 21 CF C3      [10] 1179 	ld	hl, #0xc3cf
+   0813 E5            [11] 1180 	push	hl
+   0814 21rCEr08      [10] 1181 	ld	hl, #___str_14
+   0817 E5            [11] 1182 	push	hl
+   0818 CDr00r00      [17] 1183 	call	_mydrawStringM1
+                           1184 ;src/juego.c:218: i = 1;
+   081B 0E 01         [ 7] 1185 	ld	c, #0x01
+   081D                    1186 00106$:
+                           1187 ;src/juego.c:221: if (i) {
+   081D 79            [ 4] 1188 	ld	a, c
+   081E B7            [ 4] 1189 	or	a, a
+   081F 28 19         [12] 1190 	jr	Z,00109$
+                           1191 ;src/juego.c:222: for (i=0; i< 5; i++)
+   0821 0E 00         [ 7] 1192 	ld	c, #0x00
+   0823                    1193 00119$:
+                           1194 ;src/juego.c:223: pausa(SEGUNDO);
+   0823 C5            [11] 1195 	push	bc
+   0824 21 00 80      [10] 1196 	ld	hl, #0x8000
+   0827 E5            [11] 1197 	push	hl
+   0828 CDr00r00      [17] 1198 	call	_pausa
+   082B F1            [10] 1199 	pop	af
+   082C C1            [10] 1200 	pop	bc
+                           1201 ;src/juego.c:222: for (i=0; i< 5; i++)
+   082D 0C            [ 4] 1202 	inc	c
+   082E 79            [ 4] 1203 	ld	a, c
+   082F D6 05         [ 7] 1204 	sub	a, #0x05
+   0831 38 F0         [12] 1205 	jr	C,00119$
+                           1206 ;src/juego.c:225: efecto_pliegue(PLIEGUE);
+   0833 AF            [ 4] 1207 	xor	a, a
+   0834 F5            [11] 1208 	push	af
+   0835 33            [ 6] 1209 	inc	sp
+   0836 CDr00r00      [17] 1210 	call	_efecto_pliegue
+   0839 33            [ 6] 1211 	inc	sp
+   083A                    1212 00109$:
+                           1213 ;src/juego.c:228: cursorConsola = 64;
+   083A 21r00r00      [10] 1214 	ld	hl,#_cursorConsola + 0
+   083D 36 40         [10] 1215 	ld	(hl), #0x40
+                           1216 ;src/juego.c:230: initNivel();
+   083F CDr00r00      [17] 1217 	call	_initNivel
+                           1218 ;src/juego.c:231: dibujarMarcoInterior();
+   0842 CDr00r00      [17] 1219 	call	_dibujarMarcoInterior
+                           1220 ;src/juego.c:232: dibujarEscenario();
+   0845 CDr00r00      [17] 1221 	call	_dibujarEscenario
+                           1222 ;src/juego.c:233: printLevel();
+   0848 CDr00r00      [17] 1223 	call	_printLevel
+                           1224 ;src/juego.c:235: efecto_pliegue(DESPLIEGUE);
+   084B 3E 01         [ 7] 1225 	ld	a, #0x01
+   084D F5            [11] 1226 	push	af
+   084E 33            [ 6] 1227 	inc	sp
+   084F CDr00r00      [17] 1228 	call	_efecto_pliegue
+   0852 33            [ 6] 1229 	inc	sp
+                           1230 ;src/juego.c:236: while (turno())
+   0853                    1231 00110$:
+   0853 CDr00r00      [17] 1232 	call	_turno
+   0856 7D            [ 4] 1233 	ld	a, l
+   0857 B7            [ 4] 1234 	or	a, a
+   0858 20 F9         [12] 1235 	jr	NZ,00110$
+                           1236 ;src/juego.c:239: do {
+   085A                    1237 00113$:
+                           1238 ;src/juego.c:240: cpct_scanKeyboard_f();
+   085A CDr00r00      [17] 1239 	call	_cpct_scanKeyboard_f
+                           1240 ;src/juego.c:241: } while (!cpct_isAnyKeyPressed_f());
+   085D CDr00r00      [17] 1241 	call	_cpct_isAnyKeyPressed_f
+   0860 7D            [ 4] 1242 	ld	a, l
+   0861 B7            [ 4] 1243 	or	a, a
+   0862 28 F6         [12] 1244 	jr	Z,00113$
+                           1245 ;src/juego.c:242: efecto_pliegue(PLIEGUE);
+   0864 AF            [ 4] 1246 	xor	a, a
+   0865 F5            [11] 1247 	push	af
+   0866 33            [ 6] 1248 	inc	sp
+   0867 CDr00r00      [17] 1249 	call	_efecto_pliegue
+   086A 33            [ 6] 1250 	inc	sp
+   086B C3rA8r07      [10] 1251 	jp	00116$
+   086E                    1252 ___str_9:
+   086E 43 68 61 70 74 65  1253 	.ascii "Chapter 1"
         72 20 31
-   085C 00                 1234 	.db 0x00
-   085D                    1235 ___str_9:
-   085D 41 20 66 61 72 61  1236 	.ascii "A faraway and foreign land ..."
+   0877 00                 1254 	.db 0x00
+   0878                    1255 ___str_10:
+   0878 41 20 66 61 72 61  1256 	.ascii "A faraway and foreign land ..."
         77 61 79 20 61 6E
         64 20 66 6F 72 65
         69 67 6E 20 6C 61
         6E 64 20 2E 2E 2E
-   087B 00                 1237 	.db 0x00
-                           1238 	.area _CODE
-                           1239 	.area _INITIALIZER
-                           1240 	.area _CABS (ABS)
+   0896 00                 1257 	.db 0x00
+   0897                    1258 ___str_11:
+   0897 43 68 61 70 74 65  1259 	.ascii "Chapter 2"
+        72 20 32
+   08A0 00                 1260 	.db 0x00
+   08A1                    1261 ___str_12:
+   08A1 41 20 68 69 64 64  1262 	.ascii "A hidden passage to the Castle ..."
+        65 6E 20 70 61 73
+        73 61 67 65 20 74
+        6F 20 74 68 65 20
+        43 61 73 74 6C 65
+        20 2E 2E 2E
+   08C3 00                 1263 	.db 0x00
+   08C4                    1264 ___str_13:
+   08C4 43 68 61 70 74 65  1265 	.ascii "Chapter 3"
+        72 20 33
+   08CD 00                 1266 	.db 0x00
+   08CE                    1267 ___str_14:
+   08CE 64 6F 6E 20 52 69  1268 	.ascii "don Ricardo's Castle ..."
+        63 61 72 64 6F 27
+        73 20 43 61 73 74
+        6C 65 20 2E 2E 2E
+   08E6 00                 1269 	.db 0x00
+                           1270 	.area _CODE
+                           1271 	.area _INITIALIZER
+                           1272 	.area _CABS (ABS)

@@ -47,6 +47,54 @@
         "GenerateHorizontalMirror": false,
         "pixels": {
           "$type": "System.Byte[], mscorlib",
+          "$value": "AgICAAACAgICAgACAgICAgICAgACAgICAgIAAAICAgICAgIAAAICAgICAgACAgICAgICAgAAAgICAAAAAgICAgICAgICAgAAAAACAgICAgIAAAICAAAAAgIAAAICAgICAAAAAAACAgICAgACAgIAAAICAAACAgICAgIAAgIAAAICAgIAAAACAgICAAIAAAICAgICAgIAAgICAgIAAAACAgICAgAAAAICAgIAAAIAAAICAgIAAgIAAAIAAgICAgACAgAAAAICAgAAAAAAAgIAAgAAAgAAAgICAgICAAAAAAIAAgIAAAACAgICAgAAAgIAAgICAgIAAgICAgACAgICAgA="
+        },
+        "Width": 16,
+        "Height": 16,
+        "_guid": "d39cfbe9-2954-42ea-82d7-7258cbbb424c",
+        "_name": "tile_caverna",
+        "MaskDataInline": false,
+        "UseInLevelDesigner": false
+      },
+      {
+        "$type": "RGAS.CPCSprite, RGAS",
+        "Align256": false,
+        "GenerateVerticalMirror": false,
+        "GenerateHorizontalMirror": false,
+        "pixels": {
+          "$type": "System.Byte[], mscorlib",
+          "$value": "AAICAgICAgIAAgICAgICAgACAgICAgICAAICAgICAgIAAgICAgICAgACAgICAgICAAAAAAAAAAAAAAAAAAAAAAICAgIAAgICAgICAgACAgICAgICAAICAgICAgIAAgICAgICAgACAgICAgICAAICAgAAAAAAAAAAAAAAAAAAAAAAAgICAgICAgACAgICAgICAAICAgICAgIAAgICAgICAgACAgICAgICAAICAgICAgIAAAAAAAAAAAAAAAAAAAAAAgICAgACAgICAgICAAICAgICAgIAAgICAgICAgACAgICAgICAAICAgICAgIAAgICAAAAAAAAAAAAAAAAAAAAAAA="
+        },
+        "Width": 16,
+        "Height": 16,
+        "_guid": "d39cfbe9-2954-42ea-82d7-7258cbbb424c",
+        "_name": "tile_castillo",
+        "MaskDataInline": false,
+        "UseInLevelDesigner": false
+      },
+      {
+        "$type": "RGAS.CPCSprite, RGAS",
+        "Align256": false,
+        "GenerateVerticalMirror": false,
+        "GenerateHorizontalMirror": false,
+        "pixels": {
+          "$type": "System.Byte[], mscorlib",
+          "$value": "/////////////wICAgL///8CAAAAAAL///8CAgIC/////wIAAAL/////AgAAAv///wIAAAAAAv8CAwMAAAAAAgIDAgMDAgMCAgMCAwMCAwICAwIDAwIDAgIDAgMDAgMCAgIDAgMDAgL/AgMCAwMC//8CAwIDAwL///8CAgIC//8A"
+        },
+        "Width": 8,
+        "Height": 16,
+        "_guid": "6b77adcc-4c4e-4b1d-9629-cd34c9734797",
+        "_name": "pocion",
+        "MaskDataInline": true,
+        "UseInLevelDesigner": false
+      },
+      {
+        "$type": "RGAS.CPCSprite, RGAS",
+        "Align256": false,
+        "GenerateVerticalMirror": false,
+        "GenerateHorizontalMirror": false,
+        "pixels": {
+          "$type": "System.Byte[], mscorlib",
           "$value": "/////////////////////////////wEBAf///////////////wEBAQEB//////////////8BAQICAv///wH/////////AQECAgL///8B//////////8BAQH/////Af///////////////////wH/////////AQEBAf////8B////////AQEBAQEB////Af//////AQEBAQEBAQH//wH/////AQH/AQEBAQEB//8B/////wH//wEBAQEBAf//Af////8B//8BAQEBAQEB/wH///8B////AQEBAQH//wEBAf//Af///wEBAQEB////Af///wH///8BAQEBAf///////////////wEBAf////////////////////////////////////8BAf8BAf//////////////AQH/AQH//////////////wEB//8BAf////////////8BAf//AQH///////////8BAf////8BAf//////////AQH/////AQH//////////wEB/////wEB/////////wEB////////AQH///////8BAf////////8B////////Af//////////AQH//wA="
         },
         "Width": 16,
@@ -159,12 +207,92 @@
         "GenerateHorizontalMirror": false,
         "pixels": {
           "$type": "System.Byte[], mscorlib",
-          "$value": "/////////////wICAgL///8CAAAAAAL///8CAgIC/////wIAAAL/////AgAAAv///wIAAAAAAv8CAwMAAAAAAgIDAgMDAgMCAgMCAwMCAwICAwIDAwIDAgIDAgMDAgMCAgIDAgMDAgL/AgMCAwMC//8CAwIDAwL///8CAgIC//8A"
+          "$value": "/////////////////////////////////////////////////////////////////////////wL/Av////////////////8DAgP/////////////////AgIC////////////AgICAv8C/wICAgL///8CAgMCAgMCAgIDAgIDAgL/AgMCAgMCAgICAgMCAgMC/wIDAgICAgICAgICAgIDAv8CAgL///8CAgL///8CAgL/Av////8C////Av////8C////////Av///wL//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////wA="
         },
-        "Width": 8,
-        "Height": 16,
-        "_guid": "6b77adcc-4c4e-4b1d-9629-cd34c9734797",
-        "_name": "pocion",
+        "Width": 16,
+        "Height": 28,
+        "_guid": "ab8eb366-7665-4c13-988f-a2c452f1b28d",
+        "_name": "murcielago",
+        "MaskDataInline": true,
+        "UseInLevelDesigner": false
+      },
+      {
+        "$type": "RGAS.CPCSprite, RGAS",
+        "Align256": false,
+        "GenerateVerticalMirror": false,
+        "GenerateHorizontalMirror": false,
+        "pixels": {
+          "$type": "System.Byte[], mscorlib",
+          "$value": "//////////////////////////////8CAgL///////////////8CAwIDAv//////////////AgICAgL///////////////8CAwL/////////////////AgIC//////////////////////////////////////8CAgL/////////////Av8C/wL/Av8C////////Av8CAv8C/wIC/wL//////wL/Av8CAgL/Av8C//////8C/wIC/wL/AgL/Av//////Av8C/wICAv8C/wL//////wL//wL///8C//8C//////8C////AgIC////Av//Av////////////////////8CAgIC/wL///8C//8C//8C//////8C////Av////////////8C//////8C////////////Av//////Av///////////wL//////wL///////////8C//////8C//////////8CAv//////AgL/////////Av////////8C/////////wL/////////Av////////8C/////////wL///////////////////////////8CAgL/////////AgIC/wA="
+        },
+        "Width": 16,
+        "Height": 28,
+        "_guid": "de65aaba-279d-4cdc-ba5e-f65bfbc105ba",
+        "_name": "esqueleto",
+        "MaskDataInline": true,
+        "UseInLevelDesigner": false
+      },
+      {
+        "$type": "RGAS.CPCSprite, RGAS",
+        "Align256": false,
+        "GenerateVerticalMirror": false,
+        "GenerateHorizontalMirror": false,
+        "pixels": {
+          "$type": "System.Byte[], mscorlib",
+          "$value": "/////////////////////////wICAgICAgL//////////wL//wL/AgICAgL//////wIC//8C//8CAgIC/////wL//wL//wICAgICAgL///8C/////////wICAgICAv//AgIC/wL/Av8CAgICAgL//wL//wL///8CAgICAgICAv//AgL//wL/AgICAgICAgL//wIC//8CAgL/AgICAgIC////AgICAgIC//8CAgICAv////////8CAgL//////wL///////8CAgICAgICAgIC////////Av8CAgICAgICAv//////AgL//wICAgICAv///////wICAv//AgICAgL///////8CAgIC////AgL/////////AgICAgICAgL//////////wICAgICAgL///////////8C/wICAgIC////////////Av//////Av///////////wICAgICAgL///////////8CAgICAgICAv///////////wICAgIC/wIC//////////8CAv////8CAgL//////////wICAgICAgICAgL/////////AgICAgIC/wIC/////////wIC//////8CAgA="
+        },
+        "Width": 16,
+        "Height": 28,
+        "_guid": "c889c658-ac3f-4639-b717-ef44c24ce596",
+        "_name": "gusano",
+        "MaskDataInline": true,
+        "UseInLevelDesigner": false
+      },
+      {
+        "$type": "RGAS.CPCSprite, RGAS",
+        "Align256": false,
+        "GenerateVerticalMirror": false,
+        "GenerateHorizontalMirror": false,
+        "pixels": {
+          "$type": "System.Byte[], mscorlib",
+          "$value": "//////////////////////////////////////////////////////////////////////////////////////////////8CAgL///////////////8CAwICAv//////////////AgICAwL//////////////wIDAgIC////////////////AgID/////////////////////wIC/////////////wL/AgICAgIC//////////8C/wICAv//Av///////wIC//8C////AgL///////8C////AgICAgL/AgL///8CAv///wICAv///wIC////Av///wL/AgIC/wIC/////wL//wIC/wL/AgICAgL//wL//wIC/wIC//8C/wIC//8C//8C//8C//8CAv8CAv//Av8CAv////8CAgICAgL/////Av////8CAv8C//8C////Av////8CAv//AgICAv//////////Av///wICAgL/////////Av///wIC/wIC//////////////8C/wICAv////////////8C////Av////////////8C/////wIC////////////////////AgA="
+        },
+        "Width": 16,
+        "Height": 28,
+        "_guid": "30ee1456-3744-45f2-9d4c-07c509b66517",
+        "_name": "spider",
+        "MaskDataInline": true,
+        "UseInLevelDesigner": false
+      },
+      {
+        "$type": "RGAS.CPCSprite, RGAS",
+        "Align256": false,
+        "GenerateVerticalMirror": false,
+        "GenerateHorizontalMirror": false,
+        "pixels": {
+          "$type": "System.Byte[], mscorlib",
+          "$value": "/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////wL/////////////////AgIC////////////////AgICAv//////////////////AgL///////8B/////wICAv8C////////Af//AgICAwL/Av//////AQH///8CAgIC/////////wEB//////8CAv////////8BAf///////////////////wEC/////wIC////////////AgL//wICAgL///////////8CAv8CAgIC//8C/////////wL/AgICAgL/Av///////////wICAgIC/wIC//////////8CAgIC////Av///////////////////////////////wICAgL///////////////8CAgICAv////////////8CAgICAgL/////////////Av///wICAv//////////AgL//////wL/////////AgL///////8CAv//////AgIC/////////wL//wA="
+        },
+        "Width": 16,
+        "Height": 28,
+        "_guid": "28249648-5caa-49d9-8892-00110c686f12",
+        "_name": "goblin",
+        "MaskDataInline": true,
+        "UseInLevelDesigner": false
+      },
+      {
+        "$type": "RGAS.CPCSprite, RGAS",
+        "Align256": false,
+        "GenerateVerticalMirror": false,
+        "GenerateHorizontalMirror": false,
+        "pixels": {
+          "$type": "System.Byte[], mscorlib",
+          "$value": "/////////////////////////////wL///8C//////////////8CAv8CAv//////////////AgICAgL//////////////wIDAgMC//////////////8CAgICAv//////////////AgIDAgL///////////////8CAgL//////////wICAv////////8CAgL//wIBAQL//wICAv//AgEBAv8CAQECAgICAQICAgIBAQL/AgIBAQECAQICAgEBAQIC/wICAQEBAgICAQIBAQECAv8CAgIBAQICAQECAQECAgL/AgECAgICAgECAgICAgEC/wICAQICAgECAgICAgECAv8C//8CAv8CAgL//wL//wL/Av//Av//AgL///8C//8C/wL//////wICAv//////Av//////////AgICAv////////////////8CAgICAv//////////////////AgL///8CAgL///////////8CAv8CAgICAgIC////////AgL//wL///8CAgIC/////wL//////////wICAgL//wIC//////////////8CAgIC/////////////////////////wA="
+        },
+        "Width": 16,
+        "Height": 28,
+        "_guid": "412712cf-845d-41a0-89f0-9bfe2dc43d17",
+        "_name": "cavern_boss",
         "MaskDataInline": true,
         "UseInLevelDesigner": false
       }

@@ -39,7 +39,7 @@ u8 turno() { //devuelve valor 0 cuando muere personaje o se termina nivel
 	i = 0;
   do  {
     	cpct_scanKeyboard_f();
-    	sprintf(temp, "ACTION (%c/%c/D) ?",242,243);
+    	sprintf(temp, "ACTION (</>/D) ?");
     	if (i < 25) {
 			printConsole(temp, 2, 0);
     	} else {
@@ -58,7 +58,7 @@ u8 turno() { //devuelve valor 0 cuando muere personaje o se termina nivel
 
 	// Mover izquierda
   if (cpct_isKeyPressed(Key_O) || cpct_isKeyPressed(Key_CursorLeft) || cpct_isKeyPressed(Joy0_Left)) {
-   	sprintf(temp, "%-9s GOES %c",entidad[0].name,242);
+   	sprintf(temp, "%-9s GOES <",entidad[0].name);
    	printConsole(temp, 2, 0);
 
     nueva_pos = entidad[0].pos_x - 4;
@@ -66,7 +66,7 @@ u8 turno() { //devuelve valor 0 cuando muere personaje o se termina nivel
 
   // Mover derecha y posible ataque
   if (cpct_isKeyPressed(Key_P) || cpct_isKeyPressed(Key_CursorRight) || cpct_isKeyPressed(Joy0_Right)) {
-   	sprintf(temp, "%-9s GOES %c",entidad[0].name,243);
+   	sprintf(temp, "%-9s GOES >",entidad[0].name);
    	printConsole(temp, 2 ,0);
 
     nueva_pos = entidad[0].pos_x + 4;
@@ -102,12 +102,12 @@ u8 turno() { //devuelve valor 0 cuando muere personaje o se termina nivel
    		else { 
        	enemy_mov = cpct_rand()%3; //33% de moverse a izquierda, derecha o curarse
        	if (enemy_mov == 1) {
-       		sprintf(temp, "%-9s GOES %c",entidad[i].name,242);
+       		sprintf(temp, "%-9s GOES <",entidad[i].name);
 		     	printConsole(temp, 0, 2);
 
 	        nueva_pos = entidad[i].pos_x - 4;
        	} else if (enemy_mov == 2) {
-         		sprintf(temp, "%-9s GOES %c",entidad[i].name,243);
+         		sprintf(temp, "%-9s GOES >",entidad[i].name);
 	   	     	printConsole(temp, 0, 2);
 
 		        nueva_pos = entidad[i].pos_x + 4;
@@ -147,12 +147,12 @@ u8 turno() { //devuelve valor 0 cuando muere personaje o se termina nivel
       } else if (cpct_rand() % 2){
         //Mejora de Ataque 25%
         entidad[0].attack += 5;
-        sprintf(temp, "%-9s %c ATT",entidad[0].name,240);
+        sprintf(temp, "%-9s ^ ATT",entidad[0].name);
         printConsole(temp, 2, 0);
       } else {
         //Mejora de Defensa 25%
         entidad[0].defense += 5;
-        sprintf(temp, "%-9s %c DEF",entidad[0].name,240);
+        sprintf(temp, "%-9s ^ DEF",entidad[0].name);
         printConsole(temp, 2, 0);
       }
         
@@ -203,8 +203,18 @@ void juego() {
     dibujarMarcoExterior();
     // Mostrar capítulos
     if (nivel == 1) {
-      cpct_drawStringM1("Chapter 1", cpctm_screenPtr(CPCT_VMEM_START, 30, 80));
-      cpct_drawStringM1("A faraway and foreign land ...", cpctm_screenPtr(CPCT_VMEM_START, 12, 96));
+      mydrawStringM1("Chapter 1", cpctm_screenPtr(CPCT_VMEM_START, 30, 80));
+      mydrawStringM1("A faraway and foreign land ...", cpctm_screenPtr(CPCT_VMEM_START, 12, 96));
+      i = 1;
+    }
+    if (nivel == 11) {
+      mydrawStringM1("Chapter 2", cpctm_screenPtr(CPCT_VMEM_START, 30, 80));
+      mydrawStringM1("A hidden passage to the Castle ...", cpctm_screenPtr(CPCT_VMEM_START, 10, 96));
+      i = 1;
+    }
+    if (nivel == 21) {
+      mydrawStringM1("Chapter 3", cpctm_screenPtr(CPCT_VMEM_START, 30, 80));
+      mydrawStringM1("don Ricardo's Castle ...", cpctm_screenPtr(CPCT_VMEM_START, 15, 96));
       i = 1;
     }
 

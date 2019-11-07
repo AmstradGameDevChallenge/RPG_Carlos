@@ -23,7 +23,6 @@ Symbol Table
   0 ___str_8                                                       0227 R
   0 ___str_9                                                       0250 R
     _cpct_disableFirmware                                          **** GX
-    _cpct_drawStringM1                                             **** GX
     _cpct_getScreenPtr                                             **** GX
     _cpct_isAnyKeyPressed_f                                        **** GX
     _cpct_memset                                                   **** GX
@@ -38,6 +37,7 @@ Symbol Table
   1 _entidad                                                       0000 GR
     _juego                                                         **** GX
   0 _main                                                          0000 GR
+    _mydrawStringM1                                                **** GX
   1 _nivel                                                         003C GR
   0 _paletaM1                                                      0106 GR
     _pausaTecladoLibre                                             **** GX

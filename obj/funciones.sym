@@ -9,22 +9,23 @@ Symbol Table
     .__.H$L.                                                    =  0000 L
     _G_mendo                                                       **** GX
     _G_pocion                                                      **** GX
+    _G_tile_castillo                                               **** GX
+    _G_tile_caverna                                                **** GX
     _G_tile_cruzada                                                **** GX
-  0 ___str_0                                                       02D6 R
-  0 ___str_1                                                       02FB R
-  0 ___str_2                                                       035D R
-  0 ___str_3                                                       04DC R
-  0 ___str_4                                                       04EA R
-  0 ___str_5                                                       04F8 R
-  0 ___str_6                                                       05CB R
+  0 ___str_0                                                       02DD R
+  0 ___str_1                                                       0302 R
+  0 ___str_2                                                       0364 R
+  0 ___str_3                                                       04E3 R
+  0 ___str_4                                                       04F1 R
+  0 ___str_5                                                       04FF R
+  0 ___str_6                                                       05CE R
     __divuchar                                                     **** GX
     __moduchar                                                     **** GX
   0 _abs                                                           0000 GR
-  0 _atacar                                                        03CE GR
+  0 _atacar                                                        03D5 GR
     _cpct_drawSolidBox                                             **** GX
     _cpct_drawSprite                                               **** GX
     _cpct_drawSpriteMasked                                         **** GX
-    _cpct_drawStringM1                                             **** GX
     _cpct_etm_drawTileBox2x4                                       **** GX
     _cpct_etm_setTileset2x4                                        **** GX
     _cpct_getRandom_mxor_u8                                        **** GX
@@ -35,21 +36,23 @@ Symbol Table
     _cpct_setCRTCReg                                               **** GX
     _cpct_setDrawCharM1                                            **** GX
     _cursorConsola                                                 **** GX
-  0 _defender                                                      0504 GR
-  0 _dibujarEscenario                                              01F2 GR
+  0 _defender                                                      050B GR
+  0 _dibujarEscenario                                              01F9 GR
   0 _dibujarMarcoExterior                                          008F GR
-  0 _dibujarMarcoInterior                                          0157 GR
-  0 _drawPotion                                                    05DA GR
+  0 _dibujarMarcoInterior                                          015E GR
+  0 _drawPotion                                                    05DC GR
   0 _efecto_pliegue                                                0038 GR
     _g_mapa01                                                      **** GX
+    _mydrawStringM1                                                **** GX
     _nivel                                                         **** GX
   0 _pausa                                                         0028 GR
   0 _pausaTecladoLibre                                             0084 GR
-  0 _printConsole                                                  0369 GR
-  0 _printLevel                                                    0320 GR
-  0 _printStats                                                    0236 GR
+  0 _printConsole                                                  0370 GR
+  0 _printLevel                                                    0327 GR
+  0 _printStats                                                    023D GR
     _sprintf                                                       **** GX
     _tileset1                                                      **** GX
+    _tileset2                                                      **** GX
 
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
@@ -57,7 +60,7 @@ Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size  5EA   flags    0
+   0 _CODE                                      size  5EC   flags    0
    1 _DATA                                      size    0   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8

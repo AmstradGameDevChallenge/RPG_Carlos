@@ -11,13 +11,13 @@
                              11 	.globl _main
                              12 	.globl _juego
                              13 	.globl _pausaTecladoLibre
-                             14 	.globl _cpct_restoreState_mxor_u8
-                             15 	.globl _cpct_setSeed_mxor
-                             16 	.globl _cpct_getScreenPtr
-                             17 	.globl _cpct_setPALColour
-                             18 	.globl _cpct_setPalette
-                             19 	.globl _cpct_setVideoMode
-                             20 	.globl _cpct_drawStringM1
+                             14 	.globl _mydrawStringM1
+                             15 	.globl _cpct_restoreState_mxor_u8
+                             16 	.globl _cpct_setSeed_mxor
+                             17 	.globl _cpct_getScreenPtr
+                             18 	.globl _cpct_setPALColour
+                             19 	.globl _cpct_setPalette
+                             20 	.globl _cpct_setVideoMode
                              21 	.globl _cpct_setDrawCharM1
                              22 	.globl _cpct_isAnyKeyPressed_f
                              23 	.globl _cpct_scanKeyboard_f
@@ -67,19 +67,19 @@
                              67 ; code
                              68 ;--------------------------------------------------------
                              69 	.area _CODE
-                             70 ;src/main.c:39: void main(void) {
+                             70 ;src/main.c:41: void main(void) {
                              71 ;	---------------------------------
                              72 ; Function main
                              73 ; ---------------------------------
    0000                      74 _main::
-                             75 ;src/main.c:43: cpct_disableFirmware();
+                             75 ;src/main.c:45: cpct_disableFirmware();
    0000 CDr00r00      [17]   76 	call	_cpct_disableFirmware
-                             77 ;src/main.c:45: while (1) {
+                             77 ;src/main.c:47: while (1) {
    0003                      78 00107$:
-                             79 ;src/main.c:46: cpct_setVideoMode(1);
+                             79 ;src/main.c:48: cpct_setVideoMode(1);
    0003 2E 01         [ 7]   80 	ld	l, #0x01
    0005 CDr00r00      [17]   81 	call	_cpct_setVideoMode
-                             82 ;src/main.c:47: cpct_clearScreen(0x00);
+                             82 ;src/main.c:49: cpct_clearScreen(0x00);
    0008 21 00 40      [10]   83 	ld	hl, #0x4000
    000B E5            [11]   84 	push	hl
    000C AF            [ 4]   85 	xor	a, a
@@ -88,105 +88,105 @@
    000F 26 C0         [ 7]   88 	ld	h, #0xc0
    0011 E5            [11]   89 	push	hl
    0012 CDr00r00      [17]   90 	call	_cpct_memset
-                             91 ;src/main.c:48: cpct_setPalette(paletaM1,4);
+                             91 ;src/main.c:50: cpct_setPalette(paletaM1,4);
    0015 21 04 00      [10]   92 	ld	hl, #0x0004
    0018 E5            [11]   93 	push	hl
    0019 21r06r01      [10]   94 	ld	hl, #_paletaM1
    001C E5            [11]   95 	push	hl
    001D CDr00r00      [17]   96 	call	_cpct_setPalette
-                             97 ;src/main.c:49: cpct_setBorder(HW_BLACK);
+                             97 ;src/main.c:51: cpct_setBorder(HW_BLACK);
    0020 21 10 14      [10]   98 	ld	hl, #0x1410
    0023 E5            [11]   99 	push	hl
    0024 CDr00r00      [17]  100 	call	_cpct_setPALColour
-                            101 ;src/main.c:52: cpct_setDrawCharM1(2, 0);
+                            101 ;src/main.c:54: cpct_setDrawCharM1(2, 0);
    0027 21 02 00      [10]  102 	ld	hl, #0x0002
    002A E5            [11]  103 	push	hl
    002B CDr00r00      [17]  104 	call	_cpct_setDrawCharM1
-                            105 ;src/main.c:53: cpct_drawStringM1("         Don Mendo and Lady Sol", cpctm_screenPtr(CPCT_VMEM_START, 0, 0));
+                            105 ;src/main.c:55: mydrawStringM1("         Don Mendo and Lady Sol", cpctm_screenPtr(CPCT_VMEM_START, 0, 0));
    002E 21 00 C0      [10]  106 	ld	hl, #0xc000
    0031 E5            [11]  107 	push	hl
    0032 21r0Ar01      [10]  108 	ld	hl, #___str_0
    0035 E5            [11]  109 	push	hl
-   0036 CDr00r00      [17]  110 	call	_cpct_drawStringM1
-                            111 ;src/main.c:54: cpct_drawStringM1("                   in", cpctm_screenPtr(CPCT_VMEM_START, 0, 8));
+   0036 CDr00r00      [17]  110 	call	_mydrawStringM1
+                            111 ;src/main.c:56: mydrawStringM1("                   in", cpctm_screenPtr(CPCT_VMEM_START, 0, 8));
    0039 21 50 C0      [10]  112 	ld	hl, #0xc050
    003C E5            [11]  113 	push	hl
    003D 21r2Ar01      [10]  114 	ld	hl, #___str_1
    0040 E5            [11]  115 	push	hl
-   0041 CDr00r00      [17]  116 	call	_cpct_drawStringM1
-                            117 ;src/main.c:55: cpct_drawStringM1("           Castle Concepcion", cpctm_screenPtr(CPCT_VMEM_START, 0, 16));
+   0041 CDr00r00      [17]  116 	call	_mydrawStringM1
+                            117 ;src/main.c:57: mydrawStringM1("           Castle Concepcion", cpctm_screenPtr(CPCT_VMEM_START, 0, 16));
    0044 21 A0 C0      [10]  118 	ld	hl, #0xc0a0
    0047 E5            [11]  119 	push	hl
    0048 21r40r01      [10]  120 	ld	hl, #___str_2
    004B E5            [11]  121 	push	hl
-   004C CDr00r00      [17]  122 	call	_cpct_drawStringM1
-                            123 ;src/main.c:56: cpct_drawStringM1("Mendo was in love with Lady Sol, a rich ", cpctm_screenPtr(CPCT_VMEM_START, 0, 40));
+   004C CDr00r00      [17]  122 	call	_mydrawStringM1
+                            123 ;src/main.c:58: mydrawStringM1("Mendo was in love with Lady Sol, a rich ", cpctm_screenPtr(CPCT_VMEM_START, 0, 40));
    004F 21 90 C1      [10]  124 	ld	hl, #0xc190
    0052 E5            [11]  125 	push	hl
    0053 21r5Dr01      [10]  126 	ld	hl, #___str_3
    0056 E5            [11]  127 	push	hl
-   0057 CDr00r00      [17]  128 	call	_cpct_drawStringM1
-                            129 ;src/main.c:57: cpct_drawStringM1("and beautiful woman. He was so poor that", cpctm_screenPtr(CPCT_VMEM_START, 0, 48));
+   0057 CDr00r00      [17]  128 	call	_mydrawStringM1
+                            129 ;src/main.c:59: mydrawStringM1("and beautiful woman. He was so poor that", cpctm_screenPtr(CPCT_VMEM_START, 0, 48));
    005A 21 E0 C1      [10]  130 	ld	hl, #0xc1e0
    005D E5            [11]  131 	push	hl
    005E 21r86r01      [10]  132 	ld	hl, #___str_4
    0061 E5            [11]  133 	push	hl
-   0062 CDr00r00      [17]  134 	call	_cpct_drawStringM1
-                            135 ;src/main.c:58: cpct_drawStringM1("he couldn't marry her. He decided to go ", cpctm_screenPtr(CPCT_VMEM_START, 0, 56));
+   0062 CDr00r00      [17]  134 	call	_mydrawStringM1
+                            135 ;src/main.c:60: mydrawStringM1("he couldn't marry her. He decided to go ", cpctm_screenPtr(CPCT_VMEM_START, 0, 56));
    0065 21 30 C2      [10]  136 	ld	hl, #0xc230
    0068 E5            [11]  137 	push	hl
    0069 21rAFr01      [10]  138 	ld	hl, #___str_5
    006C E5            [11]  139 	push	hl
-   006D CDr00r00      [17]  140 	call	_cpct_drawStringM1
-                            141 ;src/main.c:59: cpct_drawStringM1("to the Crusades to get Fortune and Fame.", cpctm_screenPtr(CPCT_VMEM_START, 0, 64));
+   006D CDr00r00      [17]  140 	call	_mydrawStringM1
+                            141 ;src/main.c:61: mydrawStringM1("to the Crusades to get Fortune and Fame.", cpctm_screenPtr(CPCT_VMEM_START, 0, 64));
    0070 21 80 C2      [10]  142 	ld	hl, #0xc280
    0073 E5            [11]  143 	push	hl
    0074 21rD8r01      [10]  144 	ld	hl, #___str_6
    0077 E5            [11]  145 	push	hl
-   0078 CDr00r00      [17]  146 	call	_cpct_drawStringM1
-                            147 ;src/main.c:61: cpct_drawStringM1("When he became a brave hero, he heard", cpctm_screenPtr(CPCT_VMEM_START, 0, 80));
+   0078 CDr00r00      [17]  146 	call	_mydrawStringM1
+                            147 ;src/main.c:63: mydrawStringM1("When he became a brave hero, he heard", cpctm_screenPtr(CPCT_VMEM_START, 0, 80));
    007B 21 20 C3      [10]  148 	ld	hl, #0xc320
    007E E5            [11]  149 	push	hl
    007F 21r01r02      [10]  150 	ld	hl, #___str_7
    0082 E5            [11]  151 	push	hl
-   0083 CDr00r00      [17]  152 	call	_cpct_drawStringM1
-                            153 ;src/main.c:62: cpct_drawStringM1("Lady Sol was forced to marry don Ricardo", cpctm_screenPtr(CPCT_VMEM_START, 0, 88));
+   0083 CDr00r00      [17]  152 	call	_mydrawStringM1
+                            153 ;src/main.c:64: mydrawStringM1("Lady Sol was forced to marry don Ricardo", cpctm_screenPtr(CPCT_VMEM_START, 0, 88));
    0086 21 70 C3      [10]  154 	ld	hl, #0xc370
    0089 E5            [11]  155 	push	hl
    008A 21r27r02      [10]  156 	ld	hl, #___str_8
    008D E5            [11]  157 	push	hl
-   008E CDr00r00      [17]  158 	call	_cpct_drawStringM1
-                            159 ;src/main.c:63: cpct_drawStringM1("a very important noble. ", cpctm_screenPtr(CPCT_VMEM_START, 0, 96));
+   008E CDr00r00      [17]  158 	call	_mydrawStringM1
+                            159 ;src/main.c:65: mydrawStringM1("a very important noble. ", cpctm_screenPtr(CPCT_VMEM_START, 0, 96));
    0091 21 C0 C3      [10]  160 	ld	hl, #0xc3c0
    0094 E5            [11]  161 	push	hl
    0095 21r50r02      [10]  162 	ld	hl, #___str_9
    0098 E5            [11]  163 	push	hl
-   0099 CDr00r00      [17]  164 	call	_cpct_drawStringM1
-                            165 ;src/main.c:65: cpct_drawStringM1("Bring to an end the bloody Crusades war,", cpctm_screenPtr(CPCT_VMEM_START, 0, 112));
+   0099 CDr00r00      [17]  164 	call	_mydrawStringM1
+                            165 ;src/main.c:67: mydrawStringM1("Bring to an end the bloody Crusades war,", cpctm_screenPtr(CPCT_VMEM_START, 0, 112));
    009C 21 60 C4      [10]  166 	ld	hl, #0xc460
    009F E5            [11]  167 	push	hl
    00A0 21r69r02      [10]  168 	ld	hl, #___str_10
    00A3 E5            [11]  169 	push	hl
-   00A4 CDr00r00      [17]  170 	call	_cpct_drawStringM1
-                            171 ;src/main.c:66: cpct_drawStringM1("go through the underway passage and ", cpctm_screenPtr(CPCT_VMEM_START, 0, 120));
+   00A4 CDr00r00      [17]  170 	call	_mydrawStringM1
+                            171 ;src/main.c:68: mydrawStringM1("go through the underway passage and ", cpctm_screenPtr(CPCT_VMEM_START, 0, 120));
    00A7 21 B0 C4      [10]  172 	ld	hl, #0xc4b0
    00AA E5            [11]  173 	push	hl
    00AB 21r92r02      [10]  174 	ld	hl, #___str_11
    00AE E5            [11]  175 	push	hl
-   00AF CDr00r00      [17]  176 	call	_cpct_drawStringM1
-                            177 ;src/main.c:67: cpct_drawStringM1("finally assault the Castle to help Don ", cpctm_screenPtr(CPCT_VMEM_START, 0, 128));
+   00AF CDr00r00      [17]  176 	call	_mydrawStringM1
+                            177 ;src/main.c:69: mydrawStringM1("finally assault the Castle to help Don ", cpctm_screenPtr(CPCT_VMEM_START, 0, 128));
    00B2 21 00 C5      [10]  178 	ld	hl, #0xc500
    00B5 E5            [11]  179 	push	hl
    00B6 21rB7r02      [10]  180 	ld	hl, #___str_12
    00B9 E5            [11]  181 	push	hl
-   00BA CDr00r00      [17]  182 	call	_cpct_drawStringM1
-                            183 ;src/main.c:68: cpct_drawStringM1("Mendo to go back to his love: Lady Sun.", cpctm_screenPtr(CPCT_VMEM_START, 0, 136));
+   00BA CDr00r00      [17]  182 	call	_mydrawStringM1
+                            183 ;src/main.c:70: mydrawStringM1("Mendo to go back to his love: Lady Sun.", cpctm_screenPtr(CPCT_VMEM_START, 0, 136));
    00BD 21 50 C5      [10]  184 	ld	hl, #0xc550
    00C0 E5            [11]  185 	push	hl
    00C1 21rDFr02      [10]  186 	ld	hl, #___str_13
    00C4 E5            [11]  187 	push	hl
-   00C5 CDr00r00      [17]  188 	call	_cpct_drawStringM1
-                            189 ;src/main.c:69: cpct_drawStringM1("PRESS ANY KEY TO START", cpct_getScreenPtr(CPCT_VMEM_START, 0, 168));
+   00C5 CDr00r00      [17]  188 	call	_mydrawStringM1
+                            189 ;src/main.c:71: mydrawStringM1("PRESS ANY KEY TO START", cpct_getScreenPtr(CPCT_VMEM_START, 0, 168));
    00C8 21 00 A8      [10]  190 	ld	hl, #0xa800
    00CB E5            [11]  191 	push	hl
    00CC 26 C0         [ 7]  192 	ld	h, #0xc0
@@ -195,39 +195,39 @@
    00D2 01r07r03      [10]  195 	ld	bc, #___str_14+0
    00D5 E5            [11]  196 	push	hl
    00D6 C5            [11]  197 	push	bc
-   00D7 CDr00r00      [17]  198 	call	_cpct_drawStringM1
-                            199 ;src/main.c:72: pausaTecladoLibre();
+   00D7 CDr00r00      [17]  198 	call	_mydrawStringM1
+                            199 ;src/main.c:74: pausaTecladoLibre();
    00DA CDr00r00      [17]  200 	call	_pausaTecladoLibre
-                            201 ;src/main.c:76: do {
+                            201 ;src/main.c:78: do {
    00DD 0E 00         [ 7]  202 	ld	c, #0x00
    00DF                     203 00101$:
-                            204 ;src/main.c:77: cpct_scanKeyboard_f();
+                            204 ;src/main.c:79: cpct_scanKeyboard_f();
    00DF C5            [11]  205 	push	bc
    00E0 CDr00r00      [17]  206 	call	_cpct_scanKeyboard_f
    00E3 C1            [10]  207 	pop	bc
-                            208 ;src/main.c:78: semilla++;
+                            208 ;src/main.c:80: semilla++;
    00E4 0C            [ 4]  209 	inc	c
-                            210 ;src/main.c:80: while (!cpct_isAnyKeyPressed_f());
+                            210 ;src/main.c:82: while (!cpct_isAnyKeyPressed_f());
    00E5 C5            [11]  211 	push	bc
    00E6 CDr00r00      [17]  212 	call	_cpct_isAnyKeyPressed_f
    00E9 C1            [10]  213 	pop	bc
    00EA 7D            [ 4]  214 	ld	a, l
    00EB B7            [ 4]  215 	or	a, a
    00EC 28 F1         [12]  216 	jr	Z,00101$
-                            217 ;src/main.c:83: if (!semilla)
+                            217 ;src/main.c:85: if (!semilla)
    00EE 79            [ 4]  218 	ld	a,c
    00EF 6F            [ 4]  219 	ld	l,a
    00F0 B7            [ 4]  220 	or	a, a
    00F1 20 02         [12]  221 	jr	NZ,00105$
-                            222 ;src/main.c:84: semilla = 1;
+                            222 ;src/main.c:86: semilla = 1;
    00F3 2E 01         [ 7]  223 	ld	l, #0x01
    00F5                     224 00105$:
-                            225 ;src/main.c:86: cpct_srand8(semilla);
+                            225 ;src/main.c:88: cpct_srand8(semilla);
    00F5 26 00         [ 7]  226 	ld	h, #0x00
    00F7 11 00 00      [10]  227 	ld	de,#0x0000
    00FA CDr00r00      [17]  228 	call	_cpct_setSeed_mxor
    00FD CDr00r00      [17]  229 	call	_cpct_restoreState_mxor_u8
-                            230 ;src/main.c:87: juego();
+                            230 ;src/main.c:89: juego();
    0100 CDr00r00      [17]  231 	call	_juego
    0103 C3r03r00      [10]  232 	jp	00107$
    0106                     233 _paletaM1:

@@ -22,8 +22,8 @@ extern u8 cursorConsola;
 extern u8 sig_nivel;
 extern const TStats SoldadoArabe;
 
-
-
+void mydrawStringM1 (void* string, void* video_memory) __z88dk_callee;
+//void mydrawCharM1 (void* video_memory, u8 ascii) __z88dk_callee;
 /*
 - flag completar nivel (enemigos sin energia)
 - IA básica enemigos

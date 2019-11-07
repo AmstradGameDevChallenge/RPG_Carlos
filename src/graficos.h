@@ -32,6 +32,8 @@ Firmware | Hardware  | Hard+Command | Colour Name    |  R%   G%   B% Colour
 
 
 extern const unsigned char G_tile_cruzada[64];
+extern const unsigned char G_tile_caverna[64];
+extern const unsigned char G_tile_castillo[64];
 extern const unsigned char G_mendo[224];
 extern const unsigned char G_arabe_1[224];
 extern const unsigned char G_arabe_2[224];
@@ -40,4 +42,9 @@ extern const unsigned char G_fakir[224];
 extern const unsigned char G_arabe_boss[224];
 extern const unsigned char G_abeja[224];
 extern const unsigned char G_pocion[64];
-
+extern const unsigned char G_murcielago[224];
+extern const unsigned char G_esqueleto[224];
+extern const unsigned char G_gusano[224];
+extern const unsigned char G_spider[224];
+extern const unsigned char G_goblin[224];
+extern const unsigned char G_cavern_boss[224];

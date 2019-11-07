@@ -7,21 +7,25 @@ Symbol Table
     .__.ABS.                                                    =  0000 G
     .__.CPU.                                                    =  0000 L
     .__.H$L.                                                    =  0000 L
-  0 ___str_0                                                       0747 R
-  0 ___str_1                                                       075A R
-  0 ___str_2                                                       0767 R
-  0 ___str_3                                                       0773 R
-  0 ___str_4                                                       077F R
-  0 ___str_5                                                       078B R
-  0 ___str_6                                                       079C R
-  0 ___str_7                                                       07AD R
-  0 ___str_8                                                       0853 R
-  0 ___str_9                                                       085D R
+  0 ___str_0                                                       071D R
+  0 ___str_1                                                       072E R
+  0 ___str_10                                                      0878 R
+  0 ___str_11                                                      0897 R
+  0 ___str_12                                                      08A1 R
+  0 ___str_13                                                      08C4 R
+  0 ___str_14                                                      08CE R
+  0 ___str_2                                                       073A R
+  0 ___str_3                                                       0746 R
+  0 ___str_4                                                       0752 R
+  0 ___str_5                                                       075D R
+  0 ___str_6                                                       0768 R
+  0 ___str_7                                                       0779 R
+  0 ___str_8                                                       078A R
+  0 ___str_9                                                       086E R
     __moduchar                                                     **** GX
     _abs                                                           **** GX
     _atacar                                                        **** GX
     _cpct_drawSpriteMasked                                         **** GX
-    _cpct_drawStringM1                                             **** GX
     _cpct_etm_drawTileBox2x4                                       **** GX
     _cpct_getRandom_mxor_u8                                        **** GX
     _cpct_getScreenPtr                                             **** GX
@@ -41,7 +45,8 @@ Symbol Table
     _g_mapa01                                                      **** GX
     _initNivel                                                     **** GX
     _initPlayer                                                    **** GX
-  0 _juego                                                         07BE GR
+  0 _juego                                                         079B GR
+    _mydrawStringM1                                                **** GX
     _nivel                                                         **** GX
     _pausa                                                         **** GX
     _pausaTecladoLibre                                             **** GX
@@ -52,12 +57,13 @@ Symbol Table
     _sprintf                                                       **** GX
   0 _turno                                                         0000 GR
 
+
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size  87C   flags    0
+   0 _CODE                                      size  8E7   flags    0
    1 _DATA                                      size    0   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8

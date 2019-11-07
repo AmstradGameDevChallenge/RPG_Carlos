@@ -4,8 +4,10 @@
 #include "main.h"
 #include "graficos.h"
 #include "patrones/patronesTiles_1.h"
-#include "mapas/fase_02.h"
+#include "patrones/patronesTiles_2.h"
+//#include "patrones/patronesTiles_3.h"
 #include "mapas/fase_01.h"
+#include "mapas/fase_02.h"
 #include "mapas/fase_03.h"
 #include "mapas/fase_04.h"
 #include "mapas/fase_05.h"
@@ -14,6 +16,26 @@
 #include "mapas/fase_08.h"
 #include "mapas/fase_09.h"
 #include "mapas/fase_10.h"
+#include "mapas/fase_11.h"
+#include "mapas/fase_12.h"
+#include "mapas/fase_13.h"
+#include "mapas/fase_14.h"
+#include "mapas/fase_15.h"
+#include "mapas/fase_16.h"
+#include "mapas/fase_17.h"
+#include "mapas/fase_18.h"
+#include "mapas/fase_19.h"
+#include "mapas/fase_20.h"
+//#include "mapas/fase_21.h"
+//#include "mapas/fase_22.h"
+//#include "mapas/fase_23.h"
+//#include "mapas/fase_24.h"
+//#include "mapas/fase_25.h"
+//#include "mapas/fase_26.h"
+//#include "mapas/fase_27.h"
+//#include "mapas/fase_28.h"
+//#include "mapas/fase_29.h"
+//#include "mapas/fase_30.h"
 
 u8 abs (i8 valor){
    return (valor > 0 ? valor : -valor);
@@ -62,7 +84,9 @@ void dibujarMarcoExterior (){
 
   tile = (u8*) &G_tile_cruzada[0];
   if ((nivel/10) == 1)
-    tile = (u8*) &G_tile_cruzada[0];
+    tile = (u8*) &G_tile_caverna[0];
+  if ((nivel/10) == 2)
+    tile = (u8*) &G_tile_castillo[0];
 
   //dibujar marco alrededor de pantalla
     //filas horizontales
@@ -106,7 +130,9 @@ void dibujarEscenario(){
 
   cpct_etm_setTileset2x4(tileset1);
   if (nivel > 10)
-    cpct_etm_setTileset2x4(tileset1);
+    cpct_etm_setTileset2x4(tileset2);
+  //if (nivel > 20)
+  //  cpct_etm_setTileset2x4(tileset3);
 
   mapa = (u8*) (&g_mapa01[0] + ((nivel-1) * 504));
   
@@ -122,7 +148,7 @@ void printStats(TStats *a) {
   if (a->energy)
       sprintf(temp, "%-9s=> HP:%02d. ATT: %02d. DEF: %02d",a->name, a->energy,a->attack,a->defense);
     
-    cpct_drawStringM1(temp, cpct_getScreenPtr(CPCT_VMEM_START, 4, a->pos_y));
+    mydrawStringM1(temp, cpct_getScreenPtr(CPCT_VMEM_START, 4, a->pos_y));
 }
 
 void printLevel() {
@@ -130,7 +156,7 @@ void printLevel() {
    
   sprintf(temp, "LEVEL: %02d",nivel);
   cpct_setDrawCharM1(2, 0);
-  cpct_drawStringM1(temp, cpctm_screenPtr(CPCT_VMEM_START, 4, 16));
+  mydrawStringM1(temp, cpctm_screenPtr(CPCT_VMEM_START, 4, 16));
 }
 
 void printConsole  (void* string, u8 pen, u8 bground) {
@@ -142,7 +168,7 @@ void printConsole  (void* string, u8 pen, u8 bground) {
    }
 
    cpct_setDrawCharM1(pen, bground);
-   cpct_drawStringM1(string, cpct_getScreenPtr(CPCT_VMEM_START, 44, cursorConsola));
+   mydrawStringM1(string, cpct_getScreenPtr(CPCT_VMEM_START, 44, cursorConsola));
    cursorConsola +=8;
 }
 
@@ -196,7 +222,7 @@ void defender(TStats *a) {
   a->energy = a->energy + healed;
   
   if (healed) {
-    sprintf(temp, "%-9s %c %02dHP",a->name, 240,healed);
+    sprintf(temp, "%-9s ^ %02dHP",a->name, healed);
     printConsole(temp, pen, bg);
   }
 }
