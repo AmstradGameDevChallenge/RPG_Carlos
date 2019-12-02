@@ -9,1029 +9,1783 @@
                               9 ; Public variables in this module
                              10 ;--------------------------------------------------------
                              11 	.globl _drawPotion
-                             12 	.globl _defender
-                             13 	.globl _atacar
-                             14 	.globl _printConsole
-                             15 	.globl _printLevel
-                             16 	.globl _printStats
-                             17 	.globl _dibujarEscenario
-                             18 	.globl _dibujarMarcoInterior
-                             19 	.globl _dibujarMarcoExterior
-                             20 	.globl _pausaTecladoLibre
-                             21 	.globl _efecto_pliegue
-                             22 	.globl _pausa
-                             23 	.globl _abs
-                             24 	.globl _mydrawStringM1
-                             25 	.globl _sprintf
-                             26 	.globl _cpct_etm_setTileset2x4
-                             27 	.globl _cpct_etm_drawTileBox2x4
-                             28 	.globl _cpct_getRandom_mxor_u8
-                             29 	.globl _cpct_setCRTCReg
-                             30 	.globl _cpct_getScreenPtr
-                             31 	.globl _cpct_setDrawCharM1
-                             32 	.globl _cpct_drawSpriteMasked
-                             33 	.globl _cpct_drawSprite
-                             34 	.globl _cpct_drawSolidBox
-                             35 	.globl _cpct_px2byteM1
-                             36 	.globl _cpct_isAnyKeyPressed_f
-                             37 	.globl _cpct_scanKeyboard_f
-                             38 ;--------------------------------------------------------
-                             39 ; special function registers
-                             40 ;--------------------------------------------------------
-                             41 ;--------------------------------------------------------
-                             42 ; ram data
-                             43 ;--------------------------------------------------------
-                             44 	.area _DATA
+                             12 	.globl _IA
+                             13 	.globl _defender
+                             14 	.globl _moverDcha
+                             15 	.globl _moverIzq
+                             16 	.globl _comprobarPosicion
+                             17 	.globl _atacar
+                             18 	.globl _printConsole
+                             19 	.globl _printLevel
+                             20 	.globl _printStats
+                             21 	.globl _dibujarEscenario
+                             22 	.globl _dibujarMarcoInterior
+                             23 	.globl _dibujarMarcoExterior
+                             24 	.globl _pausaTecladoLibre
+                             25 	.globl _efecto_pliegue
+                             26 	.globl _pausa
+                             27 	.globl _abs
+                             28 	.globl _mydrawStringM1
+                             29 	.globl _playFX
+                             30 	.globl _sprintf
+                             31 	.globl _cpct_etm_setTileset2x4
+                             32 	.globl _cpct_etm_drawTilemap2x4_f
+                             33 	.globl _cpct_getRandom_mxor_u8
+                             34 	.globl _cpct_setCRTCReg
+                             35 	.globl _cpct_getScreenPtr
+                             36 	.globl _cpct_setDrawCharM1
+                             37 	.globl _cpct_drawSpriteMasked
+                             38 	.globl _cpct_drawSprite
+                             39 	.globl _cpct_drawSolidBox
+                             40 	.globl _cpct_px2byteM1
+                             41 	.globl _cpct_isAnyKeyPressed_f
+                             42 ;--------------------------------------------------------
+                             43 ; special function registers
+                             44 ;--------------------------------------------------------
                              45 ;--------------------------------------------------------
                              46 ; ram data
                              47 ;--------------------------------------------------------
-                             48 	.area _INITIALIZED
+                             48 	.area _DATA
                              49 ;--------------------------------------------------------
-                             50 ; absolute external ram data
+                             50 ; ram data
                              51 ;--------------------------------------------------------
-                             52 	.area _DABS (ABS)
+                             52 	.area _INITIALIZED
                              53 ;--------------------------------------------------------
-                             54 ; global & static initialisations
+                             54 ; absolute external ram data
                              55 ;--------------------------------------------------------
-                             56 	.area _HOME
-                             57 	.area _GSINIT
-                             58 	.area _GSFINAL
-                             59 	.area _GSINIT
-                             60 ;--------------------------------------------------------
-                             61 ; Home
-                             62 ;--------------------------------------------------------
-                             63 	.area _HOME
-                             64 	.area _HOME
-                             65 ;--------------------------------------------------------
-                             66 ; code
-                             67 ;--------------------------------------------------------
-                             68 	.area _CODE
-                             69 ;src/funciones.c:40: u8 abs (i8 valor){
-                             70 ;	---------------------------------
-                             71 ; Function abs
-                             72 ; ---------------------------------
-   0000                      73 _abs::
-                             74 ;src/funciones.c:41: return (valor > 0 ? valor : -valor);
-   0000 AF            [ 4]   75 	xor	a, a
-   0001 FD 21 02 00   [14]   76 	ld	iy, #2
-   0005 FD 39         [15]   77 	add	iy, sp
-   0007 FD 96 00      [19]   78 	sub	a, 0 (iy)
-   000A E2r0Fr00      [10]   79 	jp	PO, 00109$
-   000D EE 80         [ 7]   80 	xor	a, #0x80
-   000F                      81 00109$:
-   000F F2r1Cr00      [10]   82 	jp	P, 00103$
-   0012 FD 21 02 00   [14]   83 	ld	iy, #2
-   0016 FD 39         [15]   84 	add	iy, sp
-   0018 FD 6E 00      [19]   85 	ld	l, 0 (iy)
-   001B C9            [10]   86 	ret
-   001C                      87 00103$:
-   001C AF            [ 4]   88 	xor	a, a
-   001D FD 21 02 00   [14]   89 	ld	iy, #2
-   0021 FD 39         [15]   90 	add	iy, sp
-   0023 FD 96 00      [19]   91 	sub	a, 0 (iy)
-   0026 6F            [ 4]   92 	ld	l, a
-   0027 C9            [10]   93 	ret
-                             94 ;src/funciones.c:44: void pausa(u16 ciclos) {
-                             95 ;	---------------------------------
-                             96 ; Function pausa
-                             97 ; ---------------------------------
-   0028                      98 _pausa::
-                             99 ;src/funciones.c:47: for (i = 0; i < ciclos; i++)
-   0028 01 00 00      [10]  100 	ld	bc, #0x0000
-   002B                     101 00103$:
-   002B 21 02 00      [10]  102 	ld	hl, #2
-   002E 39            [11]  103 	add	hl, sp
-   002F 79            [ 4]  104 	ld	a, c
-   0030 96            [ 7]  105 	sub	a, (hl)
-   0031 78            [ 4]  106 	ld	a, b
-   0032 23            [ 6]  107 	inc	hl
-   0033 9E            [ 7]  108 	sbc	a, (hl)
-   0034 D0            [11]  109 	ret	NC
-   0035 03            [ 6]  110 	inc	bc
-   0036 18 F3         [12]  111 	jr	00103$
-                            112 ;src/funciones.c:51: void efecto_pliegue(u8 modo) {
-                            113 ;	---------------------------------
-                            114 ; Function efecto_pliegue
-                            115 ; ---------------------------------
-   0038                     116 _efecto_pliegue::
-                            117 ;src/funciones.c:54: i = 200;
-   0038 06 C8         [ 7]  118 	ld	b, #0xc8
-                            119 ;src/funciones.c:55: if (modo)
-   003A 21 02 00      [10]  120 	ld	hl, #2+0
-   003D 39            [11]  121 	add	hl, sp
-   003E 7E            [ 7]  122 	ld	a, (hl)
-   003F B7            [ 4]  123 	or	a, a
-   0040 28 02         [12]  124 	jr	Z,00108$
-                            125 ;src/funciones.c:56: i = 1;
-   0042 06 01         [ 7]  126 	ld	b, #0x01
-                            127 ;src/funciones.c:58: do {
-   0044                     128 00108$:
-                            129 ;src/funciones.c:59: cpct_setCRTCReg (1, i/5);   //Cambiar nº columnas por pantalla (1-40)
-   0044 C5            [11]  130 	push	bc
-   0045 3E 05         [ 7]  131 	ld	a, #0x05
-   0047 F5            [11]  132 	push	af
-   0048 33            [ 6]  133 	inc	sp
-   0049 C5            [11]  134 	push	bc
-   004A 33            [ 6]  135 	inc	sp
-   004B CDr00r00      [17]  136 	call	__divuchar
-   004E F1            [10]  137 	pop	af
-   004F 55            [ 4]  138 	ld	d, l
-   0050 1E 01         [ 7]  139 	ld	e, #0x01
-   0052 D5            [11]  140 	push	de
-   0053 CDr00r00      [17]  141 	call	_cpct_setCRTCReg
-   0056 C1            [10]  142 	pop	bc
-                            143 ;src/funciones.c:60: cpct_setCRTCReg (6, i/8);   //Cambiar nº de filas por pantallas (1-25)
-   0057 50            [ 4]  144 	ld	d, b
-   0058 CB 3A         [ 8]  145 	srl	d
-   005A CB 3A         [ 8]  146 	srl	d
-   005C CB 3A         [ 8]  147 	srl	d
-   005E C5            [11]  148 	push	bc
-   005F 1E 06         [ 7]  149 	ld	e, #0x06
-   0061 D5            [11]  150 	push	de
-   0062 CDr00r00      [17]  151 	call	_cpct_setCRTCReg
-   0065 C1            [10]  152 	pop	bc
-                            153 ;src/funciones.c:62: for (j = 0; j < 255; j++)
-   0066 0E FF         [ 7]  154 	ld	c, #0xff
-   0068                     155 00113$:
-   0068 59            [ 4]  156 	ld	e, c
-   0069 1D            [ 4]  157 	dec	e
-   006A 7B            [ 4]  158 	ld	a,e
-   006B 4F            [ 4]  159 	ld	c,a
-   006C B7            [ 4]  160 	or	a, a
-   006D 20 F9         [12]  161 	jr	NZ,00113$
-                            162 ;src/funciones.c:65: if (modo) {
-   006F 21 02 00      [10]  163 	ld	hl, #2+0
-   0072 39            [11]  164 	add	hl, sp
-   0073 7E            [ 7]  165 	ld	a, (hl)
-   0074 B7            [ 4]  166 	or	a, a
-   0075 28 03         [12]  167 	jr	Z,00105$
-                            168 ;src/funciones.c:66: i++;
-   0077 04            [ 4]  169 	inc	b
-   0078 18 01         [12]  170 	jr	00109$
-   007A                     171 00105$:
-                            172 ;src/funciones.c:68: i--; 
-   007A 05            [ 4]  173 	dec	b
-   007B                     174 00109$:
-                            175 ;src/funciones.c:70: } while (i > 0 && i <= 200);
-   007B 78            [ 4]  176 	ld	a, b
-   007C B7            [ 4]  177 	or	a, a
-   007D C8            [11]  178 	ret	Z
-   007E 3E C8         [ 7]  179 	ld	a, #0xc8
-   0080 90            [ 4]  180 	sub	a, b
-   0081 30 C1         [12]  181 	jr	NC,00108$
-   0083 C9            [10]  182 	ret
-                            183 ;src/funciones.c:74: void pausaTecladoLibre(){
-                            184 ;	---------------------------------
-                            185 ; Function pausaTecladoLibre
-                            186 ; ---------------------------------
-   0084                     187 _pausaTecladoLibre::
-                            188 ;src/funciones.c:75: while (cpct_isAnyKeyPressed_f ()) { //Asegurarnos que se ha dejado de pulsar la tecla anterior 
-   0084                     189 00101$:
-   0084 CDr00r00      [17]  190 	call	_cpct_isAnyKeyPressed_f
-   0087 7D            [ 4]  191 	ld	a, l
-   0088 B7            [ 4]  192 	or	a, a
-   0089 C8            [11]  193 	ret	Z
-                            194 ;src/funciones.c:76: cpct_scanKeyboard_f();
-   008A CDr00r00      [17]  195 	call	_cpct_scanKeyboard_f
-   008D 18 F5         [12]  196 	jr	00101$
-                            197 ;src/funciones.c:80: void dibujarMarcoExterior (){
-                            198 ;	---------------------------------
-                            199 ; Function dibujarMarcoExterior
-                            200 ; ---------------------------------
-   008F                     201 _dibujarMarcoExterior::
-   008F DD E5         [15]  202 	push	ix
-   0091 DD 21 00 00   [14]  203 	ld	ix,#0
-   0095 DD 39         [15]  204 	add	ix,sp
-   0097 F5            [11]  205 	push	af
-                            206 ;src/funciones.c:85: tile = (u8*) &G_tile_cruzada[0];
-   0098 01r00r00      [10]  207 	ld	bc, #_G_tile_cruzada+0
-                            208 ;src/funciones.c:86: if ((nivel/10) == 1)
-   009B C5            [11]  209 	push	bc
-   009C 3E 0A         [ 7]  210 	ld	a, #0x0a
-   009E F5            [11]  211 	push	af
-   009F 33            [ 6]  212 	inc	sp
-   00A0 3Ar00r00      [13]  213 	ld	a, (_nivel)
-   00A3 F5            [11]  214 	push	af
-   00A4 33            [ 6]  215 	inc	sp
-   00A5 CDr00r00      [17]  216 	call	__divuchar
-   00A8 F1            [10]  217 	pop	af
-   00A9 C1            [10]  218 	pop	bc
-   00AA 7D            [ 4]  219 	ld	a, l
-   00AB 3D            [ 4]  220 	dec	a
-   00AC 20 03         [12]  221 	jr	NZ,00102$
-                            222 ;src/funciones.c:87: tile = (u8*) &G_tile_caverna[0];
-   00AE 01r00r00      [10]  223 	ld	bc, #_G_tile_caverna+0
-   00B1                     224 00102$:
-                            225 ;src/funciones.c:88: if ((nivel/10) == 2)
-   00B1 7D            [ 4]  226 	ld	a, l
-   00B2 D6 02         [ 7]  227 	sub	a, #0x02
-   00B4 20 03         [12]  228 	jr	NZ,00115$
-                            229 ;src/funciones.c:89: tile = (u8*) &G_tile_castillo[0];
-   00B6 01r00r00      [10]  230 	ld	bc, #_G_tile_castillo
-                            231 ;src/funciones.c:93: for (i=0; i < 80; i += 4) {
-   00B9                     232 00115$:
-   00B9 16 00         [ 7]  233 	ld	d, #0x00
-   00BB                     234 00107$:
-                            235 ;src/funciones.c:94: cpct_drawSprite (tile,  cpct_getScreenPtr (CPCT_VMEM_START, i,   0), 4, 16);
-   00BB C5            [11]  236 	push	bc
-   00BC D5            [11]  237 	push	de
-   00BD AF            [ 4]  238 	xor	a, a
-   00BE F5            [11]  239 	push	af
-   00BF 33            [ 6]  240 	inc	sp
-   00C0 D5            [11]  241 	push	de
-   00C1 33            [ 6]  242 	inc	sp
-   00C2 21 00 C0      [10]  243 	ld	hl, #0xc000
-   00C5 E5            [11]  244 	push	hl
-   00C6 CDr00r00      [17]  245 	call	_cpct_getScreenPtr
-   00C9 D1            [10]  246 	pop	de
-   00CA C1            [10]  247 	pop	bc
-   00CB E5            [11]  248 	push	hl
-   00CC FD E1         [14]  249 	pop	iy
-   00CE 33            [ 6]  250 	inc	sp
-   00CF 33            [ 6]  251 	inc	sp
-   00D0 C5            [11]  252 	push	bc
-   00D1 C5            [11]  253 	push	bc
-   00D2 D5            [11]  254 	push	de
-   00D3 21 04 10      [10]  255 	ld	hl, #0x1004
-   00D6 E5            [11]  256 	push	hl
-   00D7 FD E5         [15]  257 	push	iy
-   00D9 DD 6E FE      [19]  258 	ld	l,-2 (ix)
-   00DC DD 66 FF      [19]  259 	ld	h,-1 (ix)
-   00DF E5            [11]  260 	push	hl
-   00E0 CDr00r00      [17]  261 	call	_cpct_drawSprite
-   00E3 D1            [10]  262 	pop	de
-   00E4 D5            [11]  263 	push	de
-   00E5 3E B0         [ 7]  264 	ld	a, #0xb0
-   00E7 F5            [11]  265 	push	af
-   00E8 33            [ 6]  266 	inc	sp
-   00E9 D5            [11]  267 	push	de
-   00EA 33            [ 6]  268 	inc	sp
-   00EB 21 00 C0      [10]  269 	ld	hl, #0xc000
-   00EE E5            [11]  270 	push	hl
-   00EF CDr00r00      [17]  271 	call	_cpct_getScreenPtr
-   00F2 D1            [10]  272 	pop	de
-   00F3 C1            [10]  273 	pop	bc
-   00F4 E5            [11]  274 	push	hl
-   00F5 FD E1         [14]  275 	pop	iy
-   00F7 C5            [11]  276 	push	bc
-   00F8 D5            [11]  277 	push	de
-   00F9 21 04 10      [10]  278 	ld	hl, #0x1004
-   00FC E5            [11]  279 	push	hl
-   00FD FD E5         [15]  280 	push	iy
-   00FF DD 6E FE      [19]  281 	ld	l,-2 (ix)
-   0102 DD 66 FF      [19]  282 	ld	h,-1 (ix)
-   0105 E5            [11]  283 	push	hl
-   0106 CDr00r00      [17]  284 	call	_cpct_drawSprite
-   0109 D1            [10]  285 	pop	de
-   010A C1            [10]  286 	pop	bc
-                            287 ;src/funciones.c:93: for (i=0; i < 80; i += 4) {
-   010B 14            [ 4]  288 	inc	d
-   010C 14            [ 4]  289 	inc	d
-   010D 14            [ 4]  290 	inc	d
-   010E 14            [ 4]  291 	inc	d
-   010F 7A            [ 4]  292 	ld	a, d
-   0110 D6 50         [ 7]  293 	sub	a, #0x50
-   0112 38 A7         [12]  294 	jr	C,00107$
-                            295 ;src/funciones.c:98: for (i=16; i < 176; i += 16 ){
-   0114 06 10         [ 7]  296 	ld	b, #0x10
-   0116                     297 00109$:
-                            298 ;src/funciones.c:99: cpct_drawSprite (tile,  cpct_getScreenPtr (CPCT_VMEM_START, 0, i), 4, 16);
-   0116 C5            [11]  299 	push	bc
-   0117 C5            [11]  300 	push	bc
-   0118 33            [ 6]  301 	inc	sp
-   0119 AF            [ 4]  302 	xor	a, a
-   011A F5            [11]  303 	push	af
-   011B 33            [ 6]  304 	inc	sp
-   011C 21 00 C0      [10]  305 	ld	hl, #0xc000
-   011F E5            [11]  306 	push	hl
-   0120 CDr00r00      [17]  307 	call	_cpct_getScreenPtr
-   0123 11 04 10      [10]  308 	ld	de, #0x1004
-   0126 D5            [11]  309 	push	de
-   0127 E5            [11]  310 	push	hl
-   0128 DD 6E FE      [19]  311 	ld	l,-2 (ix)
-   012B DD 66 FF      [19]  312 	ld	h,-1 (ix)
-   012E E5            [11]  313 	push	hl
-   012F CDr00r00      [17]  314 	call	_cpct_drawSprite
-   0132 C1            [10]  315 	pop	bc
-                            316 ;src/funciones.c:100: cpct_drawSprite (tile,  cpct_getScreenPtr (CPCT_VMEM_START,76, i), 4, 16);  
-   0133 C5            [11]  317 	push	bc
-   0134 C5            [11]  318 	push	bc
-   0135 33            [ 6]  319 	inc	sp
-   0136 3E 4C         [ 7]  320 	ld	a, #0x4c
-   0138 F5            [11]  321 	push	af
-   0139 33            [ 6]  322 	inc	sp
-   013A 21 00 C0      [10]  323 	ld	hl, #0xc000
-   013D E5            [11]  324 	push	hl
-   013E CDr00r00      [17]  325 	call	_cpct_getScreenPtr
-   0141 11 04 10      [10]  326 	ld	de, #0x1004
-   0144 D5            [11]  327 	push	de
-   0145 E5            [11]  328 	push	hl
-   0146 DD 6E FE      [19]  329 	ld	l,-2 (ix)
-   0149 DD 66 FF      [19]  330 	ld	h,-1 (ix)
-   014C E5            [11]  331 	push	hl
-   014D CDr00r00      [17]  332 	call	_cpct_drawSprite
-   0150 C1            [10]  333 	pop	bc
-                            334 ;src/funciones.c:98: for (i=16; i < 176; i += 16 ){
-   0151 78            [ 4]  335 	ld	a, b
-   0152 C6 10         [ 7]  336 	add	a, #0x10
-   0154 47            [ 4]  337 	ld	b,a
-   0155 D6 B0         [ 7]  338 	sub	a, #0xb0
-   0157 38 BD         [12]  339 	jr	C,00109$
-   0159 DD F9         [10]  340 	ld	sp, ix
-   015B DD E1         [14]  341 	pop	ix
-   015D C9            [10]  342 	ret
-                            343 ;src/funciones.c:105: void dibujarMarcoInterior (){
-                            344 ;	---------------------------------
-                            345 ; Function dibujarMarcoInterior
-                            346 ; ---------------------------------
-   015E                     347 _dibujarMarcoInterior::
-   015E DD E5         [15]  348 	push	ix
-   0160 DD 21 00 00   [14]  349 	ld	ix,#0
-   0164 DD 39         [15]  350 	add	ix,sp
-   0166 F5            [11]  351 	push	af
-                            352 ;src/funciones.c:110: tile = (u8*) &G_tile_cruzada[0];
-   0167 01r00r00      [10]  353 	ld	bc, #_G_tile_cruzada
-                            354 ;src/funciones.c:111: if ((nivel/10) == 1)
-   016A C5            [11]  355 	push	bc
-   016B 3E 0A         [ 7]  356 	ld	a, #0x0a
-   016D F5            [11]  357 	push	af
-   016E 33            [ 6]  358 	inc	sp
-   016F 3Ar00r00      [13]  359 	ld	a, (_nivel)
-   0172 F5            [11]  360 	push	af
-   0173 33            [ 6]  361 	inc	sp
-   0174 CDr00r00      [17]  362 	call	__divuchar
-   0177 F1            [10]  363 	pop	af
-   0178 C1            [10]  364 	pop	bc
-   0179 2D            [ 4]  365 	dec	l
-   017A 20 03         [12]  366 	jr	NZ,00112$
-                            367 ;src/funciones.c:112: tile = (u8*) &G_tile_cruzada[0];
-   017C 01r00r00      [10]  368 	ld	bc, #_G_tile_cruzada
-                            369 ;src/funciones.c:116: for (i=0; i < 80; i += 4) {
-   017F                     370 00112$:
-   017F 1E 00         [ 7]  371 	ld	e, #0x00
-   0181                     372 00105$:
-                            373 ;src/funciones.c:117: cpct_drawSprite (tile,  cpct_getScreenPtr (CPCT_VMEM_START, i,  48), 4, 16);
-   0181 C5            [11]  374 	push	bc
-   0182 D5            [11]  375 	push	de
-   0183 16 30         [ 7]  376 	ld	d,#0x30
-   0185 D5            [11]  377 	push	de
-   0186 21 00 C0      [10]  378 	ld	hl, #0xc000
-   0189 E5            [11]  379 	push	hl
-   018A CDr00r00      [17]  380 	call	_cpct_getScreenPtr
-   018D D1            [10]  381 	pop	de
-   018E C1            [10]  382 	pop	bc
-   018F E5            [11]  383 	push	hl
-   0190 FD E1         [14]  384 	pop	iy
-   0192 33            [ 6]  385 	inc	sp
-   0193 33            [ 6]  386 	inc	sp
-   0194 C5            [11]  387 	push	bc
-   0195 C5            [11]  388 	push	bc
-   0196 D5            [11]  389 	push	de
-   0197 21 04 10      [10]  390 	ld	hl, #0x1004
-   019A E5            [11]  391 	push	hl
-   019B FD E5         [15]  392 	push	iy
-   019D DD 6E FE      [19]  393 	ld	l,-2 (ix)
-   01A0 DD 66 FF      [19]  394 	ld	h,-1 (ix)
-   01A3 E5            [11]  395 	push	hl
-   01A4 CDr00r00      [17]  396 	call	_cpct_drawSprite
-   01A7 D1            [10]  397 	pop	de
-   01A8 C1            [10]  398 	pop	bc
-                            399 ;src/funciones.c:116: for (i=0; i < 80; i += 4) {
-   01A9 1C            [ 4]  400 	inc	e
-   01AA 1C            [ 4]  401 	inc	e
-   01AB 1C            [ 4]  402 	inc	e
-   01AC 1C            [ 4]  403 	inc	e
-   01AD 7B            [ 4]  404 	ld	a, e
-   01AE D6 50         [ 7]  405 	sub	a, #0x50
-   01B0 38 CF         [12]  406 	jr	C,00105$
-                            407 ;src/funciones.c:120: for (i=64; i < 176; i += 16 ){
-   01B2 06 40         [ 7]  408 	ld	b, #0x40
-   01B4                     409 00107$:
-                            410 ;src/funciones.c:121: cpct_drawSprite (tile,  cpct_getScreenPtr (CPCT_VMEM_START,40, i), 4, 16);
-   01B4 C5            [11]  411 	push	bc
-   01B5 C5            [11]  412 	push	bc
-   01B6 33            [ 6]  413 	inc	sp
-   01B7 3E 28         [ 7]  414 	ld	a, #0x28
-   01B9 F5            [11]  415 	push	af
-   01BA 33            [ 6]  416 	inc	sp
-   01BB 21 00 C0      [10]  417 	ld	hl, #0xc000
-   01BE E5            [11]  418 	push	hl
-   01BF CDr00r00      [17]  419 	call	_cpct_getScreenPtr
-   01C2 11 04 10      [10]  420 	ld	de, #0x1004
-   01C5 D5            [11]  421 	push	de
-   01C6 E5            [11]  422 	push	hl
-   01C7 DD 6E FE      [19]  423 	ld	l,-2 (ix)
-   01CA DD 66 FF      [19]  424 	ld	h,-1 (ix)
-   01CD E5            [11]  425 	push	hl
-   01CE CDr00r00      [17]  426 	call	_cpct_drawSprite
-   01D1 C1            [10]  427 	pop	bc
-                            428 ;src/funciones.c:120: for (i=64; i < 176; i += 16 ){
-   01D2 78            [ 4]  429 	ld	a, b
-   01D3 C6 10         [ 7]  430 	add	a, #0x10
-   01D5 47            [ 4]  431 	ld	b,a
-   01D6 D6 B0         [ 7]  432 	sub	a, #0xb0
-   01D8 38 DA         [12]  433 	jr	C,00107$
-                            434 ;src/funciones.c:125: cpct_drawSolidBox (cpctm_screenPtr (CPCT_VMEM_START, 43, 56), cpct_px2byteM1 (0, 0, 0, 0), 34, 128); //borrar pantalla
-   01DA 21 00 00      [10]  435 	ld	hl, #0x0000
-   01DD E5            [11]  436 	push	hl
-   01DE 2E 00         [ 7]  437 	ld	l, #0x00
-   01E0 E5            [11]  438 	push	hl
-   01E1 CDr00r00      [17]  439 	call	_cpct_px2byteM1
-   01E4 F1            [10]  440 	pop	af
-   01E5 F1            [10]  441 	pop	af
-   01E6 45            [ 4]  442 	ld	b, l
-   01E7 21 22 80      [10]  443 	ld	hl, #0x8022
-   01EA E5            [11]  444 	push	hl
-   01EB C5            [11]  445 	push	bc
-   01EC 33            [ 6]  446 	inc	sp
-   01ED 21 5B C2      [10]  447 	ld	hl, #0xc25b
-   01F0 E5            [11]  448 	push	hl
-   01F1 CDr00r00      [17]  449 	call	_cpct_drawSolidBox
-   01F4 DD F9         [10]  450 	ld	sp, ix
-   01F6 DD E1         [14]  451 	pop	ix
-   01F8 C9            [10]  452 	ret
-                            453 ;src/funciones.c:128: void dibujarEscenario(){
-                            454 ;	---------------------------------
-                            455 ; Function dibujarEscenario
-                            456 ; ---------------------------------
-   01F9                     457 _dibujarEscenario::
-                            458 ;src/funciones.c:131: cpct_etm_setTileset2x4(tileset1);
-   01F9 21r00r00      [10]  459 	ld	hl, #_tileset1
-   01FC CDr00r00      [17]  460 	call	_cpct_etm_setTileset2x4
-                            461 ;src/funciones.c:132: if (nivel > 10)
-   01FF 3E 0A         [ 7]  462 	ld	a, #0x0a
-   0201 FD 21r00r00   [14]  463 	ld	iy, #_nivel
-   0205 FD 96 00      [19]  464 	sub	a, 0 (iy)
-   0208 30 06         [12]  465 	jr	NC,00102$
-                            466 ;src/funciones.c:133: cpct_etm_setTileset2x4(tileset2);
-   020A 21r00r00      [10]  467 	ld	hl, #_tileset2
-   020D CDr00r00      [17]  468 	call	_cpct_etm_setTileset2x4
-   0210                     469 00102$:
-                            470 ;src/funciones.c:137: mapa = (u8*) (&g_mapa01[0] + ((nivel-1) * 504));
-   0210 01r00r00      [10]  471 	ld	bc, #_g_mapa01+0
-   0213 21r00r00      [10]  472 	ld	hl,#_nivel + 0
-   0216 5E            [ 7]  473 	ld	e, (hl)
-   0217 16 00         [ 7]  474 	ld	d, #0x00
-   0219 1B            [ 6]  475 	dec	de
-   021A 6B            [ 4]  476 	ld	l, e
-   021B 62            [ 4]  477 	ld	h, d
-   021C 29            [11]  478 	add	hl, hl
-   021D 19            [11]  479 	add	hl, de
-   021E 29            [11]  480 	add	hl, hl
-   021F 19            [11]  481 	add	hl, de
-   0220 29            [11]  482 	add	hl, hl
-   0221 19            [11]  483 	add	hl, de
-   0222 29            [11]  484 	add	hl, hl
-   0223 19            [11]  485 	add	hl, de
-   0224 29            [11]  486 	add	hl, hl
-   0225 19            [11]  487 	add	hl, de
-   0226 29            [11]  488 	add	hl, hl
-   0227 29            [11]  489 	add	hl, hl
-   0228 29            [11]  490 	add	hl, hl
-   0229 09            [11]  491 	add	hl, bc
-                            492 ;src/funciones.c:139: cpct_etm_drawTilemap2x4 ( g_mapa01_W, g_mapa01_H , INICIO_AREA_JUEGO, mapa);
-   022A E5            [11]  493 	push	hl
-   022B 21 84 C2      [10]  494 	ld	hl, #0xc284
-   022E E5            [11]  495 	push	hl
-   022F 21 1C 12      [10]  496 	ld	hl, #0x121c
-   0232 E5            [11]  497 	push	hl
-   0233 2E 00         [ 7]  498 	ld	l, #0x00
-   0235 E5            [11]  499 	push	hl
-   0236 AF            [ 4]  500 	xor	a, a
-   0237 F5            [11]  501 	push	af
-   0238 33            [ 6]  502 	inc	sp
-   0239 CDr00r00      [17]  503 	call	_cpct_etm_drawTileBox2x4
-   023C C9            [10]  504 	ret
-                            505 ;src/funciones.c:143: void printStats(TStats *a) {
-                            506 ;	---------------------------------
-                            507 ; Function printStats
-                            508 ; ---------------------------------
-   023D                     509 _printStats::
-   023D DD E5         [15]  510 	push	ix
-   023F DD 21 00 00   [14]  511 	ld	ix,#0
-   0243 DD 39         [15]  512 	add	ix,sp
-   0245 21 D6 FF      [10]  513 	ld	hl, #-42
-   0248 39            [11]  514 	add	hl, sp
-   0249 F9            [ 6]  515 	ld	sp, hl
-                            516 ;src/funciones.c:146: cpct_setDrawCharM1(2, 0);
-   024A 21 02 00      [10]  517 	ld	hl, #0x0002
-   024D E5            [11]  518 	push	hl
-   024E CDr00r00      [17]  519 	call	_cpct_setDrawCharM1
-                            520 ;src/funciones.c:147: sprintf(temp, "                                    ");
-   0251 11rDDr02      [10]  521 	ld	de, #___str_0+0
-   0254 21 00 00      [10]  522 	ld	hl, #0x0000
-   0257 39            [11]  523 	add	hl, sp
-   0258 DD 75 FE      [19]  524 	ld	-2 (ix), l
-   025B DD 74 FF      [19]  525 	ld	-1 (ix), h
-   025E D5            [11]  526 	push	de
-   025F E5            [11]  527 	push	hl
-   0260 CDr00r00      [17]  528 	call	_sprintf
-   0263 F1            [10]  529 	pop	af
-   0264 F1            [10]  530 	pop	af
-                            531 ;src/funciones.c:148: if (a->energy)
-   0265 DD 4E 04      [19]  532 	ld	c,4 (ix)
-   0268 DD 46 05      [19]  533 	ld	b,5 (ix)
-   026B C5            [11]  534 	push	bc
-   026C FD E1         [14]  535 	pop	iy
-   026E FD 5E 0A      [19]  536 	ld	e, 10 (iy)
-   0271 7B            [ 4]  537 	ld	a, e
-   0272 B7            [ 4]  538 	or	a, a
-   0273 28 45         [12]  539 	jr	Z,00102$
-                            540 ;src/funciones.c:149: sprintf(temp, "%-9s=> HP:%02d. ATT: %02d. DEF: %02d",a->name, a->energy,a->attack,a->defense);
-   0275 C5            [11]  541 	push	bc
-   0276 FD E1         [14]  542 	pop	iy
-   0278 FD 6E 0E      [19]  543 	ld	l, 14 (iy)
-   027B DD 75 FC      [19]  544 	ld	-4 (ix), l
-   027E DD 36 FD 00   [19]  545 	ld	-3 (ix), #0x00
-   0282 C5            [11]  546 	push	bc
-   0283 FD E1         [14]  547 	pop	iy
-   0285 FD 6E 0C      [19]  548 	ld	l, 12 (iy)
-   0288 DD 75 FA      [19]  549 	ld	-6 (ix), l
-   028B DD 36 FB 00   [19]  550 	ld	-5 (ix), #0x00
-   028F 16 00         [ 7]  551 	ld	d, #0x00
-   0291 DD 6E FE      [19]  552 	ld	l,-2 (ix)
-   0294 DD 66 FF      [19]  553 	ld	h,-1 (ix)
-   0297 E5            [11]  554 	push	hl
-   0298 FD E1         [14]  555 	pop	iy
-   029A C5            [11]  556 	push	bc
-   029B DD 6E FC      [19]  557 	ld	l,-4 (ix)
-   029E DD 66 FD      [19]  558 	ld	h,-3 (ix)
-   02A1 E5            [11]  559 	push	hl
-   02A2 DD 6E FA      [19]  560 	ld	l,-6 (ix)
-   02A5 DD 66 FB      [19]  561 	ld	h,-5 (ix)
-   02A8 E5            [11]  562 	push	hl
-   02A9 D5            [11]  563 	push	de
-   02AA C5            [11]  564 	push	bc
-   02AB 21r02r03      [10]  565 	ld	hl, #___str_1
-   02AE E5            [11]  566 	push	hl
-   02AF FD E5         [15]  567 	push	iy
-   02B1 CDr00r00      [17]  568 	call	_sprintf
-   02B4 21 0C 00      [10]  569 	ld	hl, #12
-   02B7 39            [11]  570 	add	hl, sp
-   02B8 F9            [ 6]  571 	ld	sp, hl
-   02B9 C1            [10]  572 	pop	bc
-   02BA                     573 00102$:
-                            574 ;src/funciones.c:151: mydrawStringM1(temp, cpct_getScreenPtr(CPCT_VMEM_START, 4, a->pos_y));
-   02BA C5            [11]  575 	push	bc
-   02BB FD E1         [14]  576 	pop	iy
-   02BD FD 46 11      [19]  577 	ld	b, 17 (iy)
-   02C0 C5            [11]  578 	push	bc
-   02C1 33            [ 6]  579 	inc	sp
-   02C2 3E 04         [ 7]  580 	ld	a, #0x04
-   02C4 F5            [11]  581 	push	af
-   02C5 33            [ 6]  582 	inc	sp
-   02C6 21 00 C0      [10]  583 	ld	hl, #0xc000
-   02C9 E5            [11]  584 	push	hl
-   02CA CDr00r00      [17]  585 	call	_cpct_getScreenPtr
-   02CD DD 4E FE      [19]  586 	ld	c,-2 (ix)
-   02D0 DD 46 FF      [19]  587 	ld	b,-1 (ix)
-   02D3 E5            [11]  588 	push	hl
-   02D4 C5            [11]  589 	push	bc
-   02D5 CDr00r00      [17]  590 	call	_mydrawStringM1
-   02D8 DD F9         [10]  591 	ld	sp, ix
-   02DA DD E1         [14]  592 	pop	ix
-   02DC C9            [10]  593 	ret
-   02DD                     594 ___str_0:
-   02DD 20 20 20 20 20 20   595 	.ascii "                                    "
+                             56 	.area _DABS (ABS)
+                             57 ;--------------------------------------------------------
+                             58 ; global & static initialisations
+                             59 ;--------------------------------------------------------
+                             60 	.area _HOME
+                             61 	.area _GSINIT
+                             62 	.area _GSFINAL
+                             63 	.area _GSINIT
+                             64 ;--------------------------------------------------------
+                             65 ; Home
+                             66 ;--------------------------------------------------------
+                             67 	.area _HOME
+                             68 	.area _HOME
+                             69 ;--------------------------------------------------------
+                             70 ; code
+                             71 ;--------------------------------------------------------
+                             72 	.area _CODE
+                             73 ;src/funciones.c:41: u8 abs (i8 valor){
+                             74 ;	---------------------------------
+                             75 ; Function abs
+                             76 ; ---------------------------------
+   0000                      77 _abs::
+                             78 ;src/funciones.c:42: return (valor > 0 ? valor : -valor);
+   0000 AF            [ 4]   79 	xor	a, a
+   0001 FD 21 02 00   [14]   80 	ld	iy, #2
+   0005 FD 39         [15]   81 	add	iy, sp
+   0007 FD 96 00      [19]   82 	sub	a, 0 (iy)
+   000A E2r0Fr00      [10]   83 	jp	PO, 00109$
+   000D EE 80         [ 7]   84 	xor	a, #0x80
+   000F                      85 00109$:
+   000F F2r1Cr00      [10]   86 	jp	P, 00103$
+   0012 FD 21 02 00   [14]   87 	ld	iy, #2
+   0016 FD 39         [15]   88 	add	iy, sp
+   0018 FD 6E 00      [19]   89 	ld	l, 0 (iy)
+   001B C9            [10]   90 	ret
+   001C                      91 00103$:
+   001C AF            [ 4]   92 	xor	a, a
+   001D FD 21 02 00   [14]   93 	ld	iy, #2
+   0021 FD 39         [15]   94 	add	iy, sp
+   0023 FD 96 00      [19]   95 	sub	a, 0 (iy)
+   0026 6F            [ 4]   96 	ld	l, a
+   0027 C9            [10]   97 	ret
+                             98 ;src/funciones.c:45: void pausa(u16 ciclos) {
+                             99 ;	---------------------------------
+                            100 ; Function pausa
+                            101 ; ---------------------------------
+   0028                     102 _pausa::
+                            103 ;src/funciones.c:48: for (i = 0; i < ciclos; i++)
+   0028 01 00 00      [10]  104 	ld	bc, #0x0000
+   002B                     105 00103$:
+   002B 21 02 00      [10]  106 	ld	hl, #2
+   002E 39            [11]  107 	add	hl, sp
+   002F 79            [ 4]  108 	ld	a, c
+   0030 96            [ 7]  109 	sub	a, (hl)
+   0031 78            [ 4]  110 	ld	a, b
+   0032 23            [ 6]  111 	inc	hl
+   0033 9E            [ 7]  112 	sbc	a, (hl)
+   0034 D0            [11]  113 	ret	NC
+   0035 03            [ 6]  114 	inc	bc
+   0036 18 F3         [12]  115 	jr	00103$
+                            116 ;src/funciones.c:52: void efecto_pliegue(u8 modo) {
+                            117 ;	---------------------------------
+                            118 ; Function efecto_pliegue
+                            119 ; ---------------------------------
+   0038                     120 _efecto_pliegue::
+                            121 ;src/funciones.c:55: i = 80;
+   0038 0E 50         [ 7]  122 	ld	c, #0x50
+                            123 ;src/funciones.c:56: if (modo)
+   003A 21 02 00      [10]  124 	ld	hl, #2+0
+   003D 39            [11]  125 	add	hl, sp
+   003E 7E            [ 7]  126 	ld	a, (hl)
+   003F B7            [ 4]  127 	or	a, a
+   0040 28 02         [12]  128 	jr	Z,00108$
+                            129 ;src/funciones.c:57: i = 1;
+   0042 0E 01         [ 7]  130 	ld	c, #0x01
+                            131 ;src/funciones.c:59: do {
+   0044                     132 00108$:
+                            133 ;src/funciones.c:60: cpct_setCRTCReg (1, i/2);   //Cambiar nº columnas por pantalla (1-40)
+   0044 41            [ 4]  134 	ld	b, c
+   0045 CB 38         [ 8]  135 	srl	b
+   0047 C5            [11]  136 	push	bc
+   0048 C5            [11]  137 	push	bc
+   0049 33            [ 6]  138 	inc	sp
+   004A 3E 01         [ 7]  139 	ld	a, #0x01
+   004C F5            [11]  140 	push	af
+   004D 33            [ 6]  141 	inc	sp
+   004E CDr00r00      [17]  142 	call	_cpct_setCRTCReg
+   0051 C1            [10]  143 	pop	bc
+                            144 ;src/funciones.c:62: for (j = 0; j < 255; j++)
+   0052 06 FF         [ 7]  145 	ld	b, #0xff
+   0054                     146 00113$:
+   0054 58            [ 4]  147 	ld	e, b
+   0055 1D            [ 4]  148 	dec	e
+   0056 7B            [ 4]  149 	ld	a,e
+   0057 47            [ 4]  150 	ld	b,a
+   0058 B7            [ 4]  151 	or	a, a
+   0059 20 F9         [12]  152 	jr	NZ,00113$
+                            153 ;src/funciones.c:65: if (modo) {
+   005B 21 02 00      [10]  154 	ld	hl, #2+0
+   005E 39            [11]  155 	add	hl, sp
+   005F 7E            [ 7]  156 	ld	a, (hl)
+   0060 B7            [ 4]  157 	or	a, a
+   0061 28 03         [12]  158 	jr	Z,00105$
+                            159 ;src/funciones.c:66: i++;
+   0063 0C            [ 4]  160 	inc	c
+   0064 18 01         [12]  161 	jr	00109$
+   0066                     162 00105$:
+                            163 ;src/funciones.c:68: i--; 
+   0066 0D            [ 4]  164 	dec	c
+   0067                     165 00109$:
+                            166 ;src/funciones.c:70: } while (i > 0 && i <= 80);
+   0067 79            [ 4]  167 	ld	a, c
+   0068 B7            [ 4]  168 	or	a, a
+   0069 C8            [11]  169 	ret	Z
+   006A 3E 50         [ 7]  170 	ld	a, #0x50
+   006C 91            [ 4]  171 	sub	a, c
+   006D 30 D5         [12]  172 	jr	NC,00108$
+   006F C9            [10]  173 	ret
+                            174 ;src/funciones.c:74: void pausaTecladoLibre(){
+                            175 ;	---------------------------------
+                            176 ; Function pausaTecladoLibre
+                            177 ; ---------------------------------
+   0070                     178 _pausaTecladoLibre::
+                            179 ;src/funciones.c:75: while (cpct_isAnyKeyPressed_f ()) { //Asegurarnos que se ha dejado de pulsar la tecla anterior 
+   0070                     180 00101$:
+   0070 CDr00r00      [17]  181 	call	_cpct_isAnyKeyPressed_f
+   0073 7D            [ 4]  182 	ld	a, l
+   0074 B7            [ 4]  183 	or	a, a
+   0075 20 F9         [12]  184 	jr	NZ,00101$
+   0077 C9            [10]  185 	ret
+                            186 ;src/funciones.c:81: void dibujarMarcoExterior (){
+                            187 ;	---------------------------------
+                            188 ; Function dibujarMarcoExterior
+                            189 ; ---------------------------------
+   0078                     190 _dibujarMarcoExterior::
+   0078 DD E5         [15]  191 	push	ix
+   007A DD 21 00 00   [14]  192 	ld	ix,#0
+   007E DD 39         [15]  193 	add	ix,sp
+   0080 F5            [11]  194 	push	af
+                            195 ;src/funciones.c:86: tile = (u8*) &G_tile_cruzada[0];
+   0081 01r00r00      [10]  196 	ld	bc, #_G_tile_cruzada+0
+                            197 ;src/funciones.c:87: if (nivel > 10)
+   0084 3E 0A         [ 7]  198 	ld	a, #0x0a
+   0086 FD 21r00r00   [14]  199 	ld	iy, #_nivel
+   008A FD 96 00      [19]  200 	sub	a, 0 (iy)
+   008D 30 03         [12]  201 	jr	NC,00102$
+                            202 ;src/funciones.c:88: tile = (u8*) &G_tile_caverna[0];
+   008F 01r00r00      [10]  203 	ld	bc, #_G_tile_caverna
+   0092                     204 00102$:
+                            205 ;src/funciones.c:89: if (nivel > 20)
+   0092 3E 14         [ 7]  206 	ld	a, #0x14
+   0094 FD 21r00r00   [14]  207 	ld	iy, #_nivel
+   0098 FD 96 00      [19]  208 	sub	a, 0 (iy)
+   009B 30 03         [12]  209 	jr	NC,00115$
+                            210 ;src/funciones.c:90: tile = (u8*) &G_tile_castillo[0];
+   009D 01r00r00      [10]  211 	ld	bc, #_G_tile_castillo
+                            212 ;src/funciones.c:94: for (i=0; i < 80; i += 4) {
+   00A0                     213 00115$:
+   00A0 16 00         [ 7]  214 	ld	d, #0x00
+   00A2                     215 00107$:
+                            216 ;src/funciones.c:95: cpct_drawSprite (tile,  cpct_getScreenPtr (CPCT_VMEM_START, i,   0), 4, 16);
+   00A2 C5            [11]  217 	push	bc
+   00A3 D5            [11]  218 	push	de
+   00A4 AF            [ 4]  219 	xor	a, a
+   00A5 F5            [11]  220 	push	af
+   00A6 33            [ 6]  221 	inc	sp
+   00A7 D5            [11]  222 	push	de
+   00A8 33            [ 6]  223 	inc	sp
+   00A9 21 00 C0      [10]  224 	ld	hl, #0xc000
+   00AC E5            [11]  225 	push	hl
+   00AD CDr00r00      [17]  226 	call	_cpct_getScreenPtr
+   00B0 D1            [10]  227 	pop	de
+   00B1 C1            [10]  228 	pop	bc
+   00B2 E5            [11]  229 	push	hl
+   00B3 FD E1         [14]  230 	pop	iy
+   00B5 33            [ 6]  231 	inc	sp
+   00B6 33            [ 6]  232 	inc	sp
+   00B7 C5            [11]  233 	push	bc
+   00B8 C5            [11]  234 	push	bc
+   00B9 D5            [11]  235 	push	de
+   00BA 21 04 10      [10]  236 	ld	hl, #0x1004
+   00BD E5            [11]  237 	push	hl
+   00BE FD E5         [15]  238 	push	iy
+   00C0 DD 6E FE      [19]  239 	ld	l,-2 (ix)
+   00C3 DD 66 FF      [19]  240 	ld	h,-1 (ix)
+   00C6 E5            [11]  241 	push	hl
+   00C7 CDr00r00      [17]  242 	call	_cpct_drawSprite
+   00CA D1            [10]  243 	pop	de
+   00CB D5            [11]  244 	push	de
+   00CC 3E B0         [ 7]  245 	ld	a, #0xb0
+   00CE F5            [11]  246 	push	af
+   00CF 33            [ 6]  247 	inc	sp
+   00D0 D5            [11]  248 	push	de
+   00D1 33            [ 6]  249 	inc	sp
+   00D2 21 00 C0      [10]  250 	ld	hl, #0xc000
+   00D5 E5            [11]  251 	push	hl
+   00D6 CDr00r00      [17]  252 	call	_cpct_getScreenPtr
+   00D9 D1            [10]  253 	pop	de
+   00DA C1            [10]  254 	pop	bc
+   00DB E5            [11]  255 	push	hl
+   00DC FD E1         [14]  256 	pop	iy
+   00DE C5            [11]  257 	push	bc
+   00DF D5            [11]  258 	push	de
+   00E0 21 04 10      [10]  259 	ld	hl, #0x1004
+   00E3 E5            [11]  260 	push	hl
+   00E4 FD E5         [15]  261 	push	iy
+   00E6 DD 6E FE      [19]  262 	ld	l,-2 (ix)
+   00E9 DD 66 FF      [19]  263 	ld	h,-1 (ix)
+   00EC E5            [11]  264 	push	hl
+   00ED CDr00r00      [17]  265 	call	_cpct_drawSprite
+   00F0 D1            [10]  266 	pop	de
+   00F1 C1            [10]  267 	pop	bc
+                            268 ;src/funciones.c:94: for (i=0; i < 80; i += 4) {
+   00F2 14            [ 4]  269 	inc	d
+   00F3 14            [ 4]  270 	inc	d
+   00F4 14            [ 4]  271 	inc	d
+   00F5 14            [ 4]  272 	inc	d
+   00F6 7A            [ 4]  273 	ld	a, d
+   00F7 D6 50         [ 7]  274 	sub	a, #0x50
+   00F9 38 A7         [12]  275 	jr	C,00107$
+                            276 ;src/funciones.c:99: for (i=16; i < 176; i += 16 ){
+   00FB 06 10         [ 7]  277 	ld	b, #0x10
+   00FD                     278 00109$:
+                            279 ;src/funciones.c:100: cpct_drawSprite (tile,  cpct_getScreenPtr (CPCT_VMEM_START, 0, i), 4, 16);
+   00FD C5            [11]  280 	push	bc
+   00FE C5            [11]  281 	push	bc
+   00FF 33            [ 6]  282 	inc	sp
+   0100 AF            [ 4]  283 	xor	a, a
+   0101 F5            [11]  284 	push	af
+   0102 33            [ 6]  285 	inc	sp
+   0103 21 00 C0      [10]  286 	ld	hl, #0xc000
+   0106 E5            [11]  287 	push	hl
+   0107 CDr00r00      [17]  288 	call	_cpct_getScreenPtr
+   010A 11 04 10      [10]  289 	ld	de, #0x1004
+   010D D5            [11]  290 	push	de
+   010E E5            [11]  291 	push	hl
+   010F DD 6E FE      [19]  292 	ld	l,-2 (ix)
+   0112 DD 66 FF      [19]  293 	ld	h,-1 (ix)
+   0115 E5            [11]  294 	push	hl
+   0116 CDr00r00      [17]  295 	call	_cpct_drawSprite
+   0119 C1            [10]  296 	pop	bc
+                            297 ;src/funciones.c:101: cpct_drawSprite (tile,  cpct_getScreenPtr (CPCT_VMEM_START,76, i), 4, 16);  
+   011A C5            [11]  298 	push	bc
+   011B C5            [11]  299 	push	bc
+   011C 33            [ 6]  300 	inc	sp
+   011D 3E 4C         [ 7]  301 	ld	a, #0x4c
+   011F F5            [11]  302 	push	af
+   0120 33            [ 6]  303 	inc	sp
+   0121 21 00 C0      [10]  304 	ld	hl, #0xc000
+   0124 E5            [11]  305 	push	hl
+   0125 CDr00r00      [17]  306 	call	_cpct_getScreenPtr
+   0128 11 04 10      [10]  307 	ld	de, #0x1004
+   012B D5            [11]  308 	push	de
+   012C E5            [11]  309 	push	hl
+   012D DD 6E FE      [19]  310 	ld	l,-2 (ix)
+   0130 DD 66 FF      [19]  311 	ld	h,-1 (ix)
+   0133 E5            [11]  312 	push	hl
+   0134 CDr00r00      [17]  313 	call	_cpct_drawSprite
+   0137 C1            [10]  314 	pop	bc
+                            315 ;src/funciones.c:99: for (i=16; i < 176; i += 16 ){
+   0138 78            [ 4]  316 	ld	a, b
+   0139 C6 10         [ 7]  317 	add	a, #0x10
+   013B 47            [ 4]  318 	ld	b,a
+   013C D6 B0         [ 7]  319 	sub	a, #0xb0
+   013E 38 BD         [12]  320 	jr	C,00109$
+   0140 DD F9         [10]  321 	ld	sp, ix
+   0142 DD E1         [14]  322 	pop	ix
+   0144 C9            [10]  323 	ret
+                            324 ;src/funciones.c:106: void dibujarMarcoInterior (){
+                            325 ;	---------------------------------
+                            326 ; Function dibujarMarcoInterior
+                            327 ; ---------------------------------
+   0145                     328 _dibujarMarcoInterior::
+   0145 DD E5         [15]  329 	push	ix
+   0147 DD 21 00 00   [14]  330 	ld	ix,#0
+   014B DD 39         [15]  331 	add	ix,sp
+   014D F5            [11]  332 	push	af
+                            333 ;src/funciones.c:111: tile = (u8*) &G_tile_cruzada[0];
+   014E 01r00r00      [10]  334 	ld	bc, #_G_tile_cruzada
+                            335 ;src/funciones.c:112: if (nivel > 10)
+   0151 3E 0A         [ 7]  336 	ld	a, #0x0a
+   0153 FD 21r00r00   [14]  337 	ld	iy, #_nivel
+   0157 FD 96 00      [19]  338 	sub	a, 0 (iy)
+   015A 30 03         [12]  339 	jr	NC,00102$
+                            340 ;src/funciones.c:113: tile = (u8*) &G_tile_caverna[0];
+   015C 01r00r00      [10]  341 	ld	bc, #_G_tile_caverna
+   015F                     342 00102$:
+                            343 ;src/funciones.c:114: if (nivel > 20)
+   015F 3E 14         [ 7]  344 	ld	a, #0x14
+   0161 FD 21r00r00   [14]  345 	ld	iy, #_nivel
+   0165 FD 96 00      [19]  346 	sub	a, 0 (iy)
+   0168 30 03         [12]  347 	jr	NC,00115$
+                            348 ;src/funciones.c:115: tile = (u8*) &G_tile_castillo[0];
+   016A 01r00r00      [10]  349 	ld	bc, #_G_tile_castillo
+                            350 ;src/funciones.c:119: for (i=0; i < 80; i += 4) {
+   016D                     351 00115$:
+   016D 1E 00         [ 7]  352 	ld	e, #0x00
+   016F                     353 00107$:
+                            354 ;src/funciones.c:120: cpct_drawSprite (tile,  cpct_getScreenPtr (CPCT_VMEM_START, i,  48), 4, 16);
+   016F C5            [11]  355 	push	bc
+   0170 D5            [11]  356 	push	de
+   0171 16 30         [ 7]  357 	ld	d,#0x30
+   0173 D5            [11]  358 	push	de
+   0174 21 00 C0      [10]  359 	ld	hl, #0xc000
+   0177 E5            [11]  360 	push	hl
+   0178 CDr00r00      [17]  361 	call	_cpct_getScreenPtr
+   017B D1            [10]  362 	pop	de
+   017C C1            [10]  363 	pop	bc
+   017D E5            [11]  364 	push	hl
+   017E FD E1         [14]  365 	pop	iy
+   0180 33            [ 6]  366 	inc	sp
+   0181 33            [ 6]  367 	inc	sp
+   0182 C5            [11]  368 	push	bc
+   0183 C5            [11]  369 	push	bc
+   0184 D5            [11]  370 	push	de
+   0185 21 04 10      [10]  371 	ld	hl, #0x1004
+   0188 E5            [11]  372 	push	hl
+   0189 FD E5         [15]  373 	push	iy
+   018B DD 6E FE      [19]  374 	ld	l,-2 (ix)
+   018E DD 66 FF      [19]  375 	ld	h,-1 (ix)
+   0191 E5            [11]  376 	push	hl
+   0192 CDr00r00      [17]  377 	call	_cpct_drawSprite
+   0195 D1            [10]  378 	pop	de
+   0196 C1            [10]  379 	pop	bc
+                            380 ;src/funciones.c:119: for (i=0; i < 80; i += 4) {
+   0197 1C            [ 4]  381 	inc	e
+   0198 1C            [ 4]  382 	inc	e
+   0199 1C            [ 4]  383 	inc	e
+   019A 1C            [ 4]  384 	inc	e
+   019B 7B            [ 4]  385 	ld	a, e
+   019C D6 50         [ 7]  386 	sub	a, #0x50
+   019E 38 CF         [12]  387 	jr	C,00107$
+                            388 ;src/funciones.c:123: for (i=64; i < 176; i += 16 ){
+   01A0 06 40         [ 7]  389 	ld	b, #0x40
+   01A2                     390 00109$:
+                            391 ;src/funciones.c:124: cpct_drawSprite (tile,  cpct_getScreenPtr (CPCT_VMEM_START,40, i), 4, 16);
+   01A2 C5            [11]  392 	push	bc
+   01A3 C5            [11]  393 	push	bc
+   01A4 33            [ 6]  394 	inc	sp
+   01A5 3E 28         [ 7]  395 	ld	a, #0x28
+   01A7 F5            [11]  396 	push	af
+   01A8 33            [ 6]  397 	inc	sp
+   01A9 21 00 C0      [10]  398 	ld	hl, #0xc000
+   01AC E5            [11]  399 	push	hl
+   01AD CDr00r00      [17]  400 	call	_cpct_getScreenPtr
+   01B0 11 04 10      [10]  401 	ld	de, #0x1004
+   01B3 D5            [11]  402 	push	de
+   01B4 E5            [11]  403 	push	hl
+   01B5 DD 6E FE      [19]  404 	ld	l,-2 (ix)
+   01B8 DD 66 FF      [19]  405 	ld	h,-1 (ix)
+   01BB E5            [11]  406 	push	hl
+   01BC CDr00r00      [17]  407 	call	_cpct_drawSprite
+   01BF C1            [10]  408 	pop	bc
+                            409 ;src/funciones.c:123: for (i=64; i < 176; i += 16 ){
+   01C0 78            [ 4]  410 	ld	a, b
+   01C1 C6 10         [ 7]  411 	add	a, #0x10
+   01C3 47            [ 4]  412 	ld	b,a
+   01C4 D6 B0         [ 7]  413 	sub	a, #0xb0
+   01C6 38 DA         [12]  414 	jr	C,00109$
+                            415 ;src/funciones.c:128: cpct_drawSolidBox (cpctm_screenPtr (CPCT_VMEM_START, 43, 56), cpct_px2byteM1 (0, 0, 0, 0), 34, 128); //borrar pantalla
+   01C8 21 00 00      [10]  416 	ld	hl, #0x0000
+   01CB E5            [11]  417 	push	hl
+   01CC 2E 00         [ 7]  418 	ld	l, #0x00
+   01CE E5            [11]  419 	push	hl
+   01CF CDr00r00      [17]  420 	call	_cpct_px2byteM1
+   01D2 F1            [10]  421 	pop	af
+   01D3 F1            [10]  422 	pop	af
+   01D4 45            [ 4]  423 	ld	b, l
+   01D5 21 22 80      [10]  424 	ld	hl, #0x8022
+   01D8 E5            [11]  425 	push	hl
+   01D9 C5            [11]  426 	push	bc
+   01DA 33            [ 6]  427 	inc	sp
+   01DB 21 5B C2      [10]  428 	ld	hl, #0xc25b
+   01DE E5            [11]  429 	push	hl
+   01DF CDr00r00      [17]  430 	call	_cpct_drawSolidBox
+   01E2 DD F9         [10]  431 	ld	sp, ix
+   01E4 DD E1         [14]  432 	pop	ix
+   01E6 C9            [10]  433 	ret
+                            434 ;src/funciones.c:131: void dibujarEscenario(){
+                            435 ;	---------------------------------
+                            436 ; Function dibujarEscenario
+                            437 ; ---------------------------------
+   01E7                     438 _dibujarEscenario::
+                            439 ;src/funciones.c:134: cpct_etm_setTileset2x4(tileset1);
+   01E7 21r00r00      [10]  440 	ld	hl, #_tileset1
+   01EA CDr00r00      [17]  441 	call	_cpct_etm_setTileset2x4
+                            442 ;src/funciones.c:135: if (nivel > 10)
+   01ED 3E 0A         [ 7]  443 	ld	a, #0x0a
+   01EF FD 21r00r00   [14]  444 	ld	iy, #_nivel
+   01F3 FD 96 00      [19]  445 	sub	a, 0 (iy)
+   01F6 30 06         [12]  446 	jr	NC,00102$
+                            447 ;src/funciones.c:136: cpct_etm_setTileset2x4(tileset2);
+   01F8 21r00r00      [10]  448 	ld	hl, #_tileset2
+   01FB CDr00r00      [17]  449 	call	_cpct_etm_setTileset2x4
+   01FE                     450 00102$:
+                            451 ;src/funciones.c:137: if (nivel > 20)
+   01FE 3E 14         [ 7]  452 	ld	a, #0x14
+   0200 FD 21r00r00   [14]  453 	ld	iy, #_nivel
+   0204 FD 96 00      [19]  454 	sub	a, 0 (iy)
+   0207 30 06         [12]  455 	jr	NC,00104$
+                            456 ;src/funciones.c:138: cpct_etm_setTileset2x4(tileset3);
+   0209 21r00r00      [10]  457 	ld	hl, #_tileset3
+   020C CDr00r00      [17]  458 	call	_cpct_etm_setTileset2x4
+   020F                     459 00104$:
+                            460 ;src/funciones.c:140: mapa = (u8*) (&g_mapa01[0] + ((nivel-1) * 504));
+   020F 01r00r00      [10]  461 	ld	bc, #_g_mapa01+0
+   0212 FD 21r00r00   [14]  462 	ld	iy, #_nivel
+   0216 FD 5E 00      [19]  463 	ld	e, 0 (iy)
+   0219 16 00         [ 7]  464 	ld	d, #0x00
+   021B 1B            [ 6]  465 	dec	de
+   021C 6B            [ 4]  466 	ld	l, e
+   021D 62            [ 4]  467 	ld	h, d
+   021E 29            [11]  468 	add	hl, hl
+   021F 19            [11]  469 	add	hl, de
+   0220 29            [11]  470 	add	hl, hl
+   0221 19            [11]  471 	add	hl, de
+   0222 29            [11]  472 	add	hl, hl
+   0223 19            [11]  473 	add	hl, de
+   0224 29            [11]  474 	add	hl, hl
+   0225 19            [11]  475 	add	hl, de
+   0226 29            [11]  476 	add	hl, hl
+   0227 19            [11]  477 	add	hl, de
+   0228 29            [11]  478 	add	hl, hl
+   0229 29            [11]  479 	add	hl, hl
+   022A 29            [11]  480 	add	hl, hl
+   022B 09            [11]  481 	add	hl, bc
+                            482 ;src/funciones.c:144: __endasm;
+   022C F3            [ 4]  483 	di
+                            484 ;src/funciones.c:145: cpct_etm_drawTilemap2x4_f ( g_mapa01_W, g_mapa01_H , INICIO_AREA_JUEGO, mapa);
+   022D E5            [11]  485 	push	hl
+   022E 21 84 C2      [10]  486 	ld	hl, #0xc284
+   0231 E5            [11]  487 	push	hl
+   0232 21 12 1C      [10]  488 	ld	hl, #0x1c12
+   0235 E5            [11]  489 	push	hl
+   0236 CDr00r00      [17]  490 	call	_cpct_etm_drawTilemap2x4_f
+                            491 ;src/funciones.c:148: __endasm;
+   0239 FB            [ 4]  492 	ei
+   023A C9            [10]  493 	ret
+                            494 ;src/funciones.c:152: void printStats(TStats *a) {
+                            495 ;	---------------------------------
+                            496 ; Function printStats
+                            497 ; ---------------------------------
+   023B                     498 _printStats::
+   023B DD E5         [15]  499 	push	ix
+   023D DD 21 00 00   [14]  500 	ld	ix,#0
+   0241 DD 39         [15]  501 	add	ix,sp
+   0243 21 D4 FF      [10]  502 	ld	hl, #-44
+   0246 39            [11]  503 	add	hl, sp
+   0247 F9            [ 6]  504 	ld	sp, hl
+                            505 ;src/funciones.c:155: cpct_setDrawCharM1(2, 0);
+   0248 21 02 00      [10]  506 	ld	hl, #0x0002
+   024B E5            [11]  507 	push	hl
+   024C CDr00r00      [17]  508 	call	_cpct_setDrawCharM1
+                            509 ;src/funciones.c:156: sprintf(temp, "                                    ");
+   024F 11rE9r02      [10]  510 	ld	de, #___str_0+0
+   0252 21 00 00      [10]  511 	ld	hl, #0x0000
+   0255 39            [11]  512 	add	hl, sp
+   0256 DD 75 FE      [19]  513 	ld	-2 (ix), l
+   0259 DD 74 FF      [19]  514 	ld	-1 (ix), h
+   025C D5            [11]  515 	push	de
+   025D E5            [11]  516 	push	hl
+   025E CDr00r00      [17]  517 	call	_sprintf
+   0261 F1            [10]  518 	pop	af
+   0262 F1            [10]  519 	pop	af
+                            520 ;src/funciones.c:157: if (a->energy)
+   0263 DD 4E 04      [19]  521 	ld	c,4 (ix)
+   0266 DD 46 05      [19]  522 	ld	b,5 (ix)
+   0269 C5            [11]  523 	push	bc
+   026A FD E1         [14]  524 	pop	iy
+   026C FD 5E 0B      [19]  525 	ld	e, 11 (iy)
+   026F 7B            [ 4]  526 	ld	a, e
+   0270 B7            [ 4]  527 	or	a, a
+   0271 28 53         [12]  528 	jr	Z,00102$
+                            529 ;src/funciones.c:158: sprintf(temp, "%-9s=> HP:%02d. ATT: %02d. DEF: %02d",a->name, a->energy,a->attack,a->defense);
+   0273 C5            [11]  530 	push	bc
+   0274 FD E1         [14]  531 	pop	iy
+   0276 FD 6E 0F      [19]  532 	ld	l, 15 (iy)
+   0279 DD 75 FC      [19]  533 	ld	-4 (ix), l
+   027C DD 36 FD 00   [19]  534 	ld	-3 (ix), #0x00
+   0280 C5            [11]  535 	push	bc
+   0281 FD E1         [14]  536 	pop	iy
+   0283 FD 6E 0D      [19]  537 	ld	l, 13 (iy)
+   0286 DD 75 FA      [19]  538 	ld	-6 (ix), l
+   0289 DD 36 FB 00   [19]  539 	ld	-5 (ix), #0x00
+   028D DD 73 F8      [19]  540 	ld	-8 (ix), e
+   0290 DD 36 F9 00   [19]  541 	ld	-7 (ix), #0x00
+   0294 59            [ 4]  542 	ld	e, c
+   0295 50            [ 4]  543 	ld	d, b
+   0296 13            [ 6]  544 	inc	de
+   0297 DD 6E FE      [19]  545 	ld	l,-2 (ix)
+   029A DD 66 FF      [19]  546 	ld	h,-1 (ix)
+   029D E5            [11]  547 	push	hl
+   029E FD E1         [14]  548 	pop	iy
+   02A0 C5            [11]  549 	push	bc
+   02A1 DD 6E FC      [19]  550 	ld	l,-4 (ix)
+   02A4 DD 66 FD      [19]  551 	ld	h,-3 (ix)
+   02A7 E5            [11]  552 	push	hl
+   02A8 DD 6E FA      [19]  553 	ld	l,-6 (ix)
+   02AB DD 66 FB      [19]  554 	ld	h,-5 (ix)
+   02AE E5            [11]  555 	push	hl
+   02AF DD 6E F8      [19]  556 	ld	l,-8 (ix)
+   02B2 DD 66 F9      [19]  557 	ld	h,-7 (ix)
+   02B5 E5            [11]  558 	push	hl
+   02B6 D5            [11]  559 	push	de
+   02B7 21r0Er03      [10]  560 	ld	hl, #___str_1
+   02BA E5            [11]  561 	push	hl
+   02BB FD E5         [15]  562 	push	iy
+   02BD CDr00r00      [17]  563 	call	_sprintf
+   02C0 21 0C 00      [10]  564 	ld	hl, #12
+   02C3 39            [11]  565 	add	hl, sp
+   02C4 F9            [ 6]  566 	ld	sp, hl
+   02C5 C1            [10]  567 	pop	bc
+   02C6                     568 00102$:
+                            569 ;src/funciones.c:160: mydrawStringM1(temp, cpct_getScreenPtr(CPCT_VMEM_START, 4, a->pos_y));
+   02C6 C5            [11]  570 	push	bc
+   02C7 FD E1         [14]  571 	pop	iy
+   02C9 FD 46 12      [19]  572 	ld	b, 18 (iy)
+   02CC C5            [11]  573 	push	bc
+   02CD 33            [ 6]  574 	inc	sp
+   02CE 3E 04         [ 7]  575 	ld	a, #0x04
+   02D0 F5            [11]  576 	push	af
+   02D1 33            [ 6]  577 	inc	sp
+   02D2 21 00 C0      [10]  578 	ld	hl, #0xc000
+   02D5 E5            [11]  579 	push	hl
+   02D6 CDr00r00      [17]  580 	call	_cpct_getScreenPtr
+   02D9 DD 4E FE      [19]  581 	ld	c,-2 (ix)
+   02DC DD 46 FF      [19]  582 	ld	b,-1 (ix)
+   02DF E5            [11]  583 	push	hl
+   02E0 C5            [11]  584 	push	bc
+   02E1 CDr00r00      [17]  585 	call	_mydrawStringM1
+   02E4 DD F9         [10]  586 	ld	sp, ix
+   02E6 DD E1         [14]  587 	pop	ix
+   02E8 C9            [10]  588 	ret
+   02E9                     589 ___str_0:
+   02E9 20 20 20 20 20 20   590 	.ascii "                                    "
         20 20 20 20 20 20
         20 20 20 20 20 20
         20 20 20 20 20 20
         20 20 20 20 20 20
         20 20 20 20 20 20
-   0301 00                  596 	.db 0x00
-   0302                     597 ___str_1:
-   0302 25 2D 39 73 3D 3E   598 	.ascii "%-9s=> HP:%02d. ATT: %02d. DEF: %02d"
+   030D 00                  591 	.db 0x00
+   030E                     592 ___str_1:
+   030E 25 2D 39 73 3D 3E   593 	.ascii "%-9s=> HP:%02d. ATT: %02d. DEF: %02d"
         20 48 50 3A 25 30
         32 64 2E 20 41 54
         54 3A 20 25 30 32
         64 2E 20 44 45 46
         3A 20 25 30 32 64
-   0326 00                  599 	.db 0x00
-                            600 ;src/funciones.c:154: void printLevel() {
-                            601 ;	---------------------------------
-                            602 ; Function printLevel
-                            603 ; ---------------------------------
-   0327                     604 _printLevel::
-   0327 DD E5         [15]  605 	push	ix
-   0329 DD 21 00 00   [14]  606 	ld	ix,#0
-   032D DD 39         [15]  607 	add	ix,sp
-   032F 21 D8 FF      [10]  608 	ld	hl, #-40
-   0332 39            [11]  609 	add	hl, sp
-   0333 F9            [ 6]  610 	ld	sp, hl
-                            611 ;src/funciones.c:157: sprintf(temp, "LEVEL: %02d",nivel);
-   0334 21r00r00      [10]  612 	ld	hl,#_nivel + 0
-   0337 5E            [ 7]  613 	ld	e, (hl)
-   0338 16 00         [ 7]  614 	ld	d, #0x00
-   033A 21 00 00      [10]  615 	ld	hl, #0x0000
-   033D 39            [11]  616 	add	hl, sp
-   033E 4D            [ 4]  617 	ld	c, l
-   033F 44            [ 4]  618 	ld	b, h
-   0340 E5            [11]  619 	push	hl
-   0341 D5            [11]  620 	push	de
-   0342 11r64r03      [10]  621 	ld	de, #___str_2
-   0345 D5            [11]  622 	push	de
-   0346 C5            [11]  623 	push	bc
-   0347 CDr00r00      [17]  624 	call	_sprintf
-   034A 21 06 00      [10]  625 	ld	hl, #6
-   034D 39            [11]  626 	add	hl, sp
-   034E F9            [ 6]  627 	ld	sp, hl
-   034F 01 02 00      [10]  628 	ld	bc, #0x0002
-   0352 C5            [11]  629 	push	bc
-   0353 CDr00r00      [17]  630 	call	_cpct_setDrawCharM1
-   0356 E1            [10]  631 	pop	hl
-                            632 ;src/funciones.c:159: mydrawStringM1(temp, cpctm_screenPtr(CPCT_VMEM_START, 4, 16));
-   0357 01 A4 C0      [10]  633 	ld	bc, #0xc0a4
-   035A C5            [11]  634 	push	bc
-   035B E5            [11]  635 	push	hl
-   035C CDr00r00      [17]  636 	call	_mydrawStringM1
-   035F DD F9         [10]  637 	ld	sp, ix
-   0361 DD E1         [14]  638 	pop	ix
-   0363 C9            [10]  639 	ret
-   0364                     640 ___str_2:
-   0364 4C 45 56 45 4C 3A   641 	.ascii "LEVEL: %02d"
+   0332 00                  594 	.db 0x00
+                            595 ;src/funciones.c:163: void printLevel() {
+                            596 ;	---------------------------------
+                            597 ; Function printLevel
+                            598 ; ---------------------------------
+   0333                     599 _printLevel::
+   0333 DD E5         [15]  600 	push	ix
+   0335 DD 21 00 00   [14]  601 	ld	ix,#0
+   0339 DD 39         [15]  602 	add	ix,sp
+   033B 21 D8 FF      [10]  603 	ld	hl, #-40
+   033E 39            [11]  604 	add	hl, sp
+   033F F9            [ 6]  605 	ld	sp, hl
+                            606 ;src/funciones.c:166: sprintf(temp, "LEVEL: %02d",nivel);
+   0340 21r00r00      [10]  607 	ld	hl,#_nivel + 0
+   0343 5E            [ 7]  608 	ld	e, (hl)
+   0344 16 00         [ 7]  609 	ld	d, #0x00
+   0346 21 00 00      [10]  610 	ld	hl, #0x0000
+   0349 39            [11]  611 	add	hl, sp
+   034A 4D            [ 4]  612 	ld	c, l
+   034B 44            [ 4]  613 	ld	b, h
+   034C E5            [11]  614 	push	hl
+   034D D5            [11]  615 	push	de
+   034E 11r70r03      [10]  616 	ld	de, #___str_2
+   0351 D5            [11]  617 	push	de
+   0352 C5            [11]  618 	push	bc
+   0353 CDr00r00      [17]  619 	call	_sprintf
+   0356 21 06 00      [10]  620 	ld	hl, #6
+   0359 39            [11]  621 	add	hl, sp
+   035A F9            [ 6]  622 	ld	sp, hl
+   035B 01 02 00      [10]  623 	ld	bc, #0x0002
+   035E C5            [11]  624 	push	bc
+   035F CDr00r00      [17]  625 	call	_cpct_setDrawCharM1
+   0362 E1            [10]  626 	pop	hl
+                            627 ;src/funciones.c:168: mydrawStringM1(temp, cpctm_screenPtr(CPCT_VMEM_START, 4, 16));
+   0363 01 A4 C0      [10]  628 	ld	bc, #0xc0a4
+   0366 C5            [11]  629 	push	bc
+   0367 E5            [11]  630 	push	hl
+   0368 CDr00r00      [17]  631 	call	_mydrawStringM1
+   036B DD F9         [10]  632 	ld	sp, ix
+   036D DD E1         [14]  633 	pop	ix
+   036F C9            [10]  634 	ret
+   0370                     635 ___str_2:
+   0370 4C 45 56 45 4C 3A   636 	.ascii "LEVEL: %02d"
         20 25 30 32 64
-   036F 00                  642 	.db 0x00
-                            643 ;src/funciones.c:162: void printConsole  (void* string, u8 pen, u8 bground) {
-                            644 ;	---------------------------------
-                            645 ; Function printConsole
-                            646 ; ---------------------------------
-   0370                     647 _printConsole::
-                            648 ;src/funciones.c:163: if (cursorConsola > 175){
-   0370 3E AF         [ 7]  649 	ld	a, #0xaf
-   0372 FD 21r00r00   [14]  650 	ld	iy, #_cursorConsola
-   0376 FD 96 00      [19]  651 	sub	a, 0 (iy)
-   0379 30 27         [12]  652 	jr	NC,00102$
-                            653 ;src/funciones.c:165: pausa(SEGUNDO);
-   037B 21 00 80      [10]  654 	ld	hl, #0x8000
-   037E E5            [11]  655 	push	hl
-   037F CDr28r00      [17]  656 	call	_pausa
-   0382 F1            [10]  657 	pop	af
-                            658 ;src/funciones.c:166: cpct_drawSolidBox (cpctm_screenPtr (CPCT_VMEM_START, 43, 56), cpct_px2byteM1 (0, 0, 0, 0), 34, 128); //borrar pantalla
-   0383 21 00 00      [10]  659 	ld	hl, #0x0000
-   0386 E5            [11]  660 	push	hl
-   0387 2E 00         [ 7]  661 	ld	l, #0x00
-   0389 E5            [11]  662 	push	hl
-   038A CDr00r00      [17]  663 	call	_cpct_px2byteM1
-   038D F1            [10]  664 	pop	af
-   038E F1            [10]  665 	pop	af
-   038F 45            [ 4]  666 	ld	b, l
-   0390 21 22 80      [10]  667 	ld	hl, #0x8022
-   0393 E5            [11]  668 	push	hl
-   0394 C5            [11]  669 	push	bc
-   0395 33            [ 6]  670 	inc	sp
-   0396 21 5B C2      [10]  671 	ld	hl, #0xc25b
-   0399 E5            [11]  672 	push	hl
-   039A CDr00r00      [17]  673 	call	_cpct_drawSolidBox
-                            674 ;src/funciones.c:167: cursorConsola = 64;
-   039D 21r00r00      [10]  675 	ld	hl,#_cursorConsola + 0
-   03A0 36 40         [10]  676 	ld	(hl), #0x40
-   03A2                     677 00102$:
-                            678 ;src/funciones.c:170: cpct_setDrawCharM1(pen, bground);
-   03A2 21 05 00      [10]  679 	ld	hl, #5+0
-   03A5 39            [11]  680 	add	hl, sp
-   03A6 7E            [ 7]  681 	ld	a, (hl)
-   03A7 F5            [11]  682 	push	af
-   03A8 33            [ 6]  683 	inc	sp
-   03A9 21 05 00      [10]  684 	ld	hl, #5+0
-   03AC 39            [11]  685 	add	hl, sp
-   03AD 7E            [ 7]  686 	ld	a, (hl)
-   03AE F5            [11]  687 	push	af
-   03AF 33            [ 6]  688 	inc	sp
-   03B0 CDr00r00      [17]  689 	call	_cpct_setDrawCharM1
-                            690 ;src/funciones.c:171: mydrawStringM1(string, cpct_getScreenPtr(CPCT_VMEM_START, 44, cursorConsola));
-   03B3 3Ar00r00      [13]  691 	ld	a, (_cursorConsola)
-   03B6 57            [ 4]  692 	ld	d,a
-   03B7 1E 2C         [ 7]  693 	ld	e,#0x2c
-   03B9 D5            [11]  694 	push	de
-   03BA 21 00 C0      [10]  695 	ld	hl, #0xc000
-   03BD E5            [11]  696 	push	hl
-   03BE CDr00r00      [17]  697 	call	_cpct_getScreenPtr
-   03C1 E5            [11]  698 	push	hl
-   03C2 21 04 00      [10]  699 	ld	hl, #4
-   03C5 39            [11]  700 	add	hl, sp
-   03C6 4E            [ 7]  701 	ld	c, (hl)
-   03C7 23            [ 6]  702 	inc	hl
-   03C8 46            [ 7]  703 	ld	b, (hl)
-   03C9 C5            [11]  704 	push	bc
-   03CA CDr00r00      [17]  705 	call	_mydrawStringM1
-                            706 ;src/funciones.c:172: cursorConsola +=8;
-   03CD 21r00r00      [10]  707 	ld	hl, #_cursorConsola
-   03D0 7E            [ 7]  708 	ld	a, (hl)
-   03D1 C6 08         [ 7]  709 	add	a, #0x08
-   03D3 77            [ 7]  710 	ld	(hl), a
-   03D4 C9            [10]  711 	ret
-                            712 ;src/funciones.c:175: void atacar(TStats *a, TStats *b) {
-                            713 ;	---------------------------------
-                            714 ; Function atacar
-                            715 ; ---------------------------------
-   03D5                     716 _atacar::
-   03D5 DD E5         [15]  717 	push	ix
-   03D7 DD 21 00 00   [14]  718 	ld	ix,#0
-   03DB DD 39         [15]  719 	add	ix,sp
-   03DD 21 E6 FF      [10]  720 	ld	hl, #-26
-   03E0 39            [11]  721 	add	hl, sp
-   03E1 F9            [ 6]  722 	ld	sp, hl
-                            723 ;src/funciones.c:179: pen = 0;
-   03E2 DD 36 FB 00   [19]  724 	ld	-5 (ix), #0x00
-                            725 ;src/funciones.c:180: bg = 2;
-   03E6 DD 36 FA 02   [19]  726 	ld	-6 (ix), #0x02
-                            727 ;src/funciones.c:181: if ((u16) a->sprite == (u16) G_mendo)  {
-   03EA DD 4E 04      [19]  728 	ld	c,4 (ix)
-   03ED DD 46 05      [19]  729 	ld	b,5 (ix)
-   03F0 69            [ 4]  730 	ld	l, c
-   03F1 60            [ 4]  731 	ld	h, b
-   03F2 11 12 00      [10]  732 	ld	de, #0x0012
-   03F5 19            [11]  733 	add	hl, de
-   03F6 5E            [ 7]  734 	ld	e, (hl)
-   03F7 23            [ 6]  735 	inc	hl
-   03F8 56            [ 7]  736 	ld	d, (hl)
-   03F9 DD 36 FEr00   [19]  737 	ld	-2 (ix), #<(_G_mendo)
-   03FD DD 36 FFs00   [19]  738 	ld	-1 (ix), #>(_G_mendo)
-   0401 7B            [ 4]  739 	ld	a, e
-   0402 DD 96 FE      [19]  740 	sub	a, -2 (ix)
-   0405 20 0E         [12]  741 	jr	NZ,00102$
-   0407 7A            [ 4]  742 	ld	a, d
-   0408 DD 96 FF      [19]  743 	sub	a, -1 (ix)
-   040B 20 08         [12]  744 	jr	NZ,00102$
-                            745 ;src/funciones.c:182: pen = 2;
-   040D DD 36 FB 02   [19]  746 	ld	-5 (ix), #0x02
-                            747 ;src/funciones.c:183: bg = 0;
-   0411 DD 36 FA 00   [19]  748 	ld	-6 (ix), #0x00
-   0415                     749 00102$:
-                            750 ;src/funciones.c:187: ataque = a->attack + (2*(cpct_rand()%a->force)) - a->force;
-   0415 C5            [11]  751 	push	bc
-   0416 FD E1         [14]  752 	pop	iy
-   0418 FD 7E 0C      [19]  753 	ld	a, 12 (iy)
-   041B DD 77 FE      [19]  754 	ld	-2 (ix), a
-   041E C5            [11]  755 	push	bc
-   041F CDr00r00      [17]  756 	call	_cpct_getRandom_mxor_u8
-   0422 5D            [ 4]  757 	ld	e, l
-   0423 C1            [10]  758 	pop	bc
-   0424 C5            [11]  759 	push	bc
-   0425 FD E1         [14]  760 	pop	iy
-   0427 FD 56 0D      [19]  761 	ld	d, 13 (iy)
-   042A C5            [11]  762 	push	bc
-   042B D5            [11]  763 	push	de
-   042C D5            [11]  764 	push	de
-   042D CDr00r00      [17]  765 	call	__moduchar
-   0430 F1            [10]  766 	pop	af
-   0431 D1            [10]  767 	pop	de
-   0432 C1            [10]  768 	pop	bc
-   0433 CB 25         [ 8]  769 	sla	l
-   0435 DD 7E FE      [19]  770 	ld	a, -2 (ix)
-   0438 85            [ 4]  771 	add	a, l
-   0439 92            [ 4]  772 	sub	a, d
-                            773 ;src/funciones.c:188: sprintf(temp, "%-9s ATT %02d",a->name, ataque);
-   043A DD 77 FE      [19]  774 	ld	-2 (ix), a
-   043D 5F            [ 4]  775 	ld	e, a
-   043E 16 00         [ 7]  776 	ld	d, #0x00
-   0440 21 00 00      [10]  777 	ld	hl, #0x0000
-   0443 39            [11]  778 	add	hl, sp
-   0444 DD 75 FC      [19]  779 	ld	-4 (ix), l
-   0447 DD 74 FD      [19]  780 	ld	-3 (ix), h
-   044A D5            [11]  781 	push	de
-   044B C5            [11]  782 	push	bc
-   044C 01rE3r04      [10]  783 	ld	bc, #___str_3
-   044F C5            [11]  784 	push	bc
-   0450 E5            [11]  785 	push	hl
-   0451 CDr00r00      [17]  786 	call	_sprintf
-   0454 21 08 00      [10]  787 	ld	hl, #8
-   0457 39            [11]  788 	add	hl, sp
-   0458 F9            [ 6]  789 	ld	sp, hl
-                            790 ;src/funciones.c:189: printConsole(temp, pen, bg);
-   0459 DD 4E FC      [19]  791 	ld	c,-4 (ix)
-   045C DD 46 FD      [19]  792 	ld	b,-3 (ix)
-   045F DD 66 FA      [19]  793 	ld	h, -6 (ix)
-   0462 DD 6E FB      [19]  794 	ld	l, -5 (ix)
-   0465 E5            [11]  795 	push	hl
-   0466 C5            [11]  796 	push	bc
-   0467 CDr70r03      [17]  797 	call	_printConsole
-   046A F1            [10]  798 	pop	af
-   046B F1            [10]  799 	pop	af
-                            800 ;src/funciones.c:191: if (ataque < b->energy) {
-   046C DD 4E 06      [19]  801 	ld	c,6 (ix)
-   046F DD 46 07      [19]  802 	ld	b,7 (ix)
-   0472 21 0A 00      [10]  803 	ld	hl, #0x000a
-   0475 09            [11]  804 	add	hl, bc
-   0476 5E            [ 7]  805 	ld	e, (hl)
-   0477 DD 7E FE      [19]  806 	ld	a, -2 (ix)
-   047A 93            [ 4]  807 	sub	a, e
-   047B 30 1F         [12]  808 	jr	NC,00104$
-                            809 ;src/funciones.c:192: b->energy = b->energy - ataque;
-   047D 7B            [ 4]  810 	ld	a, e
-   047E DD 96 FE      [19]  811 	sub	a, -2 (ix)
-   0481 5F            [ 4]  812 	ld	e, a
-   0482 73            [ 7]  813 	ld	(hl), e
-                            814 ;src/funciones.c:193: sprintf(temp, "%-9s HP=>%02d",b->name, b->energy);
-   0483 16 00         [ 7]  815 	ld	d, #0x00
-   0485 DD 6E FC      [19]  816 	ld	l,-4 (ix)
-   0488 DD 66 FD      [19]  817 	ld	h,-3 (ix)
-   048B D5            [11]  818 	push	de
-   048C C5            [11]  819 	push	bc
-   048D 01rF1r04      [10]  820 	ld	bc, #___str_4
-   0490 C5            [11]  821 	push	bc
-   0491 E5            [11]  822 	push	hl
-   0492 CDr00r00      [17]  823 	call	_sprintf
-   0495 21 08 00      [10]  824 	ld	hl, #8
-   0498 39            [11]  825 	add	hl, sp
-   0499 F9            [ 6]  826 	ld	sp, hl
-   049A 18 31         [12]  827 	jr	00105$
-   049C                     828 00104$:
-                            829 ;src/funciones.c:195: b->energy = 0;
-   049C 36 00         [10]  830 	ld	(hl), #0x00
-                            831 ;src/funciones.c:196: sprintf(temp, "%-9s DIED! ",b->name, b->energy);
-   049E 5E            [ 7]  832 	ld	e, (hl)
-   049F 16 00         [ 7]  833 	ld	d, #0x00
-   04A1 DD 6E FC      [19]  834 	ld	l,-4 (ix)
-   04A4 DD 66 FD      [19]  835 	ld	h,-3 (ix)
-   04A7 D5            [11]  836 	push	de
-   04A8 C5            [11]  837 	push	bc
-   04A9 01rFFr04      [10]  838 	ld	bc, #___str_5
-   04AC C5            [11]  839 	push	bc
-   04AD E5            [11]  840 	push	hl
-   04AE CDr00r00      [17]  841 	call	_sprintf
-   04B1 21 08 00      [10]  842 	ld	hl, #8
-   04B4 39            [11]  843 	add	hl, sp
-   04B5 F9            [ 6]  844 	ld	sp, hl
-                            845 ;src/funciones.c:197: printStats(b);
-   04B6 DD 6E 06      [19]  846 	ld	l,6 (ix)
-   04B9 DD 66 07      [19]  847 	ld	h,7 (ix)
-   04BC E5            [11]  848 	push	hl
-   04BD CDr3Dr02      [17]  849 	call	_printStats
-   04C0 F1            [10]  850 	pop	af
-                            851 ;src/funciones.c:199: ataque = pen;
-   04C1 DD 4E FB      [19]  852 	ld	c, -5 (ix)
-                            853 ;src/funciones.c:200: pen = bg;
-   04C4 DD 7E FA      [19]  854 	ld	a, -6 (ix)
-   04C7 DD 77 FB      [19]  855 	ld	-5 (ix), a
-                            856 ;src/funciones.c:201: bg = ataque;
-   04CA DD 71 FA      [19]  857 	ld	-6 (ix), c
-   04CD                     858 00105$:
-                            859 ;src/funciones.c:204: printConsole(temp, pen, bg);
-   04CD DD 4E FC      [19]  860 	ld	c,-4 (ix)
-   04D0 DD 46 FD      [19]  861 	ld	b,-3 (ix)
-   04D3 DD 66 FA      [19]  862 	ld	h, -6 (ix)
-   04D6 DD 6E FB      [19]  863 	ld	l, -5 (ix)
-   04D9 E5            [11]  864 	push	hl
-   04DA C5            [11]  865 	push	bc
-   04DB CDr70r03      [17]  866 	call	_printConsole
-   04DE DD F9         [10]  867 	ld	sp,ix
-   04E0 DD E1         [14]  868 	pop	ix
-   04E2 C9            [10]  869 	ret
-   04E3                     870 ___str_3:
-   04E3 25 2D 39 73 20 41   871 	.ascii "%-9s ATT %02d"
+   037B 00                  637 	.db 0x00
+                            638 ;src/funciones.c:171: void printConsole  (void* string, u8 pen, u8 bground) {
+                            639 ;	---------------------------------
+                            640 ; Function printConsole
+                            641 ; ---------------------------------
+   037C                     642 _printConsole::
+                            643 ;src/funciones.c:172: if (cursorConsola > 175){
+   037C 3E AF         [ 7]  644 	ld	a, #0xaf
+   037E FD 21r00r00   [14]  645 	ld	iy, #_cursorConsola
+   0382 FD 96 00      [19]  646 	sub	a, 0 (iy)
+   0385 30 27         [12]  647 	jr	NC,00102$
+                            648 ;src/funciones.c:174: pausa(SEGUNDO);
+   0387 21 00 80      [10]  649 	ld	hl, #0x8000
+   038A E5            [11]  650 	push	hl
+   038B CDr28r00      [17]  651 	call	_pausa
+   038E F1            [10]  652 	pop	af
+                            653 ;src/funciones.c:175: cpct_drawSolidBox (cpctm_screenPtr (CPCT_VMEM_START, 43, 56), cpct_px2byteM1 (0, 0, 0, 0), 34, 128); //borrar pantalla
+   038F 21 00 00      [10]  654 	ld	hl, #0x0000
+   0392 E5            [11]  655 	push	hl
+   0393 2E 00         [ 7]  656 	ld	l, #0x00
+   0395 E5            [11]  657 	push	hl
+   0396 CDr00r00      [17]  658 	call	_cpct_px2byteM1
+   0399 F1            [10]  659 	pop	af
+   039A F1            [10]  660 	pop	af
+   039B 45            [ 4]  661 	ld	b, l
+   039C 21 22 80      [10]  662 	ld	hl, #0x8022
+   039F E5            [11]  663 	push	hl
+   03A0 C5            [11]  664 	push	bc
+   03A1 33            [ 6]  665 	inc	sp
+   03A2 21 5B C2      [10]  666 	ld	hl, #0xc25b
+   03A5 E5            [11]  667 	push	hl
+   03A6 CDr00r00      [17]  668 	call	_cpct_drawSolidBox
+                            669 ;src/funciones.c:176: cursorConsola = 64;
+   03A9 21r00r00      [10]  670 	ld	hl,#_cursorConsola + 0
+   03AC 36 40         [10]  671 	ld	(hl), #0x40
+   03AE                     672 00102$:
+                            673 ;src/funciones.c:179: cpct_setDrawCharM1(pen, bground);
+   03AE 21 05 00      [10]  674 	ld	hl, #5+0
+   03B1 39            [11]  675 	add	hl, sp
+   03B2 7E            [ 7]  676 	ld	a, (hl)
+   03B3 F5            [11]  677 	push	af
+   03B4 33            [ 6]  678 	inc	sp
+   03B5 21 05 00      [10]  679 	ld	hl, #5+0
+   03B8 39            [11]  680 	add	hl, sp
+   03B9 7E            [ 7]  681 	ld	a, (hl)
+   03BA F5            [11]  682 	push	af
+   03BB 33            [ 6]  683 	inc	sp
+   03BC CDr00r00      [17]  684 	call	_cpct_setDrawCharM1
+                            685 ;src/funciones.c:180: mydrawStringM1(string, cpct_getScreenPtr(CPCT_VMEM_START, 44, cursorConsola));
+   03BF 3Ar00r00      [13]  686 	ld	a, (_cursorConsola)
+   03C2 57            [ 4]  687 	ld	d,a
+   03C3 1E 2C         [ 7]  688 	ld	e,#0x2c
+   03C5 D5            [11]  689 	push	de
+   03C6 21 00 C0      [10]  690 	ld	hl, #0xc000
+   03C9 E5            [11]  691 	push	hl
+   03CA CDr00r00      [17]  692 	call	_cpct_getScreenPtr
+   03CD E5            [11]  693 	push	hl
+   03CE 21 04 00      [10]  694 	ld	hl, #4
+   03D1 39            [11]  695 	add	hl, sp
+   03D2 4E            [ 7]  696 	ld	c, (hl)
+   03D3 23            [ 6]  697 	inc	hl
+   03D4 46            [ 7]  698 	ld	b, (hl)
+   03D5 C5            [11]  699 	push	bc
+   03D6 CDr00r00      [17]  700 	call	_mydrawStringM1
+                            701 ;src/funciones.c:181: cursorConsola +=8;
+   03D9 21r00r00      [10]  702 	ld	hl, #_cursorConsola
+   03DC 7E            [ 7]  703 	ld	a, (hl)
+   03DD C6 08         [ 7]  704 	add	a, #0x08
+   03DF 77            [ 7]  705 	ld	(hl), a
+   03E0 C9            [10]  706 	ret
+                            707 ;src/funciones.c:184: void atacar(TStats *a, TStats *b) {
+                            708 ;	---------------------------------
+                            709 ; Function atacar
+                            710 ; ---------------------------------
+   03E1                     711 _atacar::
+   03E1 DD E5         [15]  712 	push	ix
+   03E3 DD 21 00 00   [14]  713 	ld	ix,#0
+   03E7 DD 39         [15]  714 	add	ix,sp
+   03E9 21 DD FF      [10]  715 	ld	hl, #-35
+   03EC 39            [11]  716 	add	hl, sp
+   03ED F9            [ 6]  717 	ld	sp, hl
+                            718 ;src/funciones.c:188: pen = 0;
+   03EE DD 36 F3 00   [19]  719 	ld	-13 (ix), #0x00
+                            720 ;src/funciones.c:189: bg = 2;
+   03F2 DD 36 F2 02   [19]  721 	ld	-14 (ix), #0x02
+                            722 ;src/funciones.c:190: nota = 33;
+   03F6 DD 36 F1 21   [19]  723 	ld	-15 (ix), #0x21
+                            724 ;src/funciones.c:191: if ((u16) a->sprite == (u16) G_mendo)  {
+   03FA DD 7E 04      [19]  725 	ld	a, 4 (ix)
+   03FD DD 77 F9      [19]  726 	ld	-7 (ix), a
+   0400 DD 7E 05      [19]  727 	ld	a, 5 (ix)
+   0403 DD 77 FA      [19]  728 	ld	-6 (ix), a
+   0406 DD 6E F9      [19]  729 	ld	l,-7 (ix)
+   0409 DD 66 FA      [19]  730 	ld	h,-6 (ix)
+   040C 11 13 00      [10]  731 	ld	de, #0x0013
+   040F 19            [11]  732 	add	hl, de
+   0410 4E            [ 7]  733 	ld	c, (hl)
+   0411 23            [ 6]  734 	inc	hl
+   0412 46            [ 7]  735 	ld	b, (hl)
+   0413 11r00r00      [10]  736 	ld	de, #_G_mendo+0
+   0416 79            [ 4]  737 	ld	a, c
+   0417 93            [ 4]  738 	sub	a, e
+   0418 20 10         [12]  739 	jr	NZ,00102$
+   041A 78            [ 4]  740 	ld	a, b
+   041B 92            [ 4]  741 	sub	a, d
+   041C 20 0C         [12]  742 	jr	NZ,00102$
+                            743 ;src/funciones.c:192: pen = 2;
+   041E DD 36 F3 02   [19]  744 	ld	-13 (ix), #0x02
+                            745 ;src/funciones.c:193: bg = 0;
+   0422 DD 36 F2 00   [19]  746 	ld	-14 (ix), #0x00
+                            747 ;src/funciones.c:194: nota = 23;
+   0426 DD 36 F1 17   [19]  748 	ld	-15 (ix), #0x17
+   042A                     749 00102$:
+                            750 ;src/funciones.c:197: if (b->energy) { //Asegurarnos que el atacado sigue vivo
+   042A DD 7E 06      [19]  751 	ld	a, 6 (ix)
+   042D DD 77 F7      [19]  752 	ld	-9 (ix), a
+   0430 DD 7E 07      [19]  753 	ld	a, 7 (ix)
+   0433 DD 77 F8      [19]  754 	ld	-8 (ix), a
+   0436 DD 7E F7      [19]  755 	ld	a, -9 (ix)
+   0439 C6 0B         [ 7]  756 	add	a, #0x0b
+   043B DD 77 F5      [19]  757 	ld	-11 (ix), a
+   043E DD 7E F8      [19]  758 	ld	a, -8 (ix)
+   0441 CE 00         [ 7]  759 	adc	a, #0x00
+   0443 DD 77 F6      [19]  760 	ld	-10 (ix), a
+   0446 DD 6E F5      [19]  761 	ld	l,-11 (ix)
+   0449 DD 66 F6      [19]  762 	ld	h,-10 (ix)
+   044C 7E            [ 7]  763 	ld	a, (hl)
+   044D B7            [ 4]  764 	or	a, a
+   044E CAr85r05      [10]  765 	jp	Z, 00108$
+                            766 ;src/funciones.c:198: ataque = a->attack + (2*(cpct_rand()%a->force)) - a->force;
+   0451 DD 6E F9      [19]  767 	ld	l,-7 (ix)
+   0454 DD 66 FA      [19]  768 	ld	h,-6 (ix)
+   0457 11 0D 00      [10]  769 	ld	de, #0x000d
+   045A 19            [11]  770 	add	hl, de
+   045B 4E            [ 7]  771 	ld	c, (hl)
+   045C C5            [11]  772 	push	bc
+   045D CDr00r00      [17]  773 	call	_cpct_getRandom_mxor_u8
+   0460 55            [ 4]  774 	ld	d, l
+   0461 C1            [10]  775 	pop	bc
+   0462 DD 6E F9      [19]  776 	ld	l,-7 (ix)
+   0465 DD 66 FA      [19]  777 	ld	h,-6 (ix)
+   0468 C5            [11]  778 	push	bc
+   0469 01 0E 00      [10]  779 	ld	bc, #0x000e
+   046C 09            [11]  780 	add	hl, bc
+   046D C1            [10]  781 	pop	bc
+   046E 46            [ 7]  782 	ld	b, (hl)
+   046F C5            [11]  783 	push	bc
+   0470 4A            [ 4]  784 	ld	c, d
+   0471 C5            [11]  785 	push	bc
+   0472 CDr00r00      [17]  786 	call	__moduchar
+   0475 F1            [10]  787 	pop	af
+   0476 C1            [10]  788 	pop	bc
+   0477 CB 25         [ 8]  789 	sla	l
+   0479 09            [11]  790 	add	hl, bc
+   047A 7D            [ 4]  791 	ld	a, l
+   047B 90            [ 4]  792 	sub	a, b
+                            793 ;src/funciones.c:199: sprintf(temp, "%-9s ATT %02d",a->name, ataque);
+   047C DD 77 F4      [19]  794 	ld	-12 (ix), a
+   047F 5F            [ 4]  795 	ld	e, a
+   0480 16 00         [ 7]  796 	ld	d, #0x00
+   0482 DD 4E F9      [19]  797 	ld	c,-7 (ix)
+   0485 DD 46 FA      [19]  798 	ld	b,-6 (ix)
+   0488 03            [ 6]  799 	inc	bc
+   0489 21 00 00      [10]  800 	ld	hl, #0x0000
+   048C 39            [11]  801 	add	hl, sp
+   048D DD 75 F9      [19]  802 	ld	-7 (ix), l
+   0490 DD 74 FA      [19]  803 	ld	-6 (ix), h
+   0493 D5            [11]  804 	push	de
+   0494 C5            [11]  805 	push	bc
+   0495 01r8Ar05      [10]  806 	ld	bc, #___str_3
+   0498 C5            [11]  807 	push	bc
+   0499 E5            [11]  808 	push	hl
+   049A CDr00r00      [17]  809 	call	_sprintf
+   049D 21 08 00      [10]  810 	ld	hl, #8
+   04A0 39            [11]  811 	add	hl, sp
+   04A1 F9            [ 6]  812 	ld	sp, hl
+                            813 ;src/funciones.c:200: printConsole(temp, pen, bg);
+   04A2 DD 4E F9      [19]  814 	ld	c,-7 (ix)
+   04A5 DD 46 FA      [19]  815 	ld	b,-6 (ix)
+   04A8 DD 66 F2      [19]  816 	ld	h, -14 (ix)
+   04AB DD 6E F3      [19]  817 	ld	l, -13 (ix)
+   04AE E5            [11]  818 	push	hl
+   04AF C5            [11]  819 	push	bc
+   04B0 CDr7Cr03      [17]  820 	call	_printConsole
+   04B3 F1            [10]  821 	pop	af
+   04B4 F1            [10]  822 	pop	af
+                            823 ;src/funciones.c:201: playFX (1, nota);
+   04B5 DD 56 F1      [19]  824 	ld	d, -15 (ix)
+   04B8 1E 01         [ 7]  825 	ld	e,#0x01
+   04BA D5            [11]  826 	push	de
+   04BB CDr00r00      [17]  827 	call	_playFX
+                            828 ;src/funciones.c:202: pausa(SEGUNDO/2);
+   04BE 21 00 40      [10]  829 	ld	hl, #0x4000
+   04C1 E3            [19]  830 	ex	(sp),hl
+   04C2 CDr28r00      [17]  831 	call	_pausa
+   04C5 F1            [10]  832 	pop	af
+                            833 ;src/funciones.c:204: if (ataque < b->energy) {
+   04C6 DD 6E F5      [19]  834 	ld	l,-11 (ix)
+   04C9 DD 66 F6      [19]  835 	ld	h,-10 (ix)
+   04CC 7E            [ 7]  836 	ld	a, (hl)
+   04CD DD 77 FF      [19]  837 	ld	-1 (ix), a
+                            838 ;src/funciones.c:206: sprintf(temp, "%-9s HP=>%02d",b->name, b->energy);
+   04D0 DD 7E F7      [19]  839 	ld	a, -9 (ix)
+   04D3 C6 01         [ 7]  840 	add	a, #0x01
+   04D5 DD 77 FD      [19]  841 	ld	-3 (ix), a
+   04D8 DD 7E F8      [19]  842 	ld	a, -8 (ix)
+   04DB CE 00         [ 7]  843 	adc	a, #0x00
+   04DD DD 77 FE      [19]  844 	ld	-2 (ix), a
+                            845 ;src/funciones.c:204: if (ataque < b->energy) {
+   04E0 DD 7E F4      [19]  846 	ld	a, -12 (ix)
+   04E3 DD 96 FF      [19]  847 	sub	a, -1 (ix)
+   04E6 30 2D         [12]  848 	jr	NC,00104$
+                            849 ;src/funciones.c:205: b->energy = b->energy - ataque;
+   04E8 DD 7E FF      [19]  850 	ld	a, -1 (ix)
+   04EB DD 96 F4      [19]  851 	sub	a, -12 (ix)
+   04EE DD 6E F5      [19]  852 	ld	l,-11 (ix)
+   04F1 DD 66 F6      [19]  853 	ld	h,-10 (ix)
+   04F4 77            [ 7]  854 	ld	(hl), a
+                            855 ;src/funciones.c:206: sprintf(temp, "%-9s HP=>%02d",b->name, b->energy);
+   04F5 6F            [ 4]  856 	ld	l, a
+   04F6 26 00         [ 7]  857 	ld	h, #0x00
+   04F8 11r98r05      [10]  858 	ld	de, #___str_4+0
+   04FB DD 4E F9      [19]  859 	ld	c,-7 (ix)
+   04FE DD 46 FA      [19]  860 	ld	b,-6 (ix)
+   0501 E5            [11]  861 	push	hl
+   0502 DD 6E FD      [19]  862 	ld	l,-3 (ix)
+   0505 DD 66 FE      [19]  863 	ld	h,-2 (ix)
+   0508 E5            [11]  864 	push	hl
+   0509 D5            [11]  865 	push	de
+   050A C5            [11]  866 	push	bc
+   050B CDr00r00      [17]  867 	call	_sprintf
+   050E 21 08 00      [10]  868 	ld	hl, #8
+   0511 39            [11]  869 	add	hl, sp
+   0512 F9            [ 6]  870 	ld	sp, hl
+   0513 18 5D         [12]  871 	jr	00105$
+   0515                     872 00104$:
+                            873 ;src/funciones.c:208: b->energy = 0;
+   0515 DD 6E F5      [19]  874 	ld	l,-11 (ix)
+   0518 DD 66 F6      [19]  875 	ld	h,-10 (ix)
+   051B 36 00         [10]  876 	ld	(hl), #0x00
+                            877 ;src/funciones.c:209: sprintf(temp, "%-9s DIED! ",b->name, b->energy);
+   051D DD 6E F5      [19]  878 	ld	l,-11 (ix)
+   0520 DD 66 F6      [19]  879 	ld	h,-10 (ix)
+   0523 7E            [ 7]  880 	ld	a, (hl)
+   0524 DD 77 FF      [19]  881 	ld	-1 (ix), a
+   0527 DD 77 F5      [19]  882 	ld	-11 (ix), a
+   052A DD 36 F6 00   [19]  883 	ld	-10 (ix), #0x00
+   052E DD 7E F9      [19]  884 	ld	a, -7 (ix)
+   0531 DD 77 FB      [19]  885 	ld	-5 (ix), a
+   0534 DD 7E FA      [19]  886 	ld	a, -6 (ix)
+   0537 DD 77 FC      [19]  887 	ld	-4 (ix), a
+   053A DD 6E F5      [19]  888 	ld	l,-11 (ix)
+   053D DD 66 F6      [19]  889 	ld	h,-10 (ix)
+   0540 E5            [11]  890 	push	hl
+   0541 DD 6E FD      [19]  891 	ld	l,-3 (ix)
+   0544 DD 66 FE      [19]  892 	ld	h,-2 (ix)
+   0547 E5            [11]  893 	push	hl
+   0548 21rA6r05      [10]  894 	ld	hl, #___str_5
+   054B E5            [11]  895 	push	hl
+   054C DD 6E FB      [19]  896 	ld	l,-5 (ix)
+   054F DD 66 FC      [19]  897 	ld	h,-4 (ix)
+   0552 E5            [11]  898 	push	hl
+   0553 CDr00r00      [17]  899 	call	_sprintf
+   0556 21 08 00      [10]  900 	ld	hl, #8
+   0559 39            [11]  901 	add	hl, sp
+   055A F9            [ 6]  902 	ld	sp, hl
+                            903 ;src/funciones.c:210: printStats(b);
+   055B DD 6E F7      [19]  904 	ld	l,-9 (ix)
+   055E DD 66 F8      [19]  905 	ld	h,-8 (ix)
+   0561 E5            [11]  906 	push	hl
+   0562 CDr3Br02      [17]  907 	call	_printStats
+   0565 F1            [10]  908 	pop	af
+                            909 ;src/funciones.c:212: ataque = pen;
+   0566 DD 4E F3      [19]  910 	ld	c, -13 (ix)
+                            911 ;src/funciones.c:213: pen = bg;
+   0569 DD 7E F2      [19]  912 	ld	a, -14 (ix)
+   056C DD 77 F3      [19]  913 	ld	-13 (ix), a
+                            914 ;src/funciones.c:214: bg = ataque;
+   056F DD 71 F2      [19]  915 	ld	-14 (ix), c
+   0572                     916 00105$:
+                            917 ;src/funciones.c:217: printConsole(temp, pen, bg);
+   0572 DD 4E F9      [19]  918 	ld	c,-7 (ix)
+   0575 DD 46 FA      [19]  919 	ld	b,-6 (ix)
+   0578 DD 66 F2      [19]  920 	ld	h, -14 (ix)
+   057B DD 6E F3      [19]  921 	ld	l, -13 (ix)
+   057E E5            [11]  922 	push	hl
+   057F C5            [11]  923 	push	bc
+   0580 CDr7Cr03      [17]  924 	call	_printConsole
+   0583 F1            [10]  925 	pop	af
+   0584 F1            [10]  926 	pop	af
+   0585                     927 00108$:
+   0585 DD F9         [10]  928 	ld	sp, ix
+   0587 DD E1         [14]  929 	pop	ix
+   0589 C9            [10]  930 	ret
+   058A                     931 ___str_3:
+   058A 25 2D 39 73 20 41   932 	.ascii "%-9s ATT %02d"
         54 54 20 25 30 32
         64
-   04F0 00                  872 	.db 0x00
-   04F1                     873 ___str_4:
-   04F1 25 2D 39 73 20 48   874 	.ascii "%-9s HP=>%02d"
+   0597 00                  933 	.db 0x00
+   0598                     934 ___str_4:
+   0598 25 2D 39 73 20 48   935 	.ascii "%-9s HP=>%02d"
         50 3D 3E 25 30 32
         64
-   04FE 00                  875 	.db 0x00
-   04FF                     876 ___str_5:
-   04FF 25 2D 39 73 20 44   877 	.ascii "%-9s DIED! "
+   05A5 00                  936 	.db 0x00
+   05A6                     937 ___str_5:
+   05A6 25 2D 39 73 20 44   938 	.ascii "%-9s DIED! "
         49 45 44 21 20
-   050A 00                  878 	.db 0x00
-                            879 ;src/funciones.c:207: void defender(TStats *a) {
-                            880 ;	---------------------------------
-                            881 ; Function defender
-                            882 ; ---------------------------------
-   050B                     883 _defender::
-   050B DD E5         [15]  884 	push	ix
-   050D DD 21 00 00   [14]  885 	ld	ix,#0
-   0511 DD 39         [15]  886 	add	ix,sp
-   0513 21 E5 FF      [10]  887 	ld	hl, #-27
-   0516 39            [11]  888 	add	hl, sp
-   0517 F9            [ 6]  889 	ld	sp, hl
-                            890 ;src/funciones.c:210: pen = 0;
-   0518 DD 36 E5 00   [19]  891 	ld	-27 (ix), #0x00
-                            892 ;src/funciones.c:211: bg = 2;
-   051C DD 36 E6 02   [19]  893 	ld	-26 (ix), #0x02
-                            894 ;src/funciones.c:212: if ((u16) a->sprite == (u16) G_mendo)  {
-   0520 DD 4E 04      [19]  895 	ld	c,4 (ix)
-   0523 DD 46 05      [19]  896 	ld	b,5 (ix)
-   0526 69            [ 4]  897 	ld	l, c
-   0527 60            [ 4]  898 	ld	h, b
-   0528 11 12 00      [10]  899 	ld	de, #0x0012
-   052B 19            [11]  900 	add	hl, de
-   052C 5E            [ 7]  901 	ld	e, (hl)
-   052D 23            [ 6]  902 	inc	hl
-   052E 56            [ 7]  903 	ld	d, (hl)
-   052F DD 36 FEr00   [19]  904 	ld	-2 (ix), #<(_G_mendo)
-   0533 DD 36 FFs00   [19]  905 	ld	-1 (ix), #>(_G_mendo)
-   0537 7B            [ 4]  906 	ld	a, e
-   0538 DD 96 FE      [19]  907 	sub	a, -2 (ix)
-   053B 20 0E         [12]  908 	jr	NZ,00102$
-   053D 7A            [ 4]  909 	ld	a, d
-   053E DD 96 FF      [19]  910 	sub	a, -1 (ix)
-   0541 20 08         [12]  911 	jr	NZ,00102$
-                            912 ;src/funciones.c:213: pen = 2;
-   0543 DD 36 E5 02   [19]  913 	ld	-27 (ix), #0x02
-                            914 ;src/funciones.c:214: bg = 0;
-   0547 DD 36 E6 00   [19]  915 	ld	-26 (ix), #0x00
-   054B                     916 00102$:
-                            917 ;src/funciones.c:217: if (a->energy + a->defense < a->max_energy)
-   054B FD 21 0A 00   [14]  918 	ld	iy, #0x000a
-   054F FD 09         [15]  919 	add	iy, bc
-   0551 FD 7E 00      [19]  920 	ld	a, 0 (iy)
-   0554 DD 77 FE      [19]  921 	ld	-2 (ix), a
-   0557 5F            [ 4]  922 	ld	e, a
-   0558 16 00         [ 7]  923 	ld	d, #0x00
-   055A 69            [ 4]  924 	ld	l, c
-   055B 60            [ 4]  925 	ld	h, b
-   055C C5            [11]  926 	push	bc
-   055D 01 0E 00      [10]  927 	ld	bc, #0x000e
-   0560 09            [11]  928 	add	hl, bc
-   0561 C1            [10]  929 	pop	bc
-   0562 7E            [ 7]  930 	ld	a, (hl)
-   0563 DD 77 FD      [19]  931 	ld	-3 (ix), a
-   0566 6F            [ 4]  932 	ld	l, a
-   0567 26 00         [ 7]  933 	ld	h, #0x00
-   0569 19            [11]  934 	add	hl,de
-   056A DD 75 FB      [19]  935 	ld	-5 (ix), l
-   056D DD 74 FC      [19]  936 	ld	-4 (ix), h
-   0570 69            [ 4]  937 	ld	l, c
-   0571 60            [ 4]  938 	ld	h, b
-   0572 11 0B 00      [10]  939 	ld	de, #0x000b
-   0575 19            [11]  940 	add	hl, de
-   0576 5E            [ 7]  941 	ld	e, (hl)
-   0577 6B            [ 4]  942 	ld	l, e
-   0578 16 00         [ 7]  943 	ld	d, #0x00
-   057A DD 7E FB      [19]  944 	ld	a, -5 (ix)
-   057D 95            [ 4]  945 	sub	a, l
-   057E DD 7E FC      [19]  946 	ld	a, -4 (ix)
-   0581 9A            [ 4]  947 	sbc	a, d
-   0582 E2r87r05      [10]  948 	jp	PO, 00124$
-   0585 EE 80         [ 7]  949 	xor	a, #0x80
-   0587                     950 00124$:
-   0587 F2r8Fr05      [10]  951 	jp	P, 00104$
-                            952 ;src/funciones.c:218: healed = a->defense;
-   058A DD 5E FD      [19]  953 	ld	e, -3 (ix)
-   058D 18 05         [12]  954 	jr	00105$
-   058F                     955 00104$:
-                            956 ;src/funciones.c:220: healed = a->max_energy - a->energy;
-   058F 7B            [ 4]  957 	ld	a, e
-   0590 DD 96 FE      [19]  958 	sub	a, -2 (ix)
-   0593 5F            [ 4]  959 	ld	e, a
-   0594                     960 00105$:
-                            961 ;src/funciones.c:222: a->energy = a->energy + healed;
-   0594 DD 7E FE      [19]  962 	ld	a, -2 (ix)
-   0597 83            [ 4]  963 	add	a, e
-   0598 FD 77 00      [19]  964 	ld	0 (iy), a
-                            965 ;src/funciones.c:224: if (healed) {
-   059B 7B            [ 4]  966 	ld	a, e
-   059C B7            [ 4]  967 	or	a, a
-   059D 28 2A         [12]  968 	jr	Z,00108$
-                            969 ;src/funciones.c:225: sprintf(temp, "%-9s ^ %02dHP",a->name, healed);
-   059F 16 00         [ 7]  970 	ld	d, #0x00
-   05A1 21 02 00      [10]  971 	ld	hl, #0x0002
-   05A4 39            [11]  972 	add	hl, sp
-   05A5 E5            [11]  973 	push	hl
-   05A6 FD E1         [14]  974 	pop	iy
-   05A8 E5            [11]  975 	push	hl
-   05A9 D5            [11]  976 	push	de
-   05AA C5            [11]  977 	push	bc
-   05AB 01rCEr05      [10]  978 	ld	bc, #___str_6
-   05AE C5            [11]  979 	push	bc
-   05AF FD E5         [15]  980 	push	iy
-   05B1 CDr00r00      [17]  981 	call	_sprintf
-   05B4 21 08 00      [10]  982 	ld	hl, #8
-   05B7 39            [11]  983 	add	hl, sp
-   05B8 F9            [ 6]  984 	ld	sp, hl
-   05B9 E1            [10]  985 	pop	hl
-                            986 ;src/funciones.c:226: printConsole(temp, pen, bg);
-   05BA 4D            [ 4]  987 	ld	c, l
-   05BB 44            [ 4]  988 	ld	b, h
-   05BC DD 66 E6      [19]  989 	ld	h, -26 (ix)
-   05BF DD 6E E5      [19]  990 	ld	l, -27 (ix)
-   05C2 E5            [11]  991 	push	hl
-   05C3 C5            [11]  992 	push	bc
-   05C4 CDr70r03      [17]  993 	call	_printConsole
-   05C7 F1            [10]  994 	pop	af
-   05C8 F1            [10]  995 	pop	af
-   05C9                     996 00108$:
-   05C9 DD F9         [10]  997 	ld	sp, ix
-   05CB DD E1         [14]  998 	pop	ix
-   05CD C9            [10]  999 	ret
-   05CE                    1000 ___str_6:
-   05CE 25 2D 39 73 20 5E  1001 	.ascii "%-9s ^ %02dHP"
+   05B1 00                  939 	.db 0x00
+                            940 ;src/funciones.c:221: void comprobarPosicion (TStats *a, u8 nuevaPosicion){
+                            941 ;	---------------------------------
+                            942 ; Function comprobarPosicion
+                            943 ; ---------------------------------
+   05B2                     944 _comprobarPosicion::
+   05B2 DD E5         [15]  945 	push	ix
+   05B4 DD 21 00 00   [14]  946 	ld	ix,#0
+   05B8 DD 39         [15]  947 	add	ix,sp
+   05BA F5            [11]  948 	push	af
+   05BB 3B            [ 6]  949 	dec	sp
+                            950 ;src/funciones.c:224: nueva = nuevaPosicion;
+   05BC DD 7E 06      [19]  951 	ld	a, 6 (ix)
+   05BF DD 77 FD      [19]  952 	ld	-3 (ix), a
+                            953 ;src/funciones.c:227: for (j = 0; j < 3; j++) {
+   05C2 DD 36 FF 00   [19]  954 	ld	-1 (ix), #0x00
+   05C6 DD 5E 04      [19]  955 	ld	e,4 (ix)
+   05C9 DD 56 05      [19]  956 	ld	d,5 (ix)
+   05CC 0E 00         [ 7]  957 	ld	c, #0x00
+   05CE                     958 00113$:
+                            959 ;src/funciones.c:228: if (a->id != j && entidad[j].energy) {
+   05CE 1A            [ 7]  960 	ld	a, (de)
+   05CF DD 77 FE      [19]  961 	ld	-2 (ix), a
+   05D2 79            [ 4]  962 	ld	a, c
+   05D3 DD 96 FE      [19]  963 	sub	a, -2 (ix)
+   05D6 28 65         [12]  964 	jr	Z,00114$
+   05D8 06 00         [ 7]  965 	ld	b,#0x00
+   05DA 69            [ 4]  966 	ld	l, c
+   05DB 60            [ 4]  967 	ld	h, b
+   05DC 29            [11]  968 	add	hl, hl
+   05DD 29            [11]  969 	add	hl, hl
+   05DE 09            [11]  970 	add	hl, bc
+   05DF 29            [11]  971 	add	hl, hl
+   05E0 29            [11]  972 	add	hl, hl
+   05E1 09            [11]  973 	add	hl, bc
+   05E2 44            [ 4]  974 	ld	b, h
+   05E3 FD 21r00r00   [14]  975 	ld	iy, #_entidad
+   05E7 C5            [11]  976 	push	bc
+   05E8 4D            [ 4]  977 	ld	c, l
+   05E9 FD 09         [15]  978 	add	iy, bc
+   05EB C1            [10]  979 	pop	bc
+   05EC FD E5         [15]  980 	push	iy
+   05EE E1            [10]  981 	pop	hl
+   05EF C5            [11]  982 	push	bc
+   05F0 01 0B 00      [10]  983 	ld	bc, #0x000b
+   05F3 09            [11]  984 	add	hl, bc
+   05F4 C1            [10]  985 	pop	bc
+   05F5 7E            [ 7]  986 	ld	a, (hl)
+   05F6 B7            [ 4]  987 	or	a, a
+   05F7 28 44         [12]  988 	jr	Z,00114$
+                            989 ;src/funciones.c:229: if (entidad[j].pos_x == nueva) {
+   05F9 FD E5         [15]  990 	push	iy
+   05FB E1            [10]  991 	pop	hl
+   05FC C5            [11]  992 	push	bc
+   05FD 01 10 00      [10]  993 	ld	bc, #0x0010
+   0600 09            [11]  994 	add	hl, bc
+   0601 C1            [10]  995 	pop	bc
+   0602 DD 7E FD      [19]  996 	ld	a,-3 (ix)
+   0605 96            [ 7]  997 	sub	a,(hl)
+   0606 20 35         [12]  998 	jr	NZ,00114$
+                            999 ;src/funciones.c:230: nueva = 0;
+   0608 DD 36 FD 00   [19] 1000 	ld	-3 (ix), #0x00
+                           1001 ;src/funciones.c:231: if (a->id == 0 || j == 0) //ataque sólo si está involucrado el jugador. Para que no se ataquen los enemigos
+   060C DD 7E FE      [19] 1002 	ld	a, -2 (ix)
+   060F B7            [ 4] 1003 	or	a, a
+   0610 28 06         [12] 1004 	jr	Z,00101$
+   0612 DD 7E FF      [19] 1005 	ld	a, -1 (ix)
+   0615 B7            [ 4] 1006 	or	a, a
+   0616 20 2E         [12] 1007 	jr	NZ,00109$
+   0618                    1008 00101$:
+                           1009 ;src/funciones.c:232: atacar(&entidad[a->id], &entidad[j]);
+   0618 FD E5         [15] 1010 	push	iy
+   061A C1            [10] 1011 	pop	bc
+   061B D5            [11] 1012 	push	de
+   061C DD 5E FE      [19] 1013 	ld	e,-2 (ix)
+   061F 16 00         [ 7] 1014 	ld	d,#0x00
+   0621 6B            [ 4] 1015 	ld	l, e
+   0622 62            [ 4] 1016 	ld	h, d
+   0623 29            [11] 1017 	add	hl, hl
+   0624 29            [11] 1018 	add	hl, hl
+   0625 19            [11] 1019 	add	hl, de
+   0626 29            [11] 1020 	add	hl, hl
+   0627 29            [11] 1021 	add	hl, hl
+   0628 19            [11] 1022 	add	hl, de
+   0629 D1            [10] 1023 	pop	de
+   062A 3Er00         [ 7] 1024 	ld	a, #<(_entidad)
+   062C 85            [ 4] 1025 	add	a, l
+   062D 6F            [ 4] 1026 	ld	l, a
+   062E 3Es00         [ 7] 1027 	ld	a, #>(_entidad)
+   0630 8C            [ 4] 1028 	adc	a, h
+   0631 67            [ 4] 1029 	ld	h, a
+   0632 D5            [11] 1030 	push	de
+   0633 C5            [11] 1031 	push	bc
+   0634 E5            [11] 1032 	push	hl
+   0635 CDrE1r03      [17] 1033 	call	_atacar
+   0638 F1            [10] 1034 	pop	af
+   0639 F1            [10] 1035 	pop	af
+   063A D1            [10] 1036 	pop	de
+                           1037 ;src/funciones.c:233: break;
+   063B 18 09         [12] 1038 	jr	00109$
+   063D                    1039 00114$:
+                           1040 ;src/funciones.c:227: for (j = 0; j < 3; j++) {
+   063D 0C            [ 4] 1041 	inc	c
+   063E DD 71 FF      [19] 1042 	ld	-1 (ix), c
+   0641 79            [ 4] 1043 	ld	a, c
+   0642 D6 03         [ 7] 1044 	sub	a, #0x03
+   0644 38 88         [12] 1045 	jr	C,00113$
+   0646                    1046 00109$:
+                           1047 ;src/funciones.c:239: if (nueva > 3 && nueva < 37)
+   0646 3E 03         [ 7] 1048 	ld	a, #0x03
+   0648 DD 96 FD      [19] 1049 	sub	a, -3 (ix)
+   064B 30 0F         [12] 1050 	jr	NC,00115$
+   064D DD 7E FD      [19] 1051 	ld	a, -3 (ix)
+   0650 D6 25         [ 7] 1052 	sub	a, #0x25
+   0652 30 08         [12] 1053 	jr	NC,00115$
+                           1054 ;src/funciones.c:240: a->pos_x = nueva;
+   0654 21 10 00      [10] 1055 	ld	hl, #0x0010
+   0657 19            [11] 1056 	add	hl, de
+   0658 DD 7E FD      [19] 1057 	ld	a, -3 (ix)
+   065B 77            [ 7] 1058 	ld	(hl), a
+   065C                    1059 00115$:
+   065C DD F9         [10] 1060 	ld	sp, ix
+   065E DD E1         [14] 1061 	pop	ix
+   0660 C9            [10] 1062 	ret
+                           1063 ;src/funciones.c:243: void moverIzq(TStats *a) {
+                           1064 ;	---------------------------------
+                           1065 ; Function moverIzq
+                           1066 ; ---------------------------------
+   0661                    1067 _moverIzq::
+   0661 DD E5         [15] 1068 	push	ix
+   0663 DD 21 00 00   [14] 1069 	ld	ix,#0
+   0667 DD 39         [15] 1070 	add	ix,sp
+   0669 21 E8 FF      [10] 1071 	ld	hl, #-24
+   066C 39            [11] 1072 	add	hl, sp
+   066D F9            [ 6] 1073 	ld	sp, hl
+                           1074 ;src/funciones.c:246: pen = 0;
+   066E DD 36 E9 00   [19] 1075 	ld	-23 (ix), #0x00
+                           1076 ;src/funciones.c:247: bg = 2;
+   0672 DD 36 E8 02   [19] 1077 	ld	-24 (ix), #0x02
+                           1078 ;src/funciones.c:248: if ((u16) a->sprite == (u16) G_mendo)  {
+   0676 DD 4E 04      [19] 1079 	ld	c,4 (ix)
+   0679 DD 46 05      [19] 1080 	ld	b,5 (ix)
+   067C 69            [ 4] 1081 	ld	l, c
+   067D 60            [ 4] 1082 	ld	h, b
+   067E 11 13 00      [10] 1083 	ld	de, #0x0013
+   0681 19            [11] 1084 	add	hl, de
+   0682 5E            [ 7] 1085 	ld	e, (hl)
+   0683 23            [ 6] 1086 	inc	hl
+   0684 56            [ 7] 1087 	ld	d, (hl)
+   0685 DD 36 FEr00   [19] 1088 	ld	-2 (ix), #<(_G_mendo)
+   0689 DD 36 FFs00   [19] 1089 	ld	-1 (ix), #>(_G_mendo)
+   068D 7B            [ 4] 1090 	ld	a, e
+   068E DD 96 FE      [19] 1091 	sub	a, -2 (ix)
+   0691 20 0E         [12] 1092 	jr	NZ,00102$
+   0693 7A            [ 4] 1093 	ld	a, d
+   0694 DD 96 FF      [19] 1094 	sub	a, -1 (ix)
+   0697 20 08         [12] 1095 	jr	NZ,00102$
+                           1096 ;src/funciones.c:249: pen = 2;
+   0699 DD 36 E9 02   [19] 1097 	ld	-23 (ix), #0x02
+                           1098 ;src/funciones.c:250: bg = 0;
+   069D DD 36 E8 00   [19] 1099 	ld	-24 (ix), #0x00
+   06A1                    1100 00102$:
+                           1101 ;src/funciones.c:253: sprintf(temp, "%-9s GOES <",a->name);
+   06A1 59            [ 4] 1102 	ld	e, c
+   06A2 50            [ 4] 1103 	ld	d, b
+   06A3 13            [ 6] 1104 	inc	de
+   06A4 21 02 00      [10] 1105 	ld	hl, #0x0002
+   06A7 39            [11] 1106 	add	hl, sp
+   06A8 E5            [11] 1107 	push	hl
+   06A9 FD E1         [14] 1108 	pop	iy
+   06AB E5            [11] 1109 	push	hl
+   06AC C5            [11] 1110 	push	bc
+   06AD D5            [11] 1111 	push	de
+   06AE 11rE2r06      [10] 1112 	ld	de, #___str_6
+   06B1 D5            [11] 1113 	push	de
+   06B2 FD E5         [15] 1114 	push	iy
+   06B4 CDr00r00      [17] 1115 	call	_sprintf
+   06B7 21 06 00      [10] 1116 	ld	hl, #6
+   06BA 39            [11] 1117 	add	hl, sp
+   06BB F9            [ 6] 1118 	ld	sp, hl
+   06BC C1            [10] 1119 	pop	bc
+   06BD E1            [10] 1120 	pop	hl
+                           1121 ;src/funciones.c:254: printConsole(temp, pen, bg);
+   06BE EB            [ 4] 1122 	ex	de,hl
+   06BF C5            [11] 1123 	push	bc
+   06C0 DD 66 E8      [19] 1124 	ld	h, -24 (ix)
+   06C3 DD 6E E9      [19] 1125 	ld	l, -23 (ix)
+   06C6 E5            [11] 1126 	push	hl
+   06C7 D5            [11] 1127 	push	de
+   06C8 CDr7Cr03      [17] 1128 	call	_printConsole
+   06CB F1            [10] 1129 	pop	af
+   06CC F1            [10] 1130 	pop	af
+   06CD C1            [10] 1131 	pop	bc
+                           1132 ;src/funciones.c:256: comprobarPosicion(a,a->pos_x - 4);
+   06CE C5            [11] 1133 	push	bc
+   06CF FD E1         [14] 1134 	pop	iy
+   06D1 FD 7E 10      [19] 1135 	ld	a, 16 (iy)
+   06D4 C6 FC         [ 7] 1136 	add	a, #0xfc
+   06D6 57            [ 4] 1137 	ld	d, a
+   06D7 D5            [11] 1138 	push	de
+   06D8 33            [ 6] 1139 	inc	sp
+   06D9 C5            [11] 1140 	push	bc
+   06DA CDrB2r05      [17] 1141 	call	_comprobarPosicion
+   06DD DD F9         [10] 1142 	ld	sp,ix
+   06DF DD E1         [14] 1143 	pop	ix
+   06E1 C9            [10] 1144 	ret
+   06E2                    1145 ___str_6:
+   06E2 25 2D 39 73 20 47  1146 	.ascii "%-9s GOES <"
+        4F 45 53 20 3C
+   06ED 00                 1147 	.db 0x00
+                           1148 ;src/funciones.c:259: void moverDcha(TStats *a) {
+                           1149 ;	---------------------------------
+                           1150 ; Function moverDcha
+                           1151 ; ---------------------------------
+   06EE                    1152 _moverDcha::
+   06EE DD E5         [15] 1153 	push	ix
+   06F0 DD 21 00 00   [14] 1154 	ld	ix,#0
+   06F4 DD 39         [15] 1155 	add	ix,sp
+   06F6 21 E8 FF      [10] 1156 	ld	hl, #-24
+   06F9 39            [11] 1157 	add	hl, sp
+   06FA F9            [ 6] 1158 	ld	sp, hl
+                           1159 ;src/funciones.c:262: pen = 0;
+   06FB DD 36 E9 00   [19] 1160 	ld	-23 (ix), #0x00
+                           1161 ;src/funciones.c:263: bg = 2;
+   06FF DD 36 E8 02   [19] 1162 	ld	-24 (ix), #0x02
+                           1163 ;src/funciones.c:264: if ((u16) a->sprite == (u16) G_mendo)  {
+   0703 DD 4E 04      [19] 1164 	ld	c,4 (ix)
+   0706 DD 46 05      [19] 1165 	ld	b,5 (ix)
+   0709 69            [ 4] 1166 	ld	l, c
+   070A 60            [ 4] 1167 	ld	h, b
+   070B 11 13 00      [10] 1168 	ld	de, #0x0013
+   070E 19            [11] 1169 	add	hl, de
+   070F 5E            [ 7] 1170 	ld	e, (hl)
+   0710 23            [ 6] 1171 	inc	hl
+   0711 56            [ 7] 1172 	ld	d, (hl)
+   0712 DD 36 FEr00   [19] 1173 	ld	-2 (ix), #<(_G_mendo)
+   0716 DD 36 FFs00   [19] 1174 	ld	-1 (ix), #>(_G_mendo)
+   071A 7B            [ 4] 1175 	ld	a, e
+   071B DD 96 FE      [19] 1176 	sub	a, -2 (ix)
+   071E 20 0E         [12] 1177 	jr	NZ,00102$
+   0720 7A            [ 4] 1178 	ld	a, d
+   0721 DD 96 FF      [19] 1179 	sub	a, -1 (ix)
+   0724 20 08         [12] 1180 	jr	NZ,00102$
+                           1181 ;src/funciones.c:265: pen = 2;
+   0726 DD 36 E9 02   [19] 1182 	ld	-23 (ix), #0x02
+                           1183 ;src/funciones.c:266: bg = 0;
+   072A DD 36 E8 00   [19] 1184 	ld	-24 (ix), #0x00
+   072E                    1185 00102$:
+                           1186 ;src/funciones.c:269: sprintf(temp, "%-9s GOES >",a->name);
+   072E 59            [ 4] 1187 	ld	e, c
+   072F 50            [ 4] 1188 	ld	d, b
+   0730 13            [ 6] 1189 	inc	de
+   0731 21 02 00      [10] 1190 	ld	hl, #0x0002
+   0734 39            [11] 1191 	add	hl, sp
+   0735 E5            [11] 1192 	push	hl
+   0736 FD E1         [14] 1193 	pop	iy
+   0738 E5            [11] 1194 	push	hl
+   0739 C5            [11] 1195 	push	bc
+   073A D5            [11] 1196 	push	de
+   073B 11r6Er07      [10] 1197 	ld	de, #___str_7
+   073E D5            [11] 1198 	push	de
+   073F FD E5         [15] 1199 	push	iy
+   0741 CDr00r00      [17] 1200 	call	_sprintf
+   0744 21 06 00      [10] 1201 	ld	hl, #6
+   0747 39            [11] 1202 	add	hl, sp
+   0748 F9            [ 6] 1203 	ld	sp, hl
+   0749 C1            [10] 1204 	pop	bc
+   074A E1            [10] 1205 	pop	hl
+                           1206 ;src/funciones.c:270: printConsole(temp, pen, bg);
+   074B EB            [ 4] 1207 	ex	de,hl
+   074C C5            [11] 1208 	push	bc
+   074D DD 66 E8      [19] 1209 	ld	h, -24 (ix)
+   0750 DD 6E E9      [19] 1210 	ld	l, -23 (ix)
+   0753 E5            [11] 1211 	push	hl
+   0754 D5            [11] 1212 	push	de
+   0755 CDr7Cr03      [17] 1213 	call	_printConsole
+   0758 F1            [10] 1214 	pop	af
+   0759 F1            [10] 1215 	pop	af
+   075A C1            [10] 1216 	pop	bc
+                           1217 ;src/funciones.c:272: comprobarPosicion(a,a->pos_x + 4);
+   075B C5            [11] 1218 	push	bc
+   075C FD E1         [14] 1219 	pop	iy
+   075E FD 7E 10      [19] 1220 	ld	a, 16 (iy)
+   0761 C6 04         [ 7] 1221 	add	a, #0x04
+   0763 F5            [11] 1222 	push	af
+   0764 33            [ 6] 1223 	inc	sp
+   0765 C5            [11] 1224 	push	bc
+   0766 CDrB2r05      [17] 1225 	call	_comprobarPosicion
+   0769 DD F9         [10] 1226 	ld	sp,ix
+   076B DD E1         [14] 1227 	pop	ix
+   076D C9            [10] 1228 	ret
+   076E                    1229 ___str_7:
+   076E 25 2D 39 73 20 47  1230 	.ascii "%-9s GOES >"
+        4F 45 53 20 3E
+   0779 00                 1231 	.db 0x00
+                           1232 ;src/funciones.c:275: void defender(TStats *a) {
+                           1233 ;	---------------------------------
+                           1234 ; Function defender
+                           1235 ; ---------------------------------
+   077A                    1236 _defender::
+   077A DD E5         [15] 1237 	push	ix
+   077C DD 21 00 00   [14] 1238 	ld	ix,#0
+   0780 DD 39         [15] 1239 	add	ix,sp
+   0782 21 E4 FF      [10] 1240 	ld	hl, #-28
+   0785 39            [11] 1241 	add	hl, sp
+   0786 F9            [ 6] 1242 	ld	sp, hl
+                           1243 ;src/funciones.c:278: pen = 0;
+   0787 DD 36 E6 00   [19] 1244 	ld	-26 (ix), #0x00
+                           1245 ;src/funciones.c:279: bg = 2;
+   078B DD 36 E5 02   [19] 1246 	ld	-27 (ix), #0x02
+                           1247 ;src/funciones.c:280: nota = 33;
+   078F DD 36 E4 21   [19] 1248 	ld	-28 (ix), #0x21
+                           1249 ;src/funciones.c:281: if ((u16) a->sprite == (u16) G_mendo)  {
+   0793 DD 4E 04      [19] 1250 	ld	c,4 (ix)
+   0796 DD 46 05      [19] 1251 	ld	b,5 (ix)
+   0799 69            [ 4] 1252 	ld	l, c
+   079A 60            [ 4] 1253 	ld	h, b
+   079B 11 13 00      [10] 1254 	ld	de, #0x0013
+   079E 19            [11] 1255 	add	hl, de
+   079F 5E            [ 7] 1256 	ld	e, (hl)
+   07A0 23            [ 6] 1257 	inc	hl
+   07A1 56            [ 7] 1258 	ld	d, (hl)
+   07A2 DD 36 FEr00   [19] 1259 	ld	-2 (ix), #<(_G_mendo)
+   07A6 DD 36 FFs00   [19] 1260 	ld	-1 (ix), #>(_G_mendo)
+   07AA 7B            [ 4] 1261 	ld	a, e
+   07AB DD 96 FE      [19] 1262 	sub	a, -2 (ix)
+   07AE 20 12         [12] 1263 	jr	NZ,00102$
+   07B0 7A            [ 4] 1264 	ld	a, d
+   07B1 DD 96 FF      [19] 1265 	sub	a, -1 (ix)
+   07B4 20 0C         [12] 1266 	jr	NZ,00102$
+                           1267 ;src/funciones.c:282: pen = 2;
+   07B6 DD 36 E6 02   [19] 1268 	ld	-26 (ix), #0x02
+                           1269 ;src/funciones.c:283: bg = 0;
+   07BA DD 36 E5 00   [19] 1270 	ld	-27 (ix), #0x00
+                           1271 ;src/funciones.c:284: nota = 23;
+   07BE DD 36 E4 17   [19] 1272 	ld	-28 (ix), #0x17
+   07C2                    1273 00102$:
+                           1274 ;src/funciones.c:287: if (a->energy + a->defense < a->max_energy)
+   07C2 FD 21 0B 00   [14] 1275 	ld	iy, #0x000b
+   07C6 FD 09         [15] 1276 	add	iy, bc
+   07C8 FD 7E 00      [19] 1277 	ld	a, 0 (iy)
+   07CB DD 77 FE      [19] 1278 	ld	-2 (ix), a
+   07CE 5F            [ 4] 1279 	ld	e, a
+   07CF 16 00         [ 7] 1280 	ld	d, #0x00
+   07D1 69            [ 4] 1281 	ld	l, c
+   07D2 60            [ 4] 1282 	ld	h, b
+   07D3 C5            [11] 1283 	push	bc
+   07D4 01 0F 00      [10] 1284 	ld	bc, #0x000f
+   07D7 09            [11] 1285 	add	hl, bc
+   07D8 C1            [10] 1286 	pop	bc
+   07D9 7E            [ 7] 1287 	ld	a, (hl)
+   07DA DD 77 FD      [19] 1288 	ld	-3 (ix), a
+   07DD 6F            [ 4] 1289 	ld	l, a
+   07DE 26 00         [ 7] 1290 	ld	h, #0x00
+   07E0 19            [11] 1291 	add	hl,de
+   07E1 DD 75 FB      [19] 1292 	ld	-5 (ix), l
+   07E4 DD 74 FC      [19] 1293 	ld	-4 (ix), h
+   07E7 69            [ 4] 1294 	ld	l, c
+   07E8 60            [ 4] 1295 	ld	h, b
+   07E9 11 0C 00      [10] 1296 	ld	de, #0x000c
+   07EC 19            [11] 1297 	add	hl, de
+   07ED 5E            [ 7] 1298 	ld	e, (hl)
+   07EE 6B            [ 4] 1299 	ld	l, e
+   07EF 16 00         [ 7] 1300 	ld	d, #0x00
+   07F1 DD 7E FB      [19] 1301 	ld	a, -5 (ix)
+   07F4 95            [ 4] 1302 	sub	a, l
+   07F5 DD 7E FC      [19] 1303 	ld	a, -4 (ix)
+   07F8 9A            [ 4] 1304 	sbc	a, d
+   07F9 E2rFEr07      [10] 1305 	jp	PO, 00124$
+   07FC EE 80         [ 7] 1306 	xor	a, #0x80
+   07FE                    1307 00124$:
+   07FE F2r06r08      [10] 1308 	jp	P, 00104$
+                           1309 ;src/funciones.c:288: healed = a->defense;
+   0801 DD 5E FD      [19] 1310 	ld	e, -3 (ix)
+   0804 18 05         [12] 1311 	jr	00105$
+   0806                    1312 00104$:
+                           1313 ;src/funciones.c:290: healed = a->max_energy - a->energy;
+   0806 7B            [ 4] 1314 	ld	a, e
+   0807 DD 96 FE      [19] 1315 	sub	a, -2 (ix)
+   080A 5F            [ 4] 1316 	ld	e, a
+   080B                    1317 00105$:
+                           1318 ;src/funciones.c:292: a->energy = a->energy + healed;
+   080B DD 7E FE      [19] 1319 	ld	a, -2 (ix)
+   080E 83            [ 4] 1320 	add	a, e
+   080F FD 77 00      [19] 1321 	ld	0 (iy), a
+                           1322 ;src/funciones.c:294: if (healed) {
+   0812 7B            [ 4] 1323 	ld	a, e
+   0813 B7            [ 4] 1324 	or	a, a
+   0814 28 44         [12] 1325 	jr	Z,00108$
+                           1326 ;src/funciones.c:295: sprintf(temp, "%-9s ^ %02dHP",a->name, healed);
+   0816 16 00         [ 7] 1327 	ld	d, #0x00
+   0818 03            [ 6] 1328 	inc	bc
+   0819 21 03 00      [10] 1329 	ld	hl, #0x0003
+   081C 39            [11] 1330 	add	hl, sp
+   081D DD 75 FB      [19] 1331 	ld	-5 (ix), l
+   0820 DD 74 FC      [19] 1332 	ld	-4 (ix), h
+   0823 E5            [11] 1333 	push	hl
+   0824 D5            [11] 1334 	push	de
+   0825 C5            [11] 1335 	push	bc
+   0826 01r5Fr08      [10] 1336 	ld	bc, #___str_8
+   0829 C5            [11] 1337 	push	bc
+   082A DD 4E FB      [19] 1338 	ld	c,-5 (ix)
+   082D DD 46 FC      [19] 1339 	ld	b,-4 (ix)
+   0830 C5            [11] 1340 	push	bc
+   0831 CDr00r00      [17] 1341 	call	_sprintf
+   0834 21 08 00      [10] 1342 	ld	hl, #8
+   0837 39            [11] 1343 	add	hl, sp
+   0838 F9            [ 6] 1344 	ld	sp, hl
+   0839 E1            [10] 1345 	pop	hl
+                           1346 ;src/funciones.c:296: printConsole(temp, pen, bg);
+   083A 4D            [ 4] 1347 	ld	c, l
+   083B 44            [ 4] 1348 	ld	b, h
+   083C DD 66 E5      [19] 1349 	ld	h, -27 (ix)
+   083F DD 6E E6      [19] 1350 	ld	l, -26 (ix)
+   0842 E5            [11] 1351 	push	hl
+   0843 C5            [11] 1352 	push	bc
+   0844 CDr7Cr03      [17] 1353 	call	_printConsole
+   0847 F1            [10] 1354 	pop	af
+   0848 F1            [10] 1355 	pop	af
+                           1356 ;src/funciones.c:297: playFX (2, nota);
+   0849 DD 56 E4      [19] 1357 	ld	d, -28 (ix)
+   084C 1E 02         [ 7] 1358 	ld	e,#0x02
+   084E D5            [11] 1359 	push	de
+   084F CDr00r00      [17] 1360 	call	_playFX
+                           1361 ;src/funciones.c:298: pausa(SEGUNDO/2);
+   0852 21 00 40      [10] 1362 	ld	hl, #0x4000
+   0855 E3            [19] 1363 	ex	(sp),hl
+   0856 CDr28r00      [17] 1364 	call	_pausa
+   0859 F1            [10] 1365 	pop	af
+   085A                    1366 00108$:
+   085A DD F9         [10] 1367 	ld	sp, ix
+   085C DD E1         [14] 1368 	pop	ix
+   085E C9            [10] 1369 	ret
+   085F                    1370 ___str_8:
+   085F 25 2D 39 73 20 5E  1371 	.ascii "%-9s ^ %02dHP"
         20 25 30 32 64 48
         50
-   05DB 00                 1002 	.db 0x00
-                           1003 ;src/funciones.c:230: void drawPotion(){
-                           1004 ;	---------------------------------
-                           1005 ; Function drawPotion
-                           1006 ; ---------------------------------
-   05DC                    1007 _drawPotion::
-                           1008 ;src/funciones.c:231: cpct_drawSpriteMasked (G_pocion, cpctm_screenPtr (CPCT_VMEM_START, 28, 144), 2,16);
-   05DC 21 02 10      [10] 1009 	ld	hl, #0x1002
-   05DF E5            [11] 1010 	push	hl
-   05E0 21 BC C5      [10] 1011 	ld	hl, #0xc5bc
-   05E3 E5            [11] 1012 	push	hl
-   05E4 21r00r00      [10] 1013 	ld	hl, #_G_pocion
-   05E7 E5            [11] 1014 	push	hl
-   05E8 CDr00r00      [17] 1015 	call	_cpct_drawSpriteMasked
-   05EB C9            [10] 1016 	ret
-                           1017 	.area _CODE
-                           1018 	.area _INITIALIZER
-                           1019 	.area _CABS (ABS)
+   086C 00                 1372 	.db 0x00
+                           1373 ;src/funciones.c:302: void IA(TStats *a) {
+                           1374 ;	---------------------------------
+                           1375 ; Function IA
+                           1376 ; ---------------------------------
+   086D                    1377 _IA::
+   086D DD E5         [15] 1378 	push	ix
+   086F DD 21 00 00   [14] 1379 	ld	ix,#0
+   0873 DD 39         [15] 1380 	add	ix,sp
+   0875 21 F8 FF      [10] 1381 	ld	hl, #-8
+   0878 39            [11] 1382 	add	hl, sp
+   0879 F9            [ 6] 1383 	ld	sp, hl
+                           1384 ;src/funciones.c:304: if ((u16) a->sprite == (u16) G_goblin) {
+   087A DD 7E 04      [19] 1385 	ld	a, 4 (ix)
+   087D DD 77 FE      [19] 1386 	ld	-2 (ix), a
+   0880 DD 7E 05      [19] 1387 	ld	a, 5 (ix)
+   0883 DD 77 FF      [19] 1388 	ld	-1 (ix), a
+   0886 DD 7E FE      [19] 1389 	ld	a, -2 (ix)
+   0889 C6 13         [ 7] 1390 	add	a, #0x13
+   088B DD 77 FC      [19] 1391 	ld	-4 (ix), a
+   088E DD 7E FF      [19] 1392 	ld	a, -1 (ix)
+   0891 CE 00         [ 7] 1393 	adc	a, #0x00
+   0893 DD 77 FD      [19] 1394 	ld	-3 (ix), a
+   0896 DD 6E FC      [19] 1395 	ld	l,-4 (ix)
+   0899 DD 66 FD      [19] 1396 	ld	h,-3 (ix)
+   089C 4E            [ 7] 1397 	ld	c, (hl)
+   089D 23            [ 6] 1398 	inc	hl
+   089E 46            [ 7] 1399 	ld	b, (hl)
+   089F 11r00r00      [10] 1400 	ld	de, #_G_goblin+0
+   08A2 79            [ 4] 1401 	ld	a, c
+   08A3 93            [ 4] 1402 	sub	a, e
+   08A4 20 16         [12] 1403 	jr	NZ,00104$
+   08A6 78            [ 4] 1404 	ld	a, b
+   08A7 92            [ 4] 1405 	sub	a, d
+   08A8 20 12         [12] 1406 	jr	NZ,00104$
+                           1407 ;src/funciones.c:305: if (cpct_rand() % 2)
+   08AA CDr00r00      [17] 1408 	call	_cpct_getRandom_mxor_u8
+   08AD CB 45         [ 8] 1409 	bit	0, l
+   08AF 28 0B         [12] 1410 	jr	Z,00104$
+                           1411 ;src/funciones.c:306: moverIzq(a);
+   08B1 DD 6E FE      [19] 1412 	ld	l,-2 (ix)
+   08B4 DD 66 FF      [19] 1413 	ld	h,-1 (ix)
+   08B7 E5            [11] 1414 	push	hl
+   08B8 CDr61r06      [17] 1415 	call	_moverIzq
+   08BB F1            [10] 1416 	pop	af
+   08BC                    1417 00104$:
+                           1418 ;src/funciones.c:304: if ((u16) a->sprite == (u16) G_goblin) {
+   08BC DD 6E FC      [19] 1419 	ld	l,-4 (ix)
+   08BF DD 66 FD      [19] 1420 	ld	h,-3 (ix)
+   08C2 7E            [ 7] 1421 	ld	a, (hl)
+   08C3 DD 77 FA      [19] 1422 	ld	-6 (ix), a
+   08C6 23            [ 6] 1423 	inc	hl
+   08C7 7E            [ 7] 1424 	ld	a, (hl)
+   08C8 DD 77 FB      [19] 1425 	ld	-5 (ix), a
+                           1426 ;src/funciones.c:309: if ( ((u16) a->sprite == (u16) G_arabe_1)
+   08CB D1            [10] 1427 	pop	de
+   08CC C1            [10] 1428 	pop	bc
+   08CD C5            [11] 1429 	push	bc
+   08CE D5            [11] 1430 	push	de
+   08CF 11r00r00      [10] 1431 	ld	de, #_G_arabe_1+0
+                           1432 ;src/funciones.c:319: if (abs(a->pos_x - entidad[0].pos_x) <= 8)  {
+   08D2 DD 7E FE      [19] 1433 	ld	a, -2 (ix)
+   08D5 C6 10         [ 7] 1434 	add	a, #0x10
+   08D7 DD 77 F8      [19] 1435 	ld	-8 (ix), a
+   08DA DD 7E FF      [19] 1436 	ld	a, -1 (ix)
+   08DD CE 00         [ 7] 1437 	adc	a, #0x00
+   08DF DD 77 F9      [19] 1438 	ld	-7 (ix), a
+                           1439 ;src/funciones.c:309: if ( ((u16) a->sprite == (u16) G_arabe_1)
+   08E2 79            [ 4] 1440 	ld	a, c
+   08E3 93            [ 4] 1441 	sub	a, e
+   08E4 20 04         [12] 1442 	jr	NZ,00231$
+   08E6 78            [ 4] 1443 	ld	a, b
+   08E7 92            [ 4] 1444 	sub	a, d
+   08E8 28 56         [12] 1445 	jr	Z,00114$
+   08EA                    1446 00231$:
+                           1447 ;src/funciones.c:310: || ((u16) a->sprite == (u16) G_arabe_2)
+   08EA 11r00r00      [10] 1448 	ld	de, #_G_arabe_2+0
+   08ED 79            [ 4] 1449 	ld	a, c
+   08EE 93            [ 4] 1450 	sub	a, e
+   08EF 20 04         [12] 1451 	jr	NZ,00232$
+   08F1 78            [ 4] 1452 	ld	a, b
+   08F2 92            [ 4] 1453 	sub	a, d
+   08F3 28 4B         [12] 1454 	jr	Z,00114$
+   08F5                    1455 00232$:
+                           1456 ;src/funciones.c:311: || ((u16) a->sprite == (u16) G_esqueleto)
+   08F5 D1            [10] 1457 	pop	de
+   08F6 C1            [10] 1458 	pop	bc
+   08F7 C5            [11] 1459 	push	bc
+   08F8 D5            [11] 1460 	push	de
+   08F9 11r00r00      [10] 1461 	ld	de, #_G_esqueleto+0
+   08FC 7B            [ 4] 1462 	ld	a, e
+   08FD 91            [ 4] 1463 	sub	a, c
+   08FE 20 04         [12] 1464 	jr	NZ,00233$
+   0900 7A            [ 4] 1465 	ld	a, d
+   0901 90            [ 4] 1466 	sub	a, b
+   0902 28 3C         [12] 1467 	jr	Z,00114$
+   0904                    1468 00233$:
+                           1469 ;src/funciones.c:312: || ((u16) a->sprite == (u16) G_spider)
+   0904 D1            [10] 1470 	pop	de
+   0905 C1            [10] 1471 	pop	bc
+   0906 C5            [11] 1472 	push	bc
+   0907 D5            [11] 1473 	push	de
+   0908 11r00r00      [10] 1474 	ld	de, #_G_spider+0
+   090B 79            [ 4] 1475 	ld	a, c
+   090C 93            [ 4] 1476 	sub	a, e
+   090D 20 04         [12] 1477 	jr	NZ,00234$
+   090F 78            [ 4] 1478 	ld	a, b
+   0910 92            [ 4] 1479 	sub	a, d
+   0911 28 2D         [12] 1480 	jr	Z,00114$
+   0913                    1481 00234$:
+                           1482 ;src/funciones.c:313: || ((u16) a->sprite == (u16) G_soldado_1)
+   0913 D1            [10] 1483 	pop	de
+   0914 C1            [10] 1484 	pop	bc
+   0915 C5            [11] 1485 	push	bc
+   0916 D5            [11] 1486 	push	de
+   0917 11r00r00      [10] 1487 	ld	de, #_G_soldado_1+0
+   091A 79            [ 4] 1488 	ld	a, c
+   091B 93            [ 4] 1489 	sub	a, e
+   091C 20 04         [12] 1490 	jr	NZ,00235$
+   091E 78            [ 4] 1491 	ld	a, b
+   091F 92            [ 4] 1492 	sub	a, d
+   0920 28 1E         [12] 1493 	jr	Z,00114$
+   0922                    1494 00235$:
+                           1495 ;src/funciones.c:314: || ((u16) a->sprite == (u16) G_carcelero)
+   0922 D1            [10] 1496 	pop	de
+   0923 C1            [10] 1497 	pop	bc
+   0924 C5            [11] 1498 	push	bc
+   0925 D5            [11] 1499 	push	de
+   0926 11r00r00      [10] 1500 	ld	de, #_G_carcelero+0
+   0929 79            [ 4] 1501 	ld	a, c
+   092A 93            [ 4] 1502 	sub	a, e
+   092B 20 04         [12] 1503 	jr	NZ,00236$
+   092D 78            [ 4] 1504 	ld	a, b
+   092E 92            [ 4] 1505 	sub	a, d
+   092F 28 0F         [12] 1506 	jr	Z,00114$
+   0931                    1507 00236$:
+                           1508 ;src/funciones.c:315: || ((u16) a->sprite == (u16) G_caballero)
+   0931 D1            [10] 1509 	pop	de
+   0932 C1            [10] 1510 	pop	bc
+   0933 C5            [11] 1511 	push	bc
+   0934 D5            [11] 1512 	push	de
+   0935 11r00r00      [10] 1513 	ld	de, #_G_caballero+0
+   0938 79            [ 4] 1514 	ld	a, c
+   0939 93            [ 4] 1515 	sub	a, e
+   093A 20 59         [12] 1516 	jr	NZ,00115$
+   093C 78            [ 4] 1517 	ld	a, b
+   093D 92            [ 4] 1518 	sub	a, d
+   093E 20 55         [12] 1519 	jr	NZ,00115$
+   0940                    1520 00114$:
+                           1521 ;src/funciones.c:319: if (abs(a->pos_x - entidad[0].pos_x) <= 8)  {
+   0940 E1            [10] 1522 	pop	hl
+   0941 E5            [11] 1523 	push	hl
+   0942 4E            [ 7] 1524 	ld	c, (hl)
+   0943 21r10r00      [10] 1525 	ld	hl, #_entidad+16
+   0946 46            [ 7] 1526 	ld	b, (hl)
+   0947 79            [ 4] 1527 	ld	a, c
+   0948 90            [ 4] 1528 	sub	a, b
+   0949 47            [ 4] 1529 	ld	b, a
+   094A C5            [11] 1530 	push	bc
+   094B 33            [ 6] 1531 	inc	sp
+   094C CDr00r00      [17] 1532 	call	_abs
+   094F 33            [ 6] 1533 	inc	sp
+   0950 3E 08         [ 7] 1534 	ld	a, #0x08
+   0952 95            [ 4] 1535 	sub	a, l
+   0953 38 0D         [12] 1536 	jr	C,00112$
+                           1537 ;src/funciones.c:320: moverIzq(a);
+   0955 DD 6E FE      [19] 1538 	ld	l,-2 (ix)
+   0958 DD 66 FF      [19] 1539 	ld	h,-1 (ix)
+   095B E5            [11] 1540 	push	hl
+   095C CDr61r06      [17] 1541 	call	_moverIzq
+   095F F1            [10] 1542 	pop	af
+   0960 18 33         [12] 1543 	jr	00115$
+   0962                    1544 00112$:
+                           1545 ;src/funciones.c:323: if (cpct_rand() % 2)
+   0962 CDr00r00      [17] 1546 	call	_cpct_getRandom_mxor_u8
+   0965 CB 45         [ 8] 1547 	bit	0, l
+   0967 28 0D         [12] 1548 	jr	Z,00109$
+                           1549 ;src/funciones.c:324: defender(a);
+   0969 DD 6E FE      [19] 1550 	ld	l,-2 (ix)
+   096C DD 66 FF      [19] 1551 	ld	h,-1 (ix)
+   096F E5            [11] 1552 	push	hl
+   0970 CDr7Ar07      [17] 1553 	call	_defender
+   0973 F1            [10] 1554 	pop	af
+   0974 18 1F         [12] 1555 	jr	00115$
+   0976                    1556 00109$:
+                           1557 ;src/funciones.c:326: if (cpct_rand() % 2)
+   0976 CDr00r00      [17] 1558 	call	_cpct_getRandom_mxor_u8
+   0979 CB 45         [ 8] 1559 	bit	0, l
+   097B 28 0D         [12] 1560 	jr	Z,00106$
+                           1561 ;src/funciones.c:327: moverIzq(a);
+   097D DD 6E FE      [19] 1562 	ld	l,-2 (ix)
+   0980 DD 66 FF      [19] 1563 	ld	h,-1 (ix)
+   0983 E5            [11] 1564 	push	hl
+   0984 CDr61r06      [17] 1565 	call	_moverIzq
+   0987 F1            [10] 1566 	pop	af
+   0988 18 0B         [12] 1567 	jr	00115$
+   098A                    1568 00106$:
+                           1569 ;src/funciones.c:329: moverDcha(a);
+   098A DD 6E FE      [19] 1570 	ld	l,-2 (ix)
+   098D DD 66 FF      [19] 1571 	ld	h,-1 (ix)
+   0990 E5            [11] 1572 	push	hl
+   0991 CDrEEr06      [17] 1573 	call	_moverDcha
+   0994 F1            [10] 1574 	pop	af
+   0995                    1575 00115$:
+                           1576 ;src/funciones.c:333: if ((u16) a->sprite == (u16) G_abeja 
+   0995 DD 6E FC      [19] 1577 	ld	l,-4 (ix)
+   0998 DD 66 FD      [19] 1578 	ld	h,-3 (ix)
+   099B 4E            [ 7] 1579 	ld	c, (hl)
+   099C 23            [ 6] 1580 	inc	hl
+   099D 46            [ 7] 1581 	ld	b, (hl)
+   099E DD 71 FA      [19] 1582 	ld	-6 (ix), c
+   09A1 DD 70 FB      [19] 1583 	ld	-5 (ix), b
+                           1584 ;src/funciones.c:334: || (u16) a->sprite == (u16) G_murcielago
+   09A4 11r00r00      [10] 1585 	ld	de, #_G_abeja+0
+   09A7 DD 7E FA      [19] 1586 	ld	a, -6 (ix)
+   09AA 93            [ 4] 1587 	sub	a, e
+   09AB 20 06         [12] 1588 	jr	NZ,00241$
+   09AD DD 7E FB      [19] 1589 	ld	a, -5 (ix)
+   09B0 92            [ 4] 1590 	sub	a, d
+   09B1 28 1D         [12] 1591 	jr	Z,00125$
+   09B3                    1592 00241$:
+                           1593 ;src/funciones.c:335: || nivel == 10
+   09B3 11r00r00      [10] 1594 	ld	de, #_G_murcielago+0
+   09B6 79            [ 4] 1595 	ld	a, c
+   09B7 93            [ 4] 1596 	sub	a, e
+   09B8 20 04         [12] 1597 	jr	NZ,00242$
+   09BA 78            [ 4] 1598 	ld	a, b
+   09BB 92            [ 4] 1599 	sub	a, d
+   09BC 28 12         [12] 1600 	jr	Z,00125$
+   09BE                    1601 00242$:
+                           1602 ;src/funciones.c:336: || nivel == 20
+   09BE FD 21r00r00   [14] 1603 	ld	iy, #_nivel
+   09C2 FD 7E 00      [19] 1604 	ld	a, 0 (iy)
+   09C5 D6 0A         [ 7] 1605 	sub	a, #0x0a
+   09C7 28 07         [12] 1606 	jr	Z,00125$
+                           1607 ;src/funciones.c:337: )  {  
+   09C9 FD 7E 00      [19] 1608 	ld	a, 0 (iy)
+   09CC D6 14         [ 7] 1609 	sub	a, #0x14
+   09CE 20 1F         [12] 1610 	jr	NZ,00126$
+   09D0                    1611 00125$:
+                           1612 ;src/funciones.c:339: if (cpct_rand() % 2)
+   09D0 CDr00r00      [17] 1613 	call	_cpct_getRandom_mxor_u8
+   09D3 CB 45         [ 8] 1614 	bit	0, l
+   09D5 28 0D         [12] 1615 	jr	Z,00123$
+                           1616 ;src/funciones.c:340: defender(a);
+   09D7 DD 6E FE      [19] 1617 	ld	l,-2 (ix)
+   09DA DD 66 FF      [19] 1618 	ld	h,-1 (ix)
+   09DD E5            [11] 1619 	push	hl
+   09DE CDr7Ar07      [17] 1620 	call	_defender
+   09E1 F1            [10] 1621 	pop	af
+   09E2 18 0B         [12] 1622 	jr	00126$
+   09E4                    1623 00123$:
+                           1624 ;src/funciones.c:342: moverIzq(a);
+   09E4 DD 6E FE      [19] 1625 	ld	l,-2 (ix)
+   09E7 DD 66 FF      [19] 1626 	ld	h,-1 (ix)
+   09EA E5            [11] 1627 	push	hl
+   09EB CDr61r06      [17] 1628 	call	_moverIzq
+   09EE F1            [10] 1629 	pop	af
+   09EF                    1630 00126$:
+                           1631 ;src/funciones.c:304: if ((u16) a->sprite == (u16) G_goblin) {
+   09EF DD 6E FC      [19] 1632 	ld	l,-4 (ix)
+   09F2 DD 66 FD      [19] 1633 	ld	h,-3 (ix)
+   09F5 4E            [ 7] 1634 	ld	c, (hl)
+   09F6 23            [ 6] 1635 	inc	hl
+   09F7 46            [ 7] 1636 	ld	b, (hl)
+                           1637 ;src/funciones.c:309: if ( ((u16) a->sprite == (u16) G_arabe_1)
+   09F8 DD 71 FA      [19] 1638 	ld	-6 (ix), c
+   09FB DD 70 FB      [19] 1639 	ld	-5 (ix), b
+                           1640 ;src/funciones.c:344: if (((u16) a->sprite == (u16) G_fakir)
+   09FE 11r00r00      [10] 1641 	ld	de, #_G_fakir+0
+   0A01 DD 7E FA      [19] 1642 	ld	a, -6 (ix)
+   0A04 93            [ 4] 1643 	sub	a, e
+   0A05 20 06         [12] 1644 	jr	NZ,00247$
+   0A07 DD 7E FB      [19] 1645 	ld	a, -5 (ix)
+   0A0A 92            [ 4] 1646 	sub	a, d
+   0A0B 28 1A         [12] 1647 	jr	Z,00132$
+   0A0D                    1648 00247$:
+                           1649 ;src/funciones.c:345: || ((u16) a->sprite == (u16) G_gusano)
+   0A0D 11r00r00      [10] 1650 	ld	de, #_G_gusano+0
+   0A10 DD 7E FA      [19] 1651 	ld	a, -6 (ix)
+   0A13 93            [ 4] 1652 	sub	a, e
+   0A14 20 06         [12] 1653 	jr	NZ,00248$
+   0A16 DD 7E FB      [19] 1654 	ld	a, -5 (ix)
+   0A19 92            [ 4] 1655 	sub	a, d
+   0A1A 28 0B         [12] 1656 	jr	Z,00132$
+   0A1C                    1657 00248$:
+                           1658 ;src/funciones.c:346: || ((u16) a->sprite == (u16) G_soldado_2)
+   0A1C 11r00r00      [10] 1659 	ld	de, #_G_soldado_2+0
+   0A1F 7B            [ 4] 1660 	ld	a, e
+   0A20 91            [ 4] 1661 	sub	a, c
+   0A21 20 24         [12] 1662 	jr	NZ,00133$
+   0A23 7A            [ 4] 1663 	ld	a, d
+   0A24 90            [ 4] 1664 	sub	a, b
+   0A25 20 20         [12] 1665 	jr	NZ,00133$
+   0A27                    1666 00132$:
+                           1667 ;src/funciones.c:349: if (abs(a->pos_x - entidad[0].pos_x) <= 4) 
+   0A27 E1            [10] 1668 	pop	hl
+   0A28 E5            [11] 1669 	push	hl
+   0A29 4E            [ 7] 1670 	ld	c, (hl)
+   0A2A 21r10r00      [10] 1671 	ld	hl, #_entidad+16
+   0A2D 46            [ 7] 1672 	ld	b, (hl)
+   0A2E 79            [ 4] 1673 	ld	a, c
+   0A2F 90            [ 4] 1674 	sub	a, b
+   0A30 47            [ 4] 1675 	ld	b, a
+   0A31 C5            [11] 1676 	push	bc
+   0A32 33            [ 6] 1677 	inc	sp
+   0A33 CDr00r00      [17] 1678 	call	_abs
+   0A36 33            [ 6] 1679 	inc	sp
+   0A37 3E 04         [ 7] 1680 	ld	a, #0x04
+   0A39 95            [ 4] 1681 	sub	a, l
+   0A3A 38 0B         [12] 1682 	jr	C,00133$
+                           1683 ;src/funciones.c:350: moverIzq(a);
+   0A3C DD 6E FE      [19] 1684 	ld	l,-2 (ix)
+   0A3F DD 66 FF      [19] 1685 	ld	h,-1 (ix)
+   0A42 E5            [11] 1686 	push	hl
+   0A43 CDr61r06      [17] 1687 	call	_moverIzq
+   0A46 F1            [10] 1688 	pop	af
+   0A47                    1689 00133$:
+                           1690 ;src/funciones.c:352: if ((u16) a->sprite == (u16) G_arabe_3)  {  
+   0A47 DD 6E FC      [19] 1691 	ld	l,-4 (ix)
+   0A4A DD 66 FD      [19] 1692 	ld	h,-3 (ix)
+   0A4D 4E            [ 7] 1693 	ld	c, (hl)
+   0A4E 23            [ 6] 1694 	inc	hl
+   0A4F 46            [ 7] 1695 	ld	b, (hl)
+   0A50 11r00r00      [10] 1696 	ld	de, #_G_arabe_3+0
+   0A53 79            [ 4] 1697 	ld	a, c
+   0A54 93            [ 4] 1698 	sub	a, e
+   0A55 20 29         [12] 1699 	jr	NZ,00139$
+   0A57 78            [ 4] 1700 	ld	a, b
+   0A58 92            [ 4] 1701 	sub	a, d
+   0A59 20 25         [12] 1702 	jr	NZ,00139$
+                           1703 ;src/funciones.c:355: if (abs(a->pos_x - entidad[0].pos_x) <= 16) 
+   0A5B E1            [10] 1704 	pop	hl
+   0A5C E5            [11] 1705 	push	hl
+   0A5D 4E            [ 7] 1706 	ld	c, (hl)
+   0A5E 21r10r00      [10] 1707 	ld	hl, #_entidad + 16
+   0A61 46            [ 7] 1708 	ld	b, (hl)
+   0A62 79            [ 4] 1709 	ld	a, c
+   0A63 90            [ 4] 1710 	sub	a, b
+   0A64 47            [ 4] 1711 	ld	b, a
+   0A65 C5            [11] 1712 	push	bc
+   0A66 33            [ 6] 1713 	inc	sp
+   0A67 CDr00r00      [17] 1714 	call	_abs
+   0A6A 33            [ 6] 1715 	inc	sp
+   0A6B 3E 10         [ 7] 1716 	ld	a, #0x10
+   0A6D 95            [ 4] 1717 	sub	a, l
+   0A6E 38 10         [12] 1718 	jr	C,00139$
+                           1719 ;src/funciones.c:356: atacar(a,&entidad[0]);
+   0A70 21r00r00      [10] 1720 	ld	hl, #_entidad
+   0A73 E5            [11] 1721 	push	hl
+   0A74 DD 6E FE      [19] 1722 	ld	l,-2 (ix)
+   0A77 DD 66 FF      [19] 1723 	ld	h,-1 (ix)
+   0A7A E5            [11] 1724 	push	hl
+   0A7B CDrE1r03      [17] 1725 	call	_atacar
+   0A7E F1            [10] 1726 	pop	af
+   0A7F F1            [10] 1727 	pop	af
+   0A80                    1728 00139$:
+                           1729 ;src/funciones.c:358: if ((u16) a->sprite == (u16) G_mago)  {  
+   0A80 DD 6E FC      [19] 1730 	ld	l,-4 (ix)
+   0A83 DD 66 FD      [19] 1731 	ld	h,-3 (ix)
+   0A86 4E            [ 7] 1732 	ld	c, (hl)
+   0A87 23            [ 6] 1733 	inc	hl
+   0A88 46            [ 7] 1734 	ld	b, (hl)
+   0A89 11r00r00      [10] 1735 	ld	de, #_G_mago+0
+   0A8C 79            [ 4] 1736 	ld	a, c
+   0A8D 93            [ 4] 1737 	sub	a, e
+   0A8E 20 14         [12] 1738 	jr	NZ,00142$
+   0A90 78            [ 4] 1739 	ld	a, b
+   0A91 92            [ 4] 1740 	sub	a, d
+   0A92 20 10         [12] 1741 	jr	NZ,00142$
+                           1742 ;src/funciones.c:360: atacar(a,&entidad[0]);
+   0A94 21r00r00      [10] 1743 	ld	hl, #_entidad
+   0A97 E5            [11] 1744 	push	hl
+   0A98 DD 6E 04      [19] 1745 	ld	l,4 (ix)
+   0A9B DD 66 05      [19] 1746 	ld	h,5 (ix)
+   0A9E E5            [11] 1747 	push	hl
+   0A9F CDrE1r03      [17] 1748 	call	_atacar
+   0AA2 F1            [10] 1749 	pop	af
+   0AA3 F1            [10] 1750 	pop	af
+   0AA4                    1751 00142$:
+   0AA4 DD F9         [10] 1752 	ld	sp, ix
+   0AA6 DD E1         [14] 1753 	pop	ix
+   0AA8 C9            [10] 1754 	ret
+                           1755 ;src/funciones.c:366: void drawPotion(){
+                           1756 ;	---------------------------------
+                           1757 ; Function drawPotion
+                           1758 ; ---------------------------------
+   0AA9                    1759 _drawPotion::
+                           1760 ;src/funciones.c:367: cpct_drawSpriteMasked (G_pocion, cpctm_screenPtr (CPCT_VMEM_START, 28, 144), 2,16);
+   0AA9 21 02 10      [10] 1761 	ld	hl, #0x1002
+   0AAC E5            [11] 1762 	push	hl
+   0AAD 21 BC C5      [10] 1763 	ld	hl, #0xc5bc
+   0AB0 E5            [11] 1764 	push	hl
+   0AB1 21r00r00      [10] 1765 	ld	hl, #_G_pocion
+   0AB4 E5            [11] 1766 	push	hl
+   0AB5 CDr00r00      [17] 1767 	call	_cpct_drawSpriteMasked
+   0AB8 C9            [10] 1768 	ret
+                           1769 	.area _CODE
+                           1770 	.area _INITIALIZER
+                           1771 	.area _CABS (ABS)

@@ -12,49 +12,72 @@ Symbol Table
     _G_arabe_2                                                     **** GX
     _G_arabe_3                                                     **** GX
     _G_arabe_boss                                                  **** GX
+    _G_caballero                                                   **** GX
+    _G_carcelero                                                   **** GX
     _G_cavern_boss                                                 **** GX
     _G_esqueleto                                                   **** GX
     _G_fakir                                                       **** GX
     _G_goblin                                                      **** GX
     _G_gusano                                                      **** GX
+    _G_mago                                                        **** GX
     _G_mendo                                                       **** GX
     _G_murcielago                                                  **** GX
+    _G_ricardo                                                     **** GX
+    _G_sol                                                         **** GX
+    _G_soldado_1                                                   **** GX
+    _G_soldado_2                                                   **** GX
     _G_spider                                                      **** GX
-  0 ___str_0                                                       0040 R
-  0 ___str_1                                                       008A R
-  0 ___str_10                                                      0308 R
-  0 ___str_11                                                      04F5 R
-  0 ___str_12                                                      04FF R
-  0 ___str_2                                                       00D4 R
-  0 ___str_3                                                       011E R
-  0 ___str_4                                                       0164 R
-  0 ___str_5                                                       01A8 R
-  0 ___str_6                                                       01F1 R
-  0 ___str_7                                                       023A R
-  0 ___str_8                                                       027F R
-  0 ___str_9                                                       02C6 R
+  0 ___str_0                                                       0041 R
+  0 ___str_1                                                       008C R
+  0 ___str_10                                                      0318 R
+  0 ___str_11                                                      0363 R
+  0 ___str_12                                                      03AE R
+  0 ___str_13                                                      03F6 R
+  0 ___str_14                                                      043D R
+  0 ___str_15                                                      0486 R
+  0 ___str_16                                                      0781 R
+  0 ___str_17                                                      078B R
+  0 ___str_18                                                      0795 R
+  0 ___str_19                                                      079D R
+  0 ___str_2                                                       00D7 R
+  0 ___str_3                                                       0122 R
+  0 ___str_4                                                       0169 R
+  0 ___str_5                                                       01AE R
+  0 ___str_6                                                       01F8 R
+  0 ___str_7                                                       0242 R
+  0 ___str_8                                                       0288 R
+  0 ___str_9                                                       02D0 R
     _entidad                                                       **** GX
-  0 _initAbeja                                                     0124 GR
-  0 _initEsqueleto                                                 01B1 GR
-  0 _initFakir                                                     00DE GR
-  0 _initGoblin                                                    0286 GR
-  0 _initGusano                                                    01FA GR
-  0 _initMurcielago                                                0168 GR
-  0 _initNivel                                                     0312 GR
-  0 _initPlayer                                                    02CD GR
+  0 _initAbeja                                                     0128 GR
+  0 _initCaballero                                                 036D GR
+  0 _initCarcelero                                                 03B5 GR
+  0 _initEsqueleto                                                 01B7 GR
+  0 _initFakir                                                     00E1 GR
+  0 _initGoblin                                                    028F GR
+  0 _initGusano                                                    0201 GR
+  0 _initMago                                                      03FC GR
+  0 _initMurcielago                                                016D GR
+  0 _initNivel                                                     0490 GR
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+  0 _initPlayer                                                    0446 GR
+  0 _initSoldado1                                                  02D7 GR
+  0 _initSoldado2                                                  0322 GR
   0 _initSoldadoArabe1                                             0000 GR
-  0 _initSoldadoArabe2                                             004A GR
-  0 _initSoldadoArabe3                                             0094 GR
-  0 _initSpider                                                    023F GR
+  0 _initSoldadoArabe2                                             004B GR
+  0 _initSoldadoArabe3                                             0096 GR
+  0 _initSpider                                                    0247 GR
     _nivel                                                         **** GX
 
-
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size  509   flags    0
+   0 _CODE                                      size  7A6   flags    0
    1 _DATA                                      size    0   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8

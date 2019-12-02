@@ -4,6 +4,7 @@
 #define DESPLIEGUE 1
 
 typedef struct {
+	u8 id;
 	u8 name[10]; //nombre 
     u8 energy;   //HP
     u8 max_energy; //Maximo HP que puede tener
@@ -22,6 +23,7 @@ extern u8 cursorConsola;
 extern u8 sig_nivel;
 extern const TStats SoldadoArabe;
 
+void playFX (u8 instrumento, u8 nota);
 void mydrawStringM1 (void* string, void* video_memory) __z88dk_callee;
 //void mydrawCharM1 (void* video_memory, u8 ascii) __z88dk_callee;
 /*

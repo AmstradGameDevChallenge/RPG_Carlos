@@ -7,49 +7,71 @@ Symbol Table
     .__.ABS.                                                    =  0000 G
     .__.CPU.                                                    =  0000 L
     .__.H$L.                                                    =  0000 L
-  0 ___str_0                                                       010A R
-  0 ___str_1                                                       012A R
-  0 ___str_10                                                      0269 R
-  0 ___str_11                                                      0292 R
-  0 ___str_12                                                      02B7 R
-  0 ___str_13                                                      02DF R
-  0 ___str_14                                                      0307 R
-  0 ___str_2                                                       0140 R
-  0 ___str_3                                                       015D R
-  0 ___str_4                                                       0186 R
-  0 ___str_5                                                       01AF R
-  0 ___str_6                                                       01D8 R
-  0 ___str_7                                                       0201 R
-  0 ___str_8                                                       0227 R
-  0 ___str_9                                                       0250 R
+  0 ___str_0                                                       0199 R
+  0 ___str_1                                                       01B9 R
+  0 ___str_10                                                      02F8 R
+  0 ___str_11                                                      0321 R
+  0 ___str_12                                                      0346 R
+  0 ___str_13                                                      036E R
+  0 ___str_14                                                      0396 R
+  0 ___str_2                                                       01CF R
+  0 ___str_3                                                       01EC R
+  0 ___str_4                                                       0215 R
+  0 ___str_5                                                       023E R
+  0 ___str_6                                                       0267 R
+  0 ___str_7                                                       0290 R
+  0 ___str_8                                                       02B6 R
+  0 ___str_9                                                       02DF R
+  9 _chardata                                                      0040 GR
+  1 _contador_musica                                               0042 GR
+    _cpct_akp_SFXInit                                              **** GX
+    _cpct_akp_SFXPlay                                              **** GX
+    _cpct_akp_musicInit                                            **** GX
+    _cpct_akp_musicPlay                                            **** GX
     _cpct_disableFirmware                                          **** GX
     _cpct_getScreenPtr                                             **** GX
     _cpct_isAnyKeyPressed_f                                        **** GX
     _cpct_memset                                                   **** GX
     _cpct_restoreState_mxor_u8                                     **** GX
-    _cpct_scanKeyboard_f                                           **** GX
+    _cpct_scanKeyboard_if                                          **** GX
     _cpct_setDrawCharM1                                            **** GX
+    _cpct_setInterruptHandler                                      **** GX
     _cpct_setPALColour                                             **** GX
     _cpct_setPalette                                               **** GX
     _cpct_setSeed_mxor                                             **** GX
     _cpct_setVideoMode                                             **** GX
-  1 _cursorConsola                                                 003D GR
+    _cpct_waitVSYNC                                                **** GX
+  1 _cursorConsola                                                 0040 GR
+    _efecto_pliegue                                                **** GX
   1 _entidad                                                       0000 GR
+  0 _intHandler                                                    003C GR
     _juego                                                         **** GX
-  0 _main                                                          0000 GR
+    _m_intro                                                       **** GX
+  A _m_sfx                                                         0340 GR
+  0 _main                                                          0067 GR
+  1 _musica_sonando                                                0043 GR
     _mydrawStringM1                                                **** GX
-  1 _nivel                                                         003C GR
-  0 _paletaM1                                                      0106 GR
+  1 _nivel                                                         003F GR
+  0 _paletaM1                                                      002A GR
     _pausaTecladoLibre                                             **** GX
-  1 _sig_nivel                                                     003E GR
-
+  0 _playFX                                                        0000 GR
+  0 _reproducirMusica                                              002E GR
+  0 _setInterruptAtVSYNCStart                                      0058 GR
+  1 _sig_nivel                                                     0041 GR
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size  31E   flags    0
-   1 _DATA                                      size   3F   flags    0
+   0 _CODE                                      size  3AD   flags    0
+   1 _DATA                                      size   44   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8
    4 _HOME                                      size    0   flags    0
@@ -57,4 +79,6 @@ Area Table
    6 _GSFINAL                                   size    0   flags    0
    7 _INITIALIZER                               size    0   flags    0
    8 _CABS                                      size    0   flags    8
+   9 _CABS0                                     size  300   flags    8
+   A _CABS1                                     size   8D   flags    8
 

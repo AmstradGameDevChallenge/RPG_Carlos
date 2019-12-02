@@ -1,0 +1,2246 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.6.8 #9946 (CYGWIN)
+                              4 ;--------------------------------------------------------
+                              5 	.module patronesTiles_3
+                              6 	.optsdcc -mz80
+                              7 	
+                              8 ;--------------------------------------------------------
+                              9 ; Public variables in this module
+                             10 ;--------------------------------------------------------
+                             11 	.globl _g_tileset3_199
+                             12 	.globl _g_tileset3_198
+                             13 	.globl _g_tileset3_197
+                             14 	.globl _g_tileset3_196
+                             15 	.globl _g_tileset3_195
+                             16 	.globl _g_tileset3_194
+                             17 	.globl _g_tileset3_193
+                             18 	.globl _g_tileset3_192
+                             19 	.globl _g_tileset3_191
+                             20 	.globl _g_tileset3_190
+                             21 	.globl _g_tileset3_189
+                             22 	.globl _g_tileset3_188
+                             23 	.globl _g_tileset3_187
+                             24 	.globl _g_tileset3_186
+                             25 	.globl _g_tileset3_185
+                             26 	.globl _g_tileset3_184
+                             27 	.globl _g_tileset3_183
+                             28 	.globl _g_tileset3_182
+                             29 	.globl _g_tileset3_181
+                             30 	.globl _g_tileset3_180
+                             31 	.globl _g_tileset3_179
+                             32 	.globl _g_tileset3_178
+                             33 	.globl _g_tileset3_177
+                             34 	.globl _g_tileset3_176
+                             35 	.globl _g_tileset3_175
+                             36 	.globl _g_tileset3_174
+                             37 	.globl _g_tileset3_173
+                             38 	.globl _g_tileset3_172
+                             39 	.globl _g_tileset3_171
+                             40 	.globl _g_tileset3_170
+                             41 	.globl _g_tileset3_169
+                             42 	.globl _g_tileset3_168
+                             43 	.globl _g_tileset3_167
+                             44 	.globl _g_tileset3_166
+                             45 	.globl _g_tileset3_165
+                             46 	.globl _g_tileset3_164
+                             47 	.globl _g_tileset3_163
+                             48 	.globl _g_tileset3_162
+                             49 	.globl _g_tileset3_161
+                             50 	.globl _g_tileset3_160
+                             51 	.globl _g_tileset3_159
+                             52 	.globl _g_tileset3_158
+                             53 	.globl _g_tileset3_157
+                             54 	.globl _g_tileset3_156
+                             55 	.globl _g_tileset3_155
+                             56 	.globl _g_tileset3_154
+                             57 	.globl _g_tileset3_153
+                             58 	.globl _g_tileset3_152
+                             59 	.globl _g_tileset3_151
+                             60 	.globl _g_tileset3_150
+                             61 	.globl _g_tileset3_149
+                             62 	.globl _g_tileset3_148
+                             63 	.globl _g_tileset3_147
+                             64 	.globl _g_tileset3_146
+                             65 	.globl _g_tileset3_145
+                             66 	.globl _g_tileset3_144
+                             67 	.globl _g_tileset3_143
+                             68 	.globl _g_tileset3_142
+                             69 	.globl _g_tileset3_141
+                             70 	.globl _g_tileset3_140
+                             71 	.globl _g_tileset3_139
+                             72 	.globl _g_tileset3_138
+                             73 	.globl _g_tileset3_137
+                             74 	.globl _g_tileset3_136
+                             75 	.globl _g_tileset3_135
+                             76 	.globl _g_tileset3_134
+                             77 	.globl _g_tileset3_133
+                             78 	.globl _g_tileset3_132
+                             79 	.globl _g_tileset3_131
+                             80 	.globl _g_tileset3_130
+                             81 	.globl _g_tileset3_129
+                             82 	.globl _g_tileset3_128
+                             83 	.globl _g_tileset3_127
+                             84 	.globl _g_tileset3_126
+                             85 	.globl _g_tileset3_125
+                             86 	.globl _g_tileset3_124
+                             87 	.globl _g_tileset3_123
+                             88 	.globl _g_tileset3_122
+                             89 	.globl _g_tileset3_121
+                             90 	.globl _g_tileset3_120
+                             91 	.globl _g_tileset3_119
+                             92 	.globl _g_tileset3_118
+                             93 	.globl _g_tileset3_117
+                             94 	.globl _g_tileset3_116
+                             95 	.globl _g_tileset3_115
+                             96 	.globl _g_tileset3_114
+                             97 	.globl _g_tileset3_113
+                             98 	.globl _g_tileset3_112
+                             99 	.globl _g_tileset3_111
+                            100 	.globl _g_tileset3_110
+                            101 	.globl _g_tileset3_109
+                            102 	.globl _g_tileset3_108
+                            103 	.globl _g_tileset3_107
+                            104 	.globl _g_tileset3_106
+                            105 	.globl _g_tileset3_105
+                            106 	.globl _g_tileset3_104
+                            107 	.globl _g_tileset3_103
+                            108 	.globl _g_tileset3_102
+                            109 	.globl _g_tileset3_101
+                            110 	.globl _g_tileset3_100
+                            111 	.globl _g_tileset3_099
+                            112 	.globl _g_tileset3_098
+                            113 	.globl _g_tileset3_097
+                            114 	.globl _g_tileset3_096
+                            115 	.globl _g_tileset3_095
+                            116 	.globl _g_tileset3_094
+                            117 	.globl _g_tileset3_093
+                            118 	.globl _g_tileset3_092
+                            119 	.globl _g_tileset3_091
+                            120 	.globl _g_tileset3_090
+                            121 	.globl _g_tileset3_089
+                            122 	.globl _g_tileset3_088
+                            123 	.globl _g_tileset3_087
+                            124 	.globl _g_tileset3_086
+                            125 	.globl _g_tileset3_085
+                            126 	.globl _g_tileset3_084
+                            127 	.globl _g_tileset3_083
+                            128 	.globl _g_tileset3_082
+                            129 	.globl _g_tileset3_081
+                            130 	.globl _g_tileset3_080
+                            131 	.globl _g_tileset3_079
+                            132 	.globl _g_tileset3_078
+                            133 	.globl _g_tileset3_077
+                            134 	.globl _g_tileset3_076
+                            135 	.globl _g_tileset3_075
+                            136 	.globl _g_tileset3_074
+                            137 	.globl _g_tileset3_073
+                            138 	.globl _g_tileset3_072
+                            139 	.globl _g_tileset3_071
+                            140 	.globl _g_tileset3_070
+                            141 	.globl _g_tileset3_069
+                            142 	.globl _g_tileset3_068
+                            143 	.globl _g_tileset3_067
+                            144 	.globl _g_tileset3_066
+                            145 	.globl _g_tileset3_065
+                            146 	.globl _g_tileset3_064
+                            147 	.globl _g_tileset3_063
+                            148 	.globl _g_tileset3_062
+                            149 	.globl _g_tileset3_061
+                            150 	.globl _g_tileset3_060
+                            151 	.globl _g_tileset3_059
+                            152 	.globl _g_tileset3_058
+                            153 	.globl _g_tileset3_057
+                            154 	.globl _g_tileset3_056
+                            155 	.globl _g_tileset3_055
+                            156 	.globl _g_tileset3_054
+                            157 	.globl _g_tileset3_053
+                            158 	.globl _g_tileset3_052
+                            159 	.globl _g_tileset3_051
+                            160 	.globl _g_tileset3_050
+                            161 	.globl _g_tileset3_049
+                            162 	.globl _g_tileset3_048
+                            163 	.globl _g_tileset3_047
+                            164 	.globl _g_tileset3_046
+                            165 	.globl _g_tileset3_045
+                            166 	.globl _g_tileset3_044
+                            167 	.globl _g_tileset3_043
+                            168 	.globl _g_tileset3_042
+                            169 	.globl _g_tileset3_041
+                            170 	.globl _g_tileset3_040
+                            171 	.globl _g_tileset3_039
+                            172 	.globl _g_tileset3_038
+                            173 	.globl _g_tileset3_037
+                            174 	.globl _g_tileset3_036
+                            175 	.globl _g_tileset3_035
+                            176 	.globl _g_tileset3_034
+                            177 	.globl _g_tileset3_033
+                            178 	.globl _g_tileset3_032
+                            179 	.globl _g_tileset3_031
+                            180 	.globl _g_tileset3_030
+                            181 	.globl _g_tileset3_029
+                            182 	.globl _g_tileset3_028
+                            183 	.globl _g_tileset3_027
+                            184 	.globl _g_tileset3_026
+                            185 	.globl _g_tileset3_025
+                            186 	.globl _g_tileset3_024
+                            187 	.globl _g_tileset3_023
+                            188 	.globl _g_tileset3_022
+                            189 	.globl _g_tileset3_021
+                            190 	.globl _g_tileset3_020
+                            191 	.globl _g_tileset3_019
+                            192 	.globl _g_tileset3_018
+                            193 	.globl _g_tileset3_017
+                            194 	.globl _g_tileset3_016
+                            195 	.globl _g_tileset3_015
+                            196 	.globl _g_tileset3_014
+                            197 	.globl _g_tileset3_013
+                            198 	.globl _g_tileset3_012
+                            199 	.globl _g_tileset3_011
+                            200 	.globl _g_tileset3_010
+                            201 	.globl _g_tileset3_009
+                            202 	.globl _g_tileset3_008
+                            203 	.globl _g_tileset3_007
+                            204 	.globl _g_tileset3_006
+                            205 	.globl _g_tileset3_005
+                            206 	.globl _g_tileset3_004
+                            207 	.globl _g_tileset3_003
+                            208 	.globl _g_tileset3_002
+                            209 	.globl _g_tileset3_001
+                            210 	.globl _g_tileset3_000
+                            211 	.globl _tileset3
+                            212 ;--------------------------------------------------------
+                            213 ; special function registers
+                            214 ;--------------------------------------------------------
+                            215 ;--------------------------------------------------------
+                            216 ; ram data
+                            217 ;--------------------------------------------------------
+                            218 	.area _DATA
+                            219 ;--------------------------------------------------------
+                            220 ; ram data
+                            221 ;--------------------------------------------------------
+                            222 	.area _INITIALIZED
+                            223 ;--------------------------------------------------------
+                            224 ; absolute external ram data
+                            225 ;--------------------------------------------------------
+                            226 	.area _DABS (ABS)
+                            227 ;--------------------------------------------------------
+                            228 ; global & static initialisations
+                            229 ;--------------------------------------------------------
+                            230 	.area _HOME
+                            231 	.area _GSINIT
+                            232 	.area _GSFINAL
+                            233 	.area _GSINIT
+                            234 ;--------------------------------------------------------
+                            235 ; Home
+                            236 ;--------------------------------------------------------
+                            237 	.area _HOME
+                            238 	.area _HOME
+                            239 ;--------------------------------------------------------
+                            240 ; code
+                            241 ;--------------------------------------------------------
+                            242 	.area _CODE
+                            243 	.area _CODE
+   0000                     244 _tileset3:
+   0000r90r01               245 	.dw _g_tileset3_000
+   0002r98r01               246 	.dw _g_tileset3_001
+   0004rA0r01               247 	.dw _g_tileset3_002
+   0006rA8r01               248 	.dw _g_tileset3_003
+   0008rB0r01               249 	.dw _g_tileset3_004
+   000ArB8r01               250 	.dw _g_tileset3_005
+   000CrC0r01               251 	.dw _g_tileset3_006
+   000ErC8r01               252 	.dw _g_tileset3_007
+   0010rD0r01               253 	.dw _g_tileset3_008
+   0012rD8r01               254 	.dw _g_tileset3_009
+   0014rE0r01               255 	.dw _g_tileset3_010
+   0016rE8r01               256 	.dw _g_tileset3_011
+   0018rF0r01               257 	.dw _g_tileset3_012
+   001ArF8r01               258 	.dw _g_tileset3_013
+   001Cr00r02               259 	.dw _g_tileset3_014
+   001Er08r02               260 	.dw _g_tileset3_015
+   0020r10r02               261 	.dw _g_tileset3_016
+   0022r18r02               262 	.dw _g_tileset3_017
+   0024r20r02               263 	.dw _g_tileset3_018
+   0026r28r02               264 	.dw _g_tileset3_019
+   0028r30r02               265 	.dw _g_tileset3_020
+   002Ar38r02               266 	.dw _g_tileset3_021
+   002Cr40r02               267 	.dw _g_tileset3_022
+   002Er48r02               268 	.dw _g_tileset3_023
+   0030r50r02               269 	.dw _g_tileset3_024
+   0032r58r02               270 	.dw _g_tileset3_025
+   0034r60r02               271 	.dw _g_tileset3_026
+   0036r68r02               272 	.dw _g_tileset3_027
+   0038r70r02               273 	.dw _g_tileset3_028
+   003Ar78r02               274 	.dw _g_tileset3_029
+   003Cr80r02               275 	.dw _g_tileset3_030
+   003Er88r02               276 	.dw _g_tileset3_031
+   0040r90r02               277 	.dw _g_tileset3_032
+   0042r98r02               278 	.dw _g_tileset3_033
+   0044rA0r02               279 	.dw _g_tileset3_034
+   0046rA8r02               280 	.dw _g_tileset3_035
+   0048rB0r02               281 	.dw _g_tileset3_036
+   004ArB8r02               282 	.dw _g_tileset3_037
+   004CrC0r02               283 	.dw _g_tileset3_038
+   004ErC8r02               284 	.dw _g_tileset3_039
+   0050rD0r02               285 	.dw _g_tileset3_040
+   0052rD8r02               286 	.dw _g_tileset3_041
+   0054rE0r02               287 	.dw _g_tileset3_042
+   0056rE8r02               288 	.dw _g_tileset3_043
+   0058rF0r02               289 	.dw _g_tileset3_044
+   005ArF8r02               290 	.dw _g_tileset3_045
+   005Cr00r03               291 	.dw _g_tileset3_046
+   005Er08r03               292 	.dw _g_tileset3_047
+   0060r10r03               293 	.dw _g_tileset3_048
+   0062r18r03               294 	.dw _g_tileset3_049
+   0064r20r03               295 	.dw _g_tileset3_050
+   0066r28r03               296 	.dw _g_tileset3_051
+   0068r30r03               297 	.dw _g_tileset3_052
+   006Ar38r03               298 	.dw _g_tileset3_053
+   006Cr40r03               299 	.dw _g_tileset3_054
+   006Er48r03               300 	.dw _g_tileset3_055
+   0070r50r03               301 	.dw _g_tileset3_056
+   0072r58r03               302 	.dw _g_tileset3_057
+   0074r60r03               303 	.dw _g_tileset3_058
+   0076r68r03               304 	.dw _g_tileset3_059
+   0078r70r03               305 	.dw _g_tileset3_060
+   007Ar78r03               306 	.dw _g_tileset3_061
+   007Cr80r03               307 	.dw _g_tileset3_062
+   007Er88r03               308 	.dw _g_tileset3_063
+   0080r90r03               309 	.dw _g_tileset3_064
+   0082r98r03               310 	.dw _g_tileset3_065
+   0084rA0r03               311 	.dw _g_tileset3_066
+   0086rA8r03               312 	.dw _g_tileset3_067
+   0088rB0r03               313 	.dw _g_tileset3_068
+   008ArB8r03               314 	.dw _g_tileset3_069
+   008CrC0r03               315 	.dw _g_tileset3_070
+   008ErC8r03               316 	.dw _g_tileset3_071
+   0090rD0r03               317 	.dw _g_tileset3_072
+   0092rD8r03               318 	.dw _g_tileset3_073
+   0094rE0r03               319 	.dw _g_tileset3_074
+   0096rE8r03               320 	.dw _g_tileset3_075
+   0098rF0r03               321 	.dw _g_tileset3_076
+   009ArF8r03               322 	.dw _g_tileset3_077
+   009Cr00r04               323 	.dw _g_tileset3_078
+   009Er08r04               324 	.dw _g_tileset3_079
+   00A0r10r04               325 	.dw _g_tileset3_080
+   00A2r18r04               326 	.dw _g_tileset3_081
+   00A4r20r04               327 	.dw _g_tileset3_082
+   00A6r28r04               328 	.dw _g_tileset3_083
+   00A8r30r04               329 	.dw _g_tileset3_084
+   00AAr38r04               330 	.dw _g_tileset3_085
+   00ACr40r04               331 	.dw _g_tileset3_086
+   00AEr48r04               332 	.dw _g_tileset3_087
+   00B0r50r04               333 	.dw _g_tileset3_088
+   00B2r58r04               334 	.dw _g_tileset3_089
+   00B4r60r04               335 	.dw _g_tileset3_090
+   00B6r68r04               336 	.dw _g_tileset3_091
+   00B8r70r04               337 	.dw _g_tileset3_092
+   00BAr78r04               338 	.dw _g_tileset3_093
+   00BCr80r04               339 	.dw _g_tileset3_094
+   00BEr88r04               340 	.dw _g_tileset3_095
+   00C0r90r04               341 	.dw _g_tileset3_096
+   00C2r98r04               342 	.dw _g_tileset3_097
+   00C4rA0r04               343 	.dw _g_tileset3_098
+   00C6rA8r04               344 	.dw _g_tileset3_099
+   00C8rB0r04               345 	.dw _g_tileset3_100
+   00CArB8r04               346 	.dw _g_tileset3_101
+   00CCrC0r04               347 	.dw _g_tileset3_102
+   00CErC8r04               348 	.dw _g_tileset3_103
+   00D0rD0r04               349 	.dw _g_tileset3_104
+   00D2rD8r04               350 	.dw _g_tileset3_105
+   00D4rE0r04               351 	.dw _g_tileset3_106
+   00D6rE8r04               352 	.dw _g_tileset3_107
+   00D8rF0r04               353 	.dw _g_tileset3_108
+   00DArF8r04               354 	.dw _g_tileset3_109
+   00DCr00r05               355 	.dw _g_tileset3_110
+   00DEr08r05               356 	.dw _g_tileset3_111
+   00E0r10r05               357 	.dw _g_tileset3_112
+   00E2r18r05               358 	.dw _g_tileset3_113
+   00E4r20r05               359 	.dw _g_tileset3_114
+   00E6r28r05               360 	.dw _g_tileset3_115
+   00E8r30r05               361 	.dw _g_tileset3_116
+   00EAr38r05               362 	.dw _g_tileset3_117
+   00ECr40r05               363 	.dw _g_tileset3_118
+   00EEr48r05               364 	.dw _g_tileset3_119
+   00F0r50r05               365 	.dw _g_tileset3_120
+   00F2r58r05               366 	.dw _g_tileset3_121
+   00F4r60r05               367 	.dw _g_tileset3_122
+   00F6r68r05               368 	.dw _g_tileset3_123
+   00F8r70r05               369 	.dw _g_tileset3_124
+   00FAr78r05               370 	.dw _g_tileset3_125
+   00FCr80r05               371 	.dw _g_tileset3_126
+   00FEr88r05               372 	.dw _g_tileset3_127
+   0100r90r05               373 	.dw _g_tileset3_128
+   0102r98r05               374 	.dw _g_tileset3_129
+   0104rA0r05               375 	.dw _g_tileset3_130
+   0106rA8r05               376 	.dw _g_tileset3_131
+   0108rB0r05               377 	.dw _g_tileset3_132
+   010ArB8r05               378 	.dw _g_tileset3_133
+   010CrC0r05               379 	.dw _g_tileset3_134
+   010ErC8r05               380 	.dw _g_tileset3_135
+   0110rD0r05               381 	.dw _g_tileset3_136
+   0112rD8r05               382 	.dw _g_tileset3_137
+   0114rE0r05               383 	.dw _g_tileset3_138
+   0116rE8r05               384 	.dw _g_tileset3_139
+   0118rF0r05               385 	.dw _g_tileset3_140
+   011ArF8r05               386 	.dw _g_tileset3_141
+   011Cr00r06               387 	.dw _g_tileset3_142
+   011Er08r06               388 	.dw _g_tileset3_143
+   0120r10r06               389 	.dw _g_tileset3_144
+   0122r18r06               390 	.dw _g_tileset3_145
+   0124r20r06               391 	.dw _g_tileset3_146
+   0126r28r06               392 	.dw _g_tileset3_147
+   0128r30r06               393 	.dw _g_tileset3_148
+   012Ar38r06               394 	.dw _g_tileset3_149
+   012Cr40r06               395 	.dw _g_tileset3_150
+   012Er48r06               396 	.dw _g_tileset3_151
+   0130r50r06               397 	.dw _g_tileset3_152
+   0132r58r06               398 	.dw _g_tileset3_153
+   0134r60r06               399 	.dw _g_tileset3_154
+   0136r68r06               400 	.dw _g_tileset3_155
+   0138r70r06               401 	.dw _g_tileset3_156
+   013Ar78r06               402 	.dw _g_tileset3_157
+   013Cr80r06               403 	.dw _g_tileset3_158
+   013Er88r06               404 	.dw _g_tileset3_159
+   0140r90r06               405 	.dw _g_tileset3_160
+   0142r98r06               406 	.dw _g_tileset3_161
+   0144rA0r06               407 	.dw _g_tileset3_162
+   0146rA8r06               408 	.dw _g_tileset3_163
+   0148rB0r06               409 	.dw _g_tileset3_164
+   014ArB8r06               410 	.dw _g_tileset3_165
+   014CrC0r06               411 	.dw _g_tileset3_166
+   014ErC8r06               412 	.dw _g_tileset3_167
+   0150rD0r06               413 	.dw _g_tileset3_168
+   0152rD8r06               414 	.dw _g_tileset3_169
+   0154rE0r06               415 	.dw _g_tileset3_170
+   0156rE8r06               416 	.dw _g_tileset3_171
+   0158rF0r06               417 	.dw _g_tileset3_172
+   015ArF8r06               418 	.dw _g_tileset3_173
+   015Cr00r07               419 	.dw _g_tileset3_174
+   015Er08r07               420 	.dw _g_tileset3_175
+   0160r10r07               421 	.dw _g_tileset3_176
+   0162r18r07               422 	.dw _g_tileset3_177
+   0164r20r07               423 	.dw _g_tileset3_178
+   0166r28r07               424 	.dw _g_tileset3_179
+   0168r30r07               425 	.dw _g_tileset3_180
+   016Ar38r07               426 	.dw _g_tileset3_181
+   016Cr40r07               427 	.dw _g_tileset3_182
+   016Er48r07               428 	.dw _g_tileset3_183
+   0170r50r07               429 	.dw _g_tileset3_184
+   0172r58r07               430 	.dw _g_tileset3_185
+   0174r60r07               431 	.dw _g_tileset3_186
+   0176r68r07               432 	.dw _g_tileset3_187
+   0178r70r07               433 	.dw _g_tileset3_188
+   017Ar78r07               434 	.dw _g_tileset3_189
+   017Cr80r07               435 	.dw _g_tileset3_190
+   017Er88r07               436 	.dw _g_tileset3_191
+   0180r90r07               437 	.dw _g_tileset3_192
+   0182r98r07               438 	.dw _g_tileset3_193
+   0184rA0r07               439 	.dw _g_tileset3_194
+   0186rA8r07               440 	.dw _g_tileset3_195
+   0188rB0r07               441 	.dw _g_tileset3_196
+   018ArB8r07               442 	.dw _g_tileset3_197
+   018CrC0r07               443 	.dw _g_tileset3_198
+   018ErC8r07               444 	.dw _g_tileset3_199
+   0190                     445 _g_tileset3_000:
+   0190 07                  446 	.db #0x07	; 7
+   0191 0F                  447 	.db #0x0f	; 15
+   0192 07                  448 	.db #0x07	; 7
+   0193 0F                  449 	.db #0x0f	; 15
+   0194 07                  450 	.db #0x07	; 7
+   0195 0F                  451 	.db #0x0f	; 15
+   0196 00                  452 	.db #0x00	; 0
+   0197 00                  453 	.db #0x00	; 0
+   0198                     454 _g_tileset3_001:
+   0198 07                  455 	.db #0x07	; 7
+   0199 0F                  456 	.db #0x0f	; 15
+   019A 07                  457 	.db #0x07	; 7
+   019B 0F                  458 	.db #0x0f	; 15
+   019C 07                  459 	.db #0x07	; 7
+   019D 0F                  460 	.db #0x0f	; 15
+   019E 00                  461 	.db #0x00	; 0
+   019F 00                  462 	.db #0x00	; 0
+   01A0                     463 _g_tileset3_002:
+   01A0 0F                  464 	.db #0x0f	; 15
+   01A1 0F                  465 	.db #0x0f	; 15
+   01A2 07                  466 	.db #0x07	; 7
+   01A3 0F                  467 	.db #0x0f	; 15
+   01A4 02                  468 	.db #0x02	; 2
+   01A5 04                  469 	.db #0x04	; 4
+   01A6 02                  470 	.db #0x02	; 2
+   01A7 04                  471 	.db #0x04	; 4
+   01A8                     472 _g_tileset3_003:
+   01A8 0F                  473 	.db #0x0f	; 15
+   01A9 0F                  474 	.db #0x0f	; 15
+   01AA 0F                  475 	.db #0x0f	; 15
+   01AB 0F                  476 	.db #0x0f	; 15
+   01AC 09                  477 	.db #0x09	; 9
+   01AD 02                  478 	.db #0x02	; 2
+   01AE 09                  479 	.db #0x09	; 9
+   01AF 02                  480 	.db #0x02	; 2
+   01B0                     481 _g_tileset3_004:
+   01B0 0F                  482 	.db #0x0f	; 15
+   01B1 0F                  483 	.db #0x0f	; 15
+   01B2 0F                  484 	.db #0x0f	; 15
+   01B3 0E                  485 	.db #0x0e	; 14
+   01B4 02                  486 	.db #0x02	; 2
+   01B5 04                  487 	.db #0x04	; 4
+   01B6 02                  488 	.db #0x02	; 2
+   01B7 04                  489 	.db #0x04	; 4
+   01B8                     490 _g_tileset3_005:
+   01B8 0A                  491 	.db #0x0a	; 10
+   01B9 0A                  492 	.db #0x0a	; 10
+   01BA 0A                  493 	.db #0x0a	; 10
+   01BB 0A                  494 	.db #0x0a	; 10
+   01BC 0F                  495 	.db #0x0f	; 15
+   01BD 0F                  496 	.db #0x0f	; 15
+   01BE 0A                  497 	.db #0x0a	; 10
+   01BF 0A                  498 	.db #0x0a	; 10
+   01C0                     499 _g_tileset3_006:
+   01C0 0A                  500 	.db #0x0a	; 10
+   01C1 0A                  501 	.db #0x0a	; 10
+   01C2 0A                  502 	.db #0x0a	; 10
+   01C3 0A                  503 	.db #0x0a	; 10
+   01C4 0F                  504 	.db #0x0f	; 15
+   01C5 0F                  505 	.db #0x0f	; 15
+   01C6 0A                  506 	.db #0x0a	; 10
+   01C7 0A                  507 	.db #0x0a	; 10
+   01C8                     508 _g_tileset3_007:
+   01C8 0A                  509 	.db #0x0a	; 10
+   01C9 0B                  510 	.db #0x0b	; 11
+   01CA 0A                  511 	.db #0x0a	; 10
+   01CB 0B                  512 	.db #0x0b	; 11
+   01CC 0F                  513 	.db #0x0f	; 15
+   01CD 0F                  514 	.db #0x0f	; 15
+   01CE 0A                  515 	.db #0x0a	; 10
+   01CF 0B                  516 	.db #0x0b	; 11
+   01D0                     517 _g_tileset3_008:
+   01D0 00                  518 	.db #0x00	; 0
+   01D1 00                  519 	.db #0x00	; 0
+   01D2 00                  520 	.db #0x00	; 0
+   01D3 00                  521 	.db #0x00	; 0
+   01D4 00                  522 	.db #0x00	; 0
+   01D5 00                  523 	.db #0x00	; 0
+   01D6 00                  524 	.db #0x00	; 0
+   01D7 00                  525 	.db #0x00	; 0
+   01D8                     526 _g_tileset3_009:
+   01D8 00                  527 	.db #0x00	; 0
+   01D9 00                  528 	.db #0x00	; 0
+   01DA 00                  529 	.db #0x00	; 0
+   01DB 00                  530 	.db #0x00	; 0
+   01DC 00                  531 	.db #0x00	; 0
+   01DD 00                  532 	.db #0x00	; 0
+   01DE 00                  533 	.db #0x00	; 0
+   01DF 00                  534 	.db #0x00	; 0
+   01E0                     535 _g_tileset3_010:
+   01E0 0F                  536 	.db #0x0f	; 15
+   01E1 07                  537 	.db #0x07	; 7
+   01E2 0F                  538 	.db #0x0f	; 15
+   01E3 07                  539 	.db #0x07	; 7
+   01E4 0F                  540 	.db #0x0f	; 15
+   01E5 07                  541 	.db #0x07	; 7
+   01E6 00                  542 	.db #0x00	; 0
+   01E7 00                  543 	.db #0x00	; 0
+   01E8                     544 _g_tileset3_011:
+   01E8 0F                  545 	.db #0x0f	; 15
+   01E9 07                  546 	.db #0x07	; 7
+   01EA 0F                  547 	.db #0x0f	; 15
+   01EB 07                  548 	.db #0x07	; 7
+   01EC 0F                  549 	.db #0x0f	; 15
+   01ED 07                  550 	.db #0x07	; 7
+   01EE 00                  551 	.db #0x00	; 0
+   01EF 00                  552 	.db #0x00	; 0
+   01F0                     553 _g_tileset3_012:
+   01F0 02                  554 	.db #0x02	; 2
+   01F1 04                  555 	.db #0x04	; 4
+   01F2 02                  556 	.db #0x02	; 2
+   01F3 04                  557 	.db #0x04	; 4
+   01F4 02                  558 	.db #0x02	; 2
+   01F5 04                  559 	.db #0x04	; 4
+   01F6 02                  560 	.db #0x02	; 2
+   01F7 04                  561 	.db #0x04	; 4
+   01F8                     562 _g_tileset3_013:
+   01F8 09                  563 	.db #0x09	; 9
+   01F9 02                  564 	.db #0x02	; 2
+   01FA 09                  565 	.db #0x09	; 9
+   01FB 02                  566 	.db #0x02	; 2
+   01FC 09                  567 	.db #0x09	; 9
+   01FD 02                  568 	.db #0x02	; 2
+   01FE 09                  569 	.db #0x09	; 9
+   01FF 02                  570 	.db #0x02	; 2
+   0200                     571 _g_tileset3_014:
+   0200 02                  572 	.db #0x02	; 2
+   0201 04                  573 	.db #0x04	; 4
+   0202 02                  574 	.db #0x02	; 2
+   0203 04                  575 	.db #0x04	; 4
+   0204 02                  576 	.db #0x02	; 2
+   0205 04                  577 	.db #0x04	; 4
+   0206 02                  578 	.db #0x02	; 2
+   0207 04                  579 	.db #0x04	; 4
+   0208                     580 _g_tileset3_015:
+   0208 0D                  581 	.db #0x0d	; 13
+   0209 05                  582 	.db #0x05	; 5
+   020A 0A                  583 	.db #0x0a	; 10
+   020B 0A                  584 	.db #0x0a	; 10
+   020C 0D                  585 	.db #0x0d	; 13
+   020D 05                  586 	.db #0x05	; 5
+   020E 0A                  587 	.db #0x0a	; 10
+   020F 0A                  588 	.db #0x0a	; 10
+   0210                     589 _g_tileset3_016:
+   0210 05                  590 	.db #0x05	; 5
+   0211 05                  591 	.db #0x05	; 5
+   0212 0A                  592 	.db #0x0a	; 10
+   0213 0A                  593 	.db #0x0a	; 10
+   0214 05                  594 	.db #0x05	; 5
+   0215 05                  595 	.db #0x05	; 5
+   0216 0A                  596 	.db #0x0a	; 10
+   0217 0A                  597 	.db #0x0a	; 10
+   0218                     598 _g_tileset3_017:
+   0218 05                  599 	.db #0x05	; 5
+   0219 05                  600 	.db #0x05	; 5
+   021A 0A                  601 	.db #0x0a	; 10
+   021B 0B                  602 	.db #0x0b	; 11
+   021C 05                  603 	.db #0x05	; 5
+   021D 05                  604 	.db #0x05	; 5
+   021E 0A                  605 	.db #0x0a	; 10
+   021F 0B                  606 	.db #0x0b	; 11
+   0220                     607 _g_tileset3_018:
+   0220 00                  608 	.db #0x00	; 0
+   0221 00                  609 	.db #0x00	; 0
+   0222 00                  610 	.db #0x00	; 0
+   0223 00                  611 	.db #0x00	; 0
+   0224 00                  612 	.db #0x00	; 0
+   0225 00                  613 	.db #0x00	; 0
+   0226 00                  614 	.db #0x00	; 0
+   0227 00                  615 	.db #0x00	; 0
+   0228                     616 _g_tileset3_019:
+   0228 00                  617 	.db #0x00	; 0
+   0229 00                  618 	.db #0x00	; 0
+   022A 00                  619 	.db #0x00	; 0
+   022B 00                  620 	.db #0x00	; 0
+   022C 00                  621 	.db #0x00	; 0
+   022D 00                  622 	.db #0x00	; 0
+   022E 00                  623 	.db #0x00	; 0
+   022F 00                  624 	.db #0x00	; 0
+   0230                     625 _g_tileset3_020:
+   0230 07                  626 	.db #0x07	; 7
+   0231 0F                  627 	.db #0x0f	; 15
+   0232 07                  628 	.db #0x07	; 7
+   0233 0F                  629 	.db #0x0f	; 15
+   0234 07                  630 	.db #0x07	; 7
+   0235 0F                  631 	.db #0x0f	; 15
+   0236 00                  632 	.db #0x00	; 0
+   0237 00                  633 	.db #0x00	; 0
+   0238                     634 _g_tileset3_021:
+   0238 07                  635 	.db #0x07	; 7
+   0239 0F                  636 	.db #0x0f	; 15
+   023A 07                  637 	.db #0x07	; 7
+   023B 0F                  638 	.db #0x0f	; 15
+   023C 07                  639 	.db #0x07	; 7
+   023D 0F                  640 	.db #0x0f	; 15
+   023E 00                  641 	.db #0x00	; 0
+   023F 00                  642 	.db #0x00	; 0
+   0240                     643 _g_tileset3_022:
+   0240 02                  644 	.db #0x02	; 2
+   0241 04                  645 	.db #0x04	; 4
+   0242 02                  646 	.db #0x02	; 2
+   0243 04                  647 	.db #0x04	; 4
+   0244 02                  648 	.db #0x02	; 2
+   0245 04                  649 	.db #0x04	; 4
+   0246 02                  650 	.db #0x02	; 2
+   0247 04                  651 	.db #0x04	; 4
+   0248                     652 _g_tileset3_023:
+   0248 09                  653 	.db #0x09	; 9
+   0249 02                  654 	.db #0x02	; 2
+   024A 09                  655 	.db #0x09	; 9
+   024B 02                  656 	.db #0x02	; 2
+   024C 09                  657 	.db #0x09	; 9
+   024D 02                  658 	.db #0x02	; 2
+   024E 09                  659 	.db #0x09	; 9
+   024F 02                  660 	.db #0x02	; 2
+   0250                     661 _g_tileset3_024:
+   0250 02                  662 	.db #0x02	; 2
+   0251 04                  663 	.db #0x04	; 4
+   0252 02                  664 	.db #0x02	; 2
+   0253 04                  665 	.db #0x04	; 4
+   0254 02                  666 	.db #0x02	; 2
+   0255 04                  667 	.db #0x04	; 4
+   0256 02                  668 	.db #0x02	; 2
+   0257 04                  669 	.db #0x04	; 4
+   0258                     670 _g_tileset3_025:
+   0258 08                  671 	.db #0x08	; 8
+   0259 08                  672 	.db #0x08	; 8
+   025A 09                  673 	.db #0x09	; 9
+   025B 04                  674 	.db #0x04	; 4
+   025C 0A                  675 	.db #0x0a	; 10
+   025D 02                  676 	.db #0x02	; 2
+   025E 0D                  677 	.db #0x0d	; 13
+   025F 0D                  678 	.db #0x0d	; 13
+   0260                     679 _g_tileset3_026:
+   0260 01                  680 	.db #0x01	; 1
+   0261 08                  681 	.db #0x08	; 8
+   0262 02                  682 	.db #0x02	; 2
+   0263 04                  683 	.db #0x04	; 4
+   0264 06                  684 	.db #0x06	; 6
+   0265 06                  685 	.db #0x06	; 6
+   0266 09                  686 	.db #0x09	; 9
+   0267 09                  687 	.db #0x09	; 9
+   0268                     688 _g_tileset3_027:
+   0268 01                  689 	.db #0x01	; 1
+   0269 01                  690 	.db #0x01	; 1
+   026A 02                  691 	.db #0x02	; 2
+   026B 09                  692 	.db #0x09	; 9
+   026C 04                  693 	.db #0x04	; 4
+   026D 05                  694 	.db #0x05	; 5
+   026E 0B                  695 	.db #0x0b	; 11
+   026F 0B                  696 	.db #0x0b	; 11
+   0270                     697 _g_tileset3_028:
+   0270 00                  698 	.db #0x00	; 0
+   0271 00                  699 	.db #0x00	; 0
+   0272 00                  700 	.db #0x00	; 0
+   0273 00                  701 	.db #0x00	; 0
+   0274 00                  702 	.db #0x00	; 0
+   0275 00                  703 	.db #0x00	; 0
+   0276 00                  704 	.db #0x00	; 0
+   0277 00                  705 	.db #0x00	; 0
+   0278                     706 _g_tileset3_029:
+   0278 00                  707 	.db #0x00	; 0
+   0279 00                  708 	.db #0x00	; 0
+   027A 00                  709 	.db #0x00	; 0
+   027B 00                  710 	.db #0x00	; 0
+   027C 00                  711 	.db #0x00	; 0
+   027D 00                  712 	.db #0x00	; 0
+   027E 00                  713 	.db #0x00	; 0
+   027F 00                  714 	.db #0x00	; 0
+   0280                     715 _g_tileset3_030:
+   0280 0F                  716 	.db #0x0f	; 15
+   0281 07                  717 	.db #0x07	; 7
+   0282 0F                  718 	.db #0x0f	; 15
+   0283 07                  719 	.db #0x07	; 7
+   0284 0F                  720 	.db #0x0f	; 15
+   0285 07                  721 	.db #0x07	; 7
+   0286 00                  722 	.db #0x00	; 0
+   0287 00                  723 	.db #0x00	; 0
+   0288                     724 _g_tileset3_031:
+   0288 0F                  725 	.db #0x0f	; 15
+   0289 07                  726 	.db #0x07	; 7
+   028A 0F                  727 	.db #0x0f	; 15
+   028B 07                  728 	.db #0x07	; 7
+   028C 0F                  729 	.db #0x0f	; 15
+   028D 07                  730 	.db #0x07	; 7
+   028E 00                  731 	.db #0x00	; 0
+   028F 00                  732 	.db #0x00	; 0
+   0290                     733 _g_tileset3_032:
+   0290 02                  734 	.db #0x02	; 2
+   0291 04                  735 	.db #0x04	; 4
+   0292 02                  736 	.db #0x02	; 2
+   0293 04                  737 	.db #0x04	; 4
+   0294 07                  738 	.db #0x07	; 7
+   0295 0F                  739 	.db #0x0f	; 15
+   0296 0F                  740 	.db #0x0f	; 15
+   0297 0F                  741 	.db #0x0f	; 15
+   0298                     742 _g_tileset3_033:
+   0298 09                  743 	.db #0x09	; 9
+   0299 02                  744 	.db #0x02	; 2
+   029A 09                  745 	.db #0x09	; 9
+   029B 02                  746 	.db #0x02	; 2
+   029C 0F                  747 	.db #0x0f	; 15
+   029D 0F                  748 	.db #0x0f	; 15
+   029E 0F                  749 	.db #0x0f	; 15
+   029F 0F                  750 	.db #0x0f	; 15
+   02A0                     751 _g_tileset3_034:
+   02A0 02                  752 	.db #0x02	; 2
+   02A1 04                  753 	.db #0x04	; 4
+   02A2 02                  754 	.db #0x02	; 2
+   02A3 04                  755 	.db #0x04	; 4
+   02A4 0F                  756 	.db #0x0f	; 15
+   02A5 0E                  757 	.db #0x0e	; 14
+   02A6 0F                  758 	.db #0x0f	; 15
+   02A7 0F                  759 	.db #0x0f	; 15
+   02A8                     760 _g_tileset3_035:
+   02A8 0D                  761 	.db #0x0d	; 13
+   02A9 0D                  762 	.db #0x0d	; 13
+   02AA 0A                  763 	.db #0x0a	; 10
+   02AB 02                  764 	.db #0x02	; 2
+   02AC 09                  765 	.db #0x09	; 9
+   02AD 04                  766 	.db #0x04	; 4
+   02AE 08                  767 	.db #0x08	; 8
+   02AF 08                  768 	.db #0x08	; 8
+   02B0                     769 _g_tileset3_036:
+   02B0 09                  770 	.db #0x09	; 9
+   02B1 09                  771 	.db #0x09	; 9
+   02B2 06                  772 	.db #0x06	; 6
+   02B3 06                  773 	.db #0x06	; 6
+   02B4 02                  774 	.db #0x02	; 2
+   02B5 04                  775 	.db #0x04	; 4
+   02B6 01                  776 	.db #0x01	; 1
+   02B7 08                  777 	.db #0x08	; 8
+   02B8                     778 _g_tileset3_037:
+   02B8 0B                  779 	.db #0x0b	; 11
+   02B9 0B                  780 	.db #0x0b	; 11
+   02BA 04                  781 	.db #0x04	; 4
+   02BB 05                  782 	.db #0x05	; 5
+   02BC 02                  783 	.db #0x02	; 2
+   02BD 09                  784 	.db #0x09	; 9
+   02BE 01                  785 	.db #0x01	; 1
+   02BF 01                  786 	.db #0x01	; 1
+   02C0                     787 _g_tileset3_038:
+   02C0 00                  788 	.db #0x00	; 0
+   02C1 00                  789 	.db #0x00	; 0
+   02C2 00                  790 	.db #0x00	; 0
+   02C3 00                  791 	.db #0x00	; 0
+   02C4 00                  792 	.db #0x00	; 0
+   02C5 00                  793 	.db #0x00	; 0
+   02C6 00                  794 	.db #0x00	; 0
+   02C7 00                  795 	.db #0x00	; 0
+   02C8                     796 _g_tileset3_039:
+   02C8 00                  797 	.db #0x00	; 0
+   02C9 00                  798 	.db #0x00	; 0
+   02CA 00                  799 	.db #0x00	; 0
+   02CB 00                  800 	.db #0x00	; 0
+   02CC 00                  801 	.db #0x00	; 0
+   02CD 00                  802 	.db #0x00	; 0
+   02CE 00                  803 	.db #0x00	; 0
+   02CF 00                  804 	.db #0x00	; 0
+   02D0                     805 _g_tileset3_040:
+   02D0 00                  806 	.db #0x00	; 0
+   02D1 01                  807 	.db #0x01	; 1
+   02D2 00                  808 	.db #0x00	; 0
+   02D3 02                  809 	.db #0x02	; 2
+   02D4 00                  810 	.db #0x00	; 0
+   02D5 04                  811 	.db #0x04	; 4
+   02D6 00                  812 	.db #0x00	; 0
+   02D7 08                  813 	.db #0x08	; 8
+   02D8                     814 _g_tileset3_041:
+   02D8 08                  815 	.db #0x08	; 8
+   02D9 00                  816 	.db #0x00	; 0
+   02DA 04                  817 	.db #0x04	; 4
+   02DB 00                  818 	.db #0x00	; 0
+   02DC 02                  819 	.db #0x02	; 2
+   02DD 00                  820 	.db #0x00	; 0
+   02DE 01                  821 	.db #0x01	; 1
+   02DF 00                  822 	.db #0x00	; 0
+   02E0                     823 _g_tileset3_042:
+   02E0 00                  824 	.db #0x00	; 0
+   02E1 00                  825 	.db #0x00	; 0
+   02E2 00                  826 	.db #0x00	; 0
+   02E3 00                  827 	.db #0x00	; 0
+   02E4 00                  828 	.db #0x00	; 0
+   02E5 03                  829 	.db #0x03	; 3
+   02E6 00                  830 	.db #0x00	; 0
+   02E7 04                  831 	.db #0x04	; 4
+   02E8                     832 _g_tileset3_043:
+   02E8 00                  833 	.db #0x00	; 0
+   02E9 00                  834 	.db #0x00	; 0
+   02EA 00                  835 	.db #0x00	; 0
+   02EB 00                  836 	.db #0x00	; 0
+   02EC 0C                  837 	.db #0x0c	; 12
+   02ED 00                  838 	.db #0x00	; 0
+   02EE 02                  839 	.db #0x02	; 2
+   02EF 00                  840 	.db #0x00	; 0
+   02F0                     841 _g_tileset3_044:
+   02F0 00                  842 	.db #0x00	; 0
+   02F1 00                  843 	.db #0x00	; 0
+   02F2 00                  844 	.db #0x00	; 0
+   02F3 00                  845 	.db #0x00	; 0
+   02F4 00                  846 	.db #0x00	; 0
+   02F5 00                  847 	.db #0x00	; 0
+   02F6 07                  848 	.db #0x07	; 7
+   02F7 0E                  849 	.db #0x0e	; 14
+   02F8                     850 _g_tileset3_045:
+   02F8 0A                  851 	.db #0x0a	; 10
+   02F9 0A                  852 	.db #0x0a	; 10
+   02FA 0D                  853 	.db #0x0d	; 13
+   02FB 05                  854 	.db #0x05	; 5
+   02FC 0A                  855 	.db #0x0a	; 10
+   02FD 0A                  856 	.db #0x0a	; 10
+   02FE 0D                  857 	.db #0x0d	; 13
+   02FF 05                  858 	.db #0x05	; 5
+   0300                     859 _g_tileset3_046:
+   0300 0A                  860 	.db #0x0a	; 10
+   0301 0A                  861 	.db #0x0a	; 10
+   0302 05                  862 	.db #0x05	; 5
+   0303 05                  863 	.db #0x05	; 5
+   0304 0A                  864 	.db #0x0a	; 10
+   0305 0A                  865 	.db #0x0a	; 10
+   0306 05                  866 	.db #0x05	; 5
+   0307 05                  867 	.db #0x05	; 5
+   0308                     868 _g_tileset3_047:
+   0308 0A                  869 	.db #0x0a	; 10
+   0309 0B                  870 	.db #0x0b	; 11
+   030A 05                  871 	.db #0x05	; 5
+   030B 05                  872 	.db #0x05	; 5
+   030C 0A                  873 	.db #0x0a	; 10
+   030D 0B                  874 	.db #0x0b	; 11
+   030E 05                  875 	.db #0x05	; 5
+   030F 05                  876 	.db #0x05	; 5
+   0310                     877 _g_tileset3_048:
+   0310 00                  878 	.db #0x00	; 0
+   0311 00                  879 	.db #0x00	; 0
+   0312 00                  880 	.db #0x00	; 0
+   0313 00                  881 	.db #0x00	; 0
+   0314 00                  882 	.db #0x00	; 0
+   0315 00                  883 	.db #0x00	; 0
+   0316 00                  884 	.db #0x00	; 0
+   0317 00                  885 	.db #0x00	; 0
+   0318                     886 _g_tileset3_049:
+   0318 00                  887 	.db #0x00	; 0
+   0319 00                  888 	.db #0x00	; 0
+   031A 00                  889 	.db #0x00	; 0
+   031B 00                  890 	.db #0x00	; 0
+   031C 00                  891 	.db #0x00	; 0
+   031D 00                  892 	.db #0x00	; 0
+   031E 00                  893 	.db #0x00	; 0
+   031F 00                  894 	.db #0x00	; 0
+   0320                     895 _g_tileset3_050:
+   0320 01                  896 	.db #0x01	; 1
+   0321 00                  897 	.db #0x00	; 0
+   0322 02                  898 	.db #0x02	; 2
+   0323 00                  899 	.db #0x00	; 0
+   0324 04                  900 	.db #0x04	; 4
+   0325 00                  901 	.db #0x00	; 0
+   0326 08                  902 	.db #0x08	; 8
+   0327 00                  903 	.db #0x00	; 0
+   0328                     904 _g_tileset3_051:
+   0328 00                  905 	.db #0x00	; 0
+   0329 08                  906 	.db #0x08	; 8
+   032A 00                  907 	.db #0x00	; 0
+   032B 04                  908 	.db #0x04	; 4
+   032C 00                  909 	.db #0x00	; 0
+   032D 02                  910 	.db #0x02	; 2
+   032E 00                  911 	.db #0x00	; 0
+   032F 01                  912 	.db #0x01	; 1
+   0330                     913 _g_tileset3_052:
+   0330 00                  914 	.db #0x00	; 0
+   0331 07                  915 	.db #0x07	; 7
+   0332 00                  916 	.db #0x00	; 0
+   0333 04                  917 	.db #0x04	; 4
+   0334 00                  918 	.db #0x00	; 0
+   0335 02                  919 	.db #0x02	; 2
+   0336 00                  920 	.db #0x00	; 0
+   0337 02                  921 	.db #0x02	; 2
+   0338                     922 _g_tileset3_053:
+   0338 0E                  923 	.db #0x0e	; 14
+   0339 00                  924 	.db #0x00	; 0
+   033A 02                  925 	.db #0x02	; 2
+   033B 00                  926 	.db #0x00	; 0
+   033C 04                  927 	.db #0x04	; 4
+   033D 00                  928 	.db #0x00	; 0
+   033E 04                  929 	.db #0x04	; 4
+   033F 00                  930 	.db #0x00	; 0
+   0340                     931 _g_tileset3_054:
+   0340 08                  932 	.db #0x08	; 8
+   0341 01                  933 	.db #0x01	; 1
+   0342 0F                  934 	.db #0x0f	; 15
+   0343 0F                  935 	.db #0x0f	; 15
+   0344 07                  936 	.db #0x07	; 7
+   0345 0E                  937 	.db #0x0e	; 14
+   0346 03                  938 	.db #0x03	; 3
+   0347 0C                  939 	.db #0x0c	; 12
+   0348                     940 _g_tileset3_055:
+   0348 0A                  941 	.db #0x0a	; 10
+   0349 0A                  942 	.db #0x0a	; 10
+   034A 0F                  943 	.db #0x0f	; 15
+   034B 0F                  944 	.db #0x0f	; 15
+   034C 0D                  945 	.db #0x0d	; 13
+   034D 05                  946 	.db #0x05	; 5
+   034E 0D                  947 	.db #0x0d	; 13
+   034F 05                  948 	.db #0x05	; 5
+   0350                     949 _g_tileset3_056:
+   0350 0A                  950 	.db #0x0a	; 10
+   0351 0A                  951 	.db #0x0a	; 10
+   0352 0F                  952 	.db #0x0f	; 15
+   0353 0F                  953 	.db #0x0f	; 15
+   0354 05                  954 	.db #0x05	; 5
+   0355 05                  955 	.db #0x05	; 5
+   0356 05                  956 	.db #0x05	; 5
+   0357 05                  957 	.db #0x05	; 5
+   0358                     958 _g_tileset3_057:
+   0358 0A                  959 	.db #0x0a	; 10
+   0359 0B                  960 	.db #0x0b	; 11
+   035A 0F                  961 	.db #0x0f	; 15
+   035B 0F                  962 	.db #0x0f	; 15
+   035C 05                  963 	.db #0x05	; 5
+   035D 05                  964 	.db #0x05	; 5
+   035E 05                  965 	.db #0x05	; 5
+   035F 05                  966 	.db #0x05	; 5
+   0360                     967 _g_tileset3_058:
+   0360 00                  968 	.db #0x00	; 0
+   0361 00                  969 	.db #0x00	; 0
+   0362 00                  970 	.db #0x00	; 0
+   0363 00                  971 	.db #0x00	; 0
+   0364 00                  972 	.db #0x00	; 0
+   0365 00                  973 	.db #0x00	; 0
+   0366 00                  974 	.db #0x00	; 0
+   0367 00                  975 	.db #0x00	; 0
+   0368                     976 _g_tileset3_059:
+   0368 00                  977 	.db #0x00	; 0
+   0369 00                  978 	.db #0x00	; 0
+   036A 00                  979 	.db #0x00	; 0
+   036B 00                  980 	.db #0x00	; 0
+   036C 00                  981 	.db #0x00	; 0
+   036D 00                  982 	.db #0x00	; 0
+   036E 00                  983 	.db #0x00	; 0
+   036F 00                  984 	.db #0x00	; 0
+   0370                     985 _g_tileset3_060:
+   0370 00                  986 	.db #0x00	; 0
+   0371 00                  987 	.db #0x00	; 0
+   0372 00                  988 	.db #0x00	; 0
+   0373 00                  989 	.db #0x00	; 0
+   0374 00                  990 	.db #0x00	; 0
+   0375 00                  991 	.db #0x00	; 0
+   0376 00                  992 	.db #0x00	; 0
+   0377 00                  993 	.db #0x00	; 0
+   0378                     994 _g_tileset3_061:
+   0378 00                  995 	.db #0x00	; 0
+   0379 00                  996 	.db #0x00	; 0
+   037A 00                  997 	.db #0x00	; 0
+   037B 00                  998 	.db #0x00	; 0
+   037C 00                  999 	.db #0x00	; 0
+   037D 00                 1000 	.db #0x00	; 0
+   037E 00                 1001 	.db #0x00	; 0
+   037F 00                 1002 	.db #0x00	; 0
+   0380                    1003 _g_tileset3_062:
+   0380 00                 1004 	.db #0x00	; 0
+   0381 06                 1005 	.db #0x06	; 6
+   0382 00                 1006 	.db #0x00	; 0
+   0383 0C                 1007 	.db #0x0c	; 12
+   0384 00                 1008 	.db #0x00	; 0
+   0385 0C                 1009 	.db #0x0c	; 12
+   0386 01                 1010 	.db #0x01	; 1
+   0387 0A                 1011 	.db #0x0a	; 10
+   0388                    1012 _g_tileset3_063:
+   0388 06                 1013 	.db #0x06	; 6
+   0389 00                 1014 	.db #0x00	; 0
+   038A 03                 1015 	.db #0x03	; 3
+   038B 00                 1016 	.db #0x00	; 0
+   038C 01                 1017 	.db #0x01	; 1
+   038D 00                 1018 	.db #0x00	; 0
+   038E 0B                 1019 	.db #0x0b	; 11
+   038F 08                 1020 	.db #0x08	; 8
+   0390                    1021 _g_tileset3_064:
+   0390 00                 1022 	.db #0x00	; 0
+   0391 06                 1023 	.db #0x06	; 6
+   0392 01                 1024 	.db #0x01	; 1
+   0393 0D                 1025 	.db #0x0d	; 13
+   0394 06                 1026 	.db #0x06	; 6
+   0395 01                 1027 	.db #0x01	; 1
+   0396 04                 1028 	.db #0x04	; 4
+   0397 01                 1029 	.db #0x01	; 1
+   0398                    1030 _g_tileset3_065:
+   0398 03                 1031 	.db #0x03	; 3
+   0399 0C                 1032 	.db #0x0c	; 12
+   039A 06                 1033 	.db #0x06	; 6
+   039B 06                 1034 	.db #0x06	; 6
+   039C 0C                 1035 	.db #0x0c	; 12
+   039D 03                 1036 	.db #0x03	; 3
+   039E 08                 1037 	.db #0x08	; 8
+   039F 01                 1038 	.db #0x01	; 1
+   03A0                    1039 _g_tileset3_066:
+   03A0 06                 1040 	.db #0x06	; 6
+   03A1 00                 1041 	.db #0x00	; 0
+   03A2 0F                 1042 	.db #0x0f	; 15
+   03A3 0C                 1043 	.db #0x0c	; 12
+   03A4 08                 1044 	.db #0x08	; 8
+   03A5 06                 1045 	.db #0x06	; 6
+   03A6 08                 1046 	.db #0x08	; 8
+   03A7 03                 1047 	.db #0x03	; 3
+   03A8                    1048 _g_tileset3_067:
+   03A8 00                 1049 	.db #0x00	; 0
+   03A9 00                 1050 	.db #0x00	; 0
+   03AA 00                 1051 	.db #0x00	; 0
+   03AB 00                 1052 	.db #0x00	; 0
+   03AC 00                 1053 	.db #0x00	; 0
+   03AD 00                 1054 	.db #0x00	; 0
+   03AE 00                 1055 	.db #0x00	; 0
+   03AF 00                 1056 	.db #0x00	; 0
+   03B0                    1057 _g_tileset3_068:
+   03B0 00                 1058 	.db #0x00	; 0
+   03B1 00                 1059 	.db #0x00	; 0
+   03B2 00                 1060 	.db #0x00	; 0
+   03B3 00                 1061 	.db #0x00	; 0
+   03B4 00                 1062 	.db #0x00	; 0
+   03B5 00                 1063 	.db #0x00	; 0
+   03B6 00                 1064 	.db #0x00	; 0
+   03B7 00                 1065 	.db #0x00	; 0
+   03B8                    1066 _g_tileset3_069:
+   03B8 00                 1067 	.db #0x00	; 0
+   03B9 00                 1068 	.db #0x00	; 0
+   03BA 00                 1069 	.db #0x00	; 0
+   03BB 00                 1070 	.db #0x00	; 0
+   03BC 00                 1071 	.db #0x00	; 0
+   03BD 00                 1072 	.db #0x00	; 0
+   03BE 00                 1073 	.db #0x00	; 0
+   03BF 00                 1074 	.db #0x00	; 0
+   03C0                    1075 _g_tileset3_070:
+   03C0 00                 1076 	.db #0x00	; 0
+   03C1 00                 1077 	.db #0x00	; 0
+   03C2 00                 1078 	.db #0x00	; 0
+   03C3 00                 1079 	.db #0x00	; 0
+   03C4 00                 1080 	.db #0x00	; 0
+   03C5 0F                 1081 	.db #0x0f	; 15
+   03C6 03                 1082 	.db #0x03	; 3
+   03C7 0F                 1083 	.db #0x0f	; 15
+   03C8                    1084 _g_tileset3_071:
+   03C8 00                 1085 	.db #0x00	; 0
+   03C9 00                 1086 	.db #0x00	; 0
+   03CA 00                 1087 	.db #0x00	; 0
+   03CB 00                 1088 	.db #0x00	; 0
+   03CC 0F                 1089 	.db #0x0f	; 15
+   03CD 0F                 1090 	.db #0x0f	; 15
+   03CE 0F                 1091 	.db #0x0f	; 15
+   03CF 0F                 1092 	.db #0x0f	; 15
+   03D0                    1093 _g_tileset3_072:
+   03D0 01                 1094 	.db #0x01	; 1
+   03D1 05                 1095 	.db #0x05	; 5
+   03D2 01                 1096 	.db #0x01	; 1
+   03D3 0A                 1097 	.db #0x0a	; 10
+   03D4 01                 1098 	.db #0x01	; 1
+   03D5 05                 1099 	.db #0x05	; 5
+   03D6 01                 1100 	.db #0x01	; 1
+   03D7 0A                 1101 	.db #0x0a	; 10
+   03D8                    1102 _g_tileset3_073:
+   03D8 05                 1103 	.db #0x05	; 5
+   03D9 08                 1104 	.db #0x08	; 8
+   03DA 0A                 1105 	.db #0x0a	; 10
+   03DB 08                 1106 	.db #0x08	; 8
+   03DC 05                 1107 	.db #0x05	; 5
+   03DD 08                 1108 	.db #0x08	; 8
+   03DE 0A                 1109 	.db #0x0a	; 10
+   03DF 08                 1110 	.db #0x08	; 8
+   03E0                    1111 _g_tileset3_074:
+   03E0 0C                 1112 	.db #0x0c	; 12
+   03E1 01                 1113 	.db #0x01	; 1
+   03E2 08                 1114 	.db #0x08	; 8
+   03E3 03                 1115 	.db #0x03	; 3
+   03E4 0C                 1116 	.db #0x0c	; 12
+   03E5 0E                 1117 	.db #0x0e	; 14
+   03E6 07                 1118 	.db #0x07	; 7
+   03E7 00                 1119 	.db #0x00	; 0
+   03E8                    1120 _g_tileset3_075:
+   03E8 08                 1121 	.db #0x08	; 8
+   03E9 01                 1122 	.db #0x01	; 1
+   03EA 0C                 1123 	.db #0x0c	; 12
+   03EB 03                 1124 	.db #0x03	; 3
+   03EC 04                 1125 	.db #0x04	; 4
+   03ED 02                 1126 	.db #0x02	; 2
+   03EE 07                 1127 	.db #0x07	; 7
+   03EF 0E                 1128 	.db #0x0e	; 14
+   03F0                    1129 _g_tileset3_076:
+   03F0 08                 1130 	.db #0x08	; 8
+   03F1 01                 1131 	.db #0x01	; 1
+   03F2 0C                 1132 	.db #0x0c	; 12
+   03F3 01                 1133 	.db #0x01	; 1
+   03F4 07                 1134 	.db #0x07	; 7
+   03F5 03                 1135 	.db #0x03	; 3
+   03F6 01                 1136 	.db #0x01	; 1
+   03F7 0E                 1137 	.db #0x0e	; 14
+   03F8                    1138 _g_tileset3_077:
+   03F8 00                 1139 	.db #0x00	; 0
+   03F9 00                 1140 	.db #0x00	; 0
+   03FA 00                 1141 	.db #0x00	; 0
+   03FB 00                 1142 	.db #0x00	; 0
+   03FC 00                 1143 	.db #0x00	; 0
+   03FD 00                 1144 	.db #0x00	; 0
+   03FE 00                 1145 	.db #0x00	; 0
+   03FF 00                 1146 	.db #0x00	; 0
+   0400                    1147 _g_tileset3_078:
+   0400 00                 1148 	.db #0x00	; 0
+   0401 00                 1149 	.db #0x00	; 0
+   0402 00                 1150 	.db #0x00	; 0
+   0403 00                 1151 	.db #0x00	; 0
+   0404 00                 1152 	.db #0x00	; 0
+   0405 00                 1153 	.db #0x00	; 0
+   0406 00                 1154 	.db #0x00	; 0
+   0407 00                 1155 	.db #0x00	; 0
+   0408                    1156 _g_tileset3_079:
+   0408 00                 1157 	.db #0x00	; 0
+   0409 00                 1158 	.db #0x00	; 0
+   040A 00                 1159 	.db #0x00	; 0
+   040B 00                 1160 	.db #0x00	; 0
+   040C 00                 1161 	.db #0x00	; 0
+   040D 00                 1162 	.db #0x00	; 0
+   040E 00                 1163 	.db #0x00	; 0
+   040F 00                 1164 	.db #0x00	; 0
+   0410                    1165 _g_tileset3_080:
+   0410 08                 1166 	.db #0x08	; 8
+   0411 00                 1167 	.db #0x00	; 0
+   0412 00                 1168 	.db #0x00	; 0
+   0413 00                 1169 	.db #0x00	; 0
+   0414 08                 1170 	.db #0x08	; 8
+   0415 00                 1171 	.db #0x00	; 0
+   0416 0D                 1172 	.db #0x0d	; 13
+   0417 0D                 1173 	.db #0x0d	; 13
+   0418                    1174 _g_tileset3_081:
+   0418 08                 1175 	.db #0x08	; 8
+   0419 00                 1176 	.db #0x00	; 0
+   041A 00                 1177 	.db #0x00	; 0
+   041B 00                 1178 	.db #0x00	; 0
+   041C 08                 1179 	.db #0x08	; 8
+   041D 00                 1180 	.db #0x00	; 0
+   041E 0D                 1181 	.db #0x0d	; 13
+   041F 0D                 1182 	.db #0x0d	; 13
+   0420                    1183 _g_tileset3_082:
+   0420 01                 1184 	.db #0x01	; 1
+   0421 0D                 1185 	.db #0x0d	; 13
+   0422 00                 1186 	.db #0x00	; 0
+   0423 0A                 1187 	.db #0x0a	; 10
+   0424 00                 1188 	.db #0x00	; 0
+   0425 0C                 1189 	.db #0x0c	; 12
+   0426 00                 1190 	.db #0x00	; 0
+   0427 04                 1191 	.db #0x04	; 4
+   0428                    1192 _g_tileset3_083:
+   0428 05                 1193 	.db #0x05	; 5
+   0429 08                 1194 	.db #0x08	; 8
+   042A 0B                 1195 	.db #0x0b	; 11
+   042B 00                 1196 	.db #0x00	; 0
+   042C 01                 1197 	.db #0x01	; 1
+   042D 00                 1198 	.db #0x00	; 0
+   042E 02                 1199 	.db #0x02	; 2
+   042F 00                 1200 	.db #0x00	; 0
+   0430                    1201 _g_tileset3_084:
+   0430 07                 1202 	.db #0x07	; 7
+   0431 0C                 1203 	.db #0x0c	; 12
+   0432 04                 1204 	.db #0x04	; 4
+   0433 06                 1205 	.db #0x06	; 6
+   0434 08                 1206 	.db #0x08	; 8
+   0435 03                 1207 	.db #0x03	; 3
+   0436 08                 1208 	.db #0x08	; 8
+   0437 01                 1209 	.db #0x01	; 1
+   0438                    1210 _g_tileset3_085:
+   0438 00                 1211 	.db #0x00	; 0
+   0439 00                 1212 	.db #0x00	; 0
+   043A 00                 1213 	.db #0x00	; 0
+   043B 00                 1214 	.db #0x00	; 0
+   043C 00                 1215 	.db #0x00	; 0
+   043D 00                 1216 	.db #0x00	; 0
+   043E 00                 1217 	.db #0x00	; 0
+   043F 00                 1218 	.db #0x00	; 0
+   0440                    1219 _g_tileset3_086:
+   0440 01                 1220 	.db #0x01	; 1
+   0441 0E                 1221 	.db #0x0e	; 14
+   0442 0E                 1222 	.db #0x0e	; 14
+   0443 03                 1223 	.db #0x03	; 3
+   0444 08                 1224 	.db #0x08	; 8
+   0445 01                 1225 	.db #0x01	; 1
+   0446 08                 1226 	.db #0x08	; 8
+   0447 01                 1227 	.db #0x01	; 1
+   0448                    1228 _g_tileset3_087:
+   0448 00                 1229 	.db #0x00	; 0
+   0449 00                 1230 	.db #0x00	; 0
+   044A 00                 1231 	.db #0x00	; 0
+   044B 00                 1232 	.db #0x00	; 0
+   044C 00                 1233 	.db #0x00	; 0
+   044D 00                 1234 	.db #0x00	; 0
+   044E 00                 1235 	.db #0x00	; 0
+   044F 00                 1236 	.db #0x00	; 0
+   0450                    1237 _g_tileset3_088:
+   0450 00                 1238 	.db #0x00	; 0
+   0451 00                 1239 	.db #0x00	; 0
+   0452 00                 1240 	.db #0x00	; 0
+   0453 00                 1241 	.db #0x00	; 0
+   0454 00                 1242 	.db #0x00	; 0
+   0455 00                 1243 	.db #0x00	; 0
+   0456 00                 1244 	.db #0x00	; 0
+   0457 00                 1245 	.db #0x00	; 0
+   0458                    1246 _g_tileset3_089:
+   0458 00                 1247 	.db #0x00	; 0
+   0459 00                 1248 	.db #0x00	; 0
+   045A 00                 1249 	.db #0x00	; 0
+   045B 00                 1250 	.db #0x00	; 0
+   045C 00                 1251 	.db #0x00	; 0
+   045D 00                 1252 	.db #0x00	; 0
+   045E 00                 1253 	.db #0x00	; 0
+   045F 00                 1254 	.db #0x00	; 0
+   0460                    1255 _g_tileset3_090:
+   0460 00                 1256 	.db #0x00	; 0
+   0461 08                 1257 	.db #0x08	; 8
+   0462 00                 1258 	.db #0x00	; 0
+   0463 00                 1259 	.db #0x00	; 0
+   0464 00                 1260 	.db #0x00	; 0
+   0465 08                 1261 	.db #0x08	; 8
+   0466 0D                 1262 	.db #0x0d	; 13
+   0467 0D                 1263 	.db #0x0d	; 13
+   0468                    1264 _g_tileset3_091:
+   0468 00                 1265 	.db #0x00	; 0
+   0469 08                 1266 	.db #0x08	; 8
+   046A 00                 1267 	.db #0x00	; 0
+   046B 00                 1268 	.db #0x00	; 0
+   046C 00                 1269 	.db #0x00	; 0
+   046D 08                 1270 	.db #0x08	; 8
+   046E 0D                 1271 	.db #0x0d	; 13
+   046F 0D                 1272 	.db #0x0d	; 13
+   0470                    1273 _g_tileset3_092:
+   0470 00                 1274 	.db #0x00	; 0
+   0471 04                 1275 	.db #0x04	; 4
+   0472 00                 1276 	.db #0x00	; 0
+   0473 04                 1277 	.db #0x04	; 4
+   0474 00                 1278 	.db #0x00	; 0
+   0475 04                 1279 	.db #0x04	; 4
+   0476 00                 1280 	.db #0x00	; 0
+   0477 03                 1281 	.db #0x03	; 3
+   0478                    1282 _g_tileset3_093:
+   0478 02                 1283 	.db #0x02	; 2
+   0479 00                 1284 	.db #0x00	; 0
+   047A 02                 1285 	.db #0x02	; 2
+   047B 00                 1286 	.db #0x00	; 0
+   047C 02                 1287 	.db #0x02	; 2
+   047D 00                 1288 	.db #0x00	; 0
+   047E 0C                 1289 	.db #0x0c	; 12
+   047F 00                 1290 	.db #0x00	; 0
+   0480                    1291 _g_tileset3_094:
+   0480 08                 1292 	.db #0x08	; 8
+   0481 01                 1293 	.db #0x01	; 1
+   0482 0C                 1294 	.db #0x0c	; 12
+   0483 01                 1295 	.db #0x01	; 1
+   0484 06                 1296 	.db #0x06	; 6
+   0485 01                 1297 	.db #0x01	; 1
+   0486 03                 1298 	.db #0x03	; 3
+   0487 0E                 1299 	.db #0x0e	; 14
+   0488                    1300 _g_tileset3_095:
+   0488 00                 1301 	.db #0x00	; 0
+   0489 00                 1302 	.db #0x00	; 0
+   048A 00                 1303 	.db #0x00	; 0
+   048B 00                 1304 	.db #0x00	; 0
+   048C 00                 1305 	.db #0x00	; 0
+   048D 00                 1306 	.db #0x00	; 0
+   048E 00                 1307 	.db #0x00	; 0
+   048F 00                 1308 	.db #0x00	; 0
+   0490                    1309 _g_tileset3_096:
+   0490 08                 1310 	.db #0x08	; 8
+   0491 01                 1311 	.db #0x01	; 1
+   0492 08                 1312 	.db #0x08	; 8
+   0493 01                 1313 	.db #0x01	; 1
+   0494 0E                 1314 	.db #0x0e	; 14
+   0495 07                 1315 	.db #0x07	; 7
+   0496 03                 1316 	.db #0x03	; 3
+   0497 0C                 1317 	.db #0x0c	; 12
+   0498                    1318 _g_tileset3_097:
+   0498 00                 1319 	.db #0x00	; 0
+   0499 00                 1320 	.db #0x00	; 0
+   049A 00                 1321 	.db #0x00	; 0
+   049B 00                 1322 	.db #0x00	; 0
+   049C 00                 1323 	.db #0x00	; 0
+   049D 00                 1324 	.db #0x00	; 0
+   049E 00                 1325 	.db #0x00	; 0
+   049F 00                 1326 	.db #0x00	; 0
+   04A0                    1327 _g_tileset3_098:
+   04A0 00                 1328 	.db #0x00	; 0
+   04A1 00                 1329 	.db #0x00	; 0
+   04A2 00                 1330 	.db #0x00	; 0
+   04A3 00                 1331 	.db #0x00	; 0
+   04A4 00                 1332 	.db #0x00	; 0
+   04A5 00                 1333 	.db #0x00	; 0
+   04A6 00                 1334 	.db #0x00	; 0
+   04A7 00                 1335 	.db #0x00	; 0
+   04A8                    1336 _g_tileset3_099:
+   04A8 00                 1337 	.db #0x00	; 0
+   04A9 00                 1338 	.db #0x00	; 0
+   04AA 00                 1339 	.db #0x00	; 0
+   04AB 00                 1340 	.db #0x00	; 0
+   04AC 00                 1341 	.db #0x00	; 0
+   04AD 00                 1342 	.db #0x00	; 0
+   04AE 00                 1343 	.db #0x00	; 0
+   04AF 00                 1344 	.db #0x00	; 0
+   04B0                    1345 _g_tileset3_100:
+   04B0 08                 1346 	.db #0x08	; 8
+   04B1 00                 1347 	.db #0x00	; 0
+   04B2 00                 1348 	.db #0x00	; 0
+   04B3 00                 1349 	.db #0x00	; 0
+   04B4 08                 1350 	.db #0x08	; 8
+   04B5 00                 1351 	.db #0x00	; 0
+   04B6 0D                 1352 	.db #0x0d	; 13
+   04B7 0D                 1353 	.db #0x0d	; 13
+   04B8                    1354 _g_tileset3_101:
+   04B8 08                 1355 	.db #0x08	; 8
+   04B9 00                 1356 	.db #0x00	; 0
+   04BA 00                 1357 	.db #0x00	; 0
+   04BB 00                 1358 	.db #0x00	; 0
+   04BC 08                 1359 	.db #0x08	; 8
+   04BD 00                 1360 	.db #0x00	; 0
+   04BE 0D                 1361 	.db #0x0d	; 13
+   04BF 0D                 1362 	.db #0x0d	; 13
+   04C0                    1363 _g_tileset3_102:
+   04C0 00                 1364 	.db #0x00	; 0
+   04C1 00                 1365 	.db #0x00	; 0
+   04C2 00                 1366 	.db #0x00	; 0
+   04C3 00                 1367 	.db #0x00	; 0
+   04C4 00                 1368 	.db #0x00	; 0
+   04C5 00                 1369 	.db #0x00	; 0
+   04C6 00                 1370 	.db #0x00	; 0
+   04C7 00                 1371 	.db #0x00	; 0
+   04C8                    1372 _g_tileset3_103:
+   04C8 00                 1373 	.db #0x00	; 0
+   04C9 00                 1374 	.db #0x00	; 0
+   04CA 00                 1375 	.db #0x00	; 0
+   04CB 00                 1376 	.db #0x00	; 0
+   04CC 00                 1377 	.db #0x00	; 0
+   04CD 00                 1378 	.db #0x00	; 0
+   04CE 00                 1379 	.db #0x00	; 0
+   04CF 00                 1380 	.db #0x00	; 0
+   04D0                    1381 _g_tileset3_104:
+   04D0 00                 1382 	.db #0x00	; 0
+   04D1 00                 1383 	.db #0x00	; 0
+   04D2 00                 1384 	.db #0x00	; 0
+   04D3 00                 1385 	.db #0x00	; 0
+   04D4 00                 1386 	.db #0x00	; 0
+   04D5 00                 1387 	.db #0x00	; 0
+   04D6 00                 1388 	.db #0x00	; 0
+   04D7 00                 1389 	.db #0x00	; 0
+   04D8                    1390 _g_tileset3_105:
+   04D8 00                 1391 	.db #0x00	; 0
+   04D9 00                 1392 	.db #0x00	; 0
+   04DA 00                 1393 	.db #0x00	; 0
+   04DB 00                 1394 	.db #0x00	; 0
+   04DC 00                 1395 	.db #0x00	; 0
+   04DD 00                 1396 	.db #0x00	; 0
+   04DE 00                 1397 	.db #0x00	; 0
+   04DF 00                 1398 	.db #0x00	; 0
+   04E0                    1399 _g_tileset3_106:
+   04E0 00                 1400 	.db #0x00	; 0
+   04E1 00                 1401 	.db #0x00	; 0
+   04E2 00                 1402 	.db #0x00	; 0
+   04E3 00                 1403 	.db #0x00	; 0
+   04E4 00                 1404 	.db #0x00	; 0
+   04E5 00                 1405 	.db #0x00	; 0
+   04E6 00                 1406 	.db #0x00	; 0
+   04E7 00                 1407 	.db #0x00	; 0
+   04E8                    1408 _g_tileset3_107:
+   04E8 00                 1409 	.db #0x00	; 0
+   04E9 00                 1410 	.db #0x00	; 0
+   04EA 00                 1411 	.db #0x00	; 0
+   04EB 00                 1412 	.db #0x00	; 0
+   04EC 00                 1413 	.db #0x00	; 0
+   04ED 00                 1414 	.db #0x00	; 0
+   04EE 00                 1415 	.db #0x00	; 0
+   04EF 00                 1416 	.db #0x00	; 0
+   04F0                    1417 _g_tileset3_108:
+   04F0 00                 1418 	.db #0x00	; 0
+   04F1 00                 1419 	.db #0x00	; 0
+   04F2 00                 1420 	.db #0x00	; 0
+   04F3 00                 1421 	.db #0x00	; 0
+   04F4 00                 1422 	.db #0x00	; 0
+   04F5 00                 1423 	.db #0x00	; 0
+   04F6 00                 1424 	.db #0x00	; 0
+   04F7 00                 1425 	.db #0x00	; 0
+   04F8                    1426 _g_tileset3_109:
+   04F8 00                 1427 	.db #0x00	; 0
+   04F9 00                 1428 	.db #0x00	; 0
+   04FA 00                 1429 	.db #0x00	; 0
+   04FB 00                 1430 	.db #0x00	; 0
+   04FC 00                 1431 	.db #0x00	; 0
+   04FD 00                 1432 	.db #0x00	; 0
+   04FE 00                 1433 	.db #0x00	; 0
+   04FF 00                 1434 	.db #0x00	; 0
+   0500                    1435 _g_tileset3_110:
+   0500 00                 1436 	.db #0x00	; 0
+   0501 08                 1437 	.db #0x08	; 8
+   0502 00                 1438 	.db #0x00	; 0
+   0503 00                 1439 	.db #0x00	; 0
+   0504 00                 1440 	.db #0x00	; 0
+   0505 08                 1441 	.db #0x08	; 8
+   0506 0D                 1442 	.db #0x0d	; 13
+   0507 0D                 1443 	.db #0x0d	; 13
+   0508                    1444 _g_tileset3_111:
+   0508 00                 1445 	.db #0x00	; 0
+   0509 08                 1446 	.db #0x08	; 8
+   050A 00                 1447 	.db #0x00	; 0
+   050B 00                 1448 	.db #0x00	; 0
+   050C 00                 1449 	.db #0x00	; 0
+   050D 08                 1450 	.db #0x08	; 8
+   050E 05                 1451 	.db #0x05	; 5
+   050F 0D                 1452 	.db #0x0d	; 13
+   0510                    1453 _g_tileset3_112:
+   0510 00                 1454 	.db #0x00	; 0
+   0511 00                 1455 	.db #0x00	; 0
+   0512 00                 1456 	.db #0x00	; 0
+   0513 00                 1457 	.db #0x00	; 0
+   0514 0F                 1458 	.db #0x0f	; 15
+   0515 08                 1459 	.db #0x08	; 8
+   0516 0F                 1460 	.db #0x0f	; 15
+   0517 0C                 1461 	.db #0x0c	; 12
+   0518                    1462 _g_tileset3_113:
+   0518 00                 1463 	.db #0x00	; 0
+   0519 00                 1464 	.db #0x00	; 0
+   051A 00                 1465 	.db #0x00	; 0
+   051B 00                 1466 	.db #0x00	; 0
+   051C 00                 1467 	.db #0x00	; 0
+   051D 00                 1468 	.db #0x00	; 0
+   051E 00                 1469 	.db #0x00	; 0
+   051F 00                 1470 	.db #0x00	; 0
+   0520                    1471 _g_tileset3_114:
+   0520 00                 1472 	.db #0x00	; 0
+   0521 00                 1473 	.db #0x00	; 0
+   0522 00                 1474 	.db #0x00	; 0
+   0523 00                 1475 	.db #0x00	; 0
+   0524 00                 1476 	.db #0x00	; 0
+   0525 00                 1477 	.db #0x00	; 0
+   0526 00                 1478 	.db #0x00	; 0
+   0527 00                 1479 	.db #0x00	; 0
+   0528                    1480 _g_tileset3_115:
+   0528 00                 1481 	.db #0x00	; 0
+   0529 00                 1482 	.db #0x00	; 0
+   052A 00                 1483 	.db #0x00	; 0
+   052B 00                 1484 	.db #0x00	; 0
+   052C 00                 1485 	.db #0x00	; 0
+   052D 00                 1486 	.db #0x00	; 0
+   052E 00                 1487 	.db #0x00	; 0
+   052F 00                 1488 	.db #0x00	; 0
+   0530                    1489 _g_tileset3_116:
+   0530 00                 1490 	.db #0x00	; 0
+   0531 00                 1491 	.db #0x00	; 0
+   0532 00                 1492 	.db #0x00	; 0
+   0533 00                 1493 	.db #0x00	; 0
+   0534 00                 1494 	.db #0x00	; 0
+   0535 00                 1495 	.db #0x00	; 0
+   0536 00                 1496 	.db #0x00	; 0
+   0537 00                 1497 	.db #0x00	; 0
+   0538                    1498 _g_tileset3_117:
+   0538 00                 1499 	.db #0x00	; 0
+   0539 00                 1500 	.db #0x00	; 0
+   053A 00                 1501 	.db #0x00	; 0
+   053B 00                 1502 	.db #0x00	; 0
+   053C 00                 1503 	.db #0x00	; 0
+   053D 00                 1504 	.db #0x00	; 0
+   053E 00                 1505 	.db #0x00	; 0
+   053F 00                 1506 	.db #0x00	; 0
+   0540                    1507 _g_tileset3_118:
+   0540 00                 1508 	.db #0x00	; 0
+   0541 00                 1509 	.db #0x00	; 0
+   0542 00                 1510 	.db #0x00	; 0
+   0543 00                 1511 	.db #0x00	; 0
+   0544 00                 1512 	.db #0x00	; 0
+   0545 00                 1513 	.db #0x00	; 0
+   0546 00                 1514 	.db #0x00	; 0
+   0547 00                 1515 	.db #0x00	; 0
+   0548                    1516 _g_tileset3_119:
+   0548 00                 1517 	.db #0x00	; 0
+   0549 00                 1518 	.db #0x00	; 0
+   054A 00                 1519 	.db #0x00	; 0
+   054B 00                 1520 	.db #0x00	; 0
+   054C 00                 1521 	.db #0x00	; 0
+   054D 00                 1522 	.db #0x00	; 0
+   054E 00                 1523 	.db #0x00	; 0
+   054F 00                 1524 	.db #0x00	; 0
+   0550                    1525 _g_tileset3_120:
+   0550 00                 1526 	.db #0x00	; 0
+   0551 00                 1527 	.db #0x00	; 0
+   0552 00                 1528 	.db #0x00	; 0
+   0553 00                 1529 	.db #0x00	; 0
+   0554 00                 1530 	.db #0x00	; 0
+   0555 00                 1531 	.db #0x00	; 0
+   0556 00                 1532 	.db #0x00	; 0
+   0557 00                 1533 	.db #0x00	; 0
+   0558                    1534 _g_tileset3_121:
+   0558 08                 1535 	.db #0x08	; 8
+   0559 01                 1536 	.db #0x01	; 1
+   055A 0F                 1537 	.db #0x0f	; 15
+   055B 0F                 1538 	.db #0x0f	; 15
+   055C 08                 1539 	.db #0x08	; 8
+   055D 01                 1540 	.db #0x01	; 1
+   055E 0E                 1541 	.db #0x0e	; 14
+   055F 07                 1542 	.db #0x07	; 7
+   0560                    1543 _g_tileset3_122:
+   0560 00                 1544 	.db #0x00	; 0
+   0561 00                 1545 	.db #0x00	; 0
+   0562 00                 1546 	.db #0x00	; 0
+   0563 00                 1547 	.db #0x00	; 0
+   0564 00                 1548 	.db #0x00	; 0
+   0565 00                 1549 	.db #0x00	; 0
+   0566 00                 1550 	.db #0x00	; 0
+   0567 00                 1551 	.db #0x00	; 0
+   0568                    1552 _g_tileset3_123:
+   0568 00                 1553 	.db #0x00	; 0
+   0569 00                 1554 	.db #0x00	; 0
+   056A 07                 1555 	.db #0x07	; 7
+   056B 0C                 1556 	.db #0x0c	; 12
+   056C 03                 1557 	.db #0x03	; 3
+   056D 0C                 1558 	.db #0x0c	; 12
+   056E 00                 1559 	.db #0x00	; 0
+   056F 0C                 1560 	.db #0x0c	; 12
+   0570                    1561 _g_tileset3_124:
+   0570 00                 1562 	.db #0x00	; 0
+   0571 00                 1563 	.db #0x00	; 0
+   0572 00                 1564 	.db #0x00	; 0
+   0573 0C                 1565 	.db #0x0c	; 12
+   0574 07                 1566 	.db #0x07	; 7
+   0575 08                 1567 	.db #0x08	; 8
+   0576 0D                 1568 	.db #0x0d	; 13
+   0577 09                 1569 	.db #0x09	; 9
+   0578                    1570 _g_tileset3_125:
+   0578 00                 1571 	.db #0x00	; 0
+   0579 00                 1572 	.db #0x00	; 0
+   057A 00                 1573 	.db #0x00	; 0
+   057B 00                 1574 	.db #0x00	; 0
+   057C 01                 1575 	.db #0x01	; 1
+   057D 0F                 1576 	.db #0x0f	; 15
+   057E 03                 1577 	.db #0x03	; 3
+   057F 0F                 1578 	.db #0x0f	; 15
+   0580                    1579 _g_tileset3_126:
+   0580 00                 1580 	.db #0x00	; 0
+   0581 00                 1581 	.db #0x00	; 0
+   0582 00                 1582 	.db #0x00	; 0
+   0583 00                 1583 	.db #0x00	; 0
+   0584 0F                 1584 	.db #0x0f	; 15
+   0585 00                 1585 	.db #0x00	; 0
+   0586 0F                 1586 	.db #0x0f	; 15
+   0587 02                 1587 	.db #0x02	; 2
+   0588                    1588 _g_tileset3_127:
+   0588 00                 1589 	.db #0x00	; 0
+   0589 00                 1590 	.db #0x00	; 0
+   058A 00                 1591 	.db #0x00	; 0
+   058B 00                 1592 	.db #0x00	; 0
+   058C 00                 1593 	.db #0x00	; 0
+   058D 00                 1594 	.db #0x00	; 0
+   058E 00                 1595 	.db #0x00	; 0
+   058F 00                 1596 	.db #0x00	; 0
+   0590                    1597 _g_tileset3_128:
+   0590 00                 1598 	.db #0x00	; 0
+   0591 00                 1599 	.db #0x00	; 0
+   0592 07                 1600 	.db #0x07	; 7
+   0593 00                 1601 	.db #0x00	; 0
+   0594 0F                 1602 	.db #0x0f	; 15
+   0595 00                 1603 	.db #0x00	; 0
+   0596 0B                 1604 	.db #0x0b	; 11
+   0597 00                 1605 	.db #0x00	; 0
+   0598                    1606 _g_tileset3_129:
+   0598 00                 1607 	.db #0x00	; 0
+   0599 00                 1608 	.db #0x00	; 0
+   059A 00                 1609 	.db #0x00	; 0
+   059B 00                 1610 	.db #0x00	; 0
+   059C 00                 1611 	.db #0x00	; 0
+   059D 00                 1612 	.db #0x00	; 0
+   059E 00                 1613 	.db #0x00	; 0
+   059F 00                 1614 	.db #0x00	; 0
+   05A0                    1615 _g_tileset3_130:
+   05A0 00                 1616 	.db #0x00	; 0
+   05A1 00                 1617 	.db #0x00	; 0
+   05A2 00                 1618 	.db #0x00	; 0
+   05A3 00                 1619 	.db #0x00	; 0
+   05A4 00                 1620 	.db #0x00	; 0
+   05A5 00                 1621 	.db #0x00	; 0
+   05A6 00                 1622 	.db #0x00	; 0
+   05A7 00                 1623 	.db #0x00	; 0
+   05A8                    1624 _g_tileset3_131:
+   05A8 08                 1625 	.db #0x08	; 8
+   05A9 01                 1626 	.db #0x01	; 1
+   05AA 08                 1627 	.db #0x08	; 8
+   05AB 01                 1628 	.db #0x01	; 1
+   05AC 04                 1629 	.db #0x04	; 4
+   05AD 02                 1630 	.db #0x02	; 2
+   05AE 03                 1631 	.db #0x03	; 3
+   05AF 0C                 1632 	.db #0x0c	; 12
+   05B0                    1633 _g_tileset3_132:
+   05B0 00                 1634 	.db #0x00	; 0
+   05B1 00                 1635 	.db #0x00	; 0
+   05B2 00                 1636 	.db #0x00	; 0
+   05B3 00                 1637 	.db #0x00	; 0
+   05B4 00                 1638 	.db #0x00	; 0
+   05B5 00                 1639 	.db #0x00	; 0
+   05B6 00                 1640 	.db #0x00	; 0
+   05B7 00                 1641 	.db #0x00	; 0
+   05B8                    1642 _g_tileset3_133:
+   05B8 03                 1643 	.db #0x03	; 3
+   05B9 0C                 1644 	.db #0x0c	; 12
+   05BA 00                 1645 	.db #0x00	; 0
+   05BB 0C                 1646 	.db #0x0c	; 12
+   05BC 01                 1647 	.db #0x01	; 1
+   05BD 0C                 1648 	.db #0x0c	; 12
+   05BE 07                 1649 	.db #0x07	; 7
+   05BF 0C                 1650 	.db #0x0c	; 12
+   05C0                    1651 _g_tileset3_134:
+   05C0 0D                 1652 	.db #0x0d	; 13
+   05C1 09                 1653 	.db #0x09	; 9
+   05C2 0F                 1654 	.db #0x0f	; 15
+   05C3 0F                 1655 	.db #0x0f	; 15
+   05C4 0F                 1656 	.db #0x0f	; 15
+   05C5 0F                 1657 	.db #0x0f	; 15
+   05C6 03                 1658 	.db #0x03	; 3
+   05C7 0E                 1659 	.db #0x0e	; 14
+   05C8                    1660 _g_tileset3_135:
+   05C8 03                 1661 	.db #0x03	; 3
+   05C9 0C                 1662 	.db #0x0c	; 12
+   05CA 03                 1663 	.db #0x03	; 3
+   05CB 0F                 1664 	.db #0x0f	; 15
+   05CC 03                 1665 	.db #0x03	; 3
+   05CD 0F                 1666 	.db #0x0f	; 15
+   05CE 00                 1667 	.db #0x00	; 0
+   05CF 00                 1668 	.db #0x00	; 0
+   05D0                    1669 _g_tileset3_136:
+   05D0 03                 1670 	.db #0x03	; 3
+   05D1 03                 1671 	.db #0x03	; 3
+   05D2 08                 1672 	.db #0x08	; 8
+   05D3 03                 1673 	.db #0x03	; 3
+   05D4 0F                 1674 	.db #0x0f	; 15
+   05D5 03                 1675 	.db #0x03	; 3
+   05D6 0F                 1676 	.db #0x0f	; 15
+   05D7 08                 1677 	.db #0x08	; 8
+   05D8                    1678 _g_tileset3_137:
+   05D8 0F                 1679 	.db #0x0f	; 15
+   05D9 0F                 1680 	.db #0x0f	; 15
+   05DA 0F                 1681 	.db #0x0f	; 15
+   05DB 0F                 1682 	.db #0x0f	; 15
+   05DC 0F                 1683 	.db #0x0f	; 15
+   05DD 0F                 1684 	.db #0x0f	; 15
+   05DE 00                 1685 	.db #0x00	; 0
+   05DF 00                 1686 	.db #0x00	; 0
+   05E0                    1687 _g_tileset3_138:
+   05E0 0B                 1688 	.db #0x0b	; 11
+   05E1 00                 1689 	.db #0x00	; 0
+   05E2 0B                 1690 	.db #0x0b	; 11
+   05E3 00                 1691 	.db #0x00	; 0
+   05E4 0F                 1692 	.db #0x0f	; 15
+   05E5 00                 1693 	.db #0x00	; 0
+   05E6 00                 1694 	.db #0x00	; 0
+   05E7 00                 1695 	.db #0x00	; 0
+   05E8                    1696 _g_tileset3_139:
+   05E8 00                 1697 	.db #0x00	; 0
+   05E9 00                 1698 	.db #0x00	; 0
+   05EA 00                 1699 	.db #0x00	; 0
+   05EB 00                 1700 	.db #0x00	; 0
+   05EC 00                 1701 	.db #0x00	; 0
+   05ED 00                 1702 	.db #0x00	; 0
+   05EE 00                 1703 	.db #0x00	; 0
+   05EF 00                 1704 	.db #0x00	; 0
+   05F0                    1705 _g_tileset3_140:
+   05F0 00                 1706 	.db #0x00	; 0
+   05F1 00                 1707 	.db #0x00	; 0
+   05F2 00                 1708 	.db #0x00	; 0
+   05F3 03                 1709 	.db #0x03	; 3
+   05F4 00                 1710 	.db #0x00	; 0
+   05F5 0E                 1711 	.db #0x0e	; 14
+   05F6 01                 1712 	.db #0x01	; 1
+   05F7 08                 1713 	.db #0x08	; 8
+   05F8                    1714 _g_tileset3_141:
+   05F8 00                 1715 	.db #0x00	; 0
+   05F9 00                 1716 	.db #0x00	; 0
+   05FA 0F                 1717 	.db #0x0f	; 15
+   05FB 0F                 1718 	.db #0x0f	; 15
+   05FC 08                 1719 	.db #0x08	; 8
+   05FD 01                 1720 	.db #0x01	; 1
+   05FE 08                 1721 	.db #0x08	; 8
+   05FF 01                 1722 	.db #0x01	; 1
+   0600                    1723 _g_tileset3_142:
+   0600 00                 1724 	.db #0x00	; 0
+   0601 00                 1725 	.db #0x00	; 0
+   0602 0C                 1726 	.db #0x0c	; 12
+   0603 00                 1727 	.db #0x00	; 0
+   0604 07                 1728 	.db #0x07	; 7
+   0605 00                 1729 	.db #0x00	; 0
+   0606 01                 1730 	.db #0x01	; 1
+   0607 08                 1731 	.db #0x08	; 8
+   0608                    1732 _g_tileset3_143:
+   0608 00                 1733 	.db #0x00	; 0
+   0609 00                 1734 	.db #0x00	; 0
+   060A 00                 1735 	.db #0x00	; 0
+   060B 00                 1736 	.db #0x00	; 0
+   060C 00                 1737 	.db #0x00	; 0
+   060D 00                 1738 	.db #0x00	; 0
+   060E 00                 1739 	.db #0x00	; 0
+   060F 00                 1740 	.db #0x00	; 0
+   0610                    1741 _g_tileset3_144:
+   0610 01                 1742 	.db #0x01	; 1
+   0611 01                 1743 	.db #0x01	; 1
+   0612 00                 1744 	.db #0x00	; 0
+   0613 09                 1745 	.db #0x09	; 9
+   0614 01                 1746 	.db #0x01	; 1
+   0615 00                 1747 	.db #0x00	; 0
+   0616 00                 1748 	.db #0x00	; 0
+   0617 01                 1749 	.db #0x01	; 1
+   0618                    1750 _g_tileset3_145:
+   0618 00                 1751 	.db #0x00	; 0
+   0619 00                 1752 	.db #0x00	; 0
+   061A 00                 1753 	.db #0x00	; 0
+   061B 00                 1754 	.db #0x00	; 0
+   061C 08                 1755 	.db #0x08	; 8
+   061D 00                 1756 	.db #0x00	; 0
+   061E 00                 1757 	.db #0x00	; 0
+   061F 00                 1758 	.db #0x00	; 0
+   0620                    1759 _g_tileset3_146:
+   0620 00                 1760 	.db #0x00	; 0
+   0621 00                 1761 	.db #0x00	; 0
+   0622 00                 1762 	.db #0x00	; 0
+   0623 00                 1763 	.db #0x00	; 0
+   0624 00                 1764 	.db #0x00	; 0
+   0625 00                 1765 	.db #0x00	; 0
+   0626 00                 1766 	.db #0x00	; 0
+   0627 00                 1767 	.db #0x00	; 0
+   0628                    1768 _g_tileset3_147:
+   0628 00                 1769 	.db #0x00	; 0
+   0629 00                 1770 	.db #0x00	; 0
+   062A 00                 1771 	.db #0x00	; 0
+   062B 00                 1772 	.db #0x00	; 0
+   062C 00                 1773 	.db #0x00	; 0
+   062D 00                 1774 	.db #0x00	; 0
+   062E 00                 1775 	.db #0x00	; 0
+   062F 00                 1776 	.db #0x00	; 0
+   0630                    1777 _g_tileset3_148:
+   0630 00                 1778 	.db #0x00	; 0
+   0631 00                 1779 	.db #0x00	; 0
+   0632 00                 1780 	.db #0x00	; 0
+   0633 00                 1781 	.db #0x00	; 0
+   0634 00                 1782 	.db #0x00	; 0
+   0635 00                 1783 	.db #0x00	; 0
+   0636 00                 1784 	.db #0x00	; 0
+   0637 00                 1785 	.db #0x00	; 0
+   0638                    1786 _g_tileset3_149:
+   0638 00                 1787 	.db #0x00	; 0
+   0639 00                 1788 	.db #0x00	; 0
+   063A 00                 1789 	.db #0x00	; 0
+   063B 00                 1790 	.db #0x00	; 0
+   063C 00                 1791 	.db #0x00	; 0
+   063D 00                 1792 	.db #0x00	; 0
+   063E 00                 1793 	.db #0x00	; 0
+   063F 00                 1794 	.db #0x00	; 0
+   0640                    1795 _g_tileset3_150:
+   0640 01                 1796 	.db #0x01	; 1
+   0641 0D                 1797 	.db #0x0d	; 13
+   0642 01                 1798 	.db #0x01	; 1
+   0643 07                 1799 	.db #0x07	; 7
+   0644 01                 1800 	.db #0x01	; 1
+   0645 01                 1801 	.db #0x01	; 1
+   0646 01                 1802 	.db #0x01	; 1
+   0647 01                 1803 	.db #0x01	; 1
+   0648                    1804 _g_tileset3_151:
+   0648 08                 1805 	.db #0x08	; 8
+   0649 01                 1806 	.db #0x01	; 1
+   064A 00                 1807 	.db #0x00	; 0
+   064B 00                 1808 	.db #0x00	; 0
+   064C 00                 1809 	.db #0x00	; 0
+   064D 00                 1810 	.db #0x00	; 0
+   064E 08                 1811 	.db #0x08	; 8
+   064F 03                 1812 	.db #0x03	; 3
+   0650                    1813 _g_tileset3_152:
+   0650 0B                 1814 	.db #0x0b	; 11
+   0651 08                 1815 	.db #0x08	; 8
+   0652 0E                 1816 	.db #0x0e	; 14
+   0653 08                 1817 	.db #0x08	; 8
+   0654 08                 1818 	.db #0x08	; 8
+   0655 08                 1819 	.db #0x08	; 8
+   0656 08                 1820 	.db #0x08	; 8
+   0657 08                 1821 	.db #0x08	; 8
+   0658                    1822 _g_tileset3_153:
+   0658 00                 1823 	.db #0x00	; 0
+   0659 03                 1824 	.db #0x03	; 3
+   065A 00                 1825 	.db #0x00	; 0
+   065B 06                 1826 	.db #0x06	; 6
+   065C 00                 1827 	.db #0x00	; 0
+   065D 0C                 1828 	.db #0x0c	; 12
+   065E 00                 1829 	.db #0x00	; 0
+   065F 07                 1830 	.db #0x07	; 7
+   0660                    1831 _g_tileset3_154:
+   0660 0F                 1832 	.db #0x0f	; 15
+   0661 0F                 1833 	.db #0x0f	; 15
+   0662 09                 1834 	.db #0x09	; 9
+   0663 00                 1835 	.db #0x00	; 0
+   0664 08                 1836 	.db #0x08	; 8
+   0665 05                 1837 	.db #0x05	; 5
+   0666 0E                 1838 	.db #0x0e	; 14
+   0667 08                 1839 	.db #0x08	; 8
+   0668                    1840 _g_tileset3_155:
+   0668 0E                 1841 	.db #0x0e	; 14
+   0669 00                 1842 	.db #0x00	; 0
+   066A 07                 1843 	.db #0x07	; 7
+   066B 00                 1844 	.db #0x00	; 0
+   066C 0D                 1845 	.db #0x0d	; 13
+   066D 08                 1846 	.db #0x08	; 8
+   066E 0B                 1847 	.db #0x0b	; 11
+   066F 08                 1848 	.db #0x08	; 8
+   0670                    1849 _g_tileset3_156:
+   0670 00                 1850 	.db #0x00	; 0
+   0671 00                 1851 	.db #0x00	; 0
+   0672 00                 1852 	.db #0x00	; 0
+   0673 00                 1853 	.db #0x00	; 0
+   0674 00                 1854 	.db #0x00	; 0
+   0675 00                 1855 	.db #0x00	; 0
+   0676 00                 1856 	.db #0x00	; 0
+   0677 00                 1857 	.db #0x00	; 0
+   0678                    1858 _g_tileset3_157:
+   0678 00                 1859 	.db #0x00	; 0
+   0679 00                 1860 	.db #0x00	; 0
+   067A 00                 1861 	.db #0x00	; 0
+   067B 00                 1862 	.db #0x00	; 0
+   067C 00                 1863 	.db #0x00	; 0
+   067D 00                 1864 	.db #0x00	; 0
+   067E 00                 1865 	.db #0x00	; 0
+   067F 00                 1866 	.db #0x00	; 0
+   0680                    1867 _g_tileset3_158:
+   0680 00                 1868 	.db #0x00	; 0
+   0681 00                 1869 	.db #0x00	; 0
+   0682 00                 1870 	.db #0x00	; 0
+   0683 00                 1871 	.db #0x00	; 0
+   0684 00                 1872 	.db #0x00	; 0
+   0685 00                 1873 	.db #0x00	; 0
+   0686 00                 1874 	.db #0x00	; 0
+   0687 00                 1875 	.db #0x00	; 0
+   0688                    1876 _g_tileset3_159:
+   0688 00                 1877 	.db #0x00	; 0
+   0689 00                 1878 	.db #0x00	; 0
+   068A 00                 1879 	.db #0x00	; 0
+   068B 00                 1880 	.db #0x00	; 0
+   068C 00                 1881 	.db #0x00	; 0
+   068D 00                 1882 	.db #0x00	; 0
+   068E 00                 1883 	.db #0x00	; 0
+   068F 00                 1884 	.db #0x00	; 0
+   0690                    1885 _g_tileset3_160:
+   0690 01                 1886 	.db #0x01	; 1
+   0691 00                 1887 	.db #0x00	; 0
+   0692 01                 1888 	.db #0x01	; 1
+   0693 00                 1889 	.db #0x00	; 0
+   0694 00                 1890 	.db #0x00	; 0
+   0695 0C                 1891 	.db #0x0c	; 12
+   0696 00                 1892 	.db #0x00	; 0
+   0697 06                 1893 	.db #0x06	; 6
+   0698                    1894 _g_tileset3_161:
+   0698 0C                 1895 	.db #0x0c	; 12
+   0699 02                 1896 	.db #0x02	; 2
+   069A 04                 1897 	.db #0x04	; 4
+   069B 02                 1898 	.db #0x02	; 2
+   069C 04                 1899 	.db #0x04	; 4
+   069D 02                 1900 	.db #0x02	; 2
+   069E 07                 1901 	.db #0x07	; 7
+   069F 0E                 1902 	.db #0x0e	; 14
+   06A0                    1903 _g_tileset3_162:
+   06A0 00                 1904 	.db #0x00	; 0
+   06A1 08                 1905 	.db #0x08	; 8
+   06A2 01                 1906 	.db #0x01	; 1
+   06A3 08                 1907 	.db #0x08	; 8
+   06A4 01                 1908 	.db #0x01	; 1
+   06A5 00                 1909 	.db #0x00	; 0
+   06A6 06                 1910 	.db #0x06	; 6
+   06A7 00                 1911 	.db #0x00	; 0
+   06A8                    1912 _g_tileset3_163:
+   06A8 01                 1913 	.db #0x01	; 1
+   06A9 0C                 1914 	.db #0x0c	; 12
+   06AA 03                 1915 	.db #0x03	; 3
+   06AB 00                 1916 	.db #0x00	; 0
+   06AC 02                 1917 	.db #0x02	; 2
+   06AD 00                 1918 	.db #0x00	; 0
+   06AE 02                 1919 	.db #0x02	; 2
+   06AF 00                 1920 	.db #0x00	; 0
+   06B0                    1921 _g_tileset3_164:
+   06B0 0F                 1922 	.db #0x0f	; 15
+   06B1 0F                 1923 	.db #0x0f	; 15
+   06B2 00                 1924 	.db #0x00	; 0
+   06B3 00                 1925 	.db #0x00	; 0
+   06B4 00                 1926 	.db #0x00	; 0
+   06B5 00                 1927 	.db #0x00	; 0
+   06B6 00                 1928 	.db #0x00	; 0
+   06B7 00                 1929 	.db #0x00	; 0
+   06B8                    1930 _g_tileset3_165:
+   06B8 0E                 1931 	.db #0x0e	; 14
+   06B9 08                 1932 	.db #0x08	; 8
+   06BA 00                 1933 	.db #0x00	; 0
+   06BB 04                 1934 	.db #0x04	; 4
+   06BC 00                 1935 	.db #0x00	; 0
+   06BD 06                 1936 	.db #0x06	; 6
+   06BE 00                 1937 	.db #0x00	; 0
+   06BF 02                 1938 	.db #0x02	; 2
+   06C0                    1939 _g_tileset3_166:
+   06C0 00                 1940 	.db #0x00	; 0
+   06C1 00                 1941 	.db #0x00	; 0
+   06C2 00                 1942 	.db #0x00	; 0
+   06C3 00                 1943 	.db #0x00	; 0
+   06C4 00                 1944 	.db #0x00	; 0
+   06C5 00                 1945 	.db #0x00	; 0
+   06C6 00                 1946 	.db #0x00	; 0
+   06C7 00                 1947 	.db #0x00	; 0
+   06C8                    1948 _g_tileset3_167:
+   06C8 01                 1949 	.db #0x01	; 1
+   06C9 08                 1950 	.db #0x08	; 8
+   06CA 01                 1951 	.db #0x01	; 1
+   06CB 08                 1952 	.db #0x08	; 8
+   06CC 01                 1953 	.db #0x01	; 1
+   06CD 08                 1954 	.db #0x08	; 8
+   06CE 01                 1955 	.db #0x01	; 1
+   06CF 08                 1956 	.db #0x08	; 8
+   06D0                    1957 _g_tileset3_168:
+   06D0 01                 1958 	.db #0x01	; 1
+   06D1 08                 1959 	.db #0x08	; 8
+   06D2 01                 1960 	.db #0x01	; 1
+   06D3 08                 1961 	.db #0x08	; 8
+   06D4 01                 1962 	.db #0x01	; 1
+   06D5 08                 1963 	.db #0x08	; 8
+   06D6 00                 1964 	.db #0x00	; 0
+   06D7 08                 1965 	.db #0x08	; 8
+   06D8                    1966 _g_tileset3_169:
+   06D8 01                 1967 	.db #0x01	; 1
+   06D9 08                 1968 	.db #0x08	; 8
+   06DA 01                 1969 	.db #0x01	; 1
+   06DB 08                 1970 	.db #0x08	; 8
+   06DC 01                 1971 	.db #0x01	; 1
+   06DD 08                 1972 	.db #0x08	; 8
+   06DE 01                 1973 	.db #0x01	; 1
+   06DF 08                 1974 	.db #0x08	; 8
+   06E0                    1975 _g_tileset3_170:
+   06E0 00                 1976 	.db #0x00	; 0
+   06E1 03                 1977 	.db #0x03	; 3
+   06E2 00                 1978 	.db #0x00	; 0
+   06E3 00                 1979 	.db #0x00	; 0
+   06E4 00                 1980 	.db #0x00	; 0
+   06E5 01                 1981 	.db #0x01	; 1
+   06E6 00                 1982 	.db #0x00	; 0
+   06E7 01                 1983 	.db #0x01	; 1
+   06E8                    1984 _g_tileset3_171:
+   06E8 08                 1985 	.db #0x08	; 8
+   06E9 01                 1986 	.db #0x01	; 1
+   06EA 08                 1987 	.db #0x08	; 8
+   06EB 01                 1988 	.db #0x01	; 1
+   06EC 0C                 1989 	.db #0x0c	; 12
+   06ED 02                 1990 	.db #0x02	; 2
+   06EE 07                 1991 	.db #0x07	; 7
+   06EF 0E                 1992 	.db #0x0e	; 14
+   06F0                    1993 _g_tileset3_172:
+   06F0 0C                 1994 	.db #0x0c	; 12
+   06F1 00                 1995 	.db #0x00	; 0
+   06F2 00                 1996 	.db #0x00	; 0
+   06F3 00                 1997 	.db #0x00	; 0
+   06F4 08                 1998 	.db #0x08	; 8
+   06F5 00                 1999 	.db #0x00	; 0
+   06F6 08                 2000 	.db #0x08	; 8
+   06F7 00                 2001 	.db #0x00	; 0
+   06F8                    2002 _g_tileset3_173:
+   06F8 02                 2003 	.db #0x02	; 2
+   06F9 00                 2004 	.db #0x00	; 0
+   06FA 02                 2005 	.db #0x02	; 2
+   06FB 00                 2006 	.db #0x00	; 0
+   06FC 02                 2007 	.db #0x02	; 2
+   06FD 00                 2008 	.db #0x00	; 0
+   06FE 02                 2009 	.db #0x02	; 2
+   06FF 00                 2010 	.db #0x00	; 0
+   0700                    2011 _g_tileset3_174:
+   0700 00                 2012 	.db #0x00	; 0
+   0701 00                 2013 	.db #0x00	; 0
+   0702 00                 2014 	.db #0x00	; 0
+   0703 00                 2015 	.db #0x00	; 0
+   0704 00                 2016 	.db #0x00	; 0
+   0705 00                 2017 	.db #0x00	; 0
+   0706 00                 2018 	.db #0x00	; 0
+   0707 00                 2019 	.db #0x00	; 0
+   0708                    2020 _g_tileset3_175:
+   0708 00                 2021 	.db #0x00	; 0
+   0709 02                 2022 	.db #0x02	; 2
+   070A 00                 2023 	.db #0x00	; 0
+   070B 02                 2024 	.db #0x02	; 2
+   070C 00                 2025 	.db #0x00	; 0
+   070D 02                 2026 	.db #0x02	; 2
+   070E 00                 2027 	.db #0x00	; 0
+   070F 02                 2028 	.db #0x02	; 2
+   0710                    2029 _g_tileset3_176:
+   0710 00                 2030 	.db #0x00	; 0
+   0711 00                 2031 	.db #0x00	; 0
+   0712 00                 2032 	.db #0x00	; 0
+   0713 00                 2033 	.db #0x00	; 0
+   0714 00                 2034 	.db #0x00	; 0
+   0715 00                 2035 	.db #0x00	; 0
+   0716 00                 2036 	.db #0x00	; 0
+   0717 00                 2037 	.db #0x00	; 0
+   0718                    2038 _g_tileset3_177:
+   0718 01                 2039 	.db #0x01	; 1
+   0719 08                 2040 	.db #0x08	; 8
+   071A 01                 2041 	.db #0x01	; 1
+   071B 08                 2042 	.db #0x08	; 8
+   071C 01                 2043 	.db #0x01	; 1
+   071D 08                 2044 	.db #0x08	; 8
+   071E 01                 2045 	.db #0x01	; 1
+   071F 08                 2046 	.db #0x08	; 8
+   0720                    2047 _g_tileset3_178:
+   0720 00                 2048 	.db #0x00	; 0
+   0721 08                 2049 	.db #0x08	; 8
+   0722 01                 2050 	.db #0x01	; 1
+   0723 08                 2051 	.db #0x08	; 8
+   0724 01                 2052 	.db #0x01	; 1
+   0725 08                 2053 	.db #0x08	; 8
+   0726 01                 2054 	.db #0x01	; 1
+   0727 08                 2055 	.db #0x08	; 8
+   0728                    2056 _g_tileset3_179:
+   0728 01                 2057 	.db #0x01	; 1
+   0729 08                 2058 	.db #0x08	; 8
+   072A 01                 2059 	.db #0x01	; 1
+   072B 08                 2060 	.db #0x08	; 8
+   072C 01                 2061 	.db #0x01	; 1
+   072D 00                 2062 	.db #0x00	; 0
+   072E 01                 2063 	.db #0x01	; 1
+   072F 08                 2064 	.db #0x08	; 8
+   0730                    2065 _g_tileset3_180:
+   0730 00                 2066 	.db #0x00	; 0
+   0731 01                 2067 	.db #0x01	; 1
+   0732 00                 2068 	.db #0x00	; 0
+   0733 01                 2069 	.db #0x01	; 1
+   0734 00                 2070 	.db #0x00	; 0
+   0735 01                 2071 	.db #0x01	; 1
+   0736 00                 2072 	.db #0x00	; 0
+   0737 01                 2073 	.db #0x01	; 1
+   0738                    2074 _g_tileset3_181:
+   0738 02                 2075 	.db #0x02	; 2
+   0739 04                 2076 	.db #0x04	; 4
+   073A 02                 2077 	.db #0x02	; 2
+   073B 04                 2078 	.db #0x04	; 4
+   073C 02                 2079 	.db #0x02	; 2
+   073D 04                 2080 	.db #0x04	; 4
+   073E 02                 2081 	.db #0x02	; 2
+   073F 04                 2082 	.db #0x04	; 4
+   0740                    2083 _g_tileset3_182:
+   0740 08                 2084 	.db #0x08	; 8
+   0741 00                 2085 	.db #0x00	; 0
+   0742 08                 2086 	.db #0x08	; 8
+   0743 00                 2087 	.db #0x00	; 0
+   0744 08                 2088 	.db #0x08	; 8
+   0745 00                 2089 	.db #0x00	; 0
+   0746 08                 2090 	.db #0x08	; 8
+   0747 00                 2091 	.db #0x00	; 0
+   0748                    2092 _g_tileset3_183:
+   0748 02                 2093 	.db #0x02	; 2
+   0749 00                 2094 	.db #0x00	; 0
+   074A 02                 2095 	.db #0x02	; 2
+   074B 00                 2096 	.db #0x00	; 0
+   074C 03                 2097 	.db #0x03	; 3
+   074D 00                 2098 	.db #0x00	; 0
+   074E 01                 2099 	.db #0x01	; 1
+   074F 00                 2100 	.db #0x00	; 0
+   0750                    2101 _g_tileset3_184:
+   0750 00                 2102 	.db #0x00	; 0
+   0751 00                 2103 	.db #0x00	; 0
+   0752 00                 2104 	.db #0x00	; 0
+   0753 00                 2105 	.db #0x00	; 0
+   0754 00                 2106 	.db #0x00	; 0
+   0755 00                 2107 	.db #0x00	; 0
+   0756 00                 2108 	.db #0x00	; 0
+   0757 00                 2109 	.db #0x00	; 0
+   0758                    2110 _g_tileset3_185:
+   0758 02                 2111 	.db #0x02	; 2
+   0759 02                 2112 	.db #0x02	; 2
+   075A 02                 2113 	.db #0x02	; 2
+   075B 02                 2114 	.db #0x02	; 2
+   075C 02                 2115 	.db #0x02	; 2
+   075D 06                 2116 	.db #0x06	; 6
+   075E 06                 2117 	.db #0x06	; 6
+   075F 04                 2118 	.db #0x04	; 4
+   0760                    2119 _g_tileset3_186:
+   0760 00                 2120 	.db #0x00	; 0
+   0761 00                 2121 	.db #0x00	; 0
+   0762 00                 2122 	.db #0x00	; 0
+   0763 00                 2123 	.db #0x00	; 0
+   0764 00                 2124 	.db #0x00	; 0
+   0765 00                 2125 	.db #0x00	; 0
+   0766 00                 2126 	.db #0x00	; 0
+   0767 00                 2127 	.db #0x00	; 0
+   0768                    2128 _g_tileset3_187:
+   0768 00                 2129 	.db #0x00	; 0
+   0769 00                 2130 	.db #0x00	; 0
+   076A 00                 2131 	.db #0x00	; 0
+   076B 00                 2132 	.db #0x00	; 0
+   076C 00                 2133 	.db #0x00	; 0
+   076D 00                 2134 	.db #0x00	; 0
+   076E 00                 2135 	.db #0x00	; 0
+   076F 00                 2136 	.db #0x00	; 0
+   0770                    2137 _g_tileset3_188:
+   0770 00                 2138 	.db #0x00	; 0
+   0771 00                 2139 	.db #0x00	; 0
+   0772 00                 2140 	.db #0x00	; 0
+   0773 00                 2141 	.db #0x00	; 0
+   0774 00                 2142 	.db #0x00	; 0
+   0775 00                 2143 	.db #0x00	; 0
+   0776 00                 2144 	.db #0x00	; 0
+   0777 00                 2145 	.db #0x00	; 0
+   0778                    2146 _g_tileset3_189:
+   0778 00                 2147 	.db #0x00	; 0
+   0779 00                 2148 	.db #0x00	; 0
+   077A 00                 2149 	.db #0x00	; 0
+   077B 00                 2150 	.db #0x00	; 0
+   077C 00                 2151 	.db #0x00	; 0
+   077D 00                 2152 	.db #0x00	; 0
+   077E 00                 2153 	.db #0x00	; 0
+   077F 00                 2154 	.db #0x00	; 0
+   0780                    2155 _g_tileset3_190:
+   0780 00                 2156 	.db #0x00	; 0
+   0781 01                 2157 	.db #0x01	; 1
+   0782 00                 2158 	.db #0x00	; 0
+   0783 01                 2159 	.db #0x01	; 1
+   0784 00                 2160 	.db #0x00	; 0
+   0785 03                 2161 	.db #0x03	; 3
+   0786 00                 2162 	.db #0x00	; 0
+   0787 02                 2163 	.db #0x02	; 2
+   0788                    2164 _g_tileset3_191:
+   0788 02                 2165 	.db #0x02	; 2
+   0789 04                 2166 	.db #0x04	; 4
+   078A 02                 2167 	.db #0x02	; 2
+   078B 04                 2168 	.db #0x04	; 4
+   078C 0F                 2169 	.db #0x0f	; 15
+   078D 0F                 2170 	.db #0x0f	; 15
+   078E 01                 2171 	.db #0x01	; 1
+   078F 08                 2172 	.db #0x08	; 8
+   0790                    2173 _g_tileset3_192:
+   0790 08                 2174 	.db #0x08	; 8
+   0791 00                 2175 	.db #0x00	; 0
+   0792 08                 2176 	.db #0x08	; 8
+   0793 00                 2177 	.db #0x00	; 0
+   0794 0C                 2178 	.db #0x0c	; 12
+   0795 00                 2179 	.db #0x00	; 0
+   0796 04                 2180 	.db #0x04	; 4
+   0797 00                 2181 	.db #0x00	; 0
+   0798                    2182 _g_tileset3_193:
+   0798 01                 2183 	.db #0x01	; 1
+   0799 08                 2184 	.db #0x08	; 8
+   079A 00                 2185 	.db #0x00	; 0
+   079B 08                 2186 	.db #0x08	; 8
+   079C 00                 2187 	.db #0x00	; 0
+   079D 0C                 2188 	.db #0x0c	; 12
+   079E 00                 2189 	.db #0x00	; 0
+   079F 06                 2190 	.db #0x06	; 6
+   07A0                    2191 _g_tileset3_194:
+   07A0 00                 2192 	.db #0x00	; 0
+   07A1 00                 2193 	.db #0x00	; 0
+   07A2 00                 2194 	.db #0x00	; 0
+   07A3 00                 2195 	.db #0x00	; 0
+   07A4 00                 2196 	.db #0x00	; 0
+   07A5 01                 2197 	.db #0x01	; 1
+   07A6 00                 2198 	.db #0x00	; 0
+   07A7 00                 2199 	.db #0x00	; 0
+   07A8                    2200 _g_tileset3_195:
+   07A8 04                 2201 	.db #0x04	; 4
+   07A9 04                 2202 	.db #0x04	; 4
+   07AA 08                 2203 	.db #0x08	; 8
+   07AB 08                 2204 	.db #0x08	; 8
+   07AC 01                 2205 	.db #0x01	; 1
+   07AD 08                 2206 	.db #0x08	; 8
+   07AE 03                 2207 	.db #0x03	; 3
+   07AF 00                 2208 	.db #0x00	; 0
+   07B0                    2209 _g_tileset3_196:
+   07B0 00                 2210 	.db #0x00	; 0
+   07B1 00                 2211 	.db #0x00	; 0
+   07B2 00                 2212 	.db #0x00	; 0
+   07B3 00                 2213 	.db #0x00	; 0
+   07B4 00                 2214 	.db #0x00	; 0
+   07B5 00                 2215 	.db #0x00	; 0
+   07B6 00                 2216 	.db #0x00	; 0
+   07B7 00                 2217 	.db #0x00	; 0
+   07B8                    2218 _g_tileset3_197:
+   07B8 00                 2219 	.db #0x00	; 0
+   07B9 00                 2220 	.db #0x00	; 0
+   07BA 00                 2221 	.db #0x00	; 0
+   07BB 00                 2222 	.db #0x00	; 0
+   07BC 00                 2223 	.db #0x00	; 0
+   07BD 00                 2224 	.db #0x00	; 0
+   07BE 00                 2225 	.db #0x00	; 0
+   07BF 00                 2226 	.db #0x00	; 0
+   07C0                    2227 _g_tileset3_198:
+   07C0 00                 2228 	.db #0x00	; 0
+   07C1 00                 2229 	.db #0x00	; 0
+   07C2 00                 2230 	.db #0x00	; 0
+   07C3 00                 2231 	.db #0x00	; 0
+   07C4 00                 2232 	.db #0x00	; 0
+   07C5 00                 2233 	.db #0x00	; 0
+   07C6 00                 2234 	.db #0x00	; 0
+   07C7 00                 2235 	.db #0x00	; 0
+   07C8                    2236 _g_tileset3_199:
+   07C8 00                 2237 	.db #0x00	; 0
+   07C9 00                 2238 	.db #0x00	; 0
+   07CA 00                 2239 	.db #0x00	; 0
+   07CB 00                 2240 	.db #0x00	; 0
+   07CC 00                 2241 	.db #0x00	; 0
+   07CD 00                 2242 	.db #0x00	; 0
+   07CE 00                 2243 	.db #0x00	; 0
+   07CF 00                 2244 	.db #0x00	; 0
+                           2245 	.area _INITIALIZER
+                           2246 	.area _CABS (ABS)

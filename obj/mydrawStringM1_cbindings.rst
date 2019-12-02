@@ -83,12 +83,12 @@ Hexadecimal [16-Bits]
                              27 ;;
                              28 ;;   29 us, 13 bytes
                              29 ;;
-   5DB4                      30 _mydrawStringM1::
-   5DB4 FD 22 CF 5D   [20]   31    ld (saveiy), iy   ;; [6] Save IY before modifying them
+   88BA                      30 _mydrawStringM1::
+   88BA FD 22 D5 88   [20]   31    ld (saveiy), iy   ;; [6] Save IY before modifying them
                              32 
-   5DB8 E1            [10]   33    pop   hl          ;; [3] HL = Return Address
-   5DB9 FD E1         [14]   34    pop   iy          ;; [5] BC = Pointer to the null terminated string
-   5DBB E3            [19]   35    ex  (sp), hl      ;; [6] HL = Destination address (Video memory location where character will be printed)
+   88BE E1            [10]   33    pop   hl          ;; [3] HL = Return Address
+   88BF FD E1         [14]   34    pop   iy          ;; [5] BC = Pointer to the null terminated string
+   88C1 E3            [19]   35    ex  (sp), hl      ;; [6] HL = Destination address (Video memory location where character will be printed)
                              36                      ;; ... and leave only return address at the top of the stack,
                              37                      ;; ... to fullfill __z88dk_callee calling convention
                              38 
@@ -241,25 +241,25 @@ Hexadecimal [16-Bits]
                             131 ;;   di                               ;; [1] Disable interrupts to prevent firmware from taking control while Lower ROM is enabled
                             132 ;;   out   (c), a                     ;; [3] GA Command: Set Video Mode and ROM status (100)
                             133 
-   5DBC 18 09         [12]  134    jr    firstChar                  ;; [3] Jump to first char (Saves 1 jr back every iteration)
+   88C2 18 09         [12]  134    jr    firstChar                  ;; [3] Jump to first char (Saves 1 jr back every iteration)
                             135 
-   5DBE                     136 nextChar:
+   88C4                     136 nextChar:
                             137    ;; Draw next character
-   5DBE E5            [11]  138    push  hl                         ;; [4] Save HL
-   5DBF CD D2 5D      [17]  139    call  mydrawCharM1_inner_asm  ;; [5 + 458/466] Draws the next character
-   5DC2 E1            [10]  140    pop   hl                         ;; [3] Recover HL 
+   88C4 E5            [11]  138    push  hl                         ;; [4] Save HL
+   88C5 CD D8 88      [17]  139    call  mydrawCharM1_inner_asm  ;; [5 + 458/466] Draws the next character
+   88C8 E1            [10]  140    pop   hl                         ;; [3] Recover HL 
                             141 
                             142    ;; Increment Pointers
-   5DC3 23            [ 6]  143    inc   hl                         ;; [2] /
-   5DC4 23            [ 6]  144    inc   hl                         ;; [2] | HL += 2 (point to next position in video memory, 8 pixels to the right)
-   5DC5 FD 23         [10]  145    inc   iy                         ;; [3] IX += 1 (point to next character in the string)
+   88C9 23            [ 6]  143    inc   hl                         ;; [2] /
+   88CA 23            [ 6]  144    inc   hl                         ;; [2] | HL += 2 (point to next position in video memory, 8 pixels to the right)
+   88CB FD 23         [10]  145    inc   iy                         ;; [3] IX += 1 (point to next character in the string)
                             146 
-   5DC7                     147 firstChar:
-   5DC7 FD 7E 00      [19]  148    ld     a, (iy)                   ;; [5] A = next character from the string
-   5DCA B7            [ 4]  149    or     a                         ;; [1] Check if A = 0
-   5DCB 20 F1         [12]  150    jr    nz, nextChar               ;; [2/3] if A != 0, A is next character, draw it, else end
+   88CD                     147 firstChar:
+   88CD FD 7E 00      [19]  148    ld     a, (iy)                   ;; [5] A = next character from the string
+   88D0 B7            [ 4]  149    or     a                         ;; [1] Check if A = 0
+   88D1 20 F1         [12]  150    jr    nz, nextChar               ;; [2/3] if A != 0, A is next character, draw it, else end
                             151 
-   5DCD                     152 endstring:
+   88D3                     152 endstring:
                             153 ;;   ;; After finishing character drawing, restore previous ROM and Interrupts status
                             154 ;;   ld     a, (_cpct_mode_rom_status) ;; [4] A = mode_rom_status (present saved value)
                             155 ;;   ld     b, #GA_port_byte           ;; [2] B = Gate Array Port (0x7F)
@@ -274,5 +274,5 @@ Hexadecimal [16-Bits]
 
                              40 
                      001B    41 saveiy = .+2
-   5DCD FD 21 00 00   [14]   42    ld    iy, #0000   ;; [6] Restore IY before returning (0000 is a placeholder)
-   5DD1 C9            [10]   43    ret               ;; [3] Return
+   88D3 FD 21 00 00   [14]   42    ld    iy, #0000   ;; [6] Restore IY before returning (0000 is a placeholder)
+   88D7 C9            [10]   43    ret               ;; [3] Return

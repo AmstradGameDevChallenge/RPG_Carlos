@@ -9,9 +9,9 @@ extern u8 g_mapa01[504];
 
 
 u8 turno() { //devuelve valor 0 cuando muere personaje o se termina nivel
-	u8 i,j,temp[36], enemy_mov, nueva_pos;
+	u8 i,temp[36];
   u8* mapa;
-	
+
   //borrar personajes en posición anterior (no se puede hacer en mismo bucle que pintado porque un enemigo puede borrar al protagonista)
   for (i = 0; i < 3; i++) {
     mapa = (u8*) (&g_mapa01[0] + ((nivel-1) * 504));
@@ -27,6 +27,24 @@ u8 turno() { //devuelve valor 0 cuando muere personaje o se termina nivel
       entidad[i].pos_x_ant = entidad[i].pos_x;
 		}
 	}
+
+  // Fin del Juego
+  if (nivel == 31) {
+    printConsole("Don Mendo", 2, 0);
+    printConsole("&", 2, 0);
+    printConsole("Lady Sol", 2, 0);
+    printConsole(" ", 2, 0);
+    printConsole("together at last", 2, 0);
+    printConsole("CONGRATULATIONS!", 0, 2);
+    entidad[0].energy = 0;
+
+    pausaTecladoLibre();
+    do {
+        ;
+    } while (!cpct_isAnyKeyPressed_f());
+    return 0;
+  } 
+
   //pintar pociones en niveles especiales
   if (nivel == 5 || nivel == 15 || nivel == 25) {
     drawPotion();
@@ -34,11 +52,10 @@ u8 turno() { //devuelve valor 0 cuando muere personaje o se termina nivel
 
 
 	// TURNO JUGADOR //////////////////////////////
-
 		// Tomar acción
 	i = 0;
   do  {
-    	cpct_scanKeyboard_f();
+//    	cpct_scanKeyboard_f();
     	sprintf(temp, "ACTION (</>/D) ?");
     	if (i < 25) {
 			printConsole(temp, 2, 0);
@@ -54,80 +71,26 @@ u8 turno() { //devuelve valor 0 cuando muere personaje o se termina nivel
     	&& !cpct_isKeyPressed(Key_P) && !cpct_isKeyPressed(Key_CursorRight) && !cpct_isKeyPressed(Joy0_Right) 
     	&& !cpct_isKeyPressed(Key_D) && !cpct_isKeyPressed(Joy0_Fire1));
   
-  nueva_pos = 0;
-
 	// Mover izquierda
   if (cpct_isKeyPressed(Key_O) || cpct_isKeyPressed(Key_CursorLeft) || cpct_isKeyPressed(Joy0_Left)) {
-   	sprintf(temp, "%-9s GOES <",entidad[0].name);
-   	printConsole(temp, 2, 0);
-
-    nueva_pos = entidad[0].pos_x - 4;
+   	moverIzq(&entidad[0]);
   }
 
   // Mover derecha y posible ataque
   if (cpct_isKeyPressed(Key_P) || cpct_isKeyPressed(Key_CursorRight) || cpct_isKeyPressed(Joy0_Right)) {
-   	sprintf(temp, "%-9s GOES >",entidad[0].name);
-   	printConsole(temp, 2 ,0);
-
-    nueva_pos = entidad[0].pos_x + 4;
-            
-    if (nueva_pos == entidad[1].pos_x && entidad[1].energy)
-     	atacar(&entidad[0], &entidad[1]);
-
-    if (nueva_pos == entidad[2].pos_x && entidad[2].energy)
-     	atacar(&entidad[0], &entidad[2]);
-
-    }
+   	moverDcha(&entidad[0]);
+  }
 
   // Defensa
   if (cpct_isKeyPressed(Key_D) || cpct_isKeyPressed(Joy0_Fire1)) {
    	defender(&entidad[0]);
-    }
-
-
-  //Comprobar que el movimiento es posible (límites pantalla o enemigos)
-  if (nueva_pos > 3 
-   	&& nueva_pos < 37 
-   	&& (!entidad[1].energy || nueva_pos != entidad[1].pos_x)
-   	&& (!entidad[2].energy || nueva_pos != entidad[2].pos_x)
-   	)
-    entidad[0].pos_x = nueva_pos;
+  }
+  
 
   // TURNO ENEMIGOS //////////////
-
   for (i = 1; i < 3; i++) {
    	if (entidad[i].energy) {
-   		if (abs(entidad[i].pos_x - entidad[0].pos_x) == 4) //Si está en casilla contigua, atacar
-   			atacar(&entidad[i], &entidad[0]);
-   		else { 
-       	enemy_mov = cpct_rand()%3; //33% de moverse a izquierda, derecha o curarse
-       	if (enemy_mov == 1) {
-       		sprintf(temp, "%-9s GOES <",entidad[i].name);
-		     	printConsole(temp, 0, 2);
-
-	        nueva_pos = entidad[i].pos_x - 4;
-       	} else if (enemy_mov == 2) {
-         		sprintf(temp, "%-9s GOES >",entidad[i].name);
-	   	     	printConsole(temp, 0, 2);
-
-		        nueva_pos = entidad[i].pos_x + 4;
-       	} else
-         		defender(&entidad[i]);
-     	}
-
-     	//Comprobar colisión con otros personajes
-      for (j = 0; j < 3; j++) {
-      	if (i!=j) {
-      		if (entidad[j].pos_x == nueva_pos) {
-      			nueva_pos = 0;
-      			break;
-      		}
-      	}
-      }
-
-      //Comprobar que el movimiento es posible (límites pantalla)
-		  if (nueva_pos > 3 && nueva_pos < 37)
-				entidad[i].pos_x = nueva_pos; 
+      IA (&entidad[i]);
     }
   }
 
@@ -141,8 +104,9 @@ u8 turno() { //devuelve valor 0 cuando muere personaje o se termina nivel
       //Beber Poción y aumentar atributo
       if (cpct_rand() % 2){
         // Mejora de salud 50%
+        entidad[0].max_energy +=10;
         entidad[0].energy = entidad[0].max_energy;
-        sprintf(temp, "%-9s MAX HP",entidad[0].name);
+        sprintf(temp, "%-9s ^ HP",entidad[0].name);
         printConsole(temp, 2, 0);
       } else if (cpct_rand() % 2){
         //Mejora de Ataque 25%
@@ -166,14 +130,10 @@ u8 turno() { //devuelve valor 0 cuando muere personaje o se termina nivel
 
 
   if (sig_nivel) {
-    if (nivel == 10) {// Fin del Juego
-      sprintf(temp, "CONGRATULATIONS!");
-      entidad[0].energy = 0;
-    } else {
-		  nivel++;
-      entidad[0].pos_x = 8;
-      sprintf(temp, "   NEXT LEVEL   ");
-    }
+	  nivel++;
+    entidad[0].pos_x = 8;
+    sprintf(temp, "   NEXT LEVEL   ");
+
     printConsole(temp, 0, 2);
     sig_nivel = 0;
 		return 0;
@@ -196,12 +156,13 @@ void juego() {
   sig_nivel = 0;
 
 	initPlayer();
-
+  efecto_pliegue(PLIEGUE);
 	while(entidad[0].energy) {
     i = 0;
 		cpct_clearScreen(0x00);
     dibujarMarcoExterior();
     // Mostrar capítulos
+    cpct_setDrawCharM1(2, 0);
     if (nivel == 1) {
       mydrawStringM1("Chapter 1", cpctm_screenPtr(CPCT_VMEM_START, 30, 80));
       mydrawStringM1("A faraway and foreign land ...", cpctm_screenPtr(CPCT_VMEM_START, 12, 96));
@@ -209,7 +170,7 @@ void juego() {
     }
     if (nivel == 11) {
       mydrawStringM1("Chapter 2", cpctm_screenPtr(CPCT_VMEM_START, 30, 80));
-      mydrawStringM1("A hidden passage to the Castle ...", cpctm_screenPtr(CPCT_VMEM_START, 10, 96));
+      mydrawStringM1("A hidden passage to the Castle ...", cpctm_screenPtr(CPCT_VMEM_START, 6, 96));
       i = 1;
     }
     if (nivel == 21) {
@@ -219,6 +180,7 @@ void juego() {
     }
 
     if (i) {
+      efecto_pliegue(DESPLIEGUE);
       for (i=0; i< 5; i++)
         pausa(SEGUNDO);
 
@@ -237,7 +199,7 @@ void juego() {
 			;
 
 		do {
-      cpct_scanKeyboard_f();
+      ;
     } while (!cpct_isAnyKeyPressed_f());
     efecto_pliegue(PLIEGUE);
 	}

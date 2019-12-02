@@ -7,60 +7,86 @@ Symbol Table
     .__.ABS.                                                    =  0000 G
     .__.CPU.                                                    =  0000 L
     .__.H$L.                                                    =  0000 L
+    _G_abeja                                                       **** GX
+    _G_arabe_1                                                     **** GX
+    _G_arabe_2                                                     **** GX
+    _G_arabe_3                                                     **** GX
+    _G_caballero                                                   **** GX
+    _G_carcelero                                                   **** GX
+    _G_esqueleto                                                   **** GX
+    _G_fakir                                                       **** GX
+    _G_goblin                                                      **** GX
+    _G_gusano                                                      **** GX
+    _G_mago                                                        **** GX
     _G_mendo                                                       **** GX
+    _G_murcielago                                                  **** GX
     _G_pocion                                                      **** GX
+    _G_soldado_1                                                   **** GX
+    _G_soldado_2                                                   **** GX
+    _G_spider                                                      **** GX
     _G_tile_castillo                                               **** GX
     _G_tile_caverna                                                **** GX
     _G_tile_cruzada                                                **** GX
-  0 ___str_0                                                       02DD R
-  0 ___str_1                                                       0302 R
-  0 ___str_2                                                       0364 R
-  0 ___str_3                                                       04E3 R
-  0 ___str_4                                                       04F1 R
-  0 ___str_5                                                       04FF R
-  0 ___str_6                                                       05CE R
-    __divuchar                                                     **** GX
+  0 _IA                                                            086D GR
+  0 ___str_0                                                       02E9 R
+  0 ___str_1                                                       030E R
+  0 ___str_2                                                       0370 R
+  0 ___str_3                                                       058A R
+  0 ___str_4                                                       0598 R
+  0 ___str_5                                                       05A6 R
+  0 ___str_6                                                       06E2 R
+  0 ___str_7                                                       076E R
+  0 ___str_8                                                       085F R
     __moduchar                                                     **** GX
   0 _abs                                                           0000 GR
-  0 _atacar                                                        03D5 GR
+  0 _atacar                                                        03E1 GR
+  0 _comprobarPosicion                                             05B2 GR
     _cpct_drawSolidBox                                             **** GX
     _cpct_drawSprite                                               **** GX
     _cpct_drawSpriteMasked                                         **** GX
-    _cpct_etm_drawTileBox2x4                                       **** GX
+    _cpct_etm_drawTilemap2x4_f                                     **** GX
     _cpct_etm_setTileset2x4                                        **** GX
     _cpct_getRandom_mxor_u8                                        **** GX
     _cpct_getScreenPtr                                             **** GX
     _cpct_isAnyKeyPressed_f                                        **** GX
     _cpct_px2byteM1                                                **** GX
-    _cpct_scanKeyboard_f                                           **** GX
     _cpct_setCRTCReg                                               **** GX
     _cpct_setDrawCharM1                                            **** GX
     _cursorConsola                                                 **** GX
-  0 _defender                                                      050B GR
-  0 _dibujarEscenario                                              01F9 GR
-  0 _dibujarMarcoExterior                                          008F GR
-  0 _dibujarMarcoInterior                                          015E GR
-  0 _drawPotion                                                    05DC GR
+  0 _defender                                                      077A GR
+  0 _dibujarEscenario                                              01E7 GR
+  0 _dibujarMarcoExterior                                          0078 GR
+  0 _dibujarMarcoInterior                                          0145 GR
+  0 _drawPotion                                                    0AA9 GR
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
   0 _efecto_pliegue                                                0038 GR
+    _entidad                                                       **** GX
     _g_mapa01                                                      **** GX
+  0 _moverDcha                                                     06EE GR
+  0 _moverIzq                                                      0661 GR
     _mydrawStringM1                                                **** GX
     _nivel                                                         **** GX
   0 _pausa                                                         0028 GR
-  0 _pausaTecladoLibre                                             0084 GR
-  0 _printConsole                                                  0370 GR
-  0 _printLevel                                                    0327 GR
-  0 _printStats                                                    023D GR
+  0 _pausaTecladoLibre                                             0070 GR
+    _playFX                                                        **** GX
+  0 _printConsole                                                  037C GR
+  0 _printLevel                                                    0333 GR
+  0 _printStats                                                    023B GR
     _sprintf                                                       **** GX
     _tileset1                                                      **** GX
     _tileset2                                                      **** GX
+    _tileset3                                                      **** GX
 
-
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size  5EC   flags    0
+   0 _CODE                                      size  AB9   flags    0
    1 _DATA                                      size    0   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8

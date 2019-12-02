@@ -23,9 +23,10 @@
 #include <stdio.h>
 #include <string.h>
 #include "main.h"
-#include "fonts.h"
-#include "graficos.h"
+#include "funciones.h"
 #include "juego.h"
+#include "absolutas.h"
+#include "m_intro.h"
 
 
 
@@ -36,14 +37,81 @@ TStats entidad[3];
 u8 nivel;
 u8 cursorConsola;
 u8 sig_nivel;
+u8 contador_musica;
+u8 musica_sonando;
 
+void playFX (u8 instrumento, u8 nota) {
+// SFXPlay admite notas de 0 a 143, es decir 144 notas. Siendo 12 notas por octava, daría para 12 octavas
+// Sin embargo, Arkos sólo muestra octavas de 0 a A
+// Para obtener una nota hay que calcular
+// ((octava * 12) + nota (teniendo en cuenta semitonos)) - 1. Por ejemplo E2 => (2 * 12) + 5 - 1
+
+   cpct_akp_SFXInit (m_sfx);
+   cpct_akp_SFXPlay (instrumento, 15, nota, 0, 0, AY_CHANNEL_B);
+}
+
+void reproducirMusica(){
+   //El reproductor Arkos hace uso de los registros auxiliares (AF',BC',...) por lo que si luego se hace uso
+   //de funciones que hagan uso de ellos (como easytiles) puede corromperse el programa si llega la interrupción a medio proceso.
+   //Por eso, es mejor curarse en salud y guardarlos siempre de manera manual antes de llamar a la reproducción de la música
+
+   __asm
+      EXX
+      PUSH AF
+      PUSH BC
+      PUSH DE
+      PUSH HL
+   __endasm;
+   cpct_akp_musicPlay();
+   __asm
+      POP HL
+      POP DE
+      POP BC
+      POP AF
+      EXX
+   __endasm;
+}
+
+void intHandler(){
+   cpct_scanKeyboard_if();  //Para capturar teclado para quitar música o salir durante el juego
+
+   //Las interrupciones se llaman 300 veces por segundo, la música debe sonar 50 veces por segundo (50hz)
+   //por lo que sólo hay que llamar al siguiente bloque de música cada 6 veces
+   if (!contador_musica && musica_sonando) {   
+      reproducirMusica();
+      contador_musica = 6;
+   }
+
+   contador_musica--;
+}
+
+void setInterruptAtVSYNCStart(void *intHdl){
+   //Asegurarnos que cambiamos la gestión de interrupciones al terminar VSync
+   //pues el primero puede saltar si estamos a mitad de VSync. Por eso se pasan 2 interrupciones más y entra en espera.
+   //(halt paraliza la ejecución hasta que se produzca una nueva interrupción)
+   //Ahora es seguro que saltará de la espera al llegar el CRTC al VSync
+   cpct_waitVSYNC();
+   __asm
+      halt 
+      halt
+   __endasm;
+   //Nos aseguramos que CRTC estaba a mitad de pantalla
+   cpct_waitVSYNC(); //Me aseguro que se espera al final del pintado de la pantalla para cambiar el código de la interrupción
+   cpct_setInterruptHandler(intHdl);
+}
 
 void main(void) {
    u8 semilla;
 
+   contador_musica = 5;
+    
    // Disable firmware, clear and colour screen (black)
    cpct_disableFirmware();
+   setInterruptAtVSYNCStart(intHandler);
+   
+   
 
+   efecto_pliegue(PLIEGUE);
    while (1) {
       cpct_setVideoMode(1);
       cpct_clearScreen(0x00);
@@ -67,16 +135,18 @@ void main(void) {
       mydrawStringM1("Bring to an end the bloody Crusades war,", cpctm_screenPtr(CPCT_VMEM_START, 0, 112));
       mydrawStringM1("go through the underway passage and ", cpctm_screenPtr(CPCT_VMEM_START, 0, 120));
       mydrawStringM1("finally assault the Castle to help Don ", cpctm_screenPtr(CPCT_VMEM_START, 0, 128));
-      mydrawStringM1("Mendo to go back to his love: Lady Sun.", cpctm_screenPtr(CPCT_VMEM_START, 0, 136));
+      mydrawStringM1("Mendo to go back to his love: Lady Sol.", cpctm_screenPtr(CPCT_VMEM_START, 0, 136));
       mydrawStringM1("PRESS ANY KEY TO START", cpct_getScreenPtr(CPCT_VMEM_START, 0, 168));
-
+      cpct_akp_musicInit((u8*) m_intro);
+      musica_sonando = 1;
+      efecto_pliegue(DESPLIEGUE);
       
       pausaTecladoLibre();
       
       //Wait for key
       semilla = 0;
       do {
-         cpct_scanKeyboard_f();
+         //cpct_scanKeyboard_f();
          semilla++;
       }
       while (!cpct_isAnyKeyPressed_f());
@@ -86,6 +156,9 @@ void main(void) {
          semilla = 1;
 
       cpct_srand8(semilla);
+      cpct_akp_musicInit((u8*) m_sfx);
+      //musica_sonando = 0;
+      //cpct_akp_stop();
       juego();
    }
 }

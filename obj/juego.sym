@@ -7,24 +7,25 @@ Symbol Table
     .__.ABS.                                                    =  0000 G
     .__.CPU.                                                    =  0000 L
     .__.H$L.                                                    =  0000 L
-  0 ___str_0                                                       071D R
-  0 ___str_1                                                       072E R
-  0 ___str_10                                                      0878 R
-  0 ___str_11                                                      0897 R
-  0 ___str_12                                                      08A1 R
-  0 ___str_13                                                      08C4 R
-  0 ___str_14                                                      08CE R
-  0 ___str_2                                                       073A R
-  0 ___str_3                                                       0746 R
-  0 ___str_4                                                       0752 R
-  0 ___str_5                                                       075D R
-  0 ___str_6                                                       0768 R
-  0 ___str_7                                                       0779 R
-  0 ___str_8                                                       078A R
-  0 ___str_9                                                       086E R
-    __moduchar                                                     **** GX
-    _abs                                                           **** GX
-    _atacar                                                        **** GX
+    _IA                                                            **** GX
+  0 ___str_0                                                       04A2 R
+  0 ___str_1                                                       04AC R
+  0 ___str_10                                                      050C R
+  0 ___str_11                                                      051D R
+  0 ___str_12                                                      0614 R
+  0 ___str_13                                                      061E R
+  0 ___str_14                                                      063D R
+  0 ___str_15                                                      0647 R
+  0 ___str_16                                                      066A R
+  0 ___str_17                                                      0674 R
+  0 ___str_2                                                       04AE R
+  0 ___str_3                                                       04B7 R
+  0 ___str_4                                                       04B9 R
+  0 ___str_5                                                       04CA R
+  0 ___str_6                                                       04DB R
+  0 ___str_7                                                       04EC R
+  0 ___str_8                                                       04F6 R
+  0 ___str_9                                                       0501 R
     _cpct_drawSpriteMasked                                         **** GX
     _cpct_etm_drawTileBox2x4                                       **** GX
     _cpct_getRandom_mxor_u8                                        **** GX
@@ -32,7 +33,7 @@ Symbol Table
     _cpct_isAnyKeyPressed_f                                        **** GX
     _cpct_isKeyPressed                                             **** GX
     _cpct_memset                                                   **** GX
-    _cpct_scanKeyboard_f                                           **** GX
+    _cpct_setDrawCharM1                                            **** GX
     _cpct_waitVSYNC                                                **** GX
     _cursorConsola                                                 **** GX
     _defender                                                      **** GX
@@ -45,7 +46,9 @@ Symbol Table
     _g_mapa01                                                      **** GX
     _initNivel                                                     **** GX
     _initPlayer                                                    **** GX
-  0 _juego                                                         079B GR
+  0 _juego                                                         052E GR
+    _moverDcha                                                     **** GX
+    _moverIzq                                                      **** GX
     _mydrawStringM1                                                **** GX
     _nivel                                                         **** GX
     _pausa                                                         **** GX
@@ -55,15 +58,20 @@ Symbol Table
     _printStats                                                    **** GX
     _sig_nivel                                                     **** GX
     _sprintf                                                       **** GX
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
   0 _turno                                                         0000 GR
 
 
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size  8E7   flags    0
+   0 _CODE                                      size  68D   flags    0
    1 _DATA                                      size    0   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8

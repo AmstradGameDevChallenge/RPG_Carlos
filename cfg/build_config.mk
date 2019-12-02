@@ -51,7 +51,9 @@
 PROJNAME   := agc
 # +40 para vector de interrupciones
 # +300 fuentes de caracteres propias
-Z80CODELOC := 0x0340
+# +8D para instrumentos fx
+# + música (m_intro.h)
+Z80CODELOC := 0x050f
 
 ##
 ## Folders 

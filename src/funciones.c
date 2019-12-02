@@ -5,7 +5,7 @@
 #include "graficos.h"
 #include "patrones/patronesTiles_1.h"
 #include "patrones/patronesTiles_2.h"
-//#include "patrones/patronesTiles_3.h"
+#include "patrones/patronesTiles_3.h"
 #include "mapas/fase_01.h"
 #include "mapas/fase_02.h"
 #include "mapas/fase_03.h"
@@ -26,16 +26,17 @@
 #include "mapas/fase_18.h"
 #include "mapas/fase_19.h"
 #include "mapas/fase_20.h"
-//#include "mapas/fase_21.h"
-//#include "mapas/fase_22.h"
-//#include "mapas/fase_23.h"
-//#include "mapas/fase_24.h"
-//#include "mapas/fase_25.h"
-//#include "mapas/fase_26.h"
-//#include "mapas/fase_27.h"
-//#include "mapas/fase_28.h"
-//#include "mapas/fase_29.h"
-//#include "mapas/fase_30.h"
+#include "mapas/fase_21.h"
+#include "mapas/fase_22.h"
+#include "mapas/fase_23.h"
+#include "mapas/fase_24.h"
+#include "mapas/fase_25.h"
+#include "mapas/fase_26.h"
+#include "mapas/fase_27.h"
+#include "mapas/fase_28.h"
+#include "mapas/fase_29.h"
+#include "mapas/fase_30.h"
+#include "mapas/fase_31.h"
 
 u8 abs (i8 valor){
    return (valor > 0 ? valor : -valor);
@@ -51,13 +52,12 @@ void pausa(u16 ciclos) {
 void efecto_pliegue(u8 modo) {
   u8 i,j;
 
-  i = 200;
+  i = 80;
   if (modo)
     i = 1;
   
   do {
-    cpct_setCRTCReg (1, i/5);   //Cambiar nº columnas por pantalla (1-40)
-    cpct_setCRTCReg (6, i/8);   //Cambiar nº de filas por pantallas (1-25)
+    cpct_setCRTCReg (1, i/2);   //Cambiar nº columnas por pantalla (1-40)
 
     for (j = 0; j < 255; j++)
       ;
@@ -67,13 +67,14 @@ void efecto_pliegue(u8 modo) {
     } else {
       i--; 
     }
-  } while (i > 0 && i <= 200);
+  } while (i > 0 && i <= 80);
 }
 
 
 void pausaTecladoLibre(){
 	while (cpct_isAnyKeyPressed_f ()) { //Asegurarnos que se ha dejado de pulsar la tecla anterior 
-   		cpct_scanKeyboard_f();
+   		//cpct_scanKeyboard_f()
+    ;
    	}
 }
 
@@ -83,9 +84,9 @@ void dibujarMarcoExterior (){
   u8* tile;
 
   tile = (u8*) &G_tile_cruzada[0];
-  if ((nivel/10) == 1)
+  if (nivel > 10)
     tile = (u8*) &G_tile_caverna[0];
-  if ((nivel/10) == 2)
+  if (nivel > 20)
     tile = (u8*) &G_tile_castillo[0];
 
   //dibujar marco alrededor de pantalla
@@ -108,8 +109,10 @@ void dibujarMarcoInterior (){
   u8* tile;
 
   tile = (u8*) &G_tile_cruzada[0];
-  if ((nivel/10) == 1)
-    tile = (u8*) &G_tile_cruzada[0];
+  if (nivel > 10)
+    tile = (u8*) &G_tile_caverna[0];
+  if (nivel > 20)
+    tile = (u8*) &G_tile_castillo[0];
 
   //dibujar marco alrededor de pantalla
     //filas horizontales
@@ -131,12 +134,18 @@ void dibujarEscenario(){
   cpct_etm_setTileset2x4(tileset1);
   if (nivel > 10)
     cpct_etm_setTileset2x4(tileset2);
-  //if (nivel > 20)
-  //  cpct_etm_setTileset2x4(tileset3);
+  if (nivel > 20)
+    cpct_etm_setTileset2x4(tileset3);
 
   mapa = (u8*) (&g_mapa01[0] + ((nivel-1) * 504));
   
-  cpct_etm_drawTilemap2x4 ( g_mapa01_W, g_mapa01_H , INICIO_AREA_JUEGO, mapa);
+  __asm
+      di
+  __endasm;
+  cpct_etm_drawTilemap2x4_f ( g_mapa01_W, g_mapa01_H , INICIO_AREA_JUEGO, mapa);
+  __asm
+      ei
+  __endasm;
 }
 
 
@@ -173,8 +182,66 @@ void printConsole  (void* string, u8 pen, u8 bground) {
 }
 
 void atacar(TStats *a, TStats *b) {
-  u8 temp[20], ataque, pen, bg;
+  u8 temp[20], ataque, pen, bg, nota;
 
+
+  pen = 0;
+  bg = 2;
+  nota = 33;
+  if ((u16) a->sprite == (u16) G_mendo)  {
+    pen = 2;
+    bg = 0;
+    nota = 23;
+  }
+
+  if (b->energy) { //Asegurarnos que el atacado sigue vivo
+    ataque = a->attack + (2*(cpct_rand()%a->force)) - a->force;
+    sprintf(temp, "%-9s ATT %02d",a->name, ataque);
+    printConsole(temp, pen, bg);
+    playFX (1, nota);
+    pausa(SEGUNDO/2);
+
+    if (ataque < b->energy) {
+      b->energy = b->energy - ataque;
+      sprintf(temp, "%-9s HP=>%02d",b->name, b->energy);
+    } else {
+      b->energy = 0;
+      sprintf(temp, "%-9s DIED! ",b->name, b->energy);
+      printStats(b);
+      //Invertir colores 
+      ataque = pen;
+      pen = bg;
+      bg = ataque;
+    }
+
+    printConsole(temp, pen, bg);
+  }
+}
+
+void comprobarPosicion (TStats *a, u8 nuevaPosicion){
+  u8 nueva, j;
+
+  nueva = nuevaPosicion;
+
+  //Comprobar colisión con otros personajes
+  for (j = 0; j < 3; j++) {
+    if (a->id != j && entidad[j].energy) {
+      if (entidad[j].pos_x == nueva) {
+        nueva = 0;
+        if (a->id == 0 || j == 0) //ataque sólo si está involucrado el jugador. Para que no se ataquen los enemigos
+          atacar(&entidad[a->id], &entidad[j]);
+        break;
+      }
+    }
+  }
+
+  //Comprobar que el movimiento es posible (límites pantalla)
+  if (nueva > 3 && nueva < 37)
+    a->pos_x = nueva;
+}
+
+void moverIzq(TStats *a) {
+  u8 temp[20], pen, bg;
 
   pen = 0;
   bg = 2;
@@ -182,36 +249,39 @@ void atacar(TStats *a, TStats *b) {
     pen = 2;
     bg = 0;
   }
-
-
-  ataque = a->attack + (2*(cpct_rand()%a->force)) - a->force;
-  sprintf(temp, "%-9s ATT %02d",a->name, ataque);
+    
+  sprintf(temp, "%-9s GOES <",a->name);
   printConsole(temp, pen, bg);
 
-  if (ataque < b->energy) {
-    b->energy = b->energy - ataque;
-    sprintf(temp, "%-9s HP=>%02d",b->name, b->energy);
-  } else {
-    b->energy = 0;
-    sprintf(temp, "%-9s DIED! ",b->name, b->energy);
-    printStats(b);
-    //Invertir colores 
-    ataque = pen;
-    pen = bg;
-    bg = ataque;
+  comprobarPosicion(a,a->pos_x - 4);
+}
+
+void moverDcha(TStats *a) {
+  u8 temp[20], pen, bg;
+
+  pen = 0;
+  bg = 2;
+  if ((u16) a->sprite == (u16) G_mendo)  {
+    pen = 2;
+    bg = 0;
   }
-
+  
+  sprintf(temp, "%-9s GOES >",a->name);
   printConsole(temp, pen, bg);
+
+  comprobarPosicion(a,a->pos_x + 4);
 }
 
 void defender(TStats *a) {
-  u8 temp[20], healed, pen, bg;
+  u8 temp[20], healed, pen, bg, nota;
 
   pen = 0;
   bg = 2;
+  nota = 33;
   if ((u16) a->sprite == (u16) G_mendo)  {
     pen = 2;
     bg = 0;
+    nota = 23;
   }
 
   if (a->energy + a->defense < a->max_energy)
@@ -224,8 +294,74 @@ void defender(TStats *a) {
   if (healed) {
     sprintf(temp, "%-9s ^ %02dHP",a->name, healed);
     printConsole(temp, pen, bg);
+    playFX (2, nota);
+    pausa(SEGUNDO/2);
   }
 }
+
+void IA(TStats *a) {
+
+  if ((u16) a->sprite == (u16) G_goblin) {
+    if (cpct_rand() % 2)
+      moverIzq(a);
+  }
+
+  if ( ((u16) a->sprite == (u16) G_arabe_1)
+    || ((u16) a->sprite == (u16) G_arabe_2)
+    || ((u16) a->sprite == (u16) G_esqueleto)
+    || ((u16) a->sprite == (u16) G_spider)
+    || ((u16) a->sprite == (u16) G_soldado_1)
+    || ((u16) a->sprite == (u16) G_carcelero)
+    || ((u16) a->sprite == (u16) G_caballero)
+    )  {  
+    //Esta IA hace que entre en modo ataque si el protagonista está a 2 casillas y no lo suelte (le perseguirá sin preocuparse de su salud)
+    //Si no está cerca, 50% de curarse, 25 de moverse a izquierda, 25% a derecha
+    if (abs(a->pos_x - entidad[0].pos_x) <= 8)  {
+      moverIzq(a);
+    }
+    else {
+      if (cpct_rand() % 2)
+        defender(a);
+      else { 
+        if (cpct_rand() % 2)
+          moverIzq(a);
+        else 
+          moverDcha(a);
+      }
+    }
+  }
+  if ((u16) a->sprite == (u16) G_abeja 
+    || (u16) a->sprite == (u16) G_murcielago
+    || nivel == 10
+    || nivel == 20
+    )  {  
+  //50% de curarse o de avanzar hacia protagonista
+    if (cpct_rand() % 2)
+      defender(a);
+    else
+      moverIzq(a);
+  }
+  if (((u16) a->sprite == (u16) G_fakir)
+    || ((u16) a->sprite == (u16) G_gusano)
+    || ((u16) a->sprite == (u16) G_soldado_2)
+    )  {  
+  //Son enemigos de sólo ataque , cuando protagonista está en casilla contigua y les persigue
+    if (abs(a->pos_x - entidad[0].pos_x) <= 4) 
+      moverIzq(a);
+  }
+  if ((u16) a->sprite == (u16) G_arabe_3)  {  
+  //Son enemigos de sólo ataque a distancia, siempre hacen daño en su turno.
+  // Normalmente no se curan
+    if (abs(a->pos_x - entidad[0].pos_x) <= 16) 
+      atacar(a,&entidad[0]);
+  }
+  if ((u16) a->sprite == (u16) G_mago)  {  
+  //ataque a distancia, siempre hacen daño en su turno.
+    atacar(a,&entidad[0]);
+  }
+
+}
+
 
 void drawPotion(){
   cpct_drawSpriteMasked (G_pocion, cpctm_screenPtr (CPCT_VMEM_START, 28, 144), 2,16);

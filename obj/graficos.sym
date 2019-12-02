@@ -12,25 +12,33 @@ Symbol Table
   0 _G_arabe_2                                                     0280 GR
   0 _G_arabe_3                                                     0360 GR
   0 _G_arabe_boss                                                  0520 GR
+  0 _G_caballero                                                   0E20 GR
+  0 _G_carcelero                                                   0D40 GR
   0 _G_cavern_boss                                                 0B80 GR
   0 _G_esqueleto                                                   0800 GR
   0 _G_fakir                                                       0440 GR
   0 _G_goblin                                                      0AA0 GR
   0 _G_gusano                                                      08E0 GR
+  0 _G_mago                                                        0FE0 GR
   0 _G_mendo                                                       00C0 GR
   0 _G_murcielago                                                  0720 GR
   0 _G_pocion                                                      06E0 GR
+  0 _G_ricardo                                                     10C0 GR
+  0 _G_sol                                                         11A0 GR
+  0 _G_soldado_1                                                   0C60 GR
+  0 _G_soldado_2                                                   0F00 GR
   0 _G_spider                                                      09C0 GR
   0 _G_tile_castillo                                               0080 GR
   0 _G_tile_caverna                                                0040 GR
   0 _G_tile_cruzada                                                0000 GR
+
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size  C60   flags    0
+   0 _CODE                                      size 1280   flags    0
    1 _DATA                                      size    0   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8

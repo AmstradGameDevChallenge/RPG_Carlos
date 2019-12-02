@@ -83,7 +83,7 @@ Hexadecimal [16-Bits]
                              27 ;;
                              28 ;;   3 us, 1 bytes
                              29 ;;
-   5DA2                      30 mydrawStringM1_asm::
+   88A8                      30 mydrawStringM1_asm::
                              31 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 4.
 Hexadecimal [16-Bits]
@@ -234,25 +234,25 @@ Hexadecimal [16-Bits]
                             131 ;;   di                               ;; [1] Disable interrupts to prevent firmware from taking control while Lower ROM is enabled
                             132 ;;   out   (c), a                     ;; [3] GA Command: Set Video Mode and ROM status (100)
                             133 
-   5DA2 18 09         [12]  134    jr    firstChar                  ;; [3] Jump to first char (Saves 1 jr back every iteration)
+   88A8 18 09         [12]  134    jr    firstChar                  ;; [3] Jump to first char (Saves 1 jr back every iteration)
                             135 
-   5DA4                     136 nextChar:
+   88AA                     136 nextChar:
                             137    ;; Draw next character
-   5DA4 E5            [11]  138    push  hl                         ;; [4] Save HL
-   5DA5 CD D2 5D      [17]  139    call  mydrawCharM1_inner_asm  ;; [5 + 458/466] Draws the next character
-   5DA8 E1            [10]  140    pop   hl                         ;; [3] Recover HL 
+   88AA E5            [11]  138    push  hl                         ;; [4] Save HL
+   88AB CD D8 88      [17]  139    call  mydrawCharM1_inner_asm  ;; [5 + 458/466] Draws the next character
+   88AE E1            [10]  140    pop   hl                         ;; [3] Recover HL 
                             141 
                             142    ;; Increment Pointers
-   5DA9 23            [ 6]  143    inc   hl                         ;; [2] /
-   5DAA 23            [ 6]  144    inc   hl                         ;; [2] | HL += 2 (point to next position in video memory, 8 pixels to the right)
-   5DAB FD 23         [10]  145    inc   iy                         ;; [3] IX += 1 (point to next character in the string)
+   88AF 23            [ 6]  143    inc   hl                         ;; [2] /
+   88B0 23            [ 6]  144    inc   hl                         ;; [2] | HL += 2 (point to next position in video memory, 8 pixels to the right)
+   88B1 FD 23         [10]  145    inc   iy                         ;; [3] IX += 1 (point to next character in the string)
                             146 
-   5DAD                     147 firstChar:
-   5DAD FD 7E 00      [19]  148    ld     a, (iy)                   ;; [5] A = next character from the string
-   5DB0 B7            [ 4]  149    or     a                         ;; [1] Check if A = 0
-   5DB1 20 F1         [12]  150    jr    nz, nextChar               ;; [2/3] if A != 0, A is next character, draw it, else end
+   88B3                     147 firstChar:
+   88B3 FD 7E 00      [19]  148    ld     a, (iy)                   ;; [5] A = next character from the string
+   88B6 B7            [ 4]  149    or     a                         ;; [1] Check if A = 0
+   88B7 20 F1         [12]  150    jr    nz, nextChar               ;; [2/3] if A != 0, A is next character, draw it, else end
                             151 
-   5DB3                     152 endstring:
+   88B9                     152 endstring:
                             153 ;;   ;; After finishing character drawing, restore previous ROM and Interrupts status
                             154 ;;   ld     a, (_cpct_mode_rom_status) ;; [4] A = mode_rom_status (present saved value)
                             155 ;;   ld     b, #GA_port_byte           ;; [2] B = Gate Array Port (0x7F)
@@ -266,4 +266,4 @@ Hexadecimal [16-Bits]
 
 
                              33 
-   5DB3 C9            [10]   34    ret      ;; [3] Return to caller
+   88B9 C9            [10]   34    ret      ;; [3] Return to caller

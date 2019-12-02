@@ -295,6 +295,118 @@
         "_name": "cavern_boss",
         "MaskDataInline": true,
         "UseInLevelDesigner": false
+      },
+      {
+        "$type": "RGAS.CPCSprite, RGAS",
+        "Align256": false,
+        "GenerateVerticalMirror": false,
+        "GenerateHorizontalMirror": false,
+        "pixels": {
+          "$type": "System.Byte[], mscorlib",
+          "$value": "//////////////////////8B//////////////////8BAf//////////////////AQH//////wICAv///////wEB//////8DAgIC////////Af////8DAwICAv///////wH/////AgICAv////////8B////////////////////Af//////AgIC/////////wH//wICAgICAQEB//////8BAgIC//8CAQEBAQH/////Af////8CAgEBAQEB/////wH/////AgIBAQEBAf////8B/////wICAQEBAQH/////Af////8CAgEBAQEB/////wH//////wICAQEB//////8B//////8CAgL/////////Af//////AgICAv///////wH/////AgL//wL///////8B/////wL///8CAv//////Af///wIC////AgL//////wH///8CAv///wIC//////8B////AgL///8CAv//////Af///wL/////AgL//////wH///8C//////8C//////8B//8CAv////8CAv//////Af8CAv////8CAv///////////////////////////wA="
+        },
+        "Width": 16,
+        "Height": 28,
+        "_guid": "e496e4b1-3b8b-4e1b-b24c-01c276f49201",
+        "_name": "soldado_1",
+        "MaskDataInline": true,
+        "UseInLevelDesigner": false
+      },
+      {
+        "$type": "RGAS.CPCSprite, RGAS",
+        "Align256": false,
+        "GenerateVerticalMirror": false,
+        "GenerateHorizontalMirror": false,
+        "pixels": {
+          "$type": "System.Byte[], mscorlib",
+          "$value": "/////////////////////////////wICAv///////////////wIDAgMC//////////////8CAgICAv//////////////AgIDAgL///////////////8DAgP///////////8CAgL//////wICAv//////AgL/AgICAgL/AgL//////wIC/wICAgIC/wICAv///wICAv//AgIC//8CAgL///8CAgICAv8C/wICAgIC/////wICAgL/Av8CAgIC////////////AgIC////////////////AgICAgL//////////////wEDAQEB//////////////8BAwMBAf///////////////wMBAf///////////////wL///8C//////////////8CAv8CAv////////////8CAgL/AgIC////////////AgL///8CAv//////////AgIC////AgIC/////////wICAv///wICAv////////8CAv//////AgL/////////AgL//////wIC/////////wIC//////8CAv///////wICAv//////AgIC/////////////////////////wA="
+        },
+        "Width": 16,
+        "Height": 28,
+        "_guid": "7d4673e1-40b3-4763-a473-81a2395825ef",
+        "_name": "carcelero",
+        "MaskDataInline": true,
+        "UseInLevelDesigner": false
+      },
+      {
+        "$type": "RGAS.CPCSprite, RGAS",
+        "Align256": false,
+        "GenerateVerticalMirror": false,
+        "GenerateHorizontalMirror": false,
+        "pixels": {
+          "$type": "System.Byte[], mscorlib",
+          "$value": "//////8B//////////////////8BAf////////////////8BAf//////AgIC////////Af//////AgICAv//////AQH//////wMDAwL/////AQH///////8DAwIC////AQEB////////AgICAv////8CAv///////wICAgL//////wIBAv////////8C//////8CAQICAQECAgIC//////////8CAgIBAgICAgIC////////////AQEBAQICAgH//////////wICAgIBAQEBAv////////8CAgICAgIBAgL/////////AgICAgIC/wIC/////////wICAgIC//8BAf////////8BAgIBAf//AgL/////////AgEBAv//AgIC////////AQICAgH//wIC/////////wIBAgEC/////////////wICAgECAv////////////8CAv//AgIC//////////8CAgL//wICAv//////////AgIC////AgIC/////////wEC//////8CAf////////8CAf//////AQEC////////AgL//////wICAv///////wIC////////AgL//wA="
+        },
+        "Width": 16,
+        "Height": 28,
+        "_guid": "538ec0b6-344f-4ee4-8591-1f003b6cc43d",
+        "_name": "caballero",
+        "MaskDataInline": true,
+        "UseInLevelDesigner": false
+      },
+      {
+        "$type": "RGAS.CPCSprite, RGAS",
+        "Align256": false,
+        "GenerateVerticalMirror": false,
+        "GenerateHorizontalMirror": false,
+        "pixels": {
+          "$type": "System.Byte[], mscorlib",
+          "$value": "/////////wICAv///////////////wICAgIC//////////////8CAwADAv//////////////AgICAgL///////////////8CAgL/////////////////AgIC/////////////////////////////////wICAgICAgICAgIC/////wL/AgICAgICAgIC/wL///8C//8CAgICAgIC//8C////Av//AgICAgICAv//Av///wL///8CAgICAv///wL///8CAv//AgICAgL//wIC/////wIC/wICAQIC/wIC////////AgICAgECAgIC//////////8CAQEBAQEC/////////////wICAQIC////////////////AgEC////////////////Av8B/wL//////////////wL/Af8C//////////////8C/wH/Av////////////8CAv8B/wIC////////////Av//Af//Av///////////wL//wH//wL///////////8C//8B//8C////////////Av//Af//Av//////////AgL//wH//wIC////////AgIC//8B//8CAgL//wA="
+        },
+        "Width": 16,
+        "Height": 28,
+        "_guid": "e15ec836-fc67-459b-9556-f97291943780",
+        "_name": "soldado_2",
+        "MaskDataInline": true,
+        "UseInLevelDesigner": false
+      },
+      {
+        "$type": "RGAS.CPCSprite, RGAS",
+        "Align256": false,
+        "GenerateVerticalMirror": false,
+        "GenerateHorizontalMirror": false,
+        "pixels": {
+          "$type": "System.Byte[], mscorlib",
+          "$value": "/////////////////////////////////wICAgL/////////////////AgICAv///////////////wMCAgL///////////////8CAgIC////////////////AgICAv//////////////////AgL///8CAgICAf//AgL///////////8CAQEBAgL/AgIC/////////wEBAQL//wICAgL/////////Af////8CAgIC/////////wH///8CAgICAv////////8B/wICAgICAgL/////////AQIC//8CAgIC/////////wH/////AgICAv////////8B/////wEBAgL/////////Af////8CAQEC/////////wH/////AgICAf////////8B/////wICAgL/////////Af////8CAgIC/////////wH///8CAgICAgL///////8B////AgICAgIC////////Af///wICAgICAv///////wH///8CAgICAgL///////8B////AgICAgIC////////Af///wICAgICAgL//////wH//wICAgICAgIC//////8B//8CAgICAgICAgA="
+        },
+        "Width": 16,
+        "Height": 28,
+        "_guid": "c677d320-3cca-4a33-b911-75704caad998",
+        "_name": "mago",
+        "MaskDataInline": true,
+        "UseInLevelDesigner": false
+      },
+      {
+        "$type": "RGAS.CPCSprite, RGAS",
+        "Align256": false,
+        "GenerateVerticalMirror": false,
+        "GenerateHorizontalMirror": false,
+        "pixels": {
+          "$type": "System.Byte[], mscorlib",
+          "$value": "//////8C////Av//////////////Av8C/wL//////////////wICAgIC////////////////////////////////////AQICAgH//////////////wIDAgMC//////////////8CAgICAv//////////////AQICAgH//////////////wEBAQEB////////////////AQEB////////////////////////////////////AQICAgICAf//////////AgECAgICAgEC/////////wICAQICAgECAv////////8CAgECAgIBAgL/////////AgIBAgICAQIC////////AgIBAQICAgEBAgL//////wICAQEBAQEBAQIC//////8CAQEBAgICAQEBAv//////AQEBAgL/AgIBAQH//////wEBAQL///8CAQEB/////////wIC////AgL///////////8CAv///wIC////////////AgL///8CAv///////////wIC////AgL///////////8CAv///wIC////////////AQH///8BAf//////////AQEB////AQEB/////wA="
+        },
+        "Width": 16,
+        "Height": 28,
+        "_guid": "6dc68158-41c1-4d91-a95f-5d3b70bbbddb",
+        "_name": "ricardo",
+        "MaskDataInline": true,
+        "UseInLevelDesigner": false
+      },
+      {
+        "$type": "RGAS.CPCSprite, RGAS",
+        "Align256": false,
+        "GenerateVerticalMirror": false,
+        "GenerateHorizontalMirror": false,
+        "pixels": {
+          "$type": "System.Byte[], mscorlib",
+          "$value": "////////////////////////////AgIC////////////////AgICAv////////////////8BAQIC////////////////AQECAv//////////AgL//wH/AgL///////////8CAv///wICAv///////////wIC/wL/AgL/////////////AgICAv////////////////8CAgIC////////////////AgICAv//////////////AgICAgL/////////////AgL/AgIC////////////AgL///8CA////////////wL///8DAwL/////////////////AwIC/////////////////wICAv///////////////wICAgIC//////////////8CAgICAv//////////////AgICAgL//////////////wICAgICAv////////////8CAgICAgL/////////////AgICAgIC/////////////wICAgICAgL//////////wICAgICAgIC//////////8CAgICAgICAv//////////AgICAgICAgIC/////////wICAgICAgICAgL//wA="
+        },
+        "Width": 16,
+        "Height": 28,
+        "_guid": "6615b352-f524-447a-9de9-e9154b3ed893",
+        "_name": "sol",
+        "MaskDataInline": true,
+        "UseInLevelDesigner": false
       }
     ]
   },

@@ -51,7 +51,7 @@ $(eval $(call IMG2SP, SET_PALETTE_FW  , $(PALETTE)         ))
 $(eval $(call IMG2SP, CONVERT_PALETTE , $(PALETTE), g_palette ))
 $(eval $(call IMG2SP, CONVERT         , doc/mapas_fases/patronesTiles_1.png , 8, 4, g_tileset1, palette, tileset1))
 $(eval $(call IMG2SP, CONVERT         , doc/mapas_fases/patronesTiles_2.png , 8, 4, g_tileset2, , tileset2))
-#$(eval $(call IMG2SP, CONVERT         , doc/mapas_fases/patronesTiles_3.png , 8, 4, g_tileset2, palette, tileset3))
+$(eval $(call IMG2SP, CONVERT         , doc/mapas_fases/patronesTiles_3.png , 8, 4, g_tileset3, , tileset3))
 
 ##
 ## OLD MACROS (For compatibility)

@@ -1,6 +1,6 @@
 -mjwx
 -i obj/agc.ihx
--b _CODE = 0x0340
+-b _CODE = 0x050f
 -b _DATA = 0x0000
 -u
 -k /home/cpp76s/cpctelera_git/cpctelera/tools/sdcc-3.6.8-r9946/bin/../share/sdcc/lib/z80
@@ -27,13 +27,25 @@ obj/mapas/fase_17.rel
 obj/mapas/fase_18.rel
 obj/mapas/fase_19.rel
 obj/mapas/fase_20.rel
+obj/mapas/fase_21.rel
+obj/mapas/fase_22.rel
+obj/mapas/fase_23.rel
+obj/mapas/fase_24.rel
+obj/mapas/fase_25.rel
+obj/mapas/fase_26.rel
+obj/mapas/fase_27.rel
+obj/mapas/fase_28.rel
+obj/mapas/fase_29.rel
+obj/mapas/fase_30.rel
+obj/mapas/fase_31.rel
+obj/patrones/patronesTiles_3.rel
 obj/patrones/patronesTiles_2.rel
 obj/patrones/patronesTiles_1.rel
 obj/patrones/g_palette.rel
+obj/m_intro.rel
 obj/main.rel
-obj/graficos.rel
 obj/juego.rel
-obj/fonts.rel
+obj/graficos.rel
 obj/funciones.rel
 obj/niveles.rel
 obj/mydrawStringM1_asmbindings.rel

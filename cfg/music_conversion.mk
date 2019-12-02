@@ -34,7 +34,8 @@
 #$(eval $(call AKS2DATA, SET_EXTRAPAR ,      )) 
 # Conversion
 #$(eval $(call AKS2DATA, CONVERT      , music.aks , array , mem_address ))
-
+$(eval $(call AKS2DATA, SET_FOLDER   , src ))
+$(eval $(call AKS2DATA, CONVERT      , music/m_intro.aks  , m_intro  , 0x03CD ))
 
 
 ##

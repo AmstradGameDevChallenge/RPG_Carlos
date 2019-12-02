@@ -15,663 +15,979 @@ Area                                    Addr        Size        Decimal Bytes (A
      00000000  l__HOME                         
      00000000  l__INITIALIZED                  
      00000000  l__INITIALIZER                  
+     00000000  l___m_intro                     
      00000000  s__CABS                         
      00000000  s__CABS0                        
+     00000000  s__CABS1                        
      00000000  s__DABS                         
-     0000003F  l__DATA                         
+     00000000  s___m_intro                     
+     00000000  s___m_intro0                    
+     00000044  l__DATA                         
+     0000008D  l__CABS1                        
+     00000142  l___m_intro0                    
      00000300  l__CABS0                        
-     00000340  s__CODE                         
-     00006B60  l__CODE                         
-     00006EA0  s__DATA                         
-     00006EDF  s__GSFINAL                      
-     00006EDF  s__GSINIT                       
-     00006EDF  s__HOME                         
-     00006EDF  s__INITIALIZED                  
-     00006EDF  s__INITIALIZER                  
+     0000050F  s__CODE                         
+     00009D12  l__CODE                         
+     0000A221  s__DATA                         
+     0000A265  s__GSFINAL                      
+     0000A265  s__GSINIT                       
+     0000A265  s__HOME                         
+     0000A265  s__INITIALIZED                  
+     0000A265  s__INITIALIZER                  
 ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00000340    00006B60 =       27488. bytes (REL,CON)
+_CODE                               0000050F    00009D12 =       40210. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00000340  _g_mapa01                          fase_01
-     00000538  _g_mapa02                          fase_02
-     00000730  _g_mapa03                          fase_03
-     00000928  _g_mapa04                          fase_04
-     00000B20  _g_mapa05                          fase_05
-     00000D18  _g_mapa06                          fase_06
-     00000F10  _g_mapa07                          fase_07
-     00001108  _g_mapa08                          fase_08
-     00001300  _g_mapa09                          fase_09
-     000014F8  _g_mapa10                          fase_10
-     000016F0  _g_mapa11                          fase_11
-     000018E8  _g_mapa12                          fase_12
-     00001AE0  _g_mapa13                          fase_13
-     00001CD8  _g_mapa14                          fase_14
-     00001ED0  _g_mapa15                          fase_15
-     000020C8  _g_mapa16                          fase_16
-     000022C0  _g_mapa17                          fase_17
-     000024B8  _g_mapa18                          fase_18
-     000026B0  _g_mapa19                          fase_19
-     000028A8  _g_mapa20                          fase_20
-     00002AA0  _tileset2                          patronesTiles_2
-     00002C30  _g_tileset2_000                    patronesTiles_2
-     00002C38  _g_tileset2_001                    patronesTiles_2
-     00002C40  _g_tileset2_002                    patronesTiles_2
-     00002C48  _g_tileset2_003                    patronesTiles_2
-     00002C50  _g_tileset2_004                    patronesTiles_2
-     00002C58  _g_tileset2_005                    patronesTiles_2
-     00002C60  _g_tileset2_006                    patronesTiles_2
-     00002C68  _g_tileset2_007                    patronesTiles_2
-     00002C70  _g_tileset2_008                    patronesTiles_2
-     00002C78  _g_tileset2_009                    patronesTiles_2
-     00002C80  _g_tileset2_010                    patronesTiles_2
-     00002C88  _g_tileset2_011                    patronesTiles_2
-     00002C90  _g_tileset2_012                    patronesTiles_2
-     00002C98  _g_tileset2_013                    patronesTiles_2
-     00002CA0  _g_tileset2_014                    patronesTiles_2
-     00002CA8  _g_tileset2_015                    patronesTiles_2
-     00002CB0  _g_tileset2_016                    patronesTiles_2
-     00002CB8  _g_tileset2_017                    patronesTiles_2
-     00002CC0  _g_tileset2_018                    patronesTiles_2
-     00002CC8  _g_tileset2_019                    patronesTiles_2
-     00002CD0  _g_tileset2_020                    patronesTiles_2
-     00002CD8  _g_tileset2_021                    patronesTiles_2
-     00002CE0  _g_tileset2_022                    patronesTiles_2
-     00002CE8  _g_tileset2_023                    patronesTiles_2
-     00002CF0  _g_tileset2_024                    patronesTiles_2
-     00002CF8  _g_tileset2_025                    patronesTiles_2
-     00002D00  _g_tileset2_026                    patronesTiles_2
-     00002D08  _g_tileset2_027                    patronesTiles_2
-     00002D10  _g_tileset2_028                    patronesTiles_2
+     0000050F  _g_mapa01                          fase_01
+     00000707  _g_mapa02                          fase_02
+     000008FF  _g_mapa03                          fase_03
+     00000AF7  _g_mapa04                          fase_04
+     00000CEF  _g_mapa05                          fase_05
+     00000EE7  _g_mapa06                          fase_06
+     000010DF  _g_mapa07                          fase_07
+     000012D7  _g_mapa08                          fase_08
+     000014CF  _g_mapa09                          fase_09
+     000016C7  _g_mapa10                          fase_10
+     000018BF  _g_mapa11                          fase_11
+     00001AB7  _g_mapa12                          fase_12
+     00001CAF  _g_mapa13                          fase_13
+     00001EA7  _g_mapa14                          fase_14
+     0000209F  _g_mapa15                          fase_15
+     00002297  _g_mapa16                          fase_16
+     0000248F  _g_mapa17                          fase_17
+     00002687  _g_mapa18                          fase_18
+     0000287F  _g_mapa19                          fase_19
+     00002A77  _g_mapa20                          fase_20
+     00002C6F  _g_mapa21                          fase_21
+     00002E67  _g_mapa22                          fase_22
+     0000305F  _g_mapa23                          fase_23
+     00003257  _g_mapa24                          fase_24
+     0000344F  _g_mapa25                          fase_25
+     00003647  _g_mapa26                          fase_26
+     0000383F  _g_mapa27                          fase_27
+     00003A37  _g_mapa28                          fase_28
+     00003C2F  _g_mapa29                          fase_29
+     00003E27  _g_mapa30                          fase_30
+     0000401F  _g_mapa31                          fase_31
+     00004217  _tileset3                          patronesTiles_3
+     000043A7  _g_tileset3_000                    patronesTiles_3
+     000043AF  _g_tileset3_001                    patronesTiles_3
+     000043B7  _g_tileset3_002                    patronesTiles_3
+     000043BF  _g_tileset3_003                    patronesTiles_3
+     000043C7  _g_tileset3_004                    patronesTiles_3
+     000043CF  _g_tileset3_005                    patronesTiles_3
+     000043D7  _g_tileset3_006                    patronesTiles_3
+     000043DF  _g_tileset3_007                    patronesTiles_3
+     000043E7  _g_tileset3_008                    patronesTiles_3
+     000043EF  _g_tileset3_009                    patronesTiles_3
+     000043F7  _g_tileset3_010                    patronesTiles_3
+     000043FF  _g_tileset3_011                    patronesTiles_3
+     00004407  _g_tileset3_012                    patronesTiles_3
+     0000440F  _g_tileset3_013                    patronesTiles_3
+     00004417  _g_tileset3_014                    patronesTiles_3
+     0000441F  _g_tileset3_015                    patronesTiles_3
+     00004427  _g_tileset3_016                    patronesTiles_3
+     0000442F  _g_tileset3_017                    patronesTiles_3
 ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00000340    00006B60 =       27488. bytes (REL,CON)
+_CODE                               0000050F    00009D12 =       40210. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00002D18  _g_tileset2_029                    patronesTiles_2
-     00002D20  _g_tileset2_030                    patronesTiles_2
-     00002D28  _g_tileset2_031                    patronesTiles_2
-     00002D30  _g_tileset2_032                    patronesTiles_2
-     00002D38  _g_tileset2_033                    patronesTiles_2
-     00002D40  _g_tileset2_034                    patronesTiles_2
-     00002D48  _g_tileset2_035                    patronesTiles_2
-     00002D50  _g_tileset2_036                    patronesTiles_2
-     00002D58  _g_tileset2_037                    patronesTiles_2
-     00002D60  _g_tileset2_038                    patronesTiles_2
-     00002D68  _g_tileset2_039                    patronesTiles_2
-     00002D70  _g_tileset2_040                    patronesTiles_2
-     00002D78  _g_tileset2_041                    patronesTiles_2
-     00002D80  _g_tileset2_042                    patronesTiles_2
-     00002D88  _g_tileset2_043                    patronesTiles_2
-     00002D90  _g_tileset2_044                    patronesTiles_2
-     00002D98  _g_tileset2_045                    patronesTiles_2
-     00002DA0  _g_tileset2_046                    patronesTiles_2
-     00002DA8  _g_tileset2_047                    patronesTiles_2
-     00002DB0  _g_tileset2_048                    patronesTiles_2
-     00002DB8  _g_tileset2_049                    patronesTiles_2
-     00002DC0  _g_tileset2_050                    patronesTiles_2
-     00002DC8  _g_tileset2_051                    patronesTiles_2
-     00002DD0  _g_tileset2_052                    patronesTiles_2
-     00002DD8  _g_tileset2_053                    patronesTiles_2
-     00002DE0  _g_tileset2_054                    patronesTiles_2
-     00002DE8  _g_tileset2_055                    patronesTiles_2
-     00002DF0  _g_tileset2_056                    patronesTiles_2
-     00002DF8  _g_tileset2_057                    patronesTiles_2
-     00002E00  _g_tileset2_058                    patronesTiles_2
-     00002E08  _g_tileset2_059                    patronesTiles_2
-     00002E10  _g_tileset2_060                    patronesTiles_2
-     00002E18  _g_tileset2_061                    patronesTiles_2
-     00002E20  _g_tileset2_062                    patronesTiles_2
-     00002E28  _g_tileset2_063                    patronesTiles_2
-     00002E30  _g_tileset2_064                    patronesTiles_2
-     00002E38  _g_tileset2_065                    patronesTiles_2
-     00002E40  _g_tileset2_066                    patronesTiles_2
-     00002E48  _g_tileset2_067                    patronesTiles_2
-     00002E50  _g_tileset2_068                    patronesTiles_2
-     00002E58  _g_tileset2_069                    patronesTiles_2
-     00002E60  _g_tileset2_070                    patronesTiles_2
-     00002E68  _g_tileset2_071                    patronesTiles_2
-     00002E70  _g_tileset2_072                    patronesTiles_2
-     00002E78  _g_tileset2_073                    patronesTiles_2
-     00002E80  _g_tileset2_074                    patronesTiles_2
-     00002E88  _g_tileset2_075                    patronesTiles_2
-     00002E90  _g_tileset2_076                    patronesTiles_2
-     00002E98  _g_tileset2_077                    patronesTiles_2
-     00002EA0  _g_tileset2_078                    patronesTiles_2
-     00002EA8  _g_tileset2_079                    patronesTiles_2
+     00004437  _g_tileset3_018                    patronesTiles_3
+     0000443F  _g_tileset3_019                    patronesTiles_3
+     00004447  _g_tileset3_020                    patronesTiles_3
+     0000444F  _g_tileset3_021                    patronesTiles_3
+     00004457  _g_tileset3_022                    patronesTiles_3
+     0000445F  _g_tileset3_023                    patronesTiles_3
+     00004467  _g_tileset3_024                    patronesTiles_3
+     0000446F  _g_tileset3_025                    patronesTiles_3
+     00004477  _g_tileset3_026                    patronesTiles_3
+     0000447F  _g_tileset3_027                    patronesTiles_3
+     00004487  _g_tileset3_028                    patronesTiles_3
+     0000448F  _g_tileset3_029                    patronesTiles_3
+     00004497  _g_tileset3_030                    patronesTiles_3
+     0000449F  _g_tileset3_031                    patronesTiles_3
+     000044A7  _g_tileset3_032                    patronesTiles_3
+     000044AF  _g_tileset3_033                    patronesTiles_3
+     000044B7  _g_tileset3_034                    patronesTiles_3
+     000044BF  _g_tileset3_035                    patronesTiles_3
+     000044C7  _g_tileset3_036                    patronesTiles_3
+     000044CF  _g_tileset3_037                    patronesTiles_3
+     000044D7  _g_tileset3_038                    patronesTiles_3
+     000044DF  _g_tileset3_039                    patronesTiles_3
+     000044E7  _g_tileset3_040                    patronesTiles_3
+     000044EF  _g_tileset3_041                    patronesTiles_3
+     000044F7  _g_tileset3_042                    patronesTiles_3
+     000044FF  _g_tileset3_043                    patronesTiles_3
+     00004507  _g_tileset3_044                    patronesTiles_3
+     0000450F  _g_tileset3_045                    patronesTiles_3
+     00004517  _g_tileset3_046                    patronesTiles_3
+     0000451F  _g_tileset3_047                    patronesTiles_3
+     00004527  _g_tileset3_048                    patronesTiles_3
+     0000452F  _g_tileset3_049                    patronesTiles_3
+     00004537  _g_tileset3_050                    patronesTiles_3
+     0000453F  _g_tileset3_051                    patronesTiles_3
+     00004547  _g_tileset3_052                    patronesTiles_3
+     0000454F  _g_tileset3_053                    patronesTiles_3
+     00004557  _g_tileset3_054                    patronesTiles_3
+     0000455F  _g_tileset3_055                    patronesTiles_3
+     00004567  _g_tileset3_056                    patronesTiles_3
+     0000456F  _g_tileset3_057                    patronesTiles_3
+     00004577  _g_tileset3_058                    patronesTiles_3
+     0000457F  _g_tileset3_059                    patronesTiles_3
+     00004587  _g_tileset3_060                    patronesTiles_3
+     0000458F  _g_tileset3_061                    patronesTiles_3
+     00004597  _g_tileset3_062                    patronesTiles_3
+     0000459F  _g_tileset3_063                    patronesTiles_3
+     000045A7  _g_tileset3_064                    patronesTiles_3
+     000045AF  _g_tileset3_065                    patronesTiles_3
+     000045B7  _g_tileset3_066                    patronesTiles_3
+     000045BF  _g_tileset3_067                    patronesTiles_3
+     000045C7  _g_tileset3_068                    patronesTiles_3
 ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00000340    00006B60 =       27488. bytes (REL,CON)
+_CODE                               0000050F    00009D12 =       40210. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00002EB0  _g_tileset2_080                    patronesTiles_2
-     00002EB8  _g_tileset2_081                    patronesTiles_2
-     00002EC0  _g_tileset2_082                    patronesTiles_2
-     00002EC8  _g_tileset2_083                    patronesTiles_2
-     00002ED0  _g_tileset2_084                    patronesTiles_2
-     00002ED8  _g_tileset2_085                    patronesTiles_2
-     00002EE0  _g_tileset2_086                    patronesTiles_2
-     00002EE8  _g_tileset2_087                    patronesTiles_2
-     00002EF0  _g_tileset2_088                    patronesTiles_2
-     00002EF8  _g_tileset2_089                    patronesTiles_2
-     00002F00  _g_tileset2_090                    patronesTiles_2
-     00002F08  _g_tileset2_091                    patronesTiles_2
-     00002F10  _g_tileset2_092                    patronesTiles_2
-     00002F18  _g_tileset2_093                    patronesTiles_2
-     00002F20  _g_tileset2_094                    patronesTiles_2
-     00002F28  _g_tileset2_095                    patronesTiles_2
-     00002F30  _g_tileset2_096                    patronesTiles_2
-     00002F38  _g_tileset2_097                    patronesTiles_2
-     00002F40  _g_tileset2_098                    patronesTiles_2
-     00002F48  _g_tileset2_099                    patronesTiles_2
-     00002F50  _g_tileset2_100                    patronesTiles_2
-     00002F58  _g_tileset2_101                    patronesTiles_2
-     00002F60  _g_tileset2_102                    patronesTiles_2
-     00002F68  _g_tileset2_103                    patronesTiles_2
-     00002F70  _g_tileset2_104                    patronesTiles_2
-     00002F78  _g_tileset2_105                    patronesTiles_2
-     00002F80  _g_tileset2_106                    patronesTiles_2
-     00002F88  _g_tileset2_107                    patronesTiles_2
-     00002F90  _g_tileset2_108                    patronesTiles_2
-     00002F98  _g_tileset2_109                    patronesTiles_2
-     00002FA0  _g_tileset2_110                    patronesTiles_2
-     00002FA8  _g_tileset2_111                    patronesTiles_2
-     00002FB0  _g_tileset2_112                    patronesTiles_2
-     00002FB8  _g_tileset2_113                    patronesTiles_2
-     00002FC0  _g_tileset2_114                    patronesTiles_2
-     00002FC8  _g_tileset2_115                    patronesTiles_2
-     00002FD0  _g_tileset2_116                    patronesTiles_2
-     00002FD8  _g_tileset2_117                    patronesTiles_2
-     00002FE0  _g_tileset2_118                    patronesTiles_2
-     00002FE8  _g_tileset2_119                    patronesTiles_2
-     00002FF0  _g_tileset2_120                    patronesTiles_2
-     00002FF8  _g_tileset2_121                    patronesTiles_2
-     00003000  _g_tileset2_122                    patronesTiles_2
-     00003008  _g_tileset2_123                    patronesTiles_2
-     00003010  _g_tileset2_124                    patronesTiles_2
-     00003018  _g_tileset2_125                    patronesTiles_2
-     00003020  _g_tileset2_126                    patronesTiles_2
-     00003028  _g_tileset2_127                    patronesTiles_2
-     00003030  _g_tileset2_128                    patronesTiles_2
-     00003038  _g_tileset2_129                    patronesTiles_2
-     00003040  _g_tileset2_130                    patronesTiles_2
+     000045CF  _g_tileset3_069                    patronesTiles_3
+     000045D7  _g_tileset3_070                    patronesTiles_3
+     000045DF  _g_tileset3_071                    patronesTiles_3
+     000045E7  _g_tileset3_072                    patronesTiles_3
+     000045EF  _g_tileset3_073                    patronesTiles_3
+     000045F7  _g_tileset3_074                    patronesTiles_3
+     000045FF  _g_tileset3_075                    patronesTiles_3
+     00004607  _g_tileset3_076                    patronesTiles_3
+     0000460F  _g_tileset3_077                    patronesTiles_3
+     00004617  _g_tileset3_078                    patronesTiles_3
+     0000461F  _g_tileset3_079                    patronesTiles_3
+     00004627  _g_tileset3_080                    patronesTiles_3
+     0000462F  _g_tileset3_081                    patronesTiles_3
+     00004637  _g_tileset3_082                    patronesTiles_3
+     0000463F  _g_tileset3_083                    patronesTiles_3
+     00004647  _g_tileset3_084                    patronesTiles_3
+     0000464F  _g_tileset3_085                    patronesTiles_3
+     00004657  _g_tileset3_086                    patronesTiles_3
+     0000465F  _g_tileset3_087                    patronesTiles_3
+     00004667  _g_tileset3_088                    patronesTiles_3
+     0000466F  _g_tileset3_089                    patronesTiles_3
+     00004677  _g_tileset3_090                    patronesTiles_3
+     0000467F  _g_tileset3_091                    patronesTiles_3
+     00004687  _g_tileset3_092                    patronesTiles_3
+     0000468F  _g_tileset3_093                    patronesTiles_3
+     00004697  _g_tileset3_094                    patronesTiles_3
+     0000469F  _g_tileset3_095                    patronesTiles_3
+     000046A7  _g_tileset3_096                    patronesTiles_3
+     000046AF  _g_tileset3_097                    patronesTiles_3
+     000046B7  _g_tileset3_098                    patronesTiles_3
+     000046BF  _g_tileset3_099                    patronesTiles_3
+     000046C7  _g_tileset3_100                    patronesTiles_3
+     000046CF  _g_tileset3_101                    patronesTiles_3
+     000046D7  _g_tileset3_102                    patronesTiles_3
+     000046DF  _g_tileset3_103                    patronesTiles_3
+     000046E7  _g_tileset3_104                    patronesTiles_3
+     000046EF  _g_tileset3_105                    patronesTiles_3
+     000046F7  _g_tileset3_106                    patronesTiles_3
+     000046FF  _g_tileset3_107                    patronesTiles_3
+     00004707  _g_tileset3_108                    patronesTiles_3
+     0000470F  _g_tileset3_109                    patronesTiles_3
+     00004717  _g_tileset3_110                    patronesTiles_3
+     0000471F  _g_tileset3_111                    patronesTiles_3
+     00004727  _g_tileset3_112                    patronesTiles_3
+     0000472F  _g_tileset3_113                    patronesTiles_3
+     00004737  _g_tileset3_114                    patronesTiles_3
+     0000473F  _g_tileset3_115                    patronesTiles_3
+     00004747  _g_tileset3_116                    patronesTiles_3
+     0000474F  _g_tileset3_117                    patronesTiles_3
+     00004757  _g_tileset3_118                    patronesTiles_3
+     0000475F  _g_tileset3_119                    patronesTiles_3
 ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00000340    00006B60 =       27488. bytes (REL,CON)
+_CODE                               0000050F    00009D12 =       40210. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00003048  _g_tileset2_131                    patronesTiles_2
-     00003050  _g_tileset2_132                    patronesTiles_2
-     00003058  _g_tileset2_133                    patronesTiles_2
-     00003060  _g_tileset2_134                    patronesTiles_2
-     00003068  _g_tileset2_135                    patronesTiles_2
-     00003070  _g_tileset2_136                    patronesTiles_2
-     00003078  _g_tileset2_137                    patronesTiles_2
-     00003080  _g_tileset2_138                    patronesTiles_2
-     00003088  _g_tileset2_139                    patronesTiles_2
-     00003090  _g_tileset2_140                    patronesTiles_2
-     00003098  _g_tileset2_141                    patronesTiles_2
-     000030A0  _g_tileset2_142                    patronesTiles_2
-     000030A8  _g_tileset2_143                    patronesTiles_2
-     000030B0  _g_tileset2_144                    patronesTiles_2
-     000030B8  _g_tileset2_145                    patronesTiles_2
-     000030C0  _g_tileset2_146                    patronesTiles_2
-     000030C8  _g_tileset2_147                    patronesTiles_2
-     000030D0  _g_tileset2_148                    patronesTiles_2
-     000030D8  _g_tileset2_149                    patronesTiles_2
-     000030E0  _g_tileset2_150                    patronesTiles_2
-     000030E8  _g_tileset2_151                    patronesTiles_2
-     000030F0  _g_tileset2_152                    patronesTiles_2
-     000030F8  _g_tileset2_153                    patronesTiles_2
-     00003100  _g_tileset2_154                    patronesTiles_2
-     00003108  _g_tileset2_155                    patronesTiles_2
-     00003110  _g_tileset2_156                    patronesTiles_2
-     00003118  _g_tileset2_157                    patronesTiles_2
-     00003120  _g_tileset2_158                    patronesTiles_2
-     00003128  _g_tileset2_159                    patronesTiles_2
-     00003130  _g_tileset2_160                    patronesTiles_2
-     00003138  _g_tileset2_161                    patronesTiles_2
-     00003140  _g_tileset2_162                    patronesTiles_2
-     00003148  _g_tileset2_163                    patronesTiles_2
-     00003150  _g_tileset2_164                    patronesTiles_2
-     00003158  _g_tileset2_165                    patronesTiles_2
-     00003160  _g_tileset2_166                    patronesTiles_2
-     00003168  _g_tileset2_167                    patronesTiles_2
-     00003170  _g_tileset2_168                    patronesTiles_2
-     00003178  _g_tileset2_169                    patronesTiles_2
-     00003180  _g_tileset2_170                    patronesTiles_2
-     00003188  _g_tileset2_171                    patronesTiles_2
-     00003190  _g_tileset2_172                    patronesTiles_2
-     00003198  _g_tileset2_173                    patronesTiles_2
-     000031A0  _g_tileset2_174                    patronesTiles_2
-     000031A8  _g_tileset2_175                    patronesTiles_2
-     000031B0  _g_tileset2_176                    patronesTiles_2
-     000031B8  _g_tileset2_177                    patronesTiles_2
-     000031C0  _g_tileset2_178                    patronesTiles_2
-     000031C8  _g_tileset2_179                    patronesTiles_2
-     000031D0  _g_tileset2_180                    patronesTiles_2
-     000031D8  _g_tileset2_181                    patronesTiles_2
+     00004767  _g_tileset3_120                    patronesTiles_3
+     0000476F  _g_tileset3_121                    patronesTiles_3
+     00004777  _g_tileset3_122                    patronesTiles_3
+     0000477F  _g_tileset3_123                    patronesTiles_3
+     00004787  _g_tileset3_124                    patronesTiles_3
+     0000478F  _g_tileset3_125                    patronesTiles_3
+     00004797  _g_tileset3_126                    patronesTiles_3
+     0000479F  _g_tileset3_127                    patronesTiles_3
+     000047A7  _g_tileset3_128                    patronesTiles_3
+     000047AF  _g_tileset3_129                    patronesTiles_3
+     000047B7  _g_tileset3_130                    patronesTiles_3
+     000047BF  _g_tileset3_131                    patronesTiles_3
+     000047C7  _g_tileset3_132                    patronesTiles_3
+     000047CF  _g_tileset3_133                    patronesTiles_3
+     000047D7  _g_tileset3_134                    patronesTiles_3
+     000047DF  _g_tileset3_135                    patronesTiles_3
+     000047E7  _g_tileset3_136                    patronesTiles_3
+     000047EF  _g_tileset3_137                    patronesTiles_3
+     000047F7  _g_tileset3_138                    patronesTiles_3
+     000047FF  _g_tileset3_139                    patronesTiles_3
+     00004807  _g_tileset3_140                    patronesTiles_3
+     0000480F  _g_tileset3_141                    patronesTiles_3
+     00004817  _g_tileset3_142                    patronesTiles_3
+     0000481F  _g_tileset3_143                    patronesTiles_3
+     00004827  _g_tileset3_144                    patronesTiles_3
+     0000482F  _g_tileset3_145                    patronesTiles_3
+     00004837  _g_tileset3_146                    patronesTiles_3
+     0000483F  _g_tileset3_147                    patronesTiles_3
+     00004847  _g_tileset3_148                    patronesTiles_3
+     0000484F  _g_tileset3_149                    patronesTiles_3
+     00004857  _g_tileset3_150                    patronesTiles_3
+     0000485F  _g_tileset3_151                    patronesTiles_3
+     00004867  _g_tileset3_152                    patronesTiles_3
+     0000486F  _g_tileset3_153                    patronesTiles_3
+     00004877  _g_tileset3_154                    patronesTiles_3
+     0000487F  _g_tileset3_155                    patronesTiles_3
+     00004887  _g_tileset3_156                    patronesTiles_3
+     0000488F  _g_tileset3_157                    patronesTiles_3
+     00004897  _g_tileset3_158                    patronesTiles_3
+     0000489F  _g_tileset3_159                    patronesTiles_3
+     000048A7  _g_tileset3_160                    patronesTiles_3
+     000048AF  _g_tileset3_161                    patronesTiles_3
+     000048B7  _g_tileset3_162                    patronesTiles_3
+     000048BF  _g_tileset3_163                    patronesTiles_3
+     000048C7  _g_tileset3_164                    patronesTiles_3
+     000048CF  _g_tileset3_165                    patronesTiles_3
+     000048D7  _g_tileset3_166                    patronesTiles_3
+     000048DF  _g_tileset3_167                    patronesTiles_3
+     000048E7  _g_tileset3_168                    patronesTiles_3
+     000048EF  _g_tileset3_169                    patronesTiles_3
+     000048F7  _g_tileset3_170                    patronesTiles_3
 ASxxxx Linker V03.00 + NoICE + sdld,  page 6.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00000340    00006B60 =       27488. bytes (REL,CON)
+_CODE                               0000050F    00009D12 =       40210. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000031E0  _g_tileset2_182                    patronesTiles_2
-     000031E8  _g_tileset2_183                    patronesTiles_2
-     000031F0  _g_tileset2_184                    patronesTiles_2
-     000031F8  _g_tileset2_185                    patronesTiles_2
-     00003200  _g_tileset2_186                    patronesTiles_2
-     00003208  _g_tileset2_187                    patronesTiles_2
-     00003210  _g_tileset2_188                    patronesTiles_2
-     00003218  _g_tileset2_189                    patronesTiles_2
-     00003220  _g_tileset2_190                    patronesTiles_2
-     00003228  _g_tileset2_191                    patronesTiles_2
-     00003230  _g_tileset2_192                    patronesTiles_2
-     00003238  _g_tileset2_193                    patronesTiles_2
-     00003240  _g_tileset2_194                    patronesTiles_2
-     00003248  _g_tileset2_195                    patronesTiles_2
-     00003250  _g_tileset2_196                    patronesTiles_2
-     00003258  _g_tileset2_197                    patronesTiles_2
-     00003260  _g_tileset2_198                    patronesTiles_2
-     00003268  _g_tileset2_199                    patronesTiles_2
-     00003270  _palette                           patronesTiles_1
-     00003274  _tileset1                          patronesTiles_1
-     00003404  _g_tileset1_000                    patronesTiles_1
-     0000340C  _g_tileset1_001                    patronesTiles_1
-     00003414  _g_tileset1_002                    patronesTiles_1
-     0000341C  _g_tileset1_003                    patronesTiles_1
-     00003424  _g_tileset1_004                    patronesTiles_1
-     0000342C  _g_tileset1_005                    patronesTiles_1
-     00003434  _g_tileset1_006                    patronesTiles_1
-     0000343C  _g_tileset1_007                    patronesTiles_1
-     00003444  _g_tileset1_008                    patronesTiles_1
-     0000344C  _g_tileset1_009                    patronesTiles_1
-     00003454  _g_tileset1_010                    patronesTiles_1
-     0000345C  _g_tileset1_011                    patronesTiles_1
-     00003464  _g_tileset1_012                    patronesTiles_1
-     0000346C  _g_tileset1_013                    patronesTiles_1
-     00003474  _g_tileset1_014                    patronesTiles_1
-     0000347C  _g_tileset1_015                    patronesTiles_1
-     00003484  _g_tileset1_016                    patronesTiles_1
-     0000348C  _g_tileset1_017                    patronesTiles_1
-     00003494  _g_tileset1_018                    patronesTiles_1
-     0000349C  _g_tileset1_019                    patronesTiles_1
-     000034A4  _g_tileset1_020                    patronesTiles_1
-     000034AC  _g_tileset1_021                    patronesTiles_1
-     000034B4  _g_tileset1_022                    patronesTiles_1
-     000034BC  _g_tileset1_023                    patronesTiles_1
-     000034C4  _g_tileset1_024                    patronesTiles_1
-     000034CC  _g_tileset1_025                    patronesTiles_1
-     000034D4  _g_tileset1_026                    patronesTiles_1
-     000034DC  _g_tileset1_027                    patronesTiles_1
-     000034E4  _g_tileset1_028                    patronesTiles_1
-     000034EC  _g_tileset1_029                    patronesTiles_1
-     000034F4  _g_tileset1_030                    patronesTiles_1
+     000048FF  _g_tileset3_171                    patronesTiles_3
+     00004907  _g_tileset3_172                    patronesTiles_3
+     0000490F  _g_tileset3_173                    patronesTiles_3
+     00004917  _g_tileset3_174                    patronesTiles_3
+     0000491F  _g_tileset3_175                    patronesTiles_3
+     00004927  _g_tileset3_176                    patronesTiles_3
+     0000492F  _g_tileset3_177                    patronesTiles_3
+     00004937  _g_tileset3_178                    patronesTiles_3
+     0000493F  _g_tileset3_179                    patronesTiles_3
+     00004947  _g_tileset3_180                    patronesTiles_3
+     0000494F  _g_tileset3_181                    patronesTiles_3
+     00004957  _g_tileset3_182                    patronesTiles_3
+     0000495F  _g_tileset3_183                    patronesTiles_3
+     00004967  _g_tileset3_184                    patronesTiles_3
+     0000496F  _g_tileset3_185                    patronesTiles_3
+     00004977  _g_tileset3_186                    patronesTiles_3
+     0000497F  _g_tileset3_187                    patronesTiles_3
+     00004987  _g_tileset3_188                    patronesTiles_3
+     0000498F  _g_tileset3_189                    patronesTiles_3
+     00004997  _g_tileset3_190                    patronesTiles_3
+     0000499F  _g_tileset3_191                    patronesTiles_3
+     000049A7  _g_tileset3_192                    patronesTiles_3
+     000049AF  _g_tileset3_193                    patronesTiles_3
+     000049B7  _g_tileset3_194                    patronesTiles_3
+     000049BF  _g_tileset3_195                    patronesTiles_3
+     000049C7  _g_tileset3_196                    patronesTiles_3
+     000049CF  _g_tileset3_197                    patronesTiles_3
+     000049D7  _g_tileset3_198                    patronesTiles_3
+     000049DF  _g_tileset3_199                    patronesTiles_3
+     000049E7  _tileset2                          patronesTiles_2
+     00004B77  _g_tileset2_000                    patronesTiles_2
+     00004B7F  _g_tileset2_001                    patronesTiles_2
+     00004B87  _g_tileset2_002                    patronesTiles_2
+     00004B8F  _g_tileset2_003                    patronesTiles_2
+     00004B97  _g_tileset2_004                    patronesTiles_2
+     00004B9F  _g_tileset2_005                    patronesTiles_2
+     00004BA7  _g_tileset2_006                    patronesTiles_2
+     00004BAF  _g_tileset2_007                    patronesTiles_2
+     00004BB7  _g_tileset2_008                    patronesTiles_2
+     00004BBF  _g_tileset2_009                    patronesTiles_2
+     00004BC7  _g_tileset2_010                    patronesTiles_2
+     00004BCF  _g_tileset2_011                    patronesTiles_2
+     00004BD7  _g_tileset2_012                    patronesTiles_2
+     00004BDF  _g_tileset2_013                    patronesTiles_2
+     00004BE7  _g_tileset2_014                    patronesTiles_2
+     00004BEF  _g_tileset2_015                    patronesTiles_2
+     00004BF7  _g_tileset2_016                    patronesTiles_2
+     00004BFF  _g_tileset2_017                    patronesTiles_2
+     00004C07  _g_tileset2_018                    patronesTiles_2
+     00004C0F  _g_tileset2_019                    patronesTiles_2
+     00004C17  _g_tileset2_020                    patronesTiles_2
 ASxxxx Linker V03.00 + NoICE + sdld,  page 7.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00000340    00006B60 =       27488. bytes (REL,CON)
+_CODE                               0000050F    00009D12 =       40210. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000034FC  _g_tileset1_031                    patronesTiles_1
-     00003504  _g_tileset1_032                    patronesTiles_1
-     0000350C  _g_tileset1_033                    patronesTiles_1
-     00003514  _g_tileset1_034                    patronesTiles_1
-     0000351C  _g_tileset1_035                    patronesTiles_1
-     00003524  _g_tileset1_036                    patronesTiles_1
-     0000352C  _g_tileset1_037                    patronesTiles_1
-     00003534  _g_tileset1_038                    patronesTiles_1
-     0000353C  _g_tileset1_039                    patronesTiles_1
-     00003544  _g_tileset1_040                    patronesTiles_1
-     0000354C  _g_tileset1_041                    patronesTiles_1
-     00003554  _g_tileset1_042                    patronesTiles_1
-     0000355C  _g_tileset1_043                    patronesTiles_1
-     00003564  _g_tileset1_044                    patronesTiles_1
-     0000356C  _g_tileset1_045                    patronesTiles_1
-     00003574  _g_tileset1_046                    patronesTiles_1
-     0000357C  _g_tileset1_047                    patronesTiles_1
-     00003584  _g_tileset1_048                    patronesTiles_1
-     0000358C  _g_tileset1_049                    patronesTiles_1
-     00003594  _g_tileset1_050                    patronesTiles_1
-     0000359C  _g_tileset1_051                    patronesTiles_1
-     000035A4  _g_tileset1_052                    patronesTiles_1
-     000035AC  _g_tileset1_053                    patronesTiles_1
-     000035B4  _g_tileset1_054                    patronesTiles_1
-     000035BC  _g_tileset1_055                    patronesTiles_1
-     000035C4  _g_tileset1_056                    patronesTiles_1
-     000035CC  _g_tileset1_057                    patronesTiles_1
-     000035D4  _g_tileset1_058                    patronesTiles_1
-     000035DC  _g_tileset1_059                    patronesTiles_1
-     000035E4  _g_tileset1_060                    patronesTiles_1
-     000035EC  _g_tileset1_061                    patronesTiles_1
-     000035F4  _g_tileset1_062                    patronesTiles_1
-     000035FC  _g_tileset1_063                    patronesTiles_1
-     00003604  _g_tileset1_064                    patronesTiles_1
-     0000360C  _g_tileset1_065                    patronesTiles_1
-     00003614  _g_tileset1_066                    patronesTiles_1
-     0000361C  _g_tileset1_067                    patronesTiles_1
-     00003624  _g_tileset1_068                    patronesTiles_1
-     0000362C  _g_tileset1_069                    patronesTiles_1
-     00003634  _g_tileset1_070                    patronesTiles_1
-     0000363C  _g_tileset1_071                    patronesTiles_1
-     00003644  _g_tileset1_072                    patronesTiles_1
-     0000364C  _g_tileset1_073                    patronesTiles_1
-     00003654  _g_tileset1_074                    patronesTiles_1
-     0000365C  _g_tileset1_075                    patronesTiles_1
-     00003664  _g_tileset1_076                    patronesTiles_1
-     0000366C  _g_tileset1_077                    patronesTiles_1
-     00003674  _g_tileset1_078                    patronesTiles_1
-     0000367C  _g_tileset1_079                    patronesTiles_1
-     00003684  _g_tileset1_080                    patronesTiles_1
-     0000368C  _g_tileset1_081                    patronesTiles_1
+     00004C1F  _g_tileset2_021                    patronesTiles_2
+     00004C27  _g_tileset2_022                    patronesTiles_2
+     00004C2F  _g_tileset2_023                    patronesTiles_2
+     00004C37  _g_tileset2_024                    patronesTiles_2
+     00004C3F  _g_tileset2_025                    patronesTiles_2
+     00004C47  _g_tileset2_026                    patronesTiles_2
+     00004C4F  _g_tileset2_027                    patronesTiles_2
+     00004C57  _g_tileset2_028                    patronesTiles_2
+     00004C5F  _g_tileset2_029                    patronesTiles_2
+     00004C67  _g_tileset2_030                    patronesTiles_2
+     00004C6F  _g_tileset2_031                    patronesTiles_2
+     00004C77  _g_tileset2_032                    patronesTiles_2
+     00004C7F  _g_tileset2_033                    patronesTiles_2
+     00004C87  _g_tileset2_034                    patronesTiles_2
+     00004C8F  _g_tileset2_035                    patronesTiles_2
+     00004C97  _g_tileset2_036                    patronesTiles_2
+     00004C9F  _g_tileset2_037                    patronesTiles_2
+     00004CA7  _g_tileset2_038                    patronesTiles_2
+     00004CAF  _g_tileset2_039                    patronesTiles_2
+     00004CB7  _g_tileset2_040                    patronesTiles_2
+     00004CBF  _g_tileset2_041                    patronesTiles_2
+     00004CC7  _g_tileset2_042                    patronesTiles_2
+     00004CCF  _g_tileset2_043                    patronesTiles_2
+     00004CD7  _g_tileset2_044                    patronesTiles_2
+     00004CDF  _g_tileset2_045                    patronesTiles_2
+     00004CE7  _g_tileset2_046                    patronesTiles_2
+     00004CEF  _g_tileset2_047                    patronesTiles_2
+     00004CF7  _g_tileset2_048                    patronesTiles_2
+     00004CFF  _g_tileset2_049                    patronesTiles_2
+     00004D07  _g_tileset2_050                    patronesTiles_2
+     00004D0F  _g_tileset2_051                    patronesTiles_2
+     00004D17  _g_tileset2_052                    patronesTiles_2
+     00004D1F  _g_tileset2_053                    patronesTiles_2
+     00004D27  _g_tileset2_054                    patronesTiles_2
+     00004D2F  _g_tileset2_055                    patronesTiles_2
+     00004D37  _g_tileset2_056                    patronesTiles_2
+     00004D3F  _g_tileset2_057                    patronesTiles_2
+     00004D47  _g_tileset2_058                    patronesTiles_2
+     00004D4F  _g_tileset2_059                    patronesTiles_2
+     00004D57  _g_tileset2_060                    patronesTiles_2
+     00004D5F  _g_tileset2_061                    patronesTiles_2
+     00004D67  _g_tileset2_062                    patronesTiles_2
+     00004D6F  _g_tileset2_063                    patronesTiles_2
+     00004D77  _g_tileset2_064                    patronesTiles_2
+     00004D7F  _g_tileset2_065                    patronesTiles_2
+     00004D87  _g_tileset2_066                    patronesTiles_2
+     00004D8F  _g_tileset2_067                    patronesTiles_2
+     00004D97  _g_tileset2_068                    patronesTiles_2
+     00004D9F  _g_tileset2_069                    patronesTiles_2
+     00004DA7  _g_tileset2_070                    patronesTiles_2
+     00004DAF  _g_tileset2_071                    patronesTiles_2
 ASxxxx Linker V03.00 + NoICE + sdld,  page 8.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00000340    00006B60 =       27488. bytes (REL,CON)
+_CODE                               0000050F    00009D12 =       40210. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00003694  _g_tileset1_082                    patronesTiles_1
-     0000369C  _g_tileset1_083                    patronesTiles_1
-     000036A4  _g_tileset1_084                    patronesTiles_1
-     000036AC  _g_tileset1_085                    patronesTiles_1
-     000036B4  _g_tileset1_086                    patronesTiles_1
-     000036BC  _g_tileset1_087                    patronesTiles_1
-     000036C4  _g_tileset1_088                    patronesTiles_1
-     000036CC  _g_tileset1_089                    patronesTiles_1
-     000036D4  _g_tileset1_090                    patronesTiles_1
-     000036DC  _g_tileset1_091                    patronesTiles_1
-     000036E4  _g_tileset1_092                    patronesTiles_1
-     000036EC  _g_tileset1_093                    patronesTiles_1
-     000036F4  _g_tileset1_094                    patronesTiles_1
-     000036FC  _g_tileset1_095                    patronesTiles_1
-     00003704  _g_tileset1_096                    patronesTiles_1
-     0000370C  _g_tileset1_097                    patronesTiles_1
-     00003714  _g_tileset1_098                    patronesTiles_1
-     0000371C  _g_tileset1_099                    patronesTiles_1
-     00003724  _g_tileset1_100                    patronesTiles_1
-     0000372C  _g_tileset1_101                    patronesTiles_1
-     00003734  _g_tileset1_102                    patronesTiles_1
-     0000373C  _g_tileset1_103                    patronesTiles_1
-     00003744  _g_tileset1_104                    patronesTiles_1
-     0000374C  _g_tileset1_105                    patronesTiles_1
-     00003754  _g_tileset1_106                    patronesTiles_1
-     0000375C  _g_tileset1_107                    patronesTiles_1
-     00003764  _g_tileset1_108                    patronesTiles_1
-     0000376C  _g_tileset1_109                    patronesTiles_1
-     00003774  _g_tileset1_110                    patronesTiles_1
-     0000377C  _g_tileset1_111                    patronesTiles_1
-     00003784  _g_tileset1_112                    patronesTiles_1
-     0000378C  _g_tileset1_113                    patronesTiles_1
-     00003794  _g_tileset1_114                    patronesTiles_1
-     0000379C  _g_tileset1_115                    patronesTiles_1
-     000037A4  _g_tileset1_116                    patronesTiles_1
-     000037AC  _g_tileset1_117                    patronesTiles_1
-     000037B4  _g_tileset1_118                    patronesTiles_1
-     000037BC  _g_tileset1_119                    patronesTiles_1
-     000037C4  _g_tileset1_120                    patronesTiles_1
-     000037CC  _g_tileset1_121                    patronesTiles_1
-     000037D4  _g_tileset1_122                    patronesTiles_1
-     000037DC  _g_tileset1_123                    patronesTiles_1
-     000037E4  _g_tileset1_124                    patronesTiles_1
-     000037EC  _g_tileset1_125                    patronesTiles_1
-     000037F4  _g_tileset1_126                    patronesTiles_1
-     000037FC  _g_tileset1_127                    patronesTiles_1
-     00003804  _g_tileset1_128                    patronesTiles_1
-     0000380C  _g_tileset1_129                    patronesTiles_1
-     00003814  _g_tileset1_130                    patronesTiles_1
-     0000381C  _g_tileset1_131                    patronesTiles_1
-     00003824  _g_tileset1_132                    patronesTiles_1
+     00004DB7  _g_tileset2_072                    patronesTiles_2
+     00004DBF  _g_tileset2_073                    patronesTiles_2
+     00004DC7  _g_tileset2_074                    patronesTiles_2
+     00004DCF  _g_tileset2_075                    patronesTiles_2
+     00004DD7  _g_tileset2_076                    patronesTiles_2
+     00004DDF  _g_tileset2_077                    patronesTiles_2
+     00004DE7  _g_tileset2_078                    patronesTiles_2
+     00004DEF  _g_tileset2_079                    patronesTiles_2
+     00004DF7  _g_tileset2_080                    patronesTiles_2
+     00004DFF  _g_tileset2_081                    patronesTiles_2
+     00004E07  _g_tileset2_082                    patronesTiles_2
+     00004E0F  _g_tileset2_083                    patronesTiles_2
+     00004E17  _g_tileset2_084                    patronesTiles_2
+     00004E1F  _g_tileset2_085                    patronesTiles_2
+     00004E27  _g_tileset2_086                    patronesTiles_2
+     00004E2F  _g_tileset2_087                    patronesTiles_2
+     00004E37  _g_tileset2_088                    patronesTiles_2
+     00004E3F  _g_tileset2_089                    patronesTiles_2
+     00004E47  _g_tileset2_090                    patronesTiles_2
+     00004E4F  _g_tileset2_091                    patronesTiles_2
+     00004E57  _g_tileset2_092                    patronesTiles_2
+     00004E5F  _g_tileset2_093                    patronesTiles_2
+     00004E67  _g_tileset2_094                    patronesTiles_2
+     00004E6F  _g_tileset2_095                    patronesTiles_2
+     00004E77  _g_tileset2_096                    patronesTiles_2
+     00004E7F  _g_tileset2_097                    patronesTiles_2
+     00004E87  _g_tileset2_098                    patronesTiles_2
+     00004E8F  _g_tileset2_099                    patronesTiles_2
+     00004E97  _g_tileset2_100                    patronesTiles_2
+     00004E9F  _g_tileset2_101                    patronesTiles_2
+     00004EA7  _g_tileset2_102                    patronesTiles_2
+     00004EAF  _g_tileset2_103                    patronesTiles_2
+     00004EB7  _g_tileset2_104                    patronesTiles_2
+     00004EBF  _g_tileset2_105                    patronesTiles_2
+     00004EC7  _g_tileset2_106                    patronesTiles_2
+     00004ECF  _g_tileset2_107                    patronesTiles_2
+     00004ED7  _g_tileset2_108                    patronesTiles_2
+     00004EDF  _g_tileset2_109                    patronesTiles_2
+     00004EE7  _g_tileset2_110                    patronesTiles_2
+     00004EEF  _g_tileset2_111                    patronesTiles_2
+     00004EF7  _g_tileset2_112                    patronesTiles_2
+     00004EFF  _g_tileset2_113                    patronesTiles_2
+     00004F07  _g_tileset2_114                    patronesTiles_2
+     00004F0F  _g_tileset2_115                    patronesTiles_2
+     00004F17  _g_tileset2_116                    patronesTiles_2
+     00004F1F  _g_tileset2_117                    patronesTiles_2
+     00004F27  _g_tileset2_118                    patronesTiles_2
+     00004F2F  _g_tileset2_119                    patronesTiles_2
+     00004F37  _g_tileset2_120                    patronesTiles_2
+     00004F3F  _g_tileset2_121                    patronesTiles_2
+     00004F47  _g_tileset2_122                    patronesTiles_2
 ASxxxx Linker V03.00 + NoICE + sdld,  page 9.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00000340    00006B60 =       27488. bytes (REL,CON)
+_CODE                               0000050F    00009D12 =       40210. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     0000382C  _g_tileset1_133                    patronesTiles_1
-     00003834  _g_tileset1_134                    patronesTiles_1
-     0000383C  _g_tileset1_135                    patronesTiles_1
-     00003844  _g_tileset1_136                    patronesTiles_1
-     0000384C  _g_tileset1_137                    patronesTiles_1
-     00003854  _g_tileset1_138                    patronesTiles_1
-     0000385C  _g_tileset1_139                    patronesTiles_1
-     00003864  _g_tileset1_140                    patronesTiles_1
-     0000386C  _g_tileset1_141                    patronesTiles_1
-     00003874  _g_tileset1_142                    patronesTiles_1
-     0000387C  _g_tileset1_143                    patronesTiles_1
-     00003884  _g_tileset1_144                    patronesTiles_1
-     0000388C  _g_tileset1_145                    patronesTiles_1
-     00003894  _g_tileset1_146                    patronesTiles_1
-     0000389C  _g_tileset1_147                    patronesTiles_1
-     000038A4  _g_tileset1_148                    patronesTiles_1
-     000038AC  _g_tileset1_149                    patronesTiles_1
-     000038B4  _g_tileset1_150                    patronesTiles_1
-     000038BC  _g_tileset1_151                    patronesTiles_1
-     000038C4  _g_tileset1_152                    patronesTiles_1
-     000038CC  _g_tileset1_153                    patronesTiles_1
-     000038D4  _g_tileset1_154                    patronesTiles_1
-     000038DC  _g_tileset1_155                    patronesTiles_1
-     000038E4  _g_tileset1_156                    patronesTiles_1
-     000038EC  _g_tileset1_157                    patronesTiles_1
-     000038F4  _g_tileset1_158                    patronesTiles_1
-     000038FC  _g_tileset1_159                    patronesTiles_1
-     00003904  _g_tileset1_160                    patronesTiles_1
-     0000390C  _g_tileset1_161                    patronesTiles_1
-     00003914  _g_tileset1_162                    patronesTiles_1
-     0000391C  _g_tileset1_163                    patronesTiles_1
-     00003924  _g_tileset1_164                    patronesTiles_1
-     0000392C  _g_tileset1_165                    patronesTiles_1
-     00003934  _g_tileset1_166                    patronesTiles_1
-     0000393C  _g_tileset1_167                    patronesTiles_1
-     00003944  _g_tileset1_168                    patronesTiles_1
-     0000394C  _g_tileset1_169                    patronesTiles_1
-     00003954  _g_tileset1_170                    patronesTiles_1
-     0000395C  _g_tileset1_171                    patronesTiles_1
-     00003964  _g_tileset1_172                    patronesTiles_1
-     0000396C  _g_tileset1_173                    patronesTiles_1
-     00003974  _g_tileset1_174                    patronesTiles_1
-     0000397C  _g_tileset1_175                    patronesTiles_1
-     00003984  _g_tileset1_176                    patronesTiles_1
-     0000398C  _g_tileset1_177                    patronesTiles_1
-     00003994  _g_tileset1_178                    patronesTiles_1
-     0000399C  _g_tileset1_179                    patronesTiles_1
-     000039A4  _g_tileset1_180                    patronesTiles_1
-     000039AC  _g_tileset1_181                    patronesTiles_1
-     000039B4  _g_tileset1_182                    patronesTiles_1
-     000039BC  _g_tileset1_183                    patronesTiles_1
+     00004F4F  _g_tileset2_123                    patronesTiles_2
+     00004F57  _g_tileset2_124                    patronesTiles_2
+     00004F5F  _g_tileset2_125                    patronesTiles_2
+     00004F67  _g_tileset2_126                    patronesTiles_2
+     00004F6F  _g_tileset2_127                    patronesTiles_2
+     00004F77  _g_tileset2_128                    patronesTiles_2
+     00004F7F  _g_tileset2_129                    patronesTiles_2
+     00004F87  _g_tileset2_130                    patronesTiles_2
+     00004F8F  _g_tileset2_131                    patronesTiles_2
+     00004F97  _g_tileset2_132                    patronesTiles_2
+     00004F9F  _g_tileset2_133                    patronesTiles_2
+     00004FA7  _g_tileset2_134                    patronesTiles_2
+     00004FAF  _g_tileset2_135                    patronesTiles_2
+     00004FB7  _g_tileset2_136                    patronesTiles_2
+     00004FBF  _g_tileset2_137                    patronesTiles_2
+     00004FC7  _g_tileset2_138                    patronesTiles_2
+     00004FCF  _g_tileset2_139                    patronesTiles_2
+     00004FD7  _g_tileset2_140                    patronesTiles_2
+     00004FDF  _g_tileset2_141                    patronesTiles_2
+     00004FE7  _g_tileset2_142                    patronesTiles_2
+     00004FEF  _g_tileset2_143                    patronesTiles_2
+     00004FF7  _g_tileset2_144                    patronesTiles_2
+     00004FFF  _g_tileset2_145                    patronesTiles_2
+     00005007  _g_tileset2_146                    patronesTiles_2
+     0000500F  _g_tileset2_147                    patronesTiles_2
+     00005017  _g_tileset2_148                    patronesTiles_2
+     0000501F  _g_tileset2_149                    patronesTiles_2
+     00005027  _g_tileset2_150                    patronesTiles_2
+     0000502F  _g_tileset2_151                    patronesTiles_2
+     00005037  _g_tileset2_152                    patronesTiles_2
+     0000503F  _g_tileset2_153                    patronesTiles_2
+     00005047  _g_tileset2_154                    patronesTiles_2
+     0000504F  _g_tileset2_155                    patronesTiles_2
+     00005057  _g_tileset2_156                    patronesTiles_2
+     0000505F  _g_tileset2_157                    patronesTiles_2
+     00005067  _g_tileset2_158                    patronesTiles_2
+     0000506F  _g_tileset2_159                    patronesTiles_2
+     00005077  _g_tileset2_160                    patronesTiles_2
+     0000507F  _g_tileset2_161                    patronesTiles_2
+     00005087  _g_tileset2_162                    patronesTiles_2
+     0000508F  _g_tileset2_163                    patronesTiles_2
+     00005097  _g_tileset2_164                    patronesTiles_2
+     0000509F  _g_tileset2_165                    patronesTiles_2
+     000050A7  _g_tileset2_166                    patronesTiles_2
+     000050AF  _g_tileset2_167                    patronesTiles_2
+     000050B7  _g_tileset2_168                    patronesTiles_2
+     000050BF  _g_tileset2_169                    patronesTiles_2
+     000050C7  _g_tileset2_170                    patronesTiles_2
+     000050CF  _g_tileset2_171                    patronesTiles_2
+     000050D7  _g_tileset2_172                    patronesTiles_2
+     000050DF  _g_tileset2_173                    patronesTiles_2
 ASxxxx Linker V03.00 + NoICE + sdld,  page 10.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00000340    00006B60 =       27488. bytes (REL,CON)
+_CODE                               0000050F    00009D12 =       40210. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000039C4  _g_tileset1_184                    patronesTiles_1
-     000039CC  _g_tileset1_185                    patronesTiles_1
-     000039D4  _g_tileset1_186                    patronesTiles_1
-     000039DC  _g_tileset1_187                    patronesTiles_1
-     000039E4  _g_tileset1_188                    patronesTiles_1
-     000039EC  _g_tileset1_189                    patronesTiles_1
-     000039F4  _g_tileset1_190                    patronesTiles_1
-     000039FC  _g_tileset1_191                    patronesTiles_1
-     00003A04  _g_tileset1_192                    patronesTiles_1
-     00003A0C  _g_tileset1_193                    patronesTiles_1
-     00003A14  _g_tileset1_194                    patronesTiles_1
-     00003A1C  _g_tileset1_195                    patronesTiles_1
-     00003A24  _g_tileset1_196                    patronesTiles_1
-     00003A2C  _g_tileset1_197                    patronesTiles_1
-     00003A34  _g_tileset1_198                    patronesTiles_1
-     00003A3C  _g_tileset1_199                    patronesTiles_1
-     00003A44  _g_palette                         g_palette
-     00003A48  _main                              main
-     00003B4E  _paletaM1                          main
-     00003D66  _G_tile_cruzada                    graficos
-     00003DA6  _G_tile_caverna                    graficos
-     00003DE6  _G_tile_castillo                   graficos
-     00003E26  _G_mendo                           graficos
-     00003F06  _G_arabe_1                         graficos
-     00003FE6  _G_arabe_2                         graficos
-     000040C6  _G_arabe_3                         graficos
-     000041A6  _G_fakir                           graficos
-     00004286  _G_arabe_boss                      graficos
-     00004366  _G_abeja                           graficos
-     00004446  _G_pocion                          graficos
-     00004486  _G_murcielago                      graficos
-     00004566  _G_esqueleto                       graficos
-     00004646  _G_gusano                          graficos
-     00004726  _G_spider                          graficos
-     00004806  _G_goblin                          graficos
-     000048E6  _G_cavern_boss                     graficos
-     000049C6  _turno                             juego
-     00005161  _juego                             juego
-     000052AD  _abs                               funciones
-     000052D5  _pausa                             funciones
-     000052E5  _efecto_pliegue                    funciones
-     00005331  _pausaTecladoLibre                 funciones
-     0000533C  _dibujarMarcoExterior              funciones
-     0000540B  _dibujarMarcoInterior              funciones
-     000054A6  _dibujarEscenario                  funciones
-     000054EA  _printStats                        funciones
-     000055D4  _printLevel                        funciones
-     0000561D  _printConsole                      funciones
-     00005682  _atacar                            funciones
-     000057B8  _defender                          funciones
-     00005889  _drawPotion                        funciones
+     000050E7  _g_tileset2_174                    patronesTiles_2
+     000050EF  _g_tileset2_175                    patronesTiles_2
+     000050F7  _g_tileset2_176                    patronesTiles_2
+     000050FF  _g_tileset2_177                    patronesTiles_2
+     00005107  _g_tileset2_178                    patronesTiles_2
+     0000510F  _g_tileset2_179                    patronesTiles_2
+     00005117  _g_tileset2_180                    patronesTiles_2
+     0000511F  _g_tileset2_181                    patronesTiles_2
+     00005127  _g_tileset2_182                    patronesTiles_2
+     0000512F  _g_tileset2_183                    patronesTiles_2
+     00005137  _g_tileset2_184                    patronesTiles_2
+     0000513F  _g_tileset2_185                    patronesTiles_2
+     00005147  _g_tileset2_186                    patronesTiles_2
+     0000514F  _g_tileset2_187                    patronesTiles_2
+     00005157  _g_tileset2_188                    patronesTiles_2
+     0000515F  _g_tileset2_189                    patronesTiles_2
+     00005167  _g_tileset2_190                    patronesTiles_2
+     0000516F  _g_tileset2_191                    patronesTiles_2
+     00005177  _g_tileset2_192                    patronesTiles_2
+     0000517F  _g_tileset2_193                    patronesTiles_2
+     00005187  _g_tileset2_194                    patronesTiles_2
+     0000518F  _g_tileset2_195                    patronesTiles_2
+     00005197  _g_tileset2_196                    patronesTiles_2
+     0000519F  _g_tileset2_197                    patronesTiles_2
+     000051A7  _g_tileset2_198                    patronesTiles_2
+     000051AF  _g_tileset2_199                    patronesTiles_2
+     000051B7  _palette                           patronesTiles_1
+     000051BB  _tileset1                          patronesTiles_1
+     0000534B  _g_tileset1_000                    patronesTiles_1
+     00005353  _g_tileset1_001                    patronesTiles_1
+     0000535B  _g_tileset1_002                    patronesTiles_1
+     00005363  _g_tileset1_003                    patronesTiles_1
+     0000536B  _g_tileset1_004                    patronesTiles_1
+     00005373  _g_tileset1_005                    patronesTiles_1
+     0000537B  _g_tileset1_006                    patronesTiles_1
+     00005383  _g_tileset1_007                    patronesTiles_1
+     0000538B  _g_tileset1_008                    patronesTiles_1
+     00005393  _g_tileset1_009                    patronesTiles_1
+     0000539B  _g_tileset1_010                    patronesTiles_1
+     000053A3  _g_tileset1_011                    patronesTiles_1
+     000053AB  _g_tileset1_012                    patronesTiles_1
+     000053B3  _g_tileset1_013                    patronesTiles_1
+     000053BB  _g_tileset1_014                    patronesTiles_1
+     000053C3  _g_tileset1_015                    patronesTiles_1
+     000053CB  _g_tileset1_016                    patronesTiles_1
+     000053D3  _g_tileset1_017                    patronesTiles_1
+     000053DB  _g_tileset1_018                    patronesTiles_1
+     000053E3  _g_tileset1_019                    patronesTiles_1
+     000053EB  _g_tileset1_020                    patronesTiles_1
+     000053F3  _g_tileset1_021                    patronesTiles_1
+     000053FB  _g_tileset1_022                    patronesTiles_1
 ASxxxx Linker V03.00 + NoICE + sdld,  page 11.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00000340    00006B60 =       27488. bytes (REL,CON)
+_CODE                               0000050F    00009D12 =       40210. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00005899  _initSoldadoArabe1                 niveles
-     000058E3  _initSoldadoArabe2                 niveles
-     0000592D  _initSoldadoArabe3                 niveles
-     00005977  _initFakir                         niveles
-     000059BD  _initAbeja                         niveles
-     00005A01  _initMurcielago                    niveles
-     00005A4A  _initEsqueleto                     niveles
-     00005A93  _initGusano                        niveles
-     00005AD8  _initSpider                        niveles
-     00005B1F  _initGoblin                        niveles
-     00005B66  _initPlayer                        niveles
-     00005BAB  _initNivel                         niveles
-     00005DA2  mydrawStringM1_asm                 cpct_strings
-     00005DB4  _mydrawStringM1                    cpct_strings
-     00005DD2  mydrawCharM1_inner_asm             cpct_strings
-     00005E1B  cpct_char2pxM1                     cpct_strings
-     00005E2B  _cpct_isKeyPressed                 cpct_keyboard
-     00005E2B  cpct_isKeyPressed_asm              cpct_keyboard
-     00005E37  _cpct_setPalette                   cpct_video
-     00005E4E  _cpct_scanKeyboard_f               cpct_keyboard
-     00005E4E  cpct_scanKeyboard_f_asm            cpct_keyboard
-     00005EB8  _cpct_setPALColour                 cpct_video
-     00005EC4  _cpct_drawSprite                   cpct_sprites
-     00005F69  _cpct_etm_drawTileBox2x4           cpct_easytilemaps
-     00005FF8  _cpct_etm_setTileset2x4            cpct_easytilemaps
-     00005FF8  cpct_etm_setTileset2x4_asm         cpct_easytilemaps
-     00005FFC  __moduchar                         
-     00006008  __moduint                          
-     00006013  __divuint                          
-     0000601B  __divuchar                         
-     00006022  __divu8                            
-     00006025  __divu16                           
-     00006054  _cpct_keyboardStatusBuffer         cpct_keyboard
-     0000605E  _cpct_setSeed_mxor                 cpct_random
-     0000605E  cpct_setSeed_mxor_asm              cpct_random
-     00006066  _cpct_restoreState_mxor_u8         cpct_random
-     00006066  cpct_restoreState_mxor_u8_asm      cpct_random
-     0000606C  _cpct_getRandom_mxor_u8            cpct_random
-     0000606C  cpct_getRandom_mxor_u8_asm         cpct_random
-     0000606D  cpct_randomIdx_mxor_u8             cpct_random
-     00006091  _cpct_etm_drawTileRow2x4           cpct_easytilemaps
-     00006098  cpct_etm_drawTileRow2x4_asm        cpct_easytilemaps
-     0000609A  dtr_restore_ptileset               cpct_easytilemaps
-     000060B2  _cpct_drawSpriteMasked             cpct_sprites
-     00006101  _vsprintf                          sprintf
-     00006136  _sprintf                           sprintf
-     0000616B  _cpct_nextRandom_mxor_u32          cpct_random
-     0000616B  cpct_nextRandom_mxor_u32_asm       cpct_random
-     0000618E  _cpct_waitVSYNC                    cpct_video
-     0000618E  cpct_waitVSYNC_asm                 cpct_video
-     00006196  _cpct_setVideoMode                 cpct_video
+     00005403  _g_tileset1_023                    patronesTiles_1
+     0000540B  _g_tileset1_024                    patronesTiles_1
+     00005413  _g_tileset1_025                    patronesTiles_1
+     0000541B  _g_tileset1_026                    patronesTiles_1
+     00005423  _g_tileset1_027                    patronesTiles_1
+     0000542B  _g_tileset1_028                    patronesTiles_1
+     00005433  _g_tileset1_029                    patronesTiles_1
+     0000543B  _g_tileset1_030                    patronesTiles_1
+     00005443  _g_tileset1_031                    patronesTiles_1
+     0000544B  _g_tileset1_032                    patronesTiles_1
+     00005453  _g_tileset1_033                    patronesTiles_1
+     0000545B  _g_tileset1_034                    patronesTiles_1
+     00005463  _g_tileset1_035                    patronesTiles_1
+     0000546B  _g_tileset1_036                    patronesTiles_1
+     00005473  _g_tileset1_037                    patronesTiles_1
+     0000547B  _g_tileset1_038                    patronesTiles_1
+     00005483  _g_tileset1_039                    patronesTiles_1
+     0000548B  _g_tileset1_040                    patronesTiles_1
+     00005493  _g_tileset1_041                    patronesTiles_1
+     0000549B  _g_tileset1_042                    patronesTiles_1
+     000054A3  _g_tileset1_043                    patronesTiles_1
+     000054AB  _g_tileset1_044                    patronesTiles_1
+     000054B3  _g_tileset1_045                    patronesTiles_1
+     000054BB  _g_tileset1_046                    patronesTiles_1
+     000054C3  _g_tileset1_047                    patronesTiles_1
+     000054CB  _g_tileset1_048                    patronesTiles_1
+     000054D3  _g_tileset1_049                    patronesTiles_1
+     000054DB  _g_tileset1_050                    patronesTiles_1
+     000054E3  _g_tileset1_051                    patronesTiles_1
+     000054EB  _g_tileset1_052                    patronesTiles_1
+     000054F3  _g_tileset1_053                    patronesTiles_1
+     000054FB  _g_tileset1_054                    patronesTiles_1
+     00005503  _g_tileset1_055                    patronesTiles_1
+     0000550B  _g_tileset1_056                    patronesTiles_1
+     00005513  _g_tileset1_057                    patronesTiles_1
+     0000551B  _g_tileset1_058                    patronesTiles_1
+     00005523  _g_tileset1_059                    patronesTiles_1
+     0000552B  _g_tileset1_060                    patronesTiles_1
+     00005533  _g_tileset1_061                    patronesTiles_1
+     0000553B  _g_tileset1_062                    patronesTiles_1
+     00005543  _g_tileset1_063                    patronesTiles_1
+     0000554B  _g_tileset1_064                    patronesTiles_1
+     00005553  _g_tileset1_065                    patronesTiles_1
+     0000555B  _g_tileset1_066                    patronesTiles_1
+     00005563  _g_tileset1_067                    patronesTiles_1
+     0000556B  _g_tileset1_068                    patronesTiles_1
+     00005573  _g_tileset1_069                    patronesTiles_1
+     0000557B  _g_tileset1_070                    patronesTiles_1
+     00005583  _g_tileset1_071                    patronesTiles_1
+     0000558B  _g_tileset1_072                    patronesTiles_1
+     00005593  _g_tileset1_073                    patronesTiles_1
 ASxxxx Linker V03.00 + NoICE + sdld,  page 12.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00000340    00006B60 =       27488. bytes (REL,CON)
+_CODE                               0000050F    00009D12 =       40210. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000061A4  _cpct_isAnyKeyPressed_f            cpct_keyboard
-     000061A4  cpct_isAnyKeyPressed_f_asm         cpct_keyboard
-     000061BF  _cpct_memset                       cpct_memutils
-     000061CD  _cpct_px2byteM1                    cpct_sprites
-     000061CD  cpct_px2byteM1_asm                 cpct_sprites
-     000061EA  _cpct_disableFirmware              cpct_firmware
-     000061EA  _cpct_removeInterruptHandler       cpct_firmware
-     000061EA  cpct_disableFirmware_asm           cpct_firmware
-     000061EA  cpct_removeInterruptHandler_asm    cpct_firmware
-     000061FA  _cpct_drawSolidBox                 cpct_sprites
-     000062A3  cpct_drawTileAligned2x4_f_asm      cpct_sprites
-     000062C4  _cpct_mode_rom_status              cpct_firmware
-     000062C5  _cpct_setCRTCReg                   cpct_video
-     000062D3  _cpct_getScreenPtr                 cpct_video
-     000062F3  _cpct_setDrawCharM1                cpct_strings
-     00006446  __print_format                     printf_large
-     00006E88  _cpct_mxor32_seed                  cpct_random
-     00006E8C  ___sdcc_call_hl                    
-     00006E8D  dc_mode1_ct                        
-     00006E91  _strlen                            
-
+     0000559B  _g_tileset1_074                    patronesTiles_1
+     000055A3  _g_tileset1_075                    patronesTiles_1
+     000055AB  _g_tileset1_076                    patronesTiles_1
+     000055B3  _g_tileset1_077                    patronesTiles_1
+     000055BB  _g_tileset1_078                    patronesTiles_1
+     000055C3  _g_tileset1_079                    patronesTiles_1
+     000055CB  _g_tileset1_080                    patronesTiles_1
+     000055D3  _g_tileset1_081                    patronesTiles_1
+     000055DB  _g_tileset1_082                    patronesTiles_1
+     000055E3  _g_tileset1_083                    patronesTiles_1
+     000055EB  _g_tileset1_084                    patronesTiles_1
+     000055F3  _g_tileset1_085                    patronesTiles_1
+     000055FB  _g_tileset1_086                    patronesTiles_1
+     00005603  _g_tileset1_087                    patronesTiles_1
+     0000560B  _g_tileset1_088                    patronesTiles_1
+     00005613  _g_tileset1_089                    patronesTiles_1
+     0000561B  _g_tileset1_090                    patronesTiles_1
+     00005623  _g_tileset1_091                    patronesTiles_1
+     0000562B  _g_tileset1_092                    patronesTiles_1
+     00005633  _g_tileset1_093                    patronesTiles_1
+     0000563B  _g_tileset1_094                    patronesTiles_1
+     00005643  _g_tileset1_095                    patronesTiles_1
+     0000564B  _g_tileset1_096                    patronesTiles_1
+     00005653  _g_tileset1_097                    patronesTiles_1
+     0000565B  _g_tileset1_098                    patronesTiles_1
+     00005663  _g_tileset1_099                    patronesTiles_1
+     0000566B  _g_tileset1_100                    patronesTiles_1
+     00005673  _g_tileset1_101                    patronesTiles_1
+     0000567B  _g_tileset1_102                    patronesTiles_1
+     00005683  _g_tileset1_103                    patronesTiles_1
+     0000568B  _g_tileset1_104                    patronesTiles_1
+     00005693  _g_tileset1_105                    patronesTiles_1
+     0000569B  _g_tileset1_106                    patronesTiles_1
+     000056A3  _g_tileset1_107                    patronesTiles_1
+     000056AB  _g_tileset1_108                    patronesTiles_1
+     000056B3  _g_tileset1_109                    patronesTiles_1
+     000056BB  _g_tileset1_110                    patronesTiles_1
+     000056C3  _g_tileset1_111                    patronesTiles_1
+     000056CB  _g_tileset1_112                    patronesTiles_1
+     000056D3  _g_tileset1_113                    patronesTiles_1
+     000056DB  _g_tileset1_114                    patronesTiles_1
+     000056E3  _g_tileset1_115                    patronesTiles_1
+     000056EB  _g_tileset1_116                    patronesTiles_1
+     000056F3  _g_tileset1_117                    patronesTiles_1
+     000056FB  _g_tileset1_118                    patronesTiles_1
+     00005703  _g_tileset1_119                    patronesTiles_1
+     0000570B  _g_tileset1_120                    patronesTiles_1
+     00005713  _g_tileset1_121                    patronesTiles_1
+     0000571B  _g_tileset1_122                    patronesTiles_1
+     00005723  _g_tileset1_123                    patronesTiles_1
+     0000572B  _g_tileset1_124                    patronesTiles_1
 ASxxxx Linker V03.00 + NoICE + sdld,  page 13.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_DATA                               00006EA0    0000003F =          63. bytes (REL,CON)
+_CODE                               0000050F    00009D12 =       40210. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00006EA0  _entidad                           main
-     00006EDC  _nivel                             main
-     00006EDD  _cursorConsola                     main
-     00006EDE  _sig_nivel                         main
-
+     00005733  _g_tileset1_125                    patronesTiles_1
+     0000573B  _g_tileset1_126                    patronesTiles_1
+     00005743  _g_tileset1_127                    patronesTiles_1
+     0000574B  _g_tileset1_128                    patronesTiles_1
+     00005753  _g_tileset1_129                    patronesTiles_1
+     0000575B  _g_tileset1_130                    patronesTiles_1
+     00005763  _g_tileset1_131                    patronesTiles_1
+     0000576B  _g_tileset1_132                    patronesTiles_1
+     00005773  _g_tileset1_133                    patronesTiles_1
+     0000577B  _g_tileset1_134                    patronesTiles_1
+     00005783  _g_tileset1_135                    patronesTiles_1
+     0000578B  _g_tileset1_136                    patronesTiles_1
+     00005793  _g_tileset1_137                    patronesTiles_1
+     0000579B  _g_tileset1_138                    patronesTiles_1
+     000057A3  _g_tileset1_139                    patronesTiles_1
+     000057AB  _g_tileset1_140                    patronesTiles_1
+     000057B3  _g_tileset1_141                    patronesTiles_1
+     000057BB  _g_tileset1_142                    patronesTiles_1
+     000057C3  _g_tileset1_143                    patronesTiles_1
+     000057CB  _g_tileset1_144                    patronesTiles_1
+     000057D3  _g_tileset1_145                    patronesTiles_1
+     000057DB  _g_tileset1_146                    patronesTiles_1
+     000057E3  _g_tileset1_147                    patronesTiles_1
+     000057EB  _g_tileset1_148                    patronesTiles_1
+     000057F3  _g_tileset1_149                    patronesTiles_1
+     000057FB  _g_tileset1_150                    patronesTiles_1
+     00005803  _g_tileset1_151                    patronesTiles_1
+     0000580B  _g_tileset1_152                    patronesTiles_1
+     00005813  _g_tileset1_153                    patronesTiles_1
+     0000581B  _g_tileset1_154                    patronesTiles_1
+     00005823  _g_tileset1_155                    patronesTiles_1
+     0000582B  _g_tileset1_156                    patronesTiles_1
+     00005833  _g_tileset1_157                    patronesTiles_1
+     0000583B  _g_tileset1_158                    patronesTiles_1
+     00005843  _g_tileset1_159                    patronesTiles_1
+     0000584B  _g_tileset1_160                    patronesTiles_1
+     00005853  _g_tileset1_161                    patronesTiles_1
+     0000585B  _g_tileset1_162                    patronesTiles_1
+     00005863  _g_tileset1_163                    patronesTiles_1
+     0000586B  _g_tileset1_164                    patronesTiles_1
+     00005873  _g_tileset1_165                    patronesTiles_1
+     0000587B  _g_tileset1_166                    patronesTiles_1
+     00005883  _g_tileset1_167                    patronesTiles_1
+     0000588B  _g_tileset1_168                    patronesTiles_1
+     00005893  _g_tileset1_169                    patronesTiles_1
+     0000589B  _g_tileset1_170                    patronesTiles_1
+     000058A3  _g_tileset1_171                    patronesTiles_1
+     000058AB  _g_tileset1_172                    patronesTiles_1
+     000058B3  _g_tileset1_173                    patronesTiles_1
+     000058BB  _g_tileset1_174                    patronesTiles_1
+     000058C3  _g_tileset1_175                    patronesTiles_1
 ASxxxx Linker V03.00 + NoICE + sdld,  page 14.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_CODE                               0000050F    00009D12 =       40210. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000058CB  _g_tileset1_176                    patronesTiles_1
+     000058D3  _g_tileset1_177                    patronesTiles_1
+     000058DB  _g_tileset1_178                    patronesTiles_1
+     000058E3  _g_tileset1_179                    patronesTiles_1
+     000058EB  _g_tileset1_180                    patronesTiles_1
+     000058F3  _g_tileset1_181                    patronesTiles_1
+     000058FB  _g_tileset1_182                    patronesTiles_1
+     00005903  _g_tileset1_183                    patronesTiles_1
+     0000590B  _g_tileset1_184                    patronesTiles_1
+     00005913  _g_tileset1_185                    patronesTiles_1
+     0000591B  _g_tileset1_186                    patronesTiles_1
+     00005923  _g_tileset1_187                    patronesTiles_1
+     0000592B  _g_tileset1_188                    patronesTiles_1
+     00005933  _g_tileset1_189                    patronesTiles_1
+     0000593B  _g_tileset1_190                    patronesTiles_1
+     00005943  _g_tileset1_191                    patronesTiles_1
+     0000594B  _g_tileset1_192                    patronesTiles_1
+     00005953  _g_tileset1_193                    patronesTiles_1
+     0000595B  _g_tileset1_194                    patronesTiles_1
+     00005963  _g_tileset1_195                    patronesTiles_1
+     0000596B  _g_tileset1_196                    patronesTiles_1
+     00005973  _g_tileset1_197                    patronesTiles_1
+     0000597B  _g_tileset1_198                    patronesTiles_1
+     00005983  _g_tileset1_199                    patronesTiles_1
+     0000598B  _g_palette                         g_palette
+     0000598F  _playFX                            main
+     000059B9  _paletaM1                          main
+     000059BD  _reproducirMusica                  main
+     000059CB  _intHandler                        main
+     000059E7  _setInterruptAtVSYNCStart          main
+     000059F6  _main                              main
+     00005D3C  _turno                             juego
+     0000626A  _juego                             juego
+     000063C9  _G_tile_cruzada                    graficos
+     00006409  _G_tile_caverna                    graficos
+     00006449  _G_tile_castillo                   graficos
+     00006489  _G_mendo                           graficos
+     00006569  _G_arabe_1                         graficos
+     00006649  _G_arabe_2                         graficos
+     00006729  _G_arabe_3                         graficos
+     00006809  _G_fakir                           graficos
+     000068E9  _G_arabe_boss                      graficos
+     000069C9  _G_abeja                           graficos
+     00006AA9  _G_pocion                          graficos
+     00006AE9  _G_murcielago                      graficos
+     00006BC9  _G_esqueleto                       graficos
+     00006CA9  _G_gusano                          graficos
+     00006D89  _G_spider                          graficos
+     00006E69  _G_goblin                          graficos
+     00006F49  _G_cavern_boss                     graficos
+     00007029  _G_soldado_1                       graficos
+ASxxxx Linker V03.00 + NoICE + sdld,  page 15.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_CODE                               0000050F    00009D12 =       40210. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00007109  _G_carcelero                       graficos
+     000071E9  _G_caballero                       graficos
+     000072C9  _G_soldado_2                       graficos
+     000073A9  _G_mago                            graficos
+     00007489  _G_ricardo                         graficos
+     00007569  _G_sol                             graficos
+     00007649  _abs                               funciones
+     00007671  _pausa                             funciones
+     00007681  _efecto_pliegue                    funciones
+     000076B9  _pausaTecladoLibre                 funciones
+     000076C1  _dibujarMarcoExterior              funciones
+     0000778E  _dibujarMarcoInterior              funciones
+     00007830  _dibujarEscenario                  funciones
+     00007884  _printStats                        funciones
+     0000797C  _printLevel                        funciones
+     000079C5  _printConsole                      funciones
+     00007A2A  _atacar                            funciones
+     00007BFB  _comprobarPosicion                 funciones
+     00007CAA  _moverIzq                          funciones
+     00007D37  _moverDcha                         funciones
+     00007DC3  _defender                          funciones
+     00007EB6  _IA                                funciones
+     000080F2  _drawPotion                        funciones
+     00008102  _initSoldadoArabe1                 niveles
+     0000814D  _initSoldadoArabe2                 niveles
+     00008198  _initSoldadoArabe3                 niveles
+     000081E3  _initFakir                         niveles
+     0000822A  _initAbeja                         niveles
+     0000826F  _initMurcielago                    niveles
+     000082B9  _initEsqueleto                     niveles
+     00008303  _initGusano                        niveles
+     00008349  _initSpider                        niveles
+     00008391  _initGoblin                        niveles
+     000083D9  _initSoldado1                      niveles
+     00008424  _initSoldado2                      niveles
+     0000846F  _initCaballero                     niveles
+     000084B7  _initCarcelero                     niveles
+     000084FE  _initMago                          niveles
+     00008548  _initPlayer                        niveles
+     00008592  _initNivel                         niveles
+     000088A8  mydrawStringM1_asm                 cpct_strings
+     000088BA  _mydrawStringM1                    cpct_strings
+     000088D8  mydrawCharM1_inner_asm             cpct_strings
+     00008921  cpct_char2pxM1                     cpct_strings
+     00008931  _cpct_isKeyPressed                 cpct_keyboard
+     00008931  cpct_isKeyPressed_asm              cpct_keyboard
+     0000893D  _cpct_setPalette                   cpct_video
+     00008954  _cpct_setPALColour                 cpct_video
+     00008960  _cpct_akp_digidrumStatus           cpct_audio
+     00008961  _cpct_akp_songLoopTimes            cpct_audio
+     00008962  _cpct_akp_musicPlay                cpct_audio
+ASxxxx Linker V03.00 + NoICE + sdld,  page 16.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_CODE                               0000050F    00009D12 =       40210. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00008962  cpct_akp_musicPlay_asm             cpct_audio
+     00009065  _cpct_akp_musicInit                cpct_audio
+     0000906C  cpct_akp_musicInit_asm             cpct_audio
+     000090C5  _cpct_akp_stop                     cpct_audio
+     000090C5  cpct_akp_stop_asm                  cpct_audio
+     000090D8  _cpct_akp_SFXGetInstrument         cpct_audio
+     000090DD  cpct_akp_SFXGetInstrument_asm      cpct_audio
+     000090F1  _cpct_akp_SFXInit                  cpct_audio
+     000090F8  cpct_akp_SFXInit_asm               cpct_audio
+     000090FF  _cpct_akp_SFXStopAll               cpct_audio
+     000090FF  cpct_akp_SFXStopAll_asm            cpct_audio
+     0000910C  _cpct_akp_SFXPlay                  cpct_audio
+     0000911E  cpct_akp_SFXPlay_asm               cpct_audio
+     0000916B  _cpct_akp_SFXStop                  cpct_audio
+     00009170  cpct_akp_SFXStop_asm               cpct_audio
+     00009189  _cpct_drawSprite                   cpct_sprites
+     0000922E  _cpct_etm_drawTileBox2x4           cpct_easytilemaps
+     000092BD  _cpct_etm_setTileset2x4            cpct_easytilemaps
+     000092BD  cpct_etm_setTileset2x4_asm         cpct_easytilemaps
+     000092C1  __moduchar                         
+     000092CD  __moduint                          
+     000092D8  _cpct_keyboardStatusBuffer         cpct_keyboard
+     000092E2  _cpct_setSeed_mxor                 cpct_random
+     000092E2  cpct_setSeed_mxor_asm              cpct_random
+     000092EA  __divuint                          
+     000092F2  __divuchar                         
+     000092F9  __divu8                            
+     000092FC  __divu16                           
+     0000932B  _cpct_restoreState_mxor_u8         cpct_random
+     0000932B  cpct_restoreState_mxor_u8_asm      cpct_random
+     00009331  _cpct_getRandom_mxor_u8            cpct_random
+     00009331  cpct_getRandom_mxor_u8_asm         cpct_random
+     00009332  cpct_randomIdx_mxor_u8             cpct_random
+     00009356  _cpct_etm_drawTileRow2x4           cpct_easytilemaps
+     0000935D  cpct_etm_drawTileRow2x4_asm        cpct_easytilemaps
+     0000935F  dtr_restore_ptileset               cpct_easytilemaps
+     00009377  _cpct_drawSpriteMasked             cpct_sprites
+     000093C6  _vsprintf                          sprintf
+     000093FB  _sprintf                           sprintf
+     00009430  _cpct_nextRandom_mxor_u32          cpct_random
+     00009430  cpct_nextRandom_mxor_u32_asm       cpct_random
+     00009453  _cpct_etm_drawTilemap2x4_f         cpct_easytilemaps
+     0000947F  _cpct_scanKeyboard_if              cpct_keyboard
+     0000947F  cpct_scanKeyboard_if_asm           cpct_keyboard
+     000094E7  _cpct_waitVSYNC                    cpct_video
+     000094E7  cpct_waitVSYNC_asm                 cpct_video
+     000094EF  _cpct_setVideoMode                 cpct_video
+     000094FD  _cpct_isAnyKeyPressed_f            cpct_keyboard
+     000094FD  cpct_isAnyKeyPressed_f_asm         cpct_keyboard
+     00009518  _cpct_memset                       cpct_memutils
+     00009526  _cpct_px2byteM1                    cpct_sprites
+ASxxxx Linker V03.00 + NoICE + sdld,  page 17.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_CODE                               0000050F    00009D12 =       40210. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00009526  cpct_px2byteM1_asm                 cpct_sprites
+     00009543  _cpct_disableFirmware              cpct_firmware
+     00009543  _cpct_removeInterruptHandler       cpct_firmware
+     00009543  cpct_disableFirmware_asm           cpct_firmware
+     00009543  cpct_removeInterruptHandler_asm    cpct_firmware
+     00009553  _cpct_drawSolidBox                 cpct_sprites
+     000095FC  cpct_drawTileAligned2x4_f_asm      cpct_sprites
+     0000961D  _cpct_mode_rom_status              cpct_firmware
+     0000961E  _cpct_setCRTCReg                   cpct_video
+     0000962C  _cpct_getScreenPtr                 cpct_video
+     0000964C  _cpct_setDrawCharM1                cpct_strings
+     000096A0  _cpct_setInterruptHandler          cpct_firmware
+     000096A0  cpct_setInterruptHandler_asm       cpct_firmware
+     000096B1  cpct_safeInterruptHandlerHook      cpct_firmware
+     000097C7  __print_format                     printf_large
+     0000A209  _cpct_mxor32_seed                  cpct_random
+     0000A20D  ___sdcc_call_hl                    
+     0000A20E  dc_mode1_ct                        
+     0000A212  _strlen                            
+ASxxxx Linker V03.00 + NoICE + sdld,  page 18.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_DATA                               0000A221    00000044 =          68. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     0000A221  _entidad                           main
+     0000A260  _nivel                             main
+     0000A261  _cursorConsola                     main
+     0000A262  _sig_nivel                         main
+     0000A263  _contador_musica                   main
+     0000A264  _musica_sonando                    main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 19.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+__m_intro0                          00000000    00000142 =         322. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000003CD  _m_intro                           
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 20.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
@@ -680,9 +996,20 @@ _CABS0                              00000000    00000300 =         768. bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00000040  _chardata                          fonts
+     00000040  _chardata                          main
 
-ASxxxx Linker V03.00 + NoICE + sdld,  page 15.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 21.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_CABS1                              00000000    0000008D =         141. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000340  _m_sfx                             main
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 22.
 
 Files Linked                              [ module(s) ]
 
@@ -706,13 +1033,25 @@ obj/mapas/fase_17.rel                     [ fase_17 ]
 obj/mapas/fase_18.rel                     [ fase_18 ]
 obj/mapas/fase_19.rel                     [ fase_19 ]
 obj/mapas/fase_20.rel                     [ fase_20 ]
+obj/mapas/fase_21.rel                     [ fase_21 ]
+obj/mapas/fase_22.rel                     [ fase_22 ]
+obj/mapas/fase_23.rel                     [ fase_23 ]
+obj/mapas/fase_24.rel                     [ fase_24 ]
+obj/mapas/fase_25.rel                     [ fase_25 ]
+obj/mapas/fase_26.rel                     [ fase_26 ]
+obj/mapas/fase_27.rel                     [ fase_27 ]
+obj/mapas/fase_28.rel                     [ fase_28 ]
+obj/mapas/fase_29.rel                     [ fase_29 ]
+obj/mapas/fase_30.rel                     [ fase_30 ]
+obj/mapas/fase_31.rel                     [ fase_31 ]
+obj/patrones/patronesTiles_3.rel          [ patronesTiles_3 ]
 obj/patrones/patronesTiles_2.rel          [ patronesTiles_2 ]
 obj/patrones/patronesTiles_1.rel          [ patronesTiles_1 ]
 obj/patrones/g_palette.rel                [ g_palette ]
+obj/m_intro.rel                           [  ]
 obj/main.rel                              [ main ]
-obj/graficos.rel                          [ graficos ]
 obj/juego.rel                             [ juego ]
-obj/fonts.rel                             [ fonts ]
+obj/graficos.rel                          [ graficos ]
 obj/funciones.rel                         [ funciones ]
 obj/niveles.rel                           [ niveles ]
 obj/mydrawStringM1_asmbindings.rel        [ cpct_strings ]
@@ -727,9 +1066,9 @@ Libraries Linked                          [ object file ]
 /home/cpp76s/cpctelera_git/cpctelera/cpctelera.lib
                                           [ cpct_setPalette_cbindings.rel ]
 /home/cpp76s/cpctelera_git/cpctelera/cpctelera.lib
-                                          [ cpct_scanKeyboard_f.rel ]
-/home/cpp76s/cpctelera_git/cpctelera/cpctelera.lib
                                           [ cpct_setPALColour_cbindings.rel ]
+/home/cpp76s/cpctelera_git/cpctelera/cpctelera.lib
+                                          [ arkostracker.rel ]
 /home/cpp76s/cpctelera_git/cpctelera/cpctelera.lib
                                           [ cpct_drawSprite_cbindings.rel ]
 /home/cpp76s/cpctelera_git/cpctelera/cpctelera.lib
@@ -738,12 +1077,12 @@ Libraries Linked                          [ object file ]
                                           [ cpct_etm_setTileset2x4.rel ]
 /home/cpp76s/cpctelera_git/cpctelera/tools/sdcc-3.6.8-r9946/bin/../share/sdcc/lib/z80/z80.lib
                                           [ modunsigned.rel ]
-/home/cpp76s/cpctelera_git/cpctelera/tools/sdcc-3.6.8-r9946/bin/../share/sdcc/lib/z80/z80.lib
-                                          [ divunsigned.rel ]
 /home/cpp76s/cpctelera_git/cpctelera/cpctelera.lib
                                           [ keyboard.rel ]
 /home/cpp76s/cpctelera_git/cpctelera/cpctelera.lib
                                           [ cpct_setSeed_mxor.rel ]
+/home/cpp76s/cpctelera_git/cpctelera/tools/sdcc-3.6.8-r9946/bin/../share/sdcc/lib/z80/z80.lib
+                                          [ divunsigned.rel ]
 /home/cpp76s/cpctelera_git/cpctelera/cpctelera.lib
                                           [ cpct_restoreState_mxor_u8.rel ]
 /home/cpp76s/cpctelera_git/cpctelera/cpctelera.lib
@@ -756,6 +1095,10 @@ Libraries Linked                          [ object file ]
                                           [ sprintf.rel ]
 /home/cpp76s/cpctelera_git/cpctelera/cpctelera.lib
                                           [ cpct_nextRandom_mxor_u32.rel ]
+/home/cpp76s/cpctelera_git/cpctelera/cpctelera.lib
+                                          [ cpct_etm_drawTilemap2x4_f_cbindi ]
+/home/cpp76s/cpctelera_git/cpctelera/cpctelera.lib
+                                          [ cpct_scanKeyboard_if.rel ]
 /home/cpp76s/cpctelera_git/cpctelera/cpctelera.lib
                                           [ cpct_waitVSYNC.rel ]
 /home/cpp76s/cpctelera_git/cpctelera/cpctelera.lib
@@ -780,6 +1123,8 @@ Libraries Linked                          [ object file ]
                                           [ cpct_getScreenPtr_cbindings.rel ]
 /home/cpp76s/cpctelera_git/cpctelera/cpctelera.lib
                                           [ cpct_setDrawCharM1_cbindings.rel ]
+/home/cpp76s/cpctelera_git/cpctelera/cpctelera.lib
+                                          [ cpct_setInterruptHandler.rel ]
 /home/cpp76s/cpctelera_git/cpctelera/tools/sdcc-3.6.8-r9946/bin/../share/sdcc/lib/z80/z80.lib
                                           [ printf_large.rel ]
 /home/cpp76s/cpctelera_git/cpctelera/cpctelera.lib
@@ -791,11 +1136,11 @@ Libraries Linked                          [ object file ]
 /home/cpp76s/cpctelera_git/cpctelera/tools/sdcc-3.6.8-r9946/bin/../share/sdcc/lib/z80/z80.lib
                                           [ strlen.rel ]
 
-ASxxxx Linker V03.00 + NoICE + sdld,  page 16.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 23.
 
 User Base Address Definitions
 
-_CODE = 0x0340
+_CODE = 0x050f
 _DATA = 0x0000
 
 
